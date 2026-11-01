@@ -51,7 +51,9 @@ export function renderResults(index) {
     'pending means the 3 prescribed results are not fully confirmed; best clear is the fastest completed run',
     'mean cost/run requires complete billing for all 3 runs; ~ includes a byok list-price estimate',
     `[protocol and trial evidence](results/${index.common_cohort_href ?? 'index.json'})`, ''];
+  if (cohort.stateOnly) benchmark.push('common image track: calibration pending. image replays and history remain development runs', '');
   for (const [track, title] of [['state', 'state'], ['image', 'pixels only']]) {
+    if (cohort.stateOnly && track === 'image') continue;
     const rows = cohort.rows.filter(row => row.track === track).sort((a, b) =>
       (b.meanProgressPct ?? -1) - (a.meanProgressPct ?? -1) || a.name.localeCompare(b.name));
     benchmark.push(`### ${title}`, '',
