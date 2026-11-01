@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at_utc": "2026-11-01T17:57:59.828039+00:00",
+  "generated_at_utc": "2026-11-01T18:45:00.667841+00:00",
   "data_class": "selected_development_examples",
   "comparable_aggregate": null,
   "leaderboard_ready": false,
@@ -19,7 +19,7 @@
     {
       "id": "image",
       "input": "pixels plus declared controls and timing only; no RAM",
-      "verified_clear_models": 2
+      "verified_clear_models": 3
     }
   ],
   "metrics": {
@@ -1056,6 +1056,110 @@
         "unreceipted_count": 0,
         "source_attempt_format": "captured_episode_events_or_response_attempt_jsonl",
         "attribution_scope": "whole captured episode including logged retry and auxiliary responses"
+      }
+    },
+    {
+      "id": "mercury-pixels-planner-sampled-clear-t02-seed0",
+      "data_class": "selected_development_examples",
+      "model_id": "inception/mercury-decide",
+      "display_name": "Inception: Mercury Decide (crop-only)",
+      "returned_model": "inception/mercury-decide-20260930",
+      "provider": "Inception",
+      "mode": "image",
+      "level": "1-1",
+      "status": "completed",
+      "completed": true,
+      "death": false,
+      "verified": true,
+      "start_x": 40,
+      "goal_x": 3161,
+      "furthest_valid_x": 3157.0,
+      "progress_pct": 100.0,
+      "native_frames": 2353,
+      "decisions": 622,
+      "speedrun_score_native_frames": 2353,
+      "nominal_game_seconds_to_completion": 39.21666666666667,
+      "experiment_config": {
+        "profile": "mercury-pixels-planner-sampled-clear-t02-seed0",
+        "adapter": "duration_first",
+        "cadence": null,
+        "previous_screens": 2,
+        "observation": "CURRENT fixed lower-gameplay crop and2PAST matching crops only; no full frame or RAM",
+        "contract_sha256": "9d82c85de2da99b74eee457319e61eb828c4b29937bb10940a74be6257ee0a01",
+        "rom_sha256": "ec299b990e8bfee8ba46e3f61d63b2e1ae5b8a2e431de84e2e4bbd692dc53586",
+        "seed": 0,
+        "life_budget": 1,
+        "selected_attempt": true,
+        "matched_cohort": false,
+        "profile_id": "mercury-pixels-planner-sampled-clear-t02-seed0",
+        "probability_sampler": {
+          "kind": "seeded_tempered_model_probabilities",
+          "temperature": 0.2,
+          "seed": 0,
+          "rng": "python_random_MT19937",
+          "candidate_order": "alphabetical canonical control names, mapped bijectively from all12 native action labels",
+          "formula": "p**(1/T), normalise over all12 choices; one uniform draw per executed action; no masks or oracle"
+        },
+        "initial_cadence_frames": 12,
+        "duration_policy": "native planner chooses2/4/6/12 after two own A release cycles;12 before",
+        "stages_per_action": 2,
+        "history_images": 3,
+        "viewport": "fixed lower-gameplay crop only (native0,80..256,240)"
+      },
+      "input_audit": {
+        "privileged_state_sent": false,
+        "successful_stage_requests_audited": 1244,
+        "actual_pixel_images_audited": 3726,
+        "probability_draws_reproduced": 622,
+        "native_frames_ram_rgb_verified": 2353,
+        "native_replay_verified": true,
+        "independent_audit_pass": true,
+        "viewport": "fixed lower-gameplay crop only; full frame never sent"
+      },
+      "trace_href": "traces/mercury-pixels-planner-sampled-clear-t02-seed0.json",
+      "trace_sha256": "ff2e586f22fd7ed008c68257ca1a3f0e26f723ca9ecefa885c5a9835f57b2817",
+      "replay_href": "replays/mercury-pixels-planner-sampled-clear-t02-seed0.mp4",
+      "replay_sha256": "49141ffa9d171e15bfa7c1586b0fb2a75ef85012a95bf2eab040d68d25f86fb8",
+      "source_hashes": {
+        "requests_sha256": "9980d124b3274017cc92f2e169225cb7e215e463a9dd30e6e308235594f7a334",
+        "responses_sha256": "a7e07706377fae8511dbea54bd1b9c035acf9d532d2b31ec5af860199bbdc3f4",
+        "private_replay_sha256": "59883aae7e3b1d0248c77b6fbae638d29f9aabbdc7cec272daaa9125c5a909f8",
+        "input_audit_sha256": "a7c7b3207f6c3f58241e3b17dc4faaeac6382c104ccbf3ef94fa603dc76ed7e1",
+        "executed_source_sha256": "c61444232dbe8337a33e9291eb59d16c2c1a7e7574e9360f7a3269ca44abc955"
+      },
+      "controls": {
+        "adapter": "native planner duration then seeded model-native full12 motor probabilities",
+        "trace_href": "traces/mercury-pixels-planner-sampled-clear-t02-seed0.json"
+      },
+      "profile_href": "profiles/mercury-pixels-planner-sampled-clear-t02-seed0.json",
+      "profile_sha256": "8eafab6a4c067a4c0f3b1ec0a7ee4af534ca5c3e3130eed4ae34e9ccf858c5d1",
+      "observed_progress_pct": 100.0,
+      "proof_href": "proofs/mercury-pixels-planner-sampled-clear-t02-seed0.json",
+      "cost_usd": null,
+      "cost_estimate_usd": null,
+      "openrouter_cost_usd": null,
+      "upstream_cost_usd": null,
+      "upstream_cost_estimate_usd": null,
+      "recorded_openrouter_cost_usd": 0.0784181,
+      "recorded_cost_usd": null,
+      "cost_provenance": {
+        "kind": "recorded_response_usage",
+        "cost_basis": "all_in_inference",
+        "request_count": 1245,
+        "costed_request_count": 1244,
+        "actual_costed_request_count": 0,
+        "coverage_complete": false,
+        "includes_retries": true,
+        "includes_auxiliary_calls": true,
+        "attempt_scope_verified": true,
+        "source_request_count": 1245,
+        "source_attempt_count": 1245,
+        "error_count": 1,
+        "unreceipted_count": 1,
+        "unreceipted_attempt_count": 1,
+        "unbilled_error_attempts_unknown": 1,
+        "source_immutable_sha256": "a7e07706377fae8511dbea54bd1b9c035acf9d532d2b31ec5af860199bbdc3f4",
+        "attribution_scope": "both planner and motor, including one502 error with unknown billing; recorded credits are a partial sum"
       }
     }
   ],
@@ -4278,12 +4382,116 @@
         "source_attempt_format": "captured_episode_events_or_response_attempt_jsonl",
         "attribution_scope": "whole captured episode including logged retry and auxiliary responses"
       }
+    },
+    {
+      "id": "mercury-pixels-planner-sampled-clear-t02-seed0",
+      "data_class": "selected_development_examples",
+      "model_id": "inception/mercury-decide",
+      "display_name": "Inception: Mercury Decide (crop-only)",
+      "returned_model": "inception/mercury-decide-20260930",
+      "provider": "Inception",
+      "mode": "image",
+      "level": "1-1",
+      "status": "completed",
+      "completed": true,
+      "death": false,
+      "verified": true,
+      "start_x": 40,
+      "goal_x": 3161,
+      "furthest_valid_x": 3157.0,
+      "progress_pct": 100.0,
+      "native_frames": 2353,
+      "decisions": 622,
+      "speedrun_score_native_frames": 2353,
+      "nominal_game_seconds_to_completion": 39.21666666666667,
+      "experiment_config": {
+        "profile": "mercury-pixels-planner-sampled-clear-t02-seed0",
+        "adapter": "duration_first",
+        "cadence": null,
+        "previous_screens": 2,
+        "observation": "CURRENT fixed lower-gameplay crop and2PAST matching crops only; no full frame or RAM",
+        "contract_sha256": "9d82c85de2da99b74eee457319e61eb828c4b29937bb10940a74be6257ee0a01",
+        "rom_sha256": "ec299b990e8bfee8ba46e3f61d63b2e1ae5b8a2e431de84e2e4bbd692dc53586",
+        "seed": 0,
+        "life_budget": 1,
+        "selected_attempt": true,
+        "matched_cohort": false,
+        "profile_id": "mercury-pixels-planner-sampled-clear-t02-seed0",
+        "probability_sampler": {
+          "kind": "seeded_tempered_model_probabilities",
+          "temperature": 0.2,
+          "seed": 0,
+          "rng": "python_random_MT19937",
+          "candidate_order": "alphabetical canonical control names, mapped bijectively from all12 native action labels",
+          "formula": "p**(1/T), normalise over all12 choices; one uniform draw per executed action; no masks or oracle"
+        },
+        "initial_cadence_frames": 12,
+        "duration_policy": "native planner chooses2/4/6/12 after two own A release cycles;12 before",
+        "stages_per_action": 2,
+        "history_images": 3,
+        "viewport": "fixed lower-gameplay crop only (native0,80..256,240)"
+      },
+      "input_audit": {
+        "privileged_state_sent": false,
+        "successful_stage_requests_audited": 1244,
+        "actual_pixel_images_audited": 3726,
+        "probability_draws_reproduced": 622,
+        "native_frames_ram_rgb_verified": 2353,
+        "native_replay_verified": true,
+        "independent_audit_pass": true,
+        "viewport": "fixed lower-gameplay crop only; full frame never sent"
+      },
+      "trace_href": "traces/mercury-pixels-planner-sampled-clear-t02-seed0.json",
+      "trace_sha256": "ff2e586f22fd7ed008c68257ca1a3f0e26f723ca9ecefa885c5a9835f57b2817",
+      "replay_href": "replays/mercury-pixels-planner-sampled-clear-t02-seed0.mp4",
+      "replay_sha256": "49141ffa9d171e15bfa7c1586b0fb2a75ef85012a95bf2eab040d68d25f86fb8",
+      "source_hashes": {
+        "requests_sha256": "9980d124b3274017cc92f2e169225cb7e215e463a9dd30e6e308235594f7a334",
+        "responses_sha256": "a7e07706377fae8511dbea54bd1b9c035acf9d532d2b31ec5af860199bbdc3f4",
+        "private_replay_sha256": "59883aae7e3b1d0248c77b6fbae638d29f9aabbdc7cec272daaa9125c5a909f8",
+        "input_audit_sha256": "a7c7b3207f6c3f58241e3b17dc4faaeac6382c104ccbf3ef94fa603dc76ed7e1",
+        "executed_source_sha256": "c61444232dbe8337a33e9291eb59d16c2c1a7e7574e9360f7a3269ca44abc955"
+      },
+      "controls": {
+        "adapter": "native planner duration then seeded model-native full12 motor probabilities",
+        "trace_href": "traces/mercury-pixels-planner-sampled-clear-t02-seed0.json"
+      },
+      "profile_href": "profiles/mercury-pixels-planner-sampled-clear-t02-seed0.json",
+      "profile_sha256": "8eafab6a4c067a4c0f3b1ec0a7ee4af534ca5c3e3130eed4ae34e9ccf858c5d1",
+      "observed_progress_pct": 100.0,
+      "proof_href": "proofs/mercury-pixels-planner-sampled-clear-t02-seed0.json",
+      "cost_usd": null,
+      "cost_estimate_usd": null,
+      "openrouter_cost_usd": null,
+      "upstream_cost_usd": null,
+      "upstream_cost_estimate_usd": null,
+      "recorded_openrouter_cost_usd": 0.0784181,
+      "recorded_cost_usd": null,
+      "cost_provenance": {
+        "kind": "recorded_response_usage",
+        "cost_basis": "all_in_inference",
+        "request_count": 1245,
+        "costed_request_count": 1244,
+        "actual_costed_request_count": 0,
+        "coverage_complete": false,
+        "includes_retries": true,
+        "includes_auxiliary_calls": true,
+        "attempt_scope_verified": true,
+        "source_request_count": 1245,
+        "source_attempt_count": 1245,
+        "error_count": 1,
+        "unreceipted_count": 1,
+        "unreceipted_attempt_count": 1,
+        "unbilled_error_attempts_unknown": 1,
+        "source_immutable_sha256": "a7e07706377fae8511dbea54bd1b9c035acf9d532d2b31ec5af860199bbdc3f4",
+        "attribution_scope": "both planner and motor, including one502 error with unknown billing; recorded credits are a partial sum"
+      }
     }
   ],
   "observation_selection": "Common-profile state attempts, earlier selected pixel partials and newly verified distinct development episodes. Different settings; historical runs retained; no comparable aggregate or model mean.",
   "observation_counts": {
     "state": 22,
-    "image": 18
+    "image": 19
   },
   "technical_diagnostics": [
     {

@@ -1416,6 +1416,34 @@
         "attribution_scope": "whole captured episode including logged retry and auxiliary responses",
         "upstream_cost_basis": "openrouter_activity_list_price_estimate"
       }
+    },
+    "mercury-pixels-planner-sampled-clear-t02-seed0": {
+      "cost_usd": null,
+      "cost_estimate_usd": null,
+      "openrouter_cost_usd": null,
+      "upstream_cost_usd": null,
+      "upstream_cost_estimate_usd": null,
+      "recorded_openrouter_cost_usd": 0.0784181,
+      "recorded_cost_usd": null,
+      "cost_provenance": {
+        "kind": "recorded_response_usage",
+        "cost_basis": "all_in_inference",
+        "request_count": 1245,
+        "costed_request_count": 1244,
+        "actual_costed_request_count": 0,
+        "coverage_complete": false,
+        "includes_retries": true,
+        "includes_auxiliary_calls": true,
+        "attempt_scope_verified": true,
+        "source_request_count": 1245,
+        "source_attempt_count": 1245,
+        "error_count": 1,
+        "unreceipted_count": 1,
+        "unreceipted_attempt_count": 1,
+        "unbilled_error_attempts_unknown": 1,
+        "source_immutable_sha256": "a7e07706377fae8511dbea54bd1b9c035acf9d532d2b31ec5af860199bbdc3f4",
+        "attribution_scope": "both planner and motor, including one502 error with unknown billing; recorded credits are a partial sum"
+      }
     }
   }
 }

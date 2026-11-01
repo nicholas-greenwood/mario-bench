@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "id": "mercury-pixels-planner-sampled-clear-t02-seed0",
+  "mode": "image",
+  "level": "1-1",
+  "cadence": null,
+  "initial_cadence_frames": 12,
+  "minimum_hold_frames": 2,
+  "contract": {
+    "adapter": "duration_first",
+    "questions": {
+      "action": {
+        "type": "choice",
+        "instructions": "Choose ONE complete controller state for the next interval. Recheck the screenshots: the qualitative plan is your own uncertain hypothesis and never forces a button. All twelve choices remain available. Choose whether to hold or release A and whether to run or walk so that Mario reaches a safe support and progresses alive.",
+        "criteria": {
+          "left_walk_release": "Hold horizontal=left, B(run)=released, A(jump)=released; vertical released. All inputs stay constant through this interval.",
+          "left_walk_jump": "Hold horizontal=left, B(run)=released, A(jump)=held; vertical released. All inputs stay constant through this interval.",
+          "left_run_release": "Hold horizontal=left, B(run)=held, A(jump)=released; vertical released. All inputs stay constant through this interval.",
+          "left_run_jump": "Hold horizontal=left, B(run)=held, A(jump)=held; vertical released. All inputs stay constant through this interval.",
+          "released_walk_release": "Hold horizontal=released, B(run)=released, A(jump)=released; vertical released. All inputs stay constant through this interval.",
+          "released_walk_jump": "Hold horizontal=released, B(run)=released, A(jump)=held; vertical released. All inputs stay constant through this interval.",
+          "released_run_release": "Hold horizontal=released, B(run)=held, A(jump)=released; vertical released. All inputs stay constant through this interval.",
+          "released_run_jump": "Hold horizontal=released, B(run)=held, A(jump)=held; vertical released. All inputs stay constant through this interval.",
+          "right_walk_release": "Hold horizontal=right, B(run)=released, A(jump)=released; vertical released. All inputs stay constant through this interval.",
+          "right_walk_jump": "Hold horizontal=right, B(run)=released, A(jump)=held; vertical released. All inputs stay constant through this interval.",
+          "right_run_release": "Hold horizontal=right, B(run)=held, A(jump)=released; vertical released. All inputs stay constant through this interval.",
+          "right_run_jump": "Hold horizontal=right, B(run)=held, A(jump)=held; vertical released. All inputs stay constant through this interval."
+        }
+      }
+    },
+    "planner_questions": {
+      "landing_subgoal": {
+        "type": "choice",
+        "instructions": "Choose your own next local destination or landing subgoal needed to advance alive. Do not merely label Mario current condition. Inspect the CURRENT screenshot first and use the labelled past views only for motion context. Select the next safe support to reach or remain on, considering visible enemies, solid sides and floor gaps. This is a qualitative uncertain visual plan; no route or surface candidates are provided externally.",
+        "criteria": {
+          "advance_clear_ground": "Continue along the visible clear supported ground ahead, when no visible near obstacle or enemy requires a different immediate subgoal.",
+          "land_on_next_raised_top": "Reach and land safely on the top of the next visible raised pipe, block or stair surface ahead. The feet must get above that top before crossing its side.",
+          "land_on_far_side_of_gap": "Reach visible safe support beyond the nearby visible floor gap, timing takeoff so the landing reaches that support.",
+          "pass_visible_enemy_safely": "Pass a nearby visible enemy without side contact, using a safe landing beyond it or a descending stomp as inferred from the pixels.",
+          "finish_current_landing": "Complete the ongoing flight onto the selected visible safe support before starting a distinct new jump. Avoid drifting past a small platform.",
+          "reposition_on_safe_support": "Retreat or reduce forward movement on visible safe support to create room for the next jump, or stay on a small landing while preparing the next maneuver.",
+          "uncertain_reassess": "No safe visible subgoal is clear; reassess cautiously using pixels and prior chosen controls."
+        }
+      }
+    },
+    "duration_question": {
+      "type": "choice",
+      "instructions": "Choose how many native frames to hold YOUR selected complete buttons before another screenshot. You choose the timing; no automatic contact-based stopping or correction exists.",
+      "criteria": {
+        "precision_2": "Hold chosen buttons for 2 native frames, then inspect. Fine timing near contact, a landing, enemy or fresh A edge.",
+        "precision_4": "Hold chosen buttons for 4 native frames, then inspect. Precise movement near visible hazards or a small support.",
+        "routine_6": "Hold chosen buttons for 6 native frames, then inspect. Routine progress with room.",
+        "sustain_12": "Hold chosen buttons for 12 native frames, then inspect. Sustain enough ascent, height or travel when the trajectory has safe room."
+      }
+    },
+    "duration_choices": {
+      "precision_2": 2,
+      "precision_4": 4,
+      "routine_6": 6,
+      "sustain_12": 12
+    },
+    "initial_cadence_frames": 12,
+    "duration_gate": "two own A-held-to-released cycles",
+    "probability_sampler": {
+      "kind": "seeded_tempered_model_probabilities",
+      "temperature": 0.2,
+      "seed": 0,
+      "rng": "python_random_MT19937",
+      "candidate_order": "alphabetical canonical control names, mapped bijectively from all12 native action labels",
+      "formula": "p**(1/T), normalise over all12 choices; one uniform draw per executed action; no masks or oracle"
+    },
+    "observation": "current-first fixed lower-gameplay crop (native x0:256,y80:240), nearest3x; two previous matching crops; partial viewport outside crop unknown",
+    "rules": "Play Super Mario Bros. World 1-1 to the flag alive. All scene evidence comes from screenshots. Each screenshot is the same fixed lower-gameplay view enlarged with nearest-neighbour pixels; all chronological views have identical framing. Parts outside this fixed view are unknown. Infer Mario, motion, solid surfaces, enemies and gaps visually. Right advances, left retreats, B runs faster and makes jumps travel farther. A starts a jump only on a fresh press while standing on a solid surface. Holding A during ascent increases jump height and length; releasing early makes a low hop. Pressing A while airborne cannot start another jump. Release A during descent to prepare the next grounded takeoff. Holding A through landing does not start another jump. Side contact with enemies and falling into gaps are dangerous. Landing on an ordinary enemy from above can stomp it. Pipes and stairs support Mario on their tops. Mario feet must rise above a solid surface before moving across its side. Ceilings interrupt ascent. Momentum persists when buttons are released. The game pauses during both planning and motor inference. Every action is chosen by you; no controller correction or route exists.\nInspect the path ahead before choosing a maneuver: an enemy can collide from the side before Mario has time to rise, and a raised solid side can stop forward travel. Infer whether the currently chosen forward movement is safe throughout the next interval. Choose a visible safe landing target and a short maneuver toward it. A target can be the current platform, the next raised surface, or ground beyond a visible gap. Keep the landing target in mind while rising and descending. Confirm that Mario actually landed before attempting a fresh jump. A small raised landing can require less forward acceleration. Avoid jumping needlessly far before a gap, which can make the descent end above the gap. These are general mechanics; infer the actual local target and takeoff timing from the pixels. Use qualitative descriptions only, without coordinates or numerical distances. Your prior plans are uncertain hypotheses, and you may revise them using the current screenshot."
+  },
+  "request_builder": "benchmark.profiles.mercury_plan_v1.policy_body",
+  "decoder": "benchmark.profiles.mercury_plan_v1.sample_motor",
+  "probability_sampler": {
+    "kind": "seeded_tempered_model_probabilities",
+    "temperature": 0.2,
+    "seed": 0,
+    "rng": "python_random_MT19937",
+    "candidate_order": "alphabetical canonical control names, mapped bijectively from all12 native action labels",
+    "formula": "p**(1/T), normalise over all12 choices; one uniform draw per executed action; no masks or oracle"
+  },
+  "common_benchmark_default": false,
+  "settings": {
+    "model": "inception/mercury-decide-20260930",
+    "provider": "Inception",
+    "initial_cadence_frames": 12,
+    "minimum_hold_frames": 2,
+    "history_images": 3,
+    "controls_retained": 6000,
+    "prior_plans_retained": 2
+  },
+  "profile_extraction": {
+    "id": "pixels-mercury-duration-first-sampled-t02-seed0-c12-v1",
+    "development_only": true,
+    "ranked": false,
+    "track": "pixels_only",
+    "native_frame_budget": 6000,
+    "derived_maximum_control_actions": 3000,
+    "initial_hold_native_frames": 12,
+    "history_images": 3,
+    "model": "inception/mercury-decide-20260930",
+    "provider": [
+      "Inception"
+    ],
+    "duration_choices": {
+      "precision_2": 2,
+      "precision_4": 4,
+      "routine_6": 6,
+      "sustain_12": 12
+    },
+    "duration_gate": "After two own A-held-to-released cycles; persistent; no environment state input.",
+    "first_duration_decision": 18,
+    "action_sampling": {
+      "temperature": 0.2,
+      "seed": 0,
+      "rng": "Python random.Random MT19937",
+      "distribution": "all12 unmasked native motor probabilities raised to1/T, normalized, sorted by canonical control name; one draw per executed action; no state-dependent mask",
+      "native_plan_and_duration": "Native provider choices, not sampled"
+    },
+    "observation": "CURRENT-first fixed lower-gameplay crop only: native0,80..256,240 nearest3x, with2matchingPAST crops. This legacy attention policy may omit Mario on high surfaces; successful selected development run, not a common final ranking.",
+    "native_clear": true,
+    "death": false,
+    "native_frames": 2353,
+    "model_selected_actions": 622,
+    "native_api_successful_stages": 1244,
+    "policy_source_sha256": "9bd4eb631cc6dc5d7af4844852193d1a0997fbd31b3558cbabc8338d800c0a94",
+    "original_runner_sha256": "c61444232dbe8337a33e9291eb59d16c2c1a7e7574e9360f7a3269ca44abc955",
+    "original_sampler_sha256": "cc3f3a3a543da32d53b2fc6595d3116adb80fba69ee88437587e490b21dd6e6d",
+    "contract_sha256": "30e0560524c4afe2c247ee38d395be170856a623b41ad9922e90bd898e5162b9"
+  },
+  "source_files": [
+    {
+      "repo_path": "benchmark/profiles/mercury_plan_v1.py",
+      "sha256": "9bd4eb631cc6dc5d7af4844852193d1a0997fbd31b3558cbabc8338d800c0a94"
+    }
+  ],
+  "request_roundtrip_proof": {
+    "repo_path": "results/proofs/mercury-pixels-planner-sampled-clear-t02-seed0-profile-roundtrip.json",
+    "sha256": "8ff4f5ea755e784a3e40bd6f9328c2d22f915505a634a4aa67b8b1700c51c97d",
+    "exact_provider_requests": 1244,
+    "exact_probability_draws": 622
+  }
+}

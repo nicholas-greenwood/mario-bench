@@ -42,15 +42,19 @@ def public_parity():
         try:
             for action in trace['actions']:
                 before, index = game.frame, action['index']
-                image = png(game) if session.mode == 'image' else None
-                body = (session.image_request(image, before, index) if image else session.state_request(game.observe()))
-                assert digest(body) == action['request_sha256'], (name, index, 'request')
+                image = session.screenshot(game.frame_rgb()) if session.mode == 'image' else None
                 frozen_raw = deepcopy(action['native_response'])
-                chosen = session.choose(frozen_raw, body)
+                if session.multistage:
+                    from benchmark.public_results import duration_first_choice
+                    chosen = duration_first_choice(session, action, image, before, index)
+                else:
+                    body = (session.image_request(image, before, index) if image else session.state_request(game.observe()))
+                    assert digest(body) == action['request_sha256'], (name, index, 'request')
+                    chosen = session.choose(frozen_raw, body)
                 assert frozen_raw == action['native_response'], 'Sampler mutated native argmax response'
                 frames, buttons = action['sequence'][0]
                 assert chosen['buttons'] == buttons
-                if session.sampler:
+                if session.sampler and not session.multistage:
                     expected = action['sampling']
                     assert chosen['sampling']['sampled_choice'] == expected['sampled_choice']
                     assert chosen['sampling']['random_uniform'] == expected['random_uniform']
@@ -67,7 +71,7 @@ def public_parity():
                 assert hashlib.sha256(game.frame_rgb().tobytes()).hexdigest() == action['screen_after_sha256']
                 session.advance(image=image, frame=before, decision=index, buttons=buttons, actual_frames=actual)
             assert game.flag_get
-            if session.sampler:
+            if session.sampler and not session.multistage:
                 assert mismatches == 9
             print(f'PASS: {name}: {len(trace["actions"])} exact request/choice checkpoints, {game.frame} native frames, flag_get')
         finally:
@@ -179,6 +183,83 @@ def recovery():
     print('PASS: paused retries, one seeded draw per decision, completed/response/action/checkpoint recovery, uncertain-request protection, strict cap')
 
 
+def mercury_recovery():
+    """Both stages freeze; plan-only commits recover without another plan call."""
+    name = 'mercury-pixels-planner-sampled-clear-t02-seed0'
+    trace = json.loads((ROOT / 'results/traces' / (name + '.json')).read_text())
+    cfg = config(name, 25)
+    calls = []
+    scheduled = [(0, 'plan'), (0, 'motor'), (1, 'plan'), (1, 'motor'),
+                 (1, 'motor'), (2, 'plan'), (2, 'motor')]
+    def make_outcome(index, stage, body, decoder):
+        assert digest(body) == trace['actions'][index]['stage_request_sha256'][stage]
+        field = 'native_plan_response' if stage == 'plan' else 'native_response'
+        raw = deepcopy(trace['actions'][index][field])
+        raw['usage'] = dict(cost=.001, is_byok=False)
+        return dict(valid=True, retryable=False, raw_response=raw,
+                    decision=decoder(raw, body), request_sha256=digest(body))
+    def factory(key, model, timeout, *, decoder):
+        class Transport:
+            def call(self, body):
+                index, stage = scheduled[len(calls)]
+                calls.append((index, stage))
+                assert json.loads(body['state'][0])['stage'] == stage
+                if len(calls) == 4:
+                    return dict(valid=False, retryable=True, error_type='infrastructure', error='HTTP 502',
+                                raw_response={'error': {'code': 502}}, request_sha256=digest(body))
+                return make_outcome(index, stage, body, decoder)
+            def close(self): pass
+        return Transport()
+    def forbidden(*args, **kwargs):
+        raise AssertionError('A committed stage was sent again')
+    with tempfile.TemporaryDirectory() as tmp:
+        output = Path(tmp)
+        with patch('benchmark.frozen_run.time.sleep'):
+            original = execute_episode(output, cfg, client_factory=factory)
+        assert original['frames'] == 25 and original['decisions'] == 3
+        assert len(calls) == 7 and calls[3] == calls[4]
+        path = output / (safe_name(ProfileSession(name).model['id']) + '.jsonl')
+        rows = read_events(path)
+        from benchmark.costs import costs_from_events
+        costs = costs_from_events(rows)
+        assert costs['cost_usd'] is None and costs['cost_estimate_usd'] is None
+        assert costs['recorded_openrouter_cost_usd'] == .006
+        assert costs['cost_provenance']['request_count'] == 7
+        assert costs['cost_provenance']['unreceipted_count'] == 1
+        action_rows = [row for row in rows if row['event'] == 'action']
+        def prefix(cut):
+            path.write_text(''.join(json.dumps(row) + '\n' for row in rows[:cut]))
+        for event, stage in [('request_result', 'motor'), ('action', None)]:
+            cut = next(i for i, row in enumerate(rows) if row['event'] == event and row.get('decision_index') == 2
+                       and (stage is None or row.get('stage') == stage))
+            prefix(cut + 1)
+            assert execute_episode(output, cfg, client_factory=forbidden) == original
+            recovered = [row for row in read_events(path) if row['event'] == 'action']
+            assert [{k: v for k, v in row.items() if k != 'utc'} for row in recovered] == [
+                {k: v for k, v in row.items() if k != 'utc'} for row in action_rows]
+        plan_cut = next(i for i, row in enumerate(rows) if row['event'] == 'request_result'
+                        and row.get('decision_index') == 2 and row.get('stage') == 'plan')
+        prefix(plan_cut + 1)
+        actor_calls = []
+        def actor_only(key, model, timeout, *, decoder):
+            class Transport:
+                def call(self, body):
+                    actor_calls.append(body)
+                    assert json.loads(body['state'][0])['stage'] == 'motor'
+                    return make_outcome(2, 'motor', body, decoder)
+                def close(self): pass
+            return Transport()
+        assert execute_episode(output, cfg, client_factory=actor_only) == original
+        assert len(actor_calls) == 1
+        for stage in ('plan', 'motor'):
+            cut = next(i for i, row in enumerate(rows) if row['event'] == 'request_intent'
+                       and row.get('decision_index') == 2 and row.get('stage') == stage)
+            prefix(cut + 1)
+            stopped = execute_episode(output, cfg, client_factory=forbidden)
+            assert stopped['status'] == 'infra_error' and stopped['frames'] == 24
+    print('PASS: Mercury per-stage retry, pending-plan/motor safety, plan-only and actor/action recovery, sampled choices and 502 cost unknown')
+
+
 def cli_envelope():
     with tempfile.TemporaryDirectory() as tmp:
         output = Path(tmp) / 'run'
@@ -210,6 +291,7 @@ def main():
         public_parity()
         reject_bad_vectors()
         recovery()
+        mercury_recovery()
         cli_envelope()
 
 
