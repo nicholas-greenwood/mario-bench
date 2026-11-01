@@ -1,0 +1,137 @@
+{
+  "status": "verified_technical_serialization_recovery",
+  "openai_decisions_model_count": 1,
+  "catalogue_alias": "openai/gpt-6-luna-decisions",
+  "pinned_model": "openai/gpt-6-luna-decisions-20261006",
+  "pinned_provider": "OpenAI",
+  "aliases_are_not_additional_models": true,
+  "observed_error": {
+    "http_status": 502,
+    "code": 502,
+    "message": "OpenAI refused to answer question \"action\"",
+    "old_decision_index": 71,
+    "old_native_frame": 284,
+    "reproduced_original_body": true,
+    "untouched_full_retest_repeated_failures": 4,
+    "old_episode_status": "infra_error",
+    "old_episode_score": null
+  },
+  "controlled_inputs": [
+    {
+      "case": "old_failed_text_exact",
+      "state_wire_type": "str",
+      "http_status": 502,
+      "valid": false,
+      "request_sha256": "f7b5d20dc4c3ee07caae336182fb2bd0f1a5569d646cbcc10aa030c07bad8db7"
+    },
+    {
+      "case": "initial_released_text",
+      "state_wire_type": "str",
+      "http_status": 200,
+      "valid": true,
+      "request_sha256": "1c442cea2d841f275d1a3c6a5985e946722f4dc559b75965e0d1eddd2b548a35"
+    },
+    {
+      "case": "same_text_array",
+      "state_wire_type": "list",
+      "http_status": 502,
+      "valid": false,
+      "request_sha256": "27d8ffd8929982851bb3b93ea3ca64fc6955cfac7d95ee91e01cc4b1b74f5b1e"
+    },
+    {
+      "case": "same_text_json_object",
+      "state_wire_type": "dict",
+      "http_status": 200,
+      "valid": true,
+      "request_sha256": "1f6db6b41b45a4cb1cea8d776cddf09c491e0a72ee121f9fb2650d62d245403f"
+    }
+  ],
+  "exact_evidence_and_questions_unchanged": true,
+  "correction": "Generic explicit state-serialization adapter: wrap the unchanged shared factual text in a documented JSON object; no model-specific gameplay instructions or action changes.",
+  "common_default": "auto resolves optional model capability; explicit text override and unchanged pixels-only inputs",
+  "full_technical_diagnostic": {
+    "episode_id": "1-1:seed0:trial000",
+    "model": "openai/gpt-6-luna-decisions",
+    "track": "state",
+    "level": "1-1",
+    "seed": 0,
+    "status": "game_over",
+    "completed": false,
+    "max_progress_x": 1125.0,
+    "start_x": 40,
+    "frames": 2059,
+    "decisions": 515,
+    "deaths": 1,
+    "error": null,
+    "native_frames_to_completion": null,
+    "rankable": true,
+    "clear": 0,
+    "progress_pct": 34.764498558154436,
+    "progress_mapping_validated": true,
+    "nominal_game_seconds_to_completion": null,
+    "speedrun_score_native_frames": null
+  },
+  "full_diagnostic_is_not_old_cohort_comparable": true,
+  "cohort_equivalent_prefix": {
+    "data_class": "retrospective_cohort_equivalent_prefix",
+    "status": "stalled_development_abort",
+    "actual_full_run_continued": true,
+    "native_frames": 880,
+    "decisions": 220,
+    "calls": 220,
+    "api_errors": 0,
+    "completed": false,
+    "death": false,
+    "furthest_valid_x": 596.0,
+    "observed_progress_pct": 17.81480294777315,
+    "final_score": null,
+    "last_progress_native_frame": 276,
+    "strictly_unprogressed_native_frames": 604,
+    "criterion": "After each4framechunk:update last_progress only if rawnativeprogress_max_x strictlyincreases;abort ifframe-last_progress>600 ornativedone;cap1500decisions.",
+    "native_request_observation_screen_prefix_verified": true,
+    "state_serialization": "json_object",
+    "evidence_bytes_unchanged": true,
+    "selection": "Technical serialization correction; retrospective cutoff for development-cohort equivalence, not a prespecified ranked result."
+  },
+  "native_audit": {
+    "episodes": 1,
+    "calls": 515,
+    "valid_responses": 515,
+    "recovered_service_failures": 0,
+    "actions": 515,
+    "reported_cost_usd": 0,
+    "statuses": {
+      "game_over": 1
+    },
+    "replay": "all state, screenshot and native-frame hashes match"
+  },
+  "historical_text_retest_audit": {
+    "episodes": 1,
+    "calls": 75,
+    "valid_responses": 71,
+    "recovered_service_failures": 4,
+    "actions": 71,
+    "reported_cost_usd": 0,
+    "statuses": {
+      "infra_error": 1
+    },
+    "replay": "all state, screenshot and native-frame hashes match"
+  },
+  "official_sources": [
+    "https://developers.openai.com/api/docs/guides/decisions",
+    "https://openrouter.ai/docs/api/api-reference/alphadecisions/submit-a-decisions-request",
+    "https://openrouter.ai/api/v1/models?output_modalities=decisions",
+    "https://openrouter.ai/api/v1/models/openai/gpt-6-luna-decisions-20261006/endpoints"
+  ],
+  "limitations": "Specific upstream refusal depended on legal input serialization. Internal refusal reason is unavailable; JSON normalization restores valid API gameplay here, not extra gameplay capability. Full diagnostic had more opportunity than the historical 600-frame stagnation cutoff; do not substitute it silently into that cohort.",
+  "public_evidence": {
+    "original_observation_id": "state-c4-openai--gpt-6-luna-decisions",
+    "prefix_trace_href": "../traces/openai-state-json-object-cohort-prefix.json",
+    "full_trace_href": "../traces/openai-state-json-object-full-diagnostic.json",
+    "source_hashes": {
+      "source_episode_sha256": "b398e376aef9949c2faf35d2930804c90b00f130311f630643d9662b57a174c7",
+      "frozen_manifest_sha256": "8f9b42264d0a8524b9240f954994f1427192ebbe21fcf7e0a2617342da2a220a",
+      "technical_report_sha256": "67b2f54f67763d3fd9a1678d9bb7f5d8470f9fff13c6e31085d268071099cf29"
+    }
+  }
+}

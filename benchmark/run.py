@@ -125,7 +125,7 @@ def worker(job):
                         images = Path(output) / 'images' / safe_name(model['id']) / episode_id.replace(':', '_')
                         images.mkdir(parents=True, exist_ok=True)
                         (images / f'{index:06d}.png').write_bytes(image)
-                    body = request_body(model, state, image)
+                    body = request_body(model, state, image, state_serialization='text' if config['track'] == 'image' else config.get('state_serialization', 'text'))
                     outcome = outcomes[-1] if outcomes else None
                     for attempt in range(len(outcomes), config['retries'] + 1):
                         if outcome and (outcome.get('valid') or not outcome.get('retryable')):
@@ -201,6 +201,7 @@ def main():
     parser.add_argument('--models', nargs='+')
     parser.add_argument('--levels', nargs='+', choices=['1-1', '1-2', '1-3', '1-4'], default=['1-1'])
     parser.add_argument('--track', choices=['state', 'image'], default='state')
+    parser.add_argument('--state-serialization', choices=['auto', 'text', 'json_object'], default='auto')
     parser.add_argument('--image-eligibility', choices=['verified', 'advertised'], default='verified')
     parser.add_argument('--policy', choices=['openrouter', 'fake'], default='openrouter')
     parser.add_argument('--concurrency', type=int, default=22)
@@ -231,6 +232,8 @@ def main():
         models = [dict(m, provider=m.get('image_provider', m['provider']), expected_returned_provider_names=m.get('image_expected_returned_provider_names', m.get('expected_returned_provider_names'))) for m in models]
     if not models:
         parser.error('No eligible models')
+    if args.track == 'image' and args.state_serialization == 'json_object':
+        parser.error('State serialization adapters are state-track only; pixels-only input stays unchanged')
     from benchmark.scoring import score_episode
     protocol = json.loads((HERE / 'protocol.json').read_text())
     level_specs = [spec for spec in protocol['levels'] if spec['level'] in args.levels]
@@ -238,7 +241,7 @@ def main():
         parser.error('Requested level is missing from protocol')
     level_spec = level_specs[0]
     config = dict(policy=args.policy, track=args.track, cadence=args.cadence, frames=args.frames,
-                  control_profile='joint-visible-v1',
+                  control_profile='joint-visible-v1', state_serialization=args.state_serialization,
                   decisions=decisions, trials=args.trials, timeout=args.timeout, retries=args.retries,
                   level_spec=level_spec, level_specs=level_specs)
     output = (args.output or HERE / 'runs' / datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')).resolve()
