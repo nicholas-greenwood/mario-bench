@@ -9,6 +9,13 @@ export type CostProvenance = {
   costed_request_count: number;
   actual_costed_request_count: number;
   coverage_complete: boolean;
+  attempt_scope_verified: boolean;
+  source_request_count: number;
+  source_attempt_count: number;
+  error_count: number;
+  unreceipted_count: number;
+  unreceipted_attempt_count: number;
+  unbilled_error_attempts_unknown: number;
   includes_retries: boolean;
   includes_auxiliary_calls: boolean;
   upstream_cost_basis?: string | null;
@@ -70,6 +77,13 @@ function runCost(raw: RawExample) {
   const value = num(raw.cost_usd);
   const complete = provenance && provenance.kind === 'recorded_response_usage' && provenance.cost_basis === 'all_in_inference'
     && provenance.coverage_complete === true
+    && provenance.attempt_scope_verified === true
+    && provenance.source_request_count === provenance.request_count
+    && provenance.source_attempt_count === provenance.request_count
+    && Number.isInteger(provenance.error_count) && provenance.error_count >= 0
+    && provenance.error_count <= provenance.request_count
+    && provenance.unreceipted_count === 0 && provenance.unreceipted_attempt_count === 0
+    && provenance.unbilled_error_attempts_unknown === 0
     && provenance.includes_retries === true && provenance.includes_auxiliary_calls === true
     && Number.isInteger(provenance.request_count) && provenance.request_count > 0
     && provenance.costed_request_count === provenance.request_count;

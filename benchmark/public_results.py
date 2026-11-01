@@ -285,7 +285,7 @@ def public_native_response(response):
     return output
 
 
-def apply_cost_report(root, report_path):
+def apply_cost_report(root, report_path, *, replace_invalidated=False):
     """Join certified receipt aggregates by explicit public ID; never infer sources."""
     from benchmark.costs import merge_public_cost, validate_public_cost
     report = json.loads(Path(report_path).read_text())
@@ -312,7 +312,7 @@ def apply_cost_report(root, report_path):
             if evidence and (evidence.get('cost_usd') is not None or evidence.get('cost_estimate_usd') is not None):
                 if evidence['cost_provenance']['request_count'] < row.get('decisions', 0):
                     raise ValueError('Billing coverage cannot omit a published model decision')
-        index[section] = [merge_public_cost(row, runs[row['id']]) if row['id'] in runs else row
+        index[section] = [merge_public_cost(row, runs[row['id']], replace_invalidated=replace_invalidated) if row['id'] in runs else row
                           for row in index.get(section, [])]
     destination.write_text(json.dumps(index, indent=2, ensure_ascii=False, allow_nan=False) + '\n')
     return dict(public_run_ids_updated=len(runs), source='certified receipt aggregates',
@@ -358,13 +358,14 @@ def verify_dataset(root, render=False):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('dataset', type=Path, nargs='?', default=ROOT / 'results')
+    parser.add_argument('--replace-invalidated-costs', action='store_true', help='Explicit audited correction: replace invalidated cost certificates from --cost-report')
     parser.add_argument('--cost-report', type=Path, help='Attach audited per-public-run receipt aggregates; no replay or API calls')
     parser.add_argument('--render', action='store_true', help='Recreate silent MP4s from the recorded model choices')
     parser.add_argument('--backfill', action='store_true', help='Verify every public trace, render missing videos and update their links')
     parser.add_argument('--jobs', type=int, default=4, choices=range(1, 9), help='Parallel offline replay workers (default: 4)')
     args = parser.parse_args()
     if args.cost_report:
-        print(json.dumps(apply_cost_report(args.dataset.resolve(), args.cost_report)))
+        print(json.dumps(apply_cost_report(args.dataset.resolve(), args.cost_report, replace_invalidated=args.replace_invalidated_costs)))
         if not args.backfill and not args.render:
             return
     if args.backfill:

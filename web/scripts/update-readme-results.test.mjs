@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
-import { parseDataset, unavailableProgress } from '../lib/data.ts';
+import { formatRunCost, parseDataset, unavailableProgress } from '../lib/data.ts';
 import { renderResults, replaceResults } from './update-readme-results.mjs';
 
 const index = JSON.parse(await readFile(new URL('../../results/index.json', import.meta.url), 'utf8'));
@@ -15,7 +15,8 @@ test('README includes every website episode once, with exact progress and comple
   for (const run of runs) {
     const row = generated.split('\n').find(line => line.includes(`<!-- run:${run.id} -->`));
     const cells = row.split('|').slice(1, -1).map(cell => cell.trim());
-    assert.equal(cells.length, 4);
+    assert.equal(cells.length, 5);
+    assert.equal(cells[3], formatRunCost(run) ?? '-');
     assert.equal(cells[1], run.progressPct === null ? unavailableProgress(run.status) : `${run.progressPct.toFixed(2)}%${/abort/.test(run.status) ? ' (aborted)' : ''}`);
     assert.equal(cells[2], run.completed ? run.clearSeconds.toFixed(2) : '-');
   }
@@ -62,4 +63,21 @@ test('updates only the generated block and detects edited table content', () => 
   const before = `intro\n${generated}\nsetup`;
   assert.equal(replaceResults(before, generated), before);
   assert.equal(replaceResults(before.replace('100.00%', '99.00%'), generated), before);
+});
+
+
+test('complete cost receipts cannot omit a source error or inherit an unscoped certificate', () => {
+  const provenance = { kind: 'recorded_response_usage', cost_basis: 'all_in_inference',
+    coverage_complete: true, includes_retries: true, includes_auxiliary_calls: true,
+    request_count: 116, costed_request_count: 116, actual_costed_request_count: 116,
+    attempt_scope_verified: true, source_request_count: 116, source_attempt_count: 116,
+    error_count: 0, unreceipted_count: 0, unreceipted_attempt_count: 0, unbilled_error_attempts_unknown: 0 };
+  const cost = overrides => parseDataset({ examples: [{ ...index.examples[0], id: 'billing-fixture',
+    decisions: 116, cost_usd: .00898152, cost_provenance: { ...provenance, ...overrides } }], observations: [] }).runs[0].costUsd;
+  assert.equal(cost({}), .00898152);
+  assert.equal(cost({ source_request_count: 117, source_attempt_count: 117, error_count: 1,
+    unreceipted_count: 1, unreceipted_attempt_count: 1, unbilled_error_attempts_unknown: 1 }), null);
+  assert.equal(cost({ attempt_scope_verified: undefined }), null);
+  assert.equal(cost({ error_count: undefined }), null);
+  assert.equal(cost({ error_count: 1 }), .00898152, 'a billed error can be explicitly covered');
 });
