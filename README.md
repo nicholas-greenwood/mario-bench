@@ -7,73 +7,65 @@ or game state and choose controller inputs
 
 ## results
 
-22 models have recorded state attempts. the tables show individual development
-runs, not model averages or a ranking. earlier verified clears and all 8 replay
-showcases remain in [the recorded examples](results/README.md)
+<!-- BEGIN GENERATED RESULTS -->
 
-the live website shows the broader development observations and the 8 replay
-showcases, with incomplete and aborted attempts labelled separately
+42 published runs, matching the website's all runs view, on world 1-1
+individual development runs use different settings; these are not model averages or a ranking
 
-### state: common input profile
+[serialization diagnostics](results/diagnostics/openai-state-serialization.json) are separate from these runs
 
-these runs use the same prompt, observer and 4-frame cadence. the cohort was
-assembled after development, with a stagnation stop. incomplete api calls have no
-score. pplx's earlier clear finished within the common budget, but its original
-configured cap was larger. no comparable aggregate is claimed
-
-[luna serialization retest](results/diagnostics/openai-state-serialization.json):
-the original incomplete row stays. the recovered prefix and longer diagnostic
-are separate records, with no replacement cohort score
+### state
 
 | model | observed progress | clear time (game s) | evidence |
 | --- | ---: | ---: | --- |
-| decider v1.2 | 100.00% | 20.13 | [trace](results/traces/pplx-state-clear.json) · [profile](results/profiles/pplx-state-clear.json) |
-| mercury decide | 63.41% | - | [trace](results/traces/state-c4-inception--mercury-decide.json) · [profile](results/profiles/state-c4-inception--mercury-decide.json) |
-| span-02 | 55.94% | - | [trace](results/traces/state-c4-respan--span-02.json) · [profile](results/profiles/state-c4-respan--span-02.json) |
-| clef | 47.48% | - | [trace](results/traces/state-c4-cloudflare--clef.json) · [profile](results/profiles/state-c4-cloudflare--clef.json) |
-| microsoft-decision-1 | 44.25% | - | [trace](results/traces/state-c4-microsoft--microsoft-decision-1.json) · [profile](results/profiles/state-c4-microsoft--microsoft-decision-1.json) |
-| jev 1.13 | 21.88% (aborted) | - | [trace](results/traces/state-c4-typesafe--jev-1-13.json) · [profile](results/profiles/state-c4-typesafe--jev-1-13.json) |
-| d1-ultra | 20.47% | - | [trace](results/traces/state-c4-liquid--d1-ultra.json) · [profile](results/profiles/state-c4-liquid--d1-ultra.json) |
-| drex max | 20.19% | - | [trace](results/traces/state-c4-nace-ai--drex-max.json) · [profile](results/profiles/state-c4-nace-ai--drex-max.json) |
-| drex v1.5 | 17.81% (aborted) | - | [trace](results/traces/state-c4-nace-ai--drex-v1-5.json) · [profile](results/profiles/state-c4-nace-ai--drex-v1-5.json) |
-| jev 1.14 | 17.81% (aborted) | - | [trace](results/traces/state-c4-typesafe--jev-1-14.json) · [profile](results/profiles/state-c4-typesafe--jev-1-14.json) |
-| mammoth 1 | 17.81% (aborted) | - | [trace](results/traces/state-c4-baseten--mammoth-1.json) · [profile](results/profiles/state-c4-baseten--mammoth-1.json) |
-| drex v2.0 | 17.75% (aborted) | - | [trace](results/traces/state-c4-nace-ai--drex-v2-0.json) · [profile](results/profiles/state-c4-nace-ai--drex-v2-0.json) |
-| clef omni | 13.17% (aborted) | - | [trace](results/traces/state-c4-cloudflare--clef-omni.json) · [profile](results/profiles/state-c4-cloudflare--clef-omni.json) |
-| elephant 1 | 8.75% | - | [trace](results/traces/state-c4-baseten--elephant-1.json) · [profile](results/profiles/state-c4-baseten--elephant-1.json) |
-| decider flash v1.2 | 8.72% | - | [trace](results/traces/state-c4-perplexity--pplx-decider-flash-v1-2.json) · [profile](results/profiles/state-c4-perplexity--pplx-decider-flash-v1-2.json) |
-| joey 1 | 8.72% | - | [trace](results/traces/state-c4-baseten--joey-1.json) · [profile](results/profiles/state-c4-baseten--joey-1.json) |
-| d1.1 | 8.72% | - | [trace](results/traces/state-c4-liquid--d1-1.json) · [profile](results/profiles/state-c4-liquid--d1-1.json) |
-| clef flash | 8.55% | - | [trace](results/traces/state-c4-cloudflare--clef-flash.json) · [profile](results/profiles/state-c4-cloudflare--clef-flash.json) |
-| classify-1 | 0.00% (aborted) | - | [trace](results/traces/state-c4-scaledown--classify-1.json) · [profile](results/profiles/state-c4-scaledown--classify-1.json) |
-| solar decide flash | 0.00% (aborted) | - | [trace](results/traces/state-c4-upstage--solar-decide-flash.json) · [profile](results/profiles/state-c4-upstage--solar-decide-flash.json) |
-| kev 4b | incomplete | - | [trace](results/traces/state-c4-jaredpalmer--kev-4b.json) · [profile](results/profiles/state-c4-jaredpalmer--kev-4b.json) |
-| gpt-6 luna decisions | incomplete | - | [trace](results/traces/state-c4-openai--gpt-6-luna-decisions.json) · [profile](results/profiles/state-c4-openai--gpt-6-luna-decisions.json) |
+| perplexity: decider v1.2 | 100.00% | 20.13 | [replay](results/replays/pplx-state-clear.mp4) · [trace](results/traces/pplx-state-clear.json) · [profile](results/profiles/pplx-state-clear.json) <!-- run:pplx-state-clear --> |
+| liquidai: d1-ultra | 100.00% | 20.92 | [replay](results/replays/liquid-state-clear.mp4) · [trace](results/traces/liquid-state-clear.json) · [profile](results/profiles/liquid-state-clear.json) <!-- run:liquid-state-clear --> |
+| inception: mercury decide | 100.00% | 22.00 | [replay](results/replays/mercury-state-clear.mp4) · [trace](results/traces/mercury-state-clear.json) · [profile](results/profiles/mercury-state-clear.json) <!-- run:mercury-state-clear --> |
+| nace.ai: drex max | 100.00% | 23.07 | [replay](results/replays/drex-state-clear.mp4) · [trace](results/traces/drex-state-clear.json) · [profile](results/profiles/drex-state-clear.json) <!-- run:drex-state-clear --> |
+| inception: mercury decide | 63.41% | - | [replay](results/replays/state-c4-inception--mercury-decide.mp4) · [trace](results/traces/state-c4-inception--mercury-decide.json) · [profile](results/profiles/state-c4-inception--mercury-decide.json) <!-- run:state-c4-inception--mercury-decide --> |
+| respan: span-02 | 55.94% | - | [replay](results/replays/state-c4-respan--span-02.mp4) · [trace](results/traces/state-c4-respan--span-02.json) · [profile](results/profiles/state-c4-respan--span-02.json) <!-- run:state-c4-respan--span-02 --> |
+| cloudflare: clef | 47.48% | - | [replay](results/replays/state-c4-cloudflare--clef.mp4) · [trace](results/traces/state-c4-cloudflare--clef.json) · [profile](results/profiles/state-c4-cloudflare--clef.json) <!-- run:state-c4-cloudflare--clef --> |
+| microsoft: microsoft-decision-1 | 44.25% | - | [replay](results/replays/state-c4-microsoft--microsoft-decision-1.mp4) · [trace](results/traces/state-c4-microsoft--microsoft-decision-1.json) · [profile](results/profiles/state-c4-microsoft--microsoft-decision-1.json) <!-- run:state-c4-microsoft--microsoft-decision-1 --> |
+| typesafe: jev 1.13 | 21.88% (aborted) | - | [replay](results/replays/state-c4-typesafe--jev-1-13.mp4) · [trace](results/traces/state-c4-typesafe--jev-1-13.json) · [profile](results/profiles/state-c4-typesafe--jev-1-13.json) <!-- run:state-c4-typesafe--jev-1-13 --> |
+| liquidai: d1-ultra | 20.47% | - | [replay](results/replays/state-c4-liquid--d1-ultra.mp4) · [trace](results/traces/state-c4-liquid--d1-ultra.json) · [profile](results/profiles/state-c4-liquid--d1-ultra.json) <!-- run:state-c4-liquid--d1-ultra --> |
+| nace.ai: drex max | 20.19% | - | [replay](results/replays/state-c4-nace-ai--drex-max.mp4) · [trace](results/traces/state-c4-nace-ai--drex-max.json) · [profile](results/profiles/state-c4-nace-ai--drex-max.json) <!-- run:state-c4-nace-ai--drex-max --> |
+| baseten: mammoth 1 | 17.81% (aborted) | - | [replay](results/replays/state-c4-baseten--mammoth-1.mp4) · [trace](results/traces/state-c4-baseten--mammoth-1.json) · [profile](results/profiles/state-c4-baseten--mammoth-1.json) <!-- run:state-c4-baseten--mammoth-1 --> |
+| nace.ai: drex v1.5 | 17.81% (aborted) | - | [replay](results/replays/state-c4-nace-ai--drex-v1-5.mp4) · [trace](results/traces/state-c4-nace-ai--drex-v1-5.json) · [profile](results/profiles/state-c4-nace-ai--drex-v1-5.json) <!-- run:state-c4-nace-ai--drex-v1-5 --> |
+| typesafe: jev 1.14 | 17.81% (aborted) | - | [replay](results/replays/state-c4-typesafe--jev-1-14.mp4) · [trace](results/traces/state-c4-typesafe--jev-1-14.json) · [profile](results/profiles/state-c4-typesafe--jev-1-14.json) <!-- run:state-c4-typesafe--jev-1-14 --> |
+| nace.ai: drex v2.0 | 17.75% (aborted) | - | [replay](results/replays/state-c4-nace-ai--drex-v2-0.mp4) · [trace](results/traces/state-c4-nace-ai--drex-v2-0.json) · [profile](results/profiles/state-c4-nace-ai--drex-v2-0.json) <!-- run:state-c4-nace-ai--drex-v2-0 --> |
+| cloudflare: clef omni | 13.17% (aborted) | - | [replay](results/replays/state-c4-cloudflare--clef-omni.mp4) · [trace](results/traces/state-c4-cloudflare--clef-omni.json) · [profile](results/profiles/state-c4-cloudflare--clef-omni.json) <!-- run:state-c4-cloudflare--clef-omni --> |
+| baseten: elephant 1 | 8.75% | - | [replay](results/replays/state-c4-baseten--elephant-1.mp4) · [trace](results/traces/state-c4-baseten--elephant-1.json) · [profile](results/profiles/state-c4-baseten--elephant-1.json) <!-- run:state-c4-baseten--elephant-1 --> |
+| baseten: joey 1 | 8.72% | - | [replay](results/replays/state-c4-perplexity--pplx-decider-flash-v1-2.mp4) · [trace](results/traces/state-c4-baseten--joey-1.json) · [profile](results/profiles/state-c4-baseten--joey-1.json) <!-- run:state-c4-baseten--joey-1 --> |
+| liquidai: d1.1 | 8.72% | - | [replay](results/replays/state-c4-perplexity--pplx-decider-flash-v1-2.mp4) · [trace](results/traces/state-c4-liquid--d1-1.json) · [profile](results/profiles/state-c4-liquid--d1-1.json) <!-- run:state-c4-liquid--d1-1 --> |
+| perplexity: decider flash v1.2 | 8.72% | - | [replay](results/replays/state-c4-perplexity--pplx-decider-flash-v1-2.mp4) · [trace](results/traces/state-c4-perplexity--pplx-decider-flash-v1-2.json) · [profile](results/profiles/state-c4-perplexity--pplx-decider-flash-v1-2.json) <!-- run:state-c4-perplexity--pplx-decider-flash-v1-2 --> |
+| cloudflare: clef flash | 8.55% | - | [replay](results/replays/state-c4-cloudflare--clef-flash.mp4) · [trace](results/traces/state-c4-cloudflare--clef-flash.json) · [profile](results/profiles/state-c4-cloudflare--clef-flash.json) <!-- run:state-c4-cloudflare--clef-flash --> |
+| scaledown: classify-1 | 0.00% (aborted) | - | [replay](results/replays/state-c4-scaledown--classify-1.mp4) · [trace](results/traces/state-c4-scaledown--classify-1.json) · [profile](results/profiles/state-c4-scaledown--classify-1.json) <!-- run:state-c4-scaledown--classify-1 --> |
+| upstage: solar decide flash | 0.00% (aborted) | - | [replay](results/replays/state-c4-upstage--solar-decide-flash.mp4) · [trace](results/traces/state-c4-upstage--solar-decide-flash.json) · [profile](results/profiles/state-c4-upstage--solar-decide-flash.json) <!-- run:state-c4-upstage--solar-decide-flash --> |
+| jared palmer: kev 4b | incomplete | - | [trace](results/traces/state-c4-jaredpalmer--kev-4b.json) · [profile](results/profiles/state-c4-jaredpalmer--kev-4b.json) <!-- run:state-c4-jaredpalmer--kev-4b --> |
+| openai: gpt-6 luna decisions | incomplete | - | [replay](results/replays/state-c4-openai--gpt-6-luna-decisions.mp4) · [trace](results/traces/state-c4-openai--gpt-6-luna-decisions.json) · [profile](results/profiles/state-c4-openai--gpt-6-luna-decisions.json) <!-- run:state-c4-openai--gpt-6-luna-decisions --> |
 
-### pixels only: best observed development runs
-
-these are selected runs with different prompts, controls, crops and history
-aborted runs retain observed progress, not a completed benchmark score. a missing
-model here means unsupported or not yet measured, never zero
+### pixels only
 
 | model | observed progress | clear time (game s) | evidence |
 | --- | ---: | ---: | --- |
-| mammoth 1 | 81.83% (aborted) | - | [trace](results/traces/pixels-best-baseten--mammoth-1.json) · [profile](results/profiles/pixels-best-baseten--mammoth-1.json) |
-| gpt-6 luna decisions | 77.86% | - | [trace](results/traces/pixels-best-openai--gpt-6-luna-decisions.json) · [profile](results/profiles/pixels-best-openai--gpt-6-luna-decisions.json) |
-| decider v1.2 | 77.83% | - | [trace](results/traces/pplx-pixels-partial.json) · [profile](results/profiles/pplx-pixels-partial.json) |
-| elephant 1 | 61.39% | - | [trace](results/traces/pixels-best-baseten--elephant-1.json) · [profile](results/profiles/pixels-best-baseten--elephant-1.json) |
-| mercury decide | 56.30% | - | [trace](results/traces/pixels-best-inception--mercury-decide.json) · [profile](results/profiles/pixels-best-inception--mercury-decide.json) |
-| drex max | 56.30% | - | [trace](results/traces/pixels-best-nace-ai--drex-max.json) · [profile](results/profiles/pixels-best-nace-ai--drex-max.json) |
-| jev 1.14 | 51.94% | - | [trace](results/traces/jev-pixels-partial.json) · [profile](results/profiles/jev-pixels-partial.json) |
-| decider flash v1.2 | 44.31% | - | [trace](results/traces/pixels-best-perplexity--pplx-decider-flash-v1-2.json) · [profile](results/profiles/pixels-best-perplexity--pplx-decider-flash-v1-2.json) |
-| jev 1.13 | 34.80% | - | [trace](results/traces/pixels-best-typesafe--jev-1-13.json) · [profile](results/profiles/pixels-best-typesafe--jev-1-13.json) |
-| clef | 34.76% | - | [trace](results/traces/pixels-best-cloudflare--clef.json) · [profile](results/profiles/pixels-best-cloudflare--clef.json) |
-| clef flash | 34.76% | - | [trace](results/traces/pixels-best-cloudflare--clef-flash.json) · [profile](results/profiles/pixels-best-cloudflare--clef-flash.json) |
-| d1-ultra | 27.49% | - | [trace](results/traces/pixels-best-liquid--d1-ultra.json) · [profile](results/profiles/pixels-best-liquid--d1-ultra.json) |
-| joey 1 | 20.92% | - | [trace](results/traces/pixels-best-baseten--joey-1.json) · [profile](results/profiles/pixels-best-baseten--joey-1.json) |
-| span-02 | 20.38% | - | [trace](results/traces/pixels-best-respan--span-02.json) · [profile](results/profiles/pixels-best-respan--span-02.json) |
-| clef omni | 20.25% | - | [trace](results/traces/pixels-best-cloudflare--clef-omni.json) · [profile](results/profiles/pixels-best-cloudflare--clef-omni.json) |
-| d1.1 | 12.66% (aborted) | - | [trace](results/traces/pixels-best-liquid--d1-1.json) · [profile](results/profiles/pixels-best-liquid--d1-1.json) |
+| baseten: mammoth 1 | 81.83% (aborted) | - | [replay](results/replays/pixels-best-baseten--mammoth-1.mp4) · [trace](results/traces/pixels-best-baseten--mammoth-1.json) · [profile](results/profiles/pixels-best-baseten--mammoth-1.json) <!-- run:pixels-best-baseten--mammoth-1 --> |
+| openai: gpt-6 luna decisions | 77.86% | - | [replay](results/replays/pixels-best-openai--gpt-6-luna-decisions.mp4) · [trace](results/traces/pixels-best-openai--gpt-6-luna-decisions.json) · [profile](results/profiles/pixels-best-openai--gpt-6-luna-decisions.json) <!-- run:pixels-best-openai--gpt-6-luna-decisions --> |
+| perplexity: decider v1.2 | 77.83% | - | [replay](results/replays/pplx-pixels-partial.mp4) · [trace](results/traces/pplx-pixels-partial.json) · [profile](results/profiles/pplx-pixels-partial.json) <!-- run:pplx-pixels-partial --> |
+| baseten: elephant 1 | 61.39% | - | [replay](results/replays/pixels-best-baseten--elephant-1.mp4) · [trace](results/traces/pixels-best-baseten--elephant-1.json) · [profile](results/profiles/pixels-best-baseten--elephant-1.json) <!-- run:pixels-best-baseten--elephant-1 --> |
+| inception: mercury decide | 56.30% | - | [replay](results/replays/mercury-pixels-partial.mp4) · [trace](results/traces/mercury-pixels-partial.json) · [profile](results/profiles/mercury-pixels-partial.json) <!-- run:mercury-pixels-partial --> |
+| nace.ai: drex max | 56.30% | - | [replay](results/replays/pixels-best-nace-ai--drex-max.mp4) · [trace](results/traces/pixels-best-nace-ai--drex-max.json) · [profile](results/profiles/pixels-best-nace-ai--drex-max.json) <!-- run:pixels-best-nace-ai--drex-max --> |
+| baseten: mammoth 1 | 56.01% | - | [replay](results/replays/mammoth-pixels-partial.mp4) · [trace](results/traces/mammoth-pixels-partial.json) · [profile](results/profiles/mammoth-pixels-partial.json) <!-- run:mammoth-pixels-partial --> |
+| typesafe: jev 1.14 | 51.94% | - | [replay](results/replays/jev-pixels-partial.mp4) · [trace](results/traces/jev-pixels-partial.json) · [profile](results/profiles/jev-pixels-partial.json) <!-- run:jev-pixels-partial --> |
+| perplexity: decider flash v1.2 | 44.31% | - | [replay](results/replays/pixels-best-perplexity--pplx-decider-flash-v1-2.mp4) · [trace](results/traces/pixels-best-perplexity--pplx-decider-flash-v1-2.json) · [profile](results/profiles/pixels-best-perplexity--pplx-decider-flash-v1-2.json) <!-- run:pixels-best-perplexity--pplx-decider-flash-v1-2 --> |
+| typesafe: jev 1.13 | 34.80% | - | [replay](results/replays/pixels-best-typesafe--jev-1-13.mp4) · [trace](results/traces/pixels-best-typesafe--jev-1-13.json) · [profile](results/profiles/pixels-best-typesafe--jev-1-13.json) <!-- run:pixels-best-typesafe--jev-1-13 --> |
+| cloudflare: clef | 34.76% | - | [replay](results/replays/pixels-best-cloudflare--clef.mp4) · [trace](results/traces/pixels-best-cloudflare--clef.json) · [profile](results/profiles/pixels-best-cloudflare--clef.json) <!-- run:pixels-best-cloudflare--clef --> |
+| cloudflare: clef flash | 34.76% | - | [replay](results/replays/pixels-best-cloudflare--clef-flash.mp4) · [trace](results/traces/pixels-best-cloudflare--clef-flash.json) · [profile](results/profiles/pixels-best-cloudflare--clef-flash.json) <!-- run:pixels-best-cloudflare--clef-flash --> |
+| liquidai: d1-ultra | 27.49% | - | [replay](results/replays/pixels-best-liquid--d1-ultra.mp4) · [trace](results/traces/pixels-best-liquid--d1-ultra.json) · [profile](results/profiles/pixels-best-liquid--d1-ultra.json) <!-- run:pixels-best-liquid--d1-ultra --> |
+| baseten: joey 1 | 20.92% | - | [replay](results/replays/pixels-best-baseten--joey-1.mp4) · [trace](results/traces/pixels-best-baseten--joey-1.json) · [profile](results/profiles/pixels-best-baseten--joey-1.json) <!-- run:pixels-best-baseten--joey-1 --> |
+| respan: span-02 | 20.38% | - | [replay](results/replays/pixels-best-respan--span-02.mp4) · [trace](results/traces/pixels-best-respan--span-02.json) · [profile](results/profiles/pixels-best-respan--span-02.json) <!-- run:pixels-best-respan--span-02 --> |
+| cloudflare: clef omni | 20.25% | - | [replay](results/replays/pixels-best-cloudflare--clef-omni.mp4) · [trace](results/traces/pixels-best-cloudflare--clef-omni.json) · [profile](results/profiles/pixels-best-cloudflare--clef-omni.json) <!-- run:pixels-best-cloudflare--clef-omni --> |
+| liquidai: d1.1 | 12.66% (aborted) | - | [replay](results/replays/pixels-best-liquid--d1-1.mp4) · [trace](results/traces/pixels-best-liquid--d1-1.json) · [profile](results/profiles/pixels-best-liquid--d1-1.json) <!-- run:pixels-best-liquid--d1-1 --> |
+<!-- END GENERATED RESULTS -->
 
 state uses memory-derived visible geometry and motion. pixels (`image` track) uses
 screenshots, crops and past screens where configured, plus rules, controls and timing
@@ -167,6 +159,10 @@ interrupted requests stop for inspection rather than silently spending twice
 
 <details>
 <summary>methodology, verification and notices</summary>
+
+update the tables with `npm --prefix web run update:readme` after changing published
+results. `npm --prefix web run check:readme` checks the same run selection as the
+website; website builds fail if the tables are stale
 
 the aggregate score is **average progress, from 0 to 100**, unavailable for these
 selected runs. average all declared attempts within each level, then weight levels
