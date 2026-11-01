@@ -99,7 +99,8 @@
       "eligibility_note": "Technical transport eligibility only; not a game score or proof pixels influenced decisions",
       "published_observation_ids": [
         "state-c4-baseten--mammoth-1",
-        "pixels-best-baseten--mammoth-1"
+        "pixels-best-baseten--mammoth-1",
+        "mammoth-pixels-first-clear"
       ],
       "published_image_observation_available": true
     },

@@ -1,0 +1,64 @@
+{
+  "audit": "PASS",
+  "model": "baseten/mammoth-1-20261021",
+  "provider": "BaseTen",
+  "level": "1-1",
+  "strict_pixels_only": true,
+  "from_reset": true,
+  "flag_get": true,
+  "death": false,
+  "native_frames": 1916,
+  "native_seconds": 31.933333333333334,
+  "decisions": 467,
+  "actual_requests_audited": 467,
+  "actual_pixel_images_audited": 1867,
+  "duration_calls_audited": 255,
+  "duration_choice_frame_counts": {
+    "6": 26,
+    "4": 3,
+    "2": 222,
+    "8": 4
+  },
+  "first_duration_decision": 212,
+  "finish_rule_calls_audited": 7,
+  "first_finish_rule_decision": 460,
+  "controller_memory_calls_audited": 64,
+  "source_sha256": "064a2439a117f96b9a6b6f51975e0ce2c8a123a2f120eade99eab552644e1234",
+  "private_final_state_sha256": "9c2847498788767c1e8a63355c3762685360330635f3ec302689426910efa57a",
+  "proof": "Every request metadata and question reconstructed solely from prior chosen controls; all actual pixel parts exact full current/past screenshots or fixed LEFT/MIDDLE crops. Both native API answer heads map directly to actual buttons/durations. All1916 native frames replayed; all467 before/after state hashes and after RGB hashes matched. No RAM/private geometry enters request.",
+  "profile_roundtrip": {
+    "request_bodies_reproduced": 467,
+    "raw_provider_buttons_and_durations_reproduced": 467,
+    "network_calls": 0,
+    "prompt_template_sha256": "9732011e4b5581273fa1c0a5be5f2e4edd41672bc7fbbdfaf5dbfd645d5f7c59",
+    "control_contract_sha256": "779f6a43a28d73c5f731b7e5a2a88d9fbf699eb6949814e7d39483deadd1fd19",
+    "pure_module_sha256": "6eba72bff29b55f3c46835e8687f4ebe7084386ffaacd4150e909bf164479b30",
+    "native_flag_clear": true,
+    "native_frames": 1916,
+    "decisions": 467
+  },
+  "public_sources": [
+    {
+      "repo_path": "benchmark/profiles/memorygate_v1.py",
+      "sha256": "28ca456a32b3e182aa5da5f716060903677c12d765638acec51a1765815546f2",
+      "original_sha256": "df9c1de027f10f08ac01eed883ffe12329a23395b73e85d56fc78c96b307c12e",
+      "adaptation": "import namespace only"
+    },
+    {
+      "repo_path": "benchmark/profiles/memoryduration_v1.py",
+      "sha256": "a1c3a1e1e04365a68b12b5c029d3200feb117d5130f34eda6837677725d87dbe",
+      "original_sha256": "635896b705ec6cde20feb9ad61a876faa63b91af27297991ce1c2a858704f922",
+      "adaptation": "import namespace only"
+    },
+    {
+      "repo_path": "benchmark/profiles/memoryfinish_v1.py",
+      "sha256": "7d044dd8f8940841faf4aaa326071e87d16e52fb1892bc937a53b03f3e771b9c",
+      "original_sha256": "6eba72bff29b55f3c46835e8687f4ebe7084386ffaacd4150e909bf164479b30",
+      "adaptation": "import namespace only"
+    },
+    {
+      "repo_path": "benchmark/profiles/edgezoom_v1.py",
+      "sha256": "f73acecaeb5f6bdaf746d59a1a7d36383f6a2ed7400c3bc3ed6950284a05504b"
+    }
+  ]
+}

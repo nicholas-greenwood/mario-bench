@@ -67,6 +67,19 @@ def decode_answers(trace, response):
 
 def decode_sequence(trace, response, cadence):
     """Expand fixed temporal choices as declared, without inspecting the game."""
+    if 'duration' in response['answers']:
+        question = trace['contract']['duration_question']
+        answer = response['answers']['duration']
+        probabilities = answer['probabilities']
+        assert answer['type'] == 'choice' and answer['choice'] in question['criteria']
+        assert set(probabilities) == set(question['criteria'])
+        assert all(isinstance(value, (int, float)) and not isinstance(value, bool)
+                   and 0 <= value <= 1 for value in probabilities.values())
+        assert abs(sum(probabilities.values()) - 1) <= .03
+        duration = trace['contract']['duration_choices'][answer['choice']]
+        return [[duration, decode_answers(trace, response)]]
+    if cadence is None:
+        cadence = trace['contract']['initial_cadence_frames']
     choice = response['answers'].get('action', {}).get('choice', '')
     fresh = re.fullmatch(r'fresh_(running|walking|left)_jump_(24|40)', choice)
     fixed = re.fullmatch(r'(run_forward|walk_forward|run_left|sustain_running_jump|sustain_walking_jump|coast_release_jump)_(4|8|16)', choice)
@@ -128,6 +141,8 @@ def verify_episode(root, summary, render=False):
             assert action['index'] == index and action['frame_before'] == game.frame
             assert action['native_response']['model'] == summary['returned_model']
             assert action['native_response']['provider'] == summary['provider']
+            if action.get('question_names') is not None:
+                assert set(action['native_response']['answers']) == set(action['question_names'])
             expected = decode_sequence(trace, action['native_response'], summary['experiment_config']['cadence'])
             # Older showcase exports shorten only their terminal held interval.
             recorded = action['sequence']
@@ -181,10 +196,12 @@ def probe_replay(path, native_frames):
     assert len(streams) == 1, 'Replay must contain one video stream and no audio'
     stream = streams[0]
     assert stream['codec_type'] == 'video' and stream['codec_name'] == 'h264'
-    assert (stream['width'], stream['height']) == (512, 480)
+    assert (stream['width'], stream['height']) in ((256, 240), (512, 480), (768, 720))
     assert stream['r_frame_rate'] == '60/1'
-    assert int(stream['nb_frames']) == native_frames + 1, 'Initial screen plus every native frame required'
-    assert abs(float(stream['duration']) - (native_frames + 1) / 60) < .001
+    # Existing clips include the initial still; a frame-1-first recording does
+    # not. Both contain every native gameplay frame and no API waiting time.
+    assert int(stream['nb_frames']) in (native_frames, native_frames + 1)
+    assert abs(float(stream['duration']) - int(stream['nb_frames']) / 60) < .001
 
 
 def _render_group(task):

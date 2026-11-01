@@ -32,8 +32,8 @@ function writeBest(best: HumanBest) {
 function useBenchmarkState(dataset: Dataset) {
   const runs = dataset.runs;
   const initial = useMemo(() => ({
-    a: (runs.find(run => run.track === 'state') ?? runs[0]).id,
-    b: (runs.find(run => run.track === 'image') ?? runs[1] ?? runs[0]).id,
+    a: (runs.find(run => run.track === 'state' && run.completed) ?? runs.find(run => run.track === 'state') ?? runs[0]).id,
+    b: (runs.find(run => run.track === 'image' && run.completed) ?? runs.find(run => run.track === 'image') ?? runs[1] ?? runs[0]).id,
   }), [runs]);
   const [slots, setSlots] = useState<Record<Side, string>>(initial);
   const [activeSide, setActiveSide] = useState<Side>('a');

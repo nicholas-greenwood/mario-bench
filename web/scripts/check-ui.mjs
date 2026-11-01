@@ -17,8 +17,9 @@ const parsed = parseDataset(index);
 const publishedIds = new Set(parsed.observations.map(run => run.id));
 const published = [...new Map([...examples, ...observations].map(e => [e.id, e])).values()].filter(e => publishedIds.has(e.id));
 const replays = published.filter(e => e.replay_href);
-assert.equal(published.length, 42);
-assert.equal(replays.length, 41);
+assert.equal(published.length, parsed.observations.length);
+assert.equal(replays.length, parsed.runs.length);
+assert.ok(published.length >= 42 && replays.length >= 41, 'previous published runs remain available');
 const mercuryPixels = parsed.runs.filter(run => run.modelId === 'inception/mercury-decide' && run.track === 'image');
 assert.equal(mercuryPixels.length, 1, 'duplicate exports of the same source episode count once');
 assert.deepEqual(mercuryPixels[0].aliasIds, ['pixels-best-inception--mercury-decide']);
@@ -47,12 +48,17 @@ const { context, page } = await open(1440, 1000);
 assert.ok(await page.locator('h1').isVisible());
 assert.ok(await page.getByText(/fixed number of frames per action/).isVisible());
 assert.ok(await page.getByText(/not a ranking/).isVisible());
+for (const [side, track] of [['a', 'state'], ['b', 'image']]) {
+  const preferred = replays.find(e => e.mode === track && e.completed) ?? replays.find(e => e.mode === track);
+  if (preferred) assert.equal(await page.locator(`[data-side="${side}"]`).getAttribute('data-run-id'), preferred.id, `default ${track} replay prefers a verified clear`);
+}
 
 // every recorded run, with the exact identity and numbers from the index
 const rows = page.locator('tbody tr');
 assert.equal(await rows.count(), published.length, 'every published run shown by default');
 const clearIds = examples.filter(e => e.completed).map(e => e.id).sort();
-assert.equal(clearIds.length, 4, 'four verified clears remain published');
+for (const id of ['pplx-state-clear', 'mercury-state-clear', 'drex-state-clear', 'liquid-state-clear']) assert.ok(clearIds.includes(id), `${id}: previous verified clear remains published`);
+assert.equal(published.filter(e => e.completed).length, clearIds.length, 'same dataset-derived clears in both views');
 for (const id of clearIds) {
   assert.ok(published.some(e => e.id === id && e.completed), `${id}: showcase clear belongs to all runs`);
   assert.ok(replays.some(e => e.id === id && e.completed), `${id}: showcase clear is playable`);
@@ -249,4 +255,4 @@ for (const [width, name] of [[1920, 'wide'], [1440, 'desktop'], [1280, 'laptop']
 
 await browser.close();
 assert.deepEqual(errors, []);
-console.log(`ui check passed: ${published.length} published runs, ${replays.length} playable runs, 4 matching clears in both views, separate profiles, zero-action run, null scores, abort status, 7 sortable columns, no table scrolling at 6 widths`);
+console.log(`ui check passed: ${published.length} published runs, ${replays.length} playable runs, ${clearIds.length} matching clears in both views, separate profiles, zero-action run, null scores, abort status, 7 sortable columns, no table scrolling at 6 widths`);
