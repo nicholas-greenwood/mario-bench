@@ -1,0 +1,1624 @@
+{
+  "schema_version": 1,
+  "created_at_utc": "2026-11-01T14:37:37.167998+00:00",
+  "purpose": "Frozen native Decisions API roster; technical compatibility only. No latency metric or gameplay quality filter.",
+  "endpoint": "https://openrouter.ai/api/alpha/decisions",
+  "excluded": {
+    "upstage/solar-decide": "Removed at user request: high latency"
+  },
+  "exclusion_policy": "Preserve explicit prior user exclusion; no additional latency exclusion.",
+  "models": [
+    {
+      "id": "baseten/elephant-1",
+      "name": "Baseten: Elephant 1",
+      "request_model": "baseten/elephant-1-20261021",
+      "canonical_slug": "baseten/elephant-1-20261021",
+      "expected_returned_model": "baseten/elephant-1-20261021",
+      "expected_returned_provider_names": [
+        "BaseTen"
+      ],
+      "provider": {
+        "only": [
+          "baseten"
+        ],
+        "allow_fallbacks": false
+      },
+      "context_length": 16384,
+      "catalogue_context_length": 16384,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "output_modalities": [
+        "decisions"
+      ],
+      "pricing": {
+        "prompt": "0.000000035",
+        "completion": "0"
+      },
+      "endpoint_pricing": {
+        "prompt": "0.000000035",
+        "completion": "0",
+        "discount": 0
+      },
+      "endpoint_quantization": "unknown",
+      "state_adapter": "json",
+      "image_advertised": true,
+      "image_preflight_passed": true,
+      "request_model_preflight_passed": true,
+      "version_pin_status": "dated_native_request_verified",
+      "native_api_preflight": {
+        "passed": true,
+        "calls": 22,
+        "source": "playground/latency/20261101T140548Z/requests.jsonl",
+        "limitation": "Prior alias requests and observed provider names; exact selected request_model/provider combination pending."
+      },
+      "quality_status": "not_measured",
+      "eligibility": {
+        "ram": "preflight_passed",
+        "image": "preflight_passed"
+      },
+      "sources": {
+        "catalogue": "https://openrouter.ai/api/v1/models?output_modalities=decisions",
+        "provider_endpoints": "https://openrouter.ai/api/v1/models/baseten/elephant-1-20261021/endpoints"
+      },
+      "notes": [
+        "Native HTTP/schema success establishes transport compatibility, not proof that every observation token was consumed or that image pixels causally influenced decisions."
+      ],
+      "selected_contract_preflight": {
+        "passed": true,
+        "source": "playground/benchmark-preflight/baseten__elephant-1.ram.json",
+        "calls": 1,
+        "request_model_exact_match": true,
+        "returned_provider_exact_match": true
+      },
+      "image_preflight_source": "playground/benchmark-preflight/baseten__elephant-1.image.json",
+      "observation_equivalence_verified": false
+    },
+    {
+      "id": "baseten/joey-1",
+      "name": "Baseten: Joey 1",
+      "request_model": "baseten/joey-1-20261029",
+      "canonical_slug": "baseten/joey-1-20261029",
+      "expected_returned_model": "baseten/joey-1-20261029",
+      "expected_returned_provider_names": [
+        "BaseTen"
+      ],
+      "provider": {
+        "only": [
+          "baseten"
+        ],
+        "allow_fallbacks": false
+      },
+      "context_length": 16384,
+      "catalogue_context_length": 16384,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "output_modalities": [
+        "decisions"
+      ],
+      "pricing": {
+        "prompt": "0.00000001",
+        "completion": "0"
+      },
+      "endpoint_pricing": {
+        "prompt": "0.00000001",
+        "completion": "0",
+        "discount": 0
+      },
+      "endpoint_quantization": "unknown",
+      "state_adapter": "json",
+      "image_advertised": true,
+      "image_preflight_passed": true,
+      "request_model_preflight_passed": true,
+      "version_pin_status": "dated_native_request_verified",
+      "native_api_preflight": {
+        "passed": true,
+        "calls": 22,
+        "source": "playground/latency/20261101T140548Z/requests.jsonl",
+        "limitation": "Prior alias requests and observed provider names; exact selected request_model/provider combination pending."
+      },
+      "quality_status": "not_measured",
+      "eligibility": {
+        "ram": "preflight_passed",
+        "image": "preflight_passed"
+      },
+      "sources": {
+        "catalogue": "https://openrouter.ai/api/v1/models?output_modalities=decisions",
+        "provider_endpoints": "https://openrouter.ai/api/v1/models/baseten/joey-1-20261029/endpoints"
+      },
+      "notes": [
+        "Native HTTP/schema success establishes transport compatibility, not proof that every observation token was consumed or that image pixels causally influenced decisions."
+      ],
+      "selected_contract_preflight": {
+        "passed": true,
+        "source": "playground/benchmark-preflight/baseten__joey-1.ram.json",
+        "calls": 1,
+        "request_model_exact_match": true,
+        "returned_provider_exact_match": true
+      },
+      "image_preflight_source": "playground/benchmark-preflight/baseten__joey-1.image.json",
+      "observation_equivalence_verified": false
+    },
+    {
+      "id": "baseten/mammoth-1",
+      "name": "Baseten: Mammoth 1",
+      "request_model": "baseten/mammoth-1-20261021",
+      "canonical_slug": "baseten/mammoth-1-20261021",
+      "expected_returned_model": "baseten/mammoth-1-20261021",
+      "expected_returned_provider_names": [
+        "BaseTen"
+      ],
+      "provider": {
+        "only": [
+          "baseten"
+        ],
+        "allow_fallbacks": false
+      },
+      "context_length": 16384,
+      "catalogue_context_length": 16384,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "output_modalities": [
+        "decisions"
+      ],
+      "pricing": {
+        "prompt": "0.0000001",
+        "completion": "0"
+      },
+      "endpoint_pricing": {
+        "prompt": "0.0000001",
+        "completion": "0",
+        "discount": 0
+      },
+      "endpoint_quantization": "unknown",
+      "state_adapter": "json",
+      "image_advertised": true,
+      "image_preflight_passed": true,
+      "request_model_preflight_passed": true,
+      "version_pin_status": "dated_native_request_verified",
+      "native_api_preflight": {
+        "passed": true,
+        "calls": 22,
+        "source": "playground/latency/20261101T140548Z/requests.jsonl",
+        "limitation": "Prior alias requests and observed provider names; exact selected request_model/provider combination pending."
+      },
+      "quality_status": "not_measured",
+      "eligibility": {
+        "ram": "preflight_passed",
+        "image": "preflight_passed"
+      },
+      "sources": {
+        "catalogue": "https://openrouter.ai/api/v1/models?output_modalities=decisions",
+        "provider_endpoints": "https://openrouter.ai/api/v1/models/baseten/mammoth-1-20261021/endpoints"
+      },
+      "notes": [
+        "Native HTTP/schema success establishes transport compatibility, not proof that every observation token was consumed or that image pixels causally influenced decisions."
+      ],
+      "selected_contract_preflight": {
+        "passed": true,
+        "source": "playground/benchmark-preflight/baseten__mammoth-1.ram.json",
+        "calls": 1,
+        "request_model_exact_match": true,
+        "returned_provider_exact_match": true
+      },
+      "image_preflight_source": "playground/benchmark-preflight/baseten__mammoth-1.image.json",
+      "observation_equivalence_verified": false
+    },
+    {
+      "id": "cloudflare/clef",
+      "name": "Cloudflare: Clef",
+      "request_model": "cloudflare/clef",
+      "canonical_slug": "cloudflare/clef",
+      "expected_returned_model": "cloudflare/clef",
+      "expected_returned_provider_names": [
+        "PrimeIntellect"
+      ],
+      "provider": {
+        "only": [
+          "primeintellect"
+        ],
+        "allow_fallbacks": false
+      },
+      "context_length": 65536,
+      "catalogue_context_length": 65537,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "output_modalities": [
+        "decisions"
+      ],
+      "pricing": {
+        "prompt": "0.00000024",
+        "completion": "0"
+      },
+      "endpoint_pricing": {
+        "prompt": "0.00000024",
+        "completion": "0",
+        "discount": 0
+      },
+      "endpoint_quantization": "unknown",
+      "state_adapter": "json",
+      "image_advertised": true,
+      "image_preflight_passed": false,
+      "request_model_preflight_passed": true,
+      "version_pin_status": "undated_model_identity",
+      "native_api_preflight": {
+        "passed": true,
+        "calls": 22,
+        "source": "playground/latency/20261101T140548Z/requests.jsonl",
+        "limitation": "Prior alias requests and observed provider names; exact selected request_model/provider combination pending."
+      },
+      "quality_status": "not_measured",
+      "eligibility": {
+        "ram": "preflight_passed",
+        "image": "pending_compatible_same_provider"
+      },
+      "sources": {
+        "catalogue": "https://openrouter.ai/api/v1/models?output_modalities=decisions",
+        "provider_endpoints": "https://openrouter.ai/api/v1/models/cloudflare/clef/endpoints"
+      },
+      "notes": [
+        "PrimeIntellect and DeepInfra reject native image_url parts despite model-level image advertising.",
+        "Cloudflare accepts the unchanged full payload but Workers AI reads only roughly the first 2000 state-text tokens. Alternate-provider acceptance does not establish fair full-state or paired RAM/image comparability.",
+        "No dated revision is exposed by catalogue or returned model; log the undated identity and provider on every call.",
+        "Native HTTP/schema success establishes transport compatibility, not proof that every observation token was consumed or that image pixels causally influenced decisions."
+      ],
+      "selected_contract_preflight": {
+        "passed": true,
+        "source": "playground/benchmark-preflight/cloudflare__clef.ram.json",
+        "calls": 1,
+        "request_model_exact_match": true,
+        "returned_provider_exact_match": true
+      },
+      "image_preflight_source": "playground/benchmark-preflight/initial-summary.json",
+      "image_transport_alternatives": [
+        {
+          "provider": {
+            "only": [
+              "deepinfra/fp8"
+            ],
+            "allow_fallbacks": false
+          },
+          "source": "playground/benchmark-preflight/cloudflare__clef.image.deepinfra.json",
+          "http_payload_accepted": false,
+          "eligible_for_paired_image_track": false
+        },
+        {
+          "provider": {
+            "only": [
+              "cloudflare"
+            ],
+            "allow_fallbacks": false
+          },
+          "source": "playground/benchmark-preflight/cloudflare__clef.image.cloudflare.json",
+          "http_payload_accepted": true,
+          "eligible_for_paired_image_track": false
+        }
+      ],
+      "observation_equivalence_verified": false
+    },
+    {
+      "id": "cloudflare/clef-flash",
+      "name": "Cloudflare: Clef Flash",
+      "request_model": "cloudflare/clef-flash",
+      "canonical_slug": "cloudflare/clef-flash",
+      "expected_returned_model": "cloudflare/clef-flash",
+      "expected_returned_provider_names": [
+        "PrimeIntellect"
+      ],
+      "provider": {
+        "only": [
+          "primeintellect"
+        ],
+        "allow_fallbacks": false
+      },
+      "context_length": 24576,
+      "catalogue_context_length": 24576,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "output_modalities": [
+        "decisions"
+      ],
+      "pricing": {
+        "prompt": "0.000000038",
+        "completion": "0"
+      },
+      "endpoint_pricing": {
+        "prompt": "0.000000038",
+        "completion": "0",
+        "discount": 0
+      },
+      "endpoint_quantization": "unknown",
+      "state_adapter": "json",
+      "image_advertised": true,
+      "image_preflight_passed": false,
+      "request_model_preflight_passed": true,
+      "version_pin_status": "undated_model_identity",
+      "native_api_preflight": {
+        "passed": true,
+        "calls": 22,
+        "source": "playground/latency/20261101T140548Z/requests.jsonl",
+        "limitation": "Prior alias requests and observed provider names; exact selected request_model/provider combination pending."
+      },
+      "quality_status": "not_measured",
+      "eligibility": {
+        "ram": "preflight_passed",
+        "image": "pending_compatible_same_provider"
+      },
+      "sources": {
+        "catalogue": "https://openrouter.ai/api/v1/models?output_modalities=decisions",
+        "provider_endpoints": "https://openrouter.ai/api/v1/models/cloudflare/clef-flash/endpoints"
+      },
+      "notes": [
+        "PrimeIntellect and DeepInfra reject native image_url parts despite model-level image advertising.",
+        "Cloudflare accepts the unchanged full payload but Workers AI reads only roughly the first 2000 state-text tokens. Alternate-provider acceptance does not establish fair full-state or paired RAM/image comparability.",
+        "No dated revision is exposed by catalogue or returned model; log the undated identity and provider on every call.",
+        "Native HTTP/schema success establishes transport compatibility, not proof that every observation token was consumed or that image pixels causally influenced decisions."
+      ],
+      "selected_contract_preflight": {
+        "passed": true,
+        "source": "playground/benchmark-preflight/cloudflare__clef-flash.ram.json",
+        "calls": 1,
+        "request_model_exact_match": true,
+        "returned_provider_exact_match": true
+      },
+      "image_preflight_source": "playground/benchmark-preflight/initial-summary.json",
+      "image_transport_alternatives": [
+        {
+          "provider": {
+            "only": [
+              "deepinfra/fp8"
+            ],
+            "allow_fallbacks": false
+          },
+          "source": "playground/benchmark-preflight/cloudflare__clef-flash.image.deepinfra.json",
+          "http_payload_accepted": false,
+          "eligible_for_paired_image_track": false
+        },
+        {
+          "provider": {
+            "only": [
+              "cloudflare"
+            ],
+            "allow_fallbacks": false
+          },
+          "source": "playground/benchmark-preflight/cloudflare__clef-flash.image.cloudflare.json",
+          "http_payload_accepted": true,
+          "eligible_for_paired_image_track": false
+        }
+      ],
+      "observation_equivalence_verified": false
+    },
+    {
+      "id": "cloudflare/clef-omni",
+      "name": "Cloudflare: Clef Omni",
+      "request_model": "cloudflare/clef-omni-20261009",
+      "canonical_slug": "cloudflare/clef-omni-20261009",
+      "expected_returned_model": "cloudflare/clef-omni-20261009",
+      "expected_returned_provider_names": [
+        "Cloudflare"
+      ],
+      "provider": {
+        "only": [
+          "cloudflare"
+        ],
+        "allow_fallbacks": false
+      },
+      "context_length": 65536,
+      "catalogue_context_length": 65536,
+      "input_modalities": [
+        "text",
+        "image",
+        "audio",
+        "video"
+      ],
+      "output_modalities": [
+        "decisions"
+      ],
+      "pricing": {
+        "prompt": "0.00000015",
+        "completion": "0"
+      },
+      "endpoint_pricing": {
+        "prompt": "0.00000015",
+        "completion": "0",
+        "discount": 0
+      },
+      "endpoint_quantization": "unknown",
+      "state_adapter": "json",
+      "image_advertised": true,
+      "image_preflight_passed": true,
+      "request_model_preflight_passed": true,
+      "version_pin_status": "dated_native_request_verified",
+      "native_api_preflight": {
+        "passed": true,
+        "calls": 22,
+        "source": "playground/latency/20261101T140548Z/requests.jsonl",
+        "limitation": "Prior alias requests and observed provider names; exact selected request_model/provider combination pending."
+      },
+      "quality_status": "not_measured",
+      "eligibility": {
+        "ram": "preflight_passed",
+        "image": "preflight_passed"
+      },
+      "sources": {
+        "catalogue": "https://openrouter.ai/api/v1/models?output_modalities=decisions",
+        "provider_endpoints": "https://openrouter.ai/api/v1/models/cloudflare/clef-omni-20261009/endpoints",
+        "cloudflare_context": "https://developers.cloudflare.com/workers-ai/models/clef-omni/"
+      },
+      "notes": [
+        "Native HTTP/schema success establishes transport compatibility, not proof that every observation token was consumed or that image pixels causally influenced decisions."
+      ],
+      "selected_contract_preflight": {
+        "passed": true,
+        "source": "playground/benchmark-preflight/cloudflare__clef-omni.ram.json",
+        "calls": 1,
+        "request_model_exact_match": true,
+        "returned_provider_exact_match": true
+      },
+      "image_preflight_source": "playground/benchmark-preflight/cloudflare__clef-omni.image.json",
+      "observation_equivalence_verified": false,
+      "text_truncation_policy": {
+        "documented_rule": "Text state truncated to remaining model context after questions and media tokens.",
+        "two_thousand_token_cap_documented": false,
+        "scope_caveat": "OpenRouter explicitly applies roughly2000 state-text token warning to Clef and ClefFlash, not Omni. Do not generalise it to Omni without evidence.",
+        "consumption_verified": false
+      },
+      "existing_runner_input_audit": {
+        "ram_run": "playground/benchmark/runs/live22-state-128/cloudflare__clef-omni.jsonl",
+        "image_run": "playground/benchmark/runs/live14-image-128/cloudflare__clef-omni.jsonl",
+        "ram_state_text_utf8_bytes": [
+          3134,
+          3621
+        ],
+        "image_state_text_utf8_bytes": [
+          3134,
+          3859
+        ],
+        "ram_history_entries": [
+          1,
+          5
+        ],
+        "image_history_entries": [
+          1,
+          7
+        ],
+        "ram_reported_total_input_tokens": [
+          1858,
+          2009
+        ],
+        "image_reported_total_input_tokens": [
+          2156,
+          2380
+        ],
+        "limitation": "Reported tokens include questions and media; byte lengths are exact but are not tokenizer-specific text token counts. Neither proves complete observation consumption."
+      }
+    },
+    {
+      "id": "inception/mercury-decide",
+      "name": "Inception: Mercury Decide",
+      "request_model": "inception/mercury-decide-20260930",
+      "canonical_slug": "inception/mercury-decide-20260930",
+      "expected_returned_model": "inception/mercury-decide-20260930",
+      "expected_returned_provider_names": [
+        "Inception"
+      ],
+      "provider": {
+        "only": [
+          "inception"
+        ],
+        "allow_fallbacks": false
+      },
+      "context_length": 65536,
+      "catalogue_context_length": 65536,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "output_modalities": [
+        "decisions"
+      ],
+      "pricing": {
+        "prompt": "0.00000002",
+        "completion": "0",
+        "input_cache_read": "0"
+      },
+      "endpoint_pricing": {
+        "prompt": "0.00000002",
+        "completion": "0",
+        "input_cache_read": "0",
+        "discount": 0.5
+      },
+      "endpoint_quantization": "unknown",
+      "state_adapter": "json",
+      "image_advertised": true,
+      "image_preflight_passed": true,
+      "request_model_preflight_passed": true,
+      "version_pin_status": "dated_native_request_verified",
+      "native_api_preflight": {
+        "passed": true,
+        "calls": 22,
+        "source": "playground/latency/20261101T140548Z/requests.jsonl",
+        "limitation": "Prior alias requests and observed provider names; exact selected request_model/provider combination pending."
+      },
+      "quality_status": "not_measured",
+      "eligibility": {
+        "ram": "preflight_passed",
+        "image": "preflight_passed"
+      },
+      "sources": {
+        "catalogue": "https://openrouter.ai/api/v1/models?output_modalities=decisions",
+        "provider_endpoints": "https://openrouter.ai/api/v1/models/inception/mercury-decide-20260930/endpoints"
+      },
+      "notes": [
+        "Native HTTP/schema success establishes transport compatibility, not proof that every observation token was consumed or that image pixels causally influenced decisions."
+      ],
+      "selected_contract_preflight": {
+        "passed": true,
+        "source": "playground/benchmark-preflight/inception__mercury-decide.ram.json",
+        "calls": 1,
+        "request_model_exact_match": true,
+        "returned_provider_exact_match": true
+      },
+      "image_preflight_source": "playground/benchmark-preflight/inception__mercury-decide.image.json",
+      "observation_equivalence_verified": false
+    },
+    {
+      "id": "jaredpalmer/kev-4b",
+      "name": "Jared Palmer: Kev 4B",
+      "request_model": "jaredpalmer/kev-4b-20260924",
+      "canonical_slug": "jaredpalmer/kev-4b-20260924",
+      "expected_returned_model": "jaredpalmer/kev-4b-20260924",
+      "expected_returned_provider_names": [
+        "Phala"
+      ],
+      "provider": {
+        "only": [
+          "phala"
+        ],
+        "allow_fallbacks": false
+      },
+      "context_length": 8192,
+      "catalogue_context_length": 8192,
+      "input_modalities": [
+        "text"
+      ],
+      "output_modalities": [
+        "decisions"
+      ],
+      "pricing": {
+        "prompt": "0.000000042",
+        "completion": "0"
+      },
+      "endpoint_pricing": {
+        "prompt": "0.000000042",
+        "completion": "0",
+        "discount": 0
+      },
+      "endpoint_quantization": "unknown",
+      "state_adapter": "json",
+      "image_advertised": false,
+      "image_preflight_passed": false,
+      "request_model_preflight_passed": true,
+      "version_pin_status": "dated_native_request_verified",
+      "native_api_preflight": {
+        "passed": true,
+        "calls": 22,
+        "source": "playground/latency/20261101T140548Z/requests.jsonl",
+        "limitation": "Prior alias requests and observed provider names; exact selected request_model/provider combination pending."
+      },
+      "quality_status": "not_measured",
+      "eligibility": {
+        "ram": "preflight_passed",
+        "image": "unsupported"
+      },
+      "sources": {
+        "catalogue": "https://openrouter.ai/api/v1/models?output_modalities=decisions",
+        "provider_endpoints": "https://openrouter.ai/api/v1/models/jaredpalmer/kev-4b-20260924/endpoints"
+      },
+      "notes": [
+        "Native HTTP/schema success establishes transport compatibility, not proof that every observation token was consumed or that image pixels causally influenced decisions."
+      ],
+      "selected_contract_preflight": {
+        "passed": true,
+        "source": "playground/benchmark-preflight/jaredpalmer__kev-4b.ram.json",
+        "calls": 1,
+        "request_model_exact_match": true,
+        "returned_provider_exact_match": true
+      },
+      "observation_equivalence_verified": false
+    },
+    {
+      "id": "liquid/d1-ultra",
+      "name": "LiquidAI: d1-ultra",
+      "request_model": "liquid/d1-ultra-20261015",
+      "canonical_slug": "liquid/d1-ultra-20261015",
+      "expected_returned_model": "liquid/d1-ultra-20261015",
+      "expected_returned_provider_names": [
+        "Liquid"
+      ],
+      "provider": {
+        "only": [
+          "liquid"
+        ],
+        "allow_fallbacks": false
+      },
+      "context_length": 32768,
+      "catalogue_context_length": 32768,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "output_modalities": [
+        "decisions"
+      ],
+      "pricing": {
+        "prompt": "0.000000042",
+        "completion": "0",
+        "input_cache_read": "0.000000042"
+      },
+      "endpoint_pricing": {
+        "prompt": "0.000000042",
+        "completion": "0",
+        "input_cache_read": "0.000000042",
+        "discount": 0
+      },
+      "endpoint_quantization": "unknown",
+      "state_adapter": "json",
+      "image_advertised": true,
+      "image_preflight_passed": true,
+      "request_model_preflight_passed": true,
+      "version_pin_status": "dated_native_request_verified",
+      "native_api_preflight": {
+        "passed": true,
+        "calls": 22,
+        "source": "playground/latency/20261101T140548Z/requests.jsonl",
+        "limitation": "Prior alias requests and observed provider names; exact selected request_model/provider combination pending."
+      },
+      "quality_status": "not_measured",
+      "eligibility": {
+        "ram": "preflight_passed",
+        "image": "preflight_passed"
+      },
+      "sources": {
+        "catalogue": "https://openrouter.ai/api/v1/models?output_modalities=decisions",
+        "provider_endpoints": "https://openrouter.ai/api/v1/models/liquid/d1-ultra-20261015/endpoints"
+      },
+      "notes": [
+        "Native HTTP/schema success establishes transport compatibility, not proof that every observation token was consumed or that image pixels causally influenced decisions."
+      ],
+      "selected_contract_preflight": {
+        "passed": true,
+        "source": "playground/benchmark-preflight/liquid__d1-ultra.ram.json",
+        "calls": 1,
+        "request_model_exact_match": true,
+        "returned_provider_exact_match": true
+      },
+      "image_preflight_source": "playground/benchmark-preflight/liquid__d1-ultra.image.json",
+      "observation_equivalence_verified": false
+    },
+    {
+      "id": "liquid/d1.1",
+      "name": "LiquidAI: d1.1",
+      "request_model": "liquid/d1.1-20261027",
+      "canonical_slug": "liquid/d1.1-20261027",
+      "expected_returned_model": "liquid/d1.1-20261027",
+      "expected_returned_provider_names": [
+        "Liquid"
+      ],
+      "provider": {
+        "only": [
+          "liquid"
+        ],
+        "allow_fallbacks": false
+      },
+      "context_length": 65536,
+      "catalogue_context_length": 65536,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "output_modalities": [
+        "decisions"
+      ],
+      "pricing": {
+        "prompt": "0.00000002",
+        "completion": "0",
+        "input_cache_read": "0.00000002"
+      },
+      "endpoint_pricing": {
+        "prompt": "0.00000002",
+        "completion": "0",
+        "input_cache_read": "0.00000002",
+        "discount": 0
+      },
+      "endpoint_quantization": "unknown",
+      "state_adapter": "json",
+      "image_advertised": true,
+      "image_preflight_passed": true,
+      "request_model_preflight_passed": true,
+      "version_pin_status": "dated_native_request_verified",
+      "native_api_preflight": {
+        "passed": true,
+        "calls": 22,
+        "source": "playground/latency/20261101T140548Z/requests.jsonl",
+        "limitation": "Prior alias requests and observed provider names; exact selected request_model/provider combination pending."
+      },
+      "quality_status": "not_measured",
+      "eligibility": {
+        "ram": "preflight_passed",
+        "image": "preflight_passed"
+      },
+      "sources": {
+        "catalogue": "https://openrouter.ai/api/v1/models?output_modalities=decisions",
+        "provider_endpoints": "https://openrouter.ai/api/v1/models/liquid/d1.1-20261027/endpoints"
+      },
+      "notes": [
+        "Native HTTP/schema success establishes transport compatibility, not proof that every observation token was consumed or that image pixels causally influenced decisions."
+      ],
+      "selected_contract_preflight": {
+        "passed": true,
+        "source": "playground/benchmark-preflight/liquid__d1.1.ram.json",
+        "calls": 1,
+        "request_model_exact_match": true,
+        "returned_provider_exact_match": true
+      },
+      "image_preflight_source": "playground/benchmark-preflight/liquid__d1.1.image.json",
+      "observation_equivalence_verified": false
+    },
+    {
+      "id": "microsoft/microsoft-decision-1",
+      "name": "Microsoft: Microsoft-Decision-1",
+      "request_model": "microsoft/microsoft-decision-1-20261009",
+      "canonical_slug": "microsoft/microsoft-decision-1-20261009",
+      "expected_returned_model": "microsoft/microsoft-decision-1-20261009",
+      "expected_returned_provider_names": [
+        "Azure"
+      ],
+      "provider": {
+        "only": [
+          "azure"
+        ],
+        "allow_fallbacks": false
+      },
+      "context_length": 32768,
+      "catalogue_context_length": 32768,
+      "input_modalities": [
+        "text"
+      ],
+      "output_modalities": [
+        "decisions"
+      ],
+      "pricing": {
+        "prompt": "0.000000042",
+        "completion": "0"
+      },
+      "endpoint_pricing": {
+        "prompt": "0.000000042",
+        "completion": "0",
+        "discount": 0
+      },
+      "endpoint_quantization": "unknown",
+      "state_adapter": "json",
+      "image_advertised": false,
+      "image_preflight_passed": false,
+      "request_model_preflight_passed": true,
+      "version_pin_status": "dated_native_request_verified",
+      "native_api_preflight": {
+        "passed": true,
+        "calls": 22,
+        "source": "playground/latency/20261101T140548Z/requests.jsonl",
+        "limitation": "Prior alias requests and observed provider names; exact selected request_model/provider combination pending."
+      },
+      "quality_status": "not_measured",
+      "eligibility": {
+        "ram": "preflight_passed",
+        "image": "unsupported"
+      },
+      "sources": {
+        "catalogue": "https://openrouter.ai/api/v1/models?output_modalities=decisions",
+        "provider_endpoints": "https://openrouter.ai/api/v1/models/microsoft/microsoft-decision-1-20261009/endpoints"
+      },
+      "notes": [
+        "Native HTTP/schema success establishes transport compatibility, not proof that every observation token was consumed or that image pixels causally influenced decisions."
+      ],
+      "selected_contract_preflight": {
+        "passed": true,
+        "source": "playground/benchmark-preflight/microsoft__microsoft-decision-1.ram.json",
+        "calls": 1,
+        "request_model_exact_match": true,
+        "returned_provider_exact_match": true
+      },
+      "observation_equivalence_verified": false
+    },
+    {
+      "id": "nace-ai/drex-max",
+      "name": "Nace.AI: Drex Max",
+      "request_model": "nace-ai/drex-max-20261016",
+      "canonical_slug": "nace-ai/drex-max-20261016",
+      "expected_returned_model": "nace-ai/drex-max-20261016",
+      "expected_returned_provider_names": [
+        "DeepInfra"
+      ],
+      "provider": {
+        "only": [
+          "deepinfra"
+        ],
+        "allow_fallbacks": false
+      },
+      "context_length": 262144,
+      "catalogue_context_length": 262144,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "output_modalities": [
+        "decisions"
+      ],
+      "pricing": {
+        "prompt": "0.00000006",
+        "completion": "0",
+        "input_cache_read": "0.00000006"
+      },
+      "endpoint_pricing": {
+        "prompt": "0.00000006",
+        "completion": "0",
+        "input_cache_read": "0.00000006",
+        "discount": 0.5
+      },
+      "endpoint_quantization": "unknown",
+      "state_adapter": "json",
+      "image_advertised": true,
+      "image_preflight_passed": true,
+      "request_model_preflight_passed": true,
+      "version_pin_status": "dated_native_request_verified",
+      "native_api_preflight": {
+        "passed": true,
+        "calls": 22,
+        "source": "playground/latency/20261101T140548Z/requests.jsonl",
+        "limitation": "Prior alias requests and observed provider names; exact selected request_model/provider combination pending."
+      },
+      "quality_status": "not_measured",
+      "eligibility": {
+        "ram": "preflight_passed",
+        "image": "preflight_passed"
+      },
+      "sources": {
+        "catalogue": "https://openrouter.ai/api/v1/models?output_modalities=decisions",
+        "provider_endpoints": "https://openrouter.ai/api/v1/models/nace-ai/drex-max-20261016/endpoints"
+      },
+      "notes": [
+        "Native HTTP/schema success establishes transport compatibility, not proof that every observation token was consumed or that image pixels causally influenced decisions."
+      ],
+      "selected_contract_preflight": {
+        "passed": true,
+        "source": "playground/benchmark-preflight/nace-ai__drex-max.ram.json",
+        "calls": 1,
+        "request_model_exact_match": true,
+        "returned_provider_exact_match": true
+      },
+      "image_preflight_source": "playground/benchmark-preflight/nace-ai__drex-max.image.json",
+      "observation_equivalence_verified": false
+    },
+    {
+      "id": "nace-ai/drex-v1.5",
+      "name": "Nace.AI: Drex v1.5",
+      "request_model": "nace-ai/drex-v1.5-20261009",
+      "canonical_slug": "nace-ai/drex-v1.5-20261009",
+      "expected_returned_model": "nace-ai/drex-v1.5-20261009",
+      "expected_returned_provider_names": [
+        "DeepInfra"
+      ],
+      "provider": {
+        "only": [
+          "deepinfra/us"
+        ],
+        "allow_fallbacks": false
+      },
+      "context_length": 131072,
+      "catalogue_context_length": 131072,
+      "input_modalities": [
+        "text"
+      ],
+      "output_modalities": [
+        "decisions"
+      ],
+      "pricing": {
+        "prompt": "0.00000004",
+        "completion": "0"
+      },
+      "endpoint_pricing": {
+        "prompt": "0.00000004",
+        "completion": "0",
+        "discount": 0
+      },
+      "endpoint_quantization": "unknown",
+      "state_adapter": "json",
+      "image_advertised": false,
+      "image_preflight_passed": false,
+      "request_model_preflight_passed": true,
+      "version_pin_status": "dated_native_request_verified",
+      "native_api_preflight": {
+        "passed": true,
+        "calls": 22,
+        "source": "playground/latency/20261101T140548Z/requests.jsonl",
+        "limitation": "Prior alias requests and observed provider names; exact selected request_model/provider combination pending."
+      },
+      "quality_status": "not_measured",
+      "eligibility": {
+        "ram": "preflight_passed",
+        "image": "unsupported"
+      },
+      "sources": {
+        "catalogue": "https://openrouter.ai/api/v1/models?output_modalities=decisions",
+        "provider_endpoints": "https://openrouter.ai/api/v1/models/nace-ai/drex-v1.5-20261009/endpoints"
+      },
+      "notes": [
+        "Native HTTP/schema success establishes transport compatibility, not proof that every observation token was consumed or that image pixels causally influenced decisions."
+      ],
+      "selected_contract_preflight": {
+        "passed": true,
+        "source": "playground/benchmark-preflight/nace-ai__drex-v1.5.ram.json",
+        "calls": 1,
+        "request_model_exact_match": true,
+        "returned_provider_exact_match": true
+      },
+      "observation_equivalence_verified": false
+    },
+    {
+      "id": "nace-ai/drex-v2.0",
+      "name": "Nace.AI: Drex v2.0",
+      "request_model": "nace-ai/drex-v2.0-20261009",
+      "canonical_slug": "nace-ai/drex-v2.0-20261009",
+      "expected_returned_model": "nace-ai/drex-v2.0-20261009",
+      "expected_returned_provider_names": [
+        "DeepInfra"
+      ],
+      "provider": {
+        "only": [
+          "deepinfra/us"
+        ],
+        "allow_fallbacks": false
+      },
+      "context_length": 131072,
+      "catalogue_context_length": 131072,
+      "input_modalities": [
+        "text"
+      ],
+      "output_modalities": [
+        "decisions"
+      ],
+      "pricing": {
+        "prompt": "0.00000006",
+        "completion": "0"
+      },
+      "endpoint_pricing": {
+        "prompt": "0.00000006",
+        "completion": "0",
+        "discount": 0
+      },
+      "endpoint_quantization": "unknown",
+      "state_adapter": "json",
+      "image_advertised": false,
+      "image_preflight_passed": false,
+      "request_model_preflight_passed": true,
+      "version_pin_status": "dated_native_request_verified",
+      "native_api_preflight": {
+        "passed": true,
+        "calls": 22,
+        "source": "playground/latency/20261101T140548Z/requests.jsonl",
+        "limitation": "Prior alias requests and observed provider names; exact selected request_model/provider combination pending."
+      },
+      "quality_status": "not_measured",
+      "eligibility": {
+        "ram": "preflight_passed",
+        "image": "unsupported"
+      },
+      "sources": {
+        "catalogue": "https://openrouter.ai/api/v1/models?output_modalities=decisions",
+        "provider_endpoints": "https://openrouter.ai/api/v1/models/nace-ai/drex-v2.0-20261009/endpoints"
+      },
+      "notes": [
+        "Native HTTP/schema success establishes transport compatibility, not proof that every observation token was consumed or that image pixels causally influenced decisions."
+      ],
+      "selected_contract_preflight": {
+        "passed": true,
+        "source": "playground/benchmark-preflight/nace-ai__drex-v2.0.ram.json",
+        "calls": 1,
+        "request_model_exact_match": true,
+        "returned_provider_exact_match": true
+      },
+      "observation_equivalence_verified": false
+    },
+    {
+      "id": "openai/gpt-6-luna-decisions",
+      "name": "OpenAI: GPT-6 Luna Decisions",
+      "request_model": "openai/gpt-6-luna-decisions-20261006",
+      "canonical_slug": "openai/gpt-6-luna-decisions-20261006",
+      "expected_returned_model": "openai/gpt-6-luna-decisions-20261006",
+      "expected_returned_provider_names": [
+        "OpenAI"
+      ],
+      "provider": {
+        "only": [
+          "openai"
+        ],
+        "allow_fallbacks": false
+      },
+      "context_length": 1050000,
+      "catalogue_context_length": 1050000,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "output_modalities": [
+        "decisions"
+      ],
+      "pricing": {
+        "prompt": "0.0000001",
+        "completion": "0",
+        "web_search": "0.01",
+        "input_cache_read": "0",
+        "input_cache_write": "0"
+      },
+      "endpoint_pricing": {
+        "prompt": "0.0000001",
+        "completion": "0",
+        "web_search": "0.01",
+        "input_cache_read": "0",
+        "input_cache_write": "0",
+        "discount": 0
+      },
+      "endpoint_quantization": "unknown",
+      "state_adapter": "json",
+      "image_advertised": true,
+      "image_preflight_passed": true,
+      "request_model_preflight_passed": true,
+      "version_pin_status": "dated_native_request_verified",
+      "native_api_preflight": {
+        "passed": true,
+        "calls": 22,
+        "source": "playground/latency/20261101T140548Z/requests.jsonl",
+        "limitation": "Prior alias requests and observed provider names; exact selected request_model/provider combination pending."
+      },
+      "quality_status": "not_measured",
+      "eligibility": {
+        "ram": "preflight_passed",
+        "image": "preflight_passed"
+      },
+      "sources": {
+        "catalogue": "https://openrouter.ai/api/v1/models?output_modalities=decisions",
+        "provider_endpoints": "https://openrouter.ai/api/v1/models/openai/gpt-6-luna-decisions-20261006/endpoints"
+      },
+      "notes": [
+        "Image accepted on alias request with matching dated returned model; dated request verified separately on RAM.",
+        "Native HTTP/schema success establishes transport compatibility, not proof that every observation token was consumed or that image pixels causally influenced decisions."
+      ],
+      "selected_contract_preflight": {
+        "passed": true,
+        "source": "playground/benchmark-preflight/openai__gpt-6-luna-decisions.ram.json",
+        "calls": 1,
+        "request_model_exact_match": true,
+        "returned_provider_exact_match": true
+      },
+      "image_preflight_source": "playground/prototype/preflight/image_preflight.json",
+      "observation_equivalence_verified": false
+    },
+    {
+      "id": "perplexity/pplx-decider-flash-v1.2",
+      "name": "Perplexity: Decider Flash V1.2",
+      "request_model": "perplexity/pplx-decider-flash-v1.2-20261016",
+      "canonical_slug": "perplexity/pplx-decider-flash-v1.2-20261016",
+      "expected_returned_model": "perplexity/pplx-decider-flash-v1.2-20261016",
+      "expected_returned_provider_names": [
+        "Perplexity"
+      ],
+      "provider": {
+        "only": [
+          "perplexity"
+        ],
+        "allow_fallbacks": false
+      },
+      "context_length": 262144,
+      "catalogue_context_length": 262144,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "output_modalities": [
+        "decisions"
+      ],
+      "pricing": {
+        "prompt": "0.00000001",
+        "completion": "0"
+      },
+      "endpoint_pricing": {
+        "prompt": "0.00000001",
+        "completion": "0",
+        "discount": 0
+      },
+      "endpoint_quantization": "unknown",
+      "state_adapter": "json",
+      "image_advertised": true,
+      "image_preflight_passed": true,
+      "request_model_preflight_passed": true,
+      "version_pin_status": "dated_native_request_verified",
+      "native_api_preflight": {
+        "passed": true,
+        "calls": 22,
+        "source": "playground/latency/20261101T140548Z/requests.jsonl",
+        "limitation": "Prior alias requests and observed provider names; exact selected request_model/provider combination pending."
+      },
+      "quality_status": "not_measured",
+      "eligibility": {
+        "ram": "preflight_passed",
+        "image": "preflight_passed"
+      },
+      "sources": {
+        "catalogue": "https://openrouter.ai/api/v1/models?output_modalities=decisions",
+        "provider_endpoints": "https://openrouter.ai/api/v1/models/perplexity/pplx-decider-flash-v1.2-20261016/endpoints"
+      },
+      "notes": [
+        "Native HTTP/schema success establishes transport compatibility, not proof that every observation token was consumed or that image pixels causally influenced decisions."
+      ],
+      "selected_contract_preflight": {
+        "passed": true,
+        "source": "playground/benchmark-preflight/perplexity__pplx-decider-flash-v1.2.ram.json",
+        "calls": 1,
+        "request_model_exact_match": true,
+        "returned_provider_exact_match": true
+      },
+      "image_preflight_source": "playground/benchmark-preflight/perplexity__pplx-decider-flash-v1.2.image.json",
+      "observation_equivalence_verified": false
+    },
+    {
+      "id": "perplexity/pplx-decider-v1.2",
+      "name": "Perplexity: Decider V1.2",
+      "request_model": "perplexity/pplx-decider-v1.2-20261016",
+      "canonical_slug": "perplexity/pplx-decider-v1.2-20261016",
+      "expected_returned_model": "perplexity/pplx-decider-v1.2-20261016",
+      "expected_returned_provider_names": [
+        "Perplexity"
+      ],
+      "provider": {
+        "only": [
+          "perplexity"
+        ],
+        "allow_fallbacks": false
+      },
+      "context_length": 262144,
+      "catalogue_context_length": 262144,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "output_modalities": [
+        "decisions"
+      ],
+      "pricing": {
+        "prompt": "0.00000002",
+        "completion": "0"
+      },
+      "endpoint_pricing": {
+        "prompt": "0.00000002",
+        "completion": "0",
+        "discount": 0
+      },
+      "endpoint_quantization": "unknown",
+      "state_adapter": "json",
+      "image_advertised": true,
+      "image_preflight_passed": true,
+      "request_model_preflight_passed": true,
+      "version_pin_status": "dated_native_request_verified",
+      "native_api_preflight": {
+        "passed": true,
+        "calls": 22,
+        "source": "playground/latency/20261101T140548Z/requests.jsonl",
+        "limitation": "Prior alias requests and observed provider names; exact selected request_model/provider combination pending."
+      },
+      "quality_status": "not_measured",
+      "eligibility": {
+        "ram": "preflight_passed",
+        "image": "preflight_passed"
+      },
+      "sources": {
+        "catalogue": "https://openrouter.ai/api/v1/models?output_modalities=decisions",
+        "provider_endpoints": "https://openrouter.ai/api/v1/models/perplexity/pplx-decider-v1.2-20261016/endpoints"
+      },
+      "notes": [
+        "Native HTTP/schema success establishes transport compatibility, not proof that every observation token was consumed or that image pixels causally influenced decisions."
+      ],
+      "selected_contract_preflight": {
+        "passed": true,
+        "source": "playground/benchmark-preflight/perplexity__pplx-decider-v1.2.ram.json",
+        "calls": 1,
+        "request_model_exact_match": true,
+        "returned_provider_exact_match": true
+      },
+      "image_preflight_source": "playground/benchmark-preflight/perplexity__pplx-decider-v1.2.image.json",
+      "observation_equivalence_verified": false
+    },
+    {
+      "id": "respan/span-02",
+      "name": "Respan: Span-02",
+      "request_model": "respan/span-02-20261015",
+      "canonical_slug": "respan/span-02-20261015",
+      "expected_returned_model": "respan/span-02-20261015",
+      "expected_returned_provider_names": [
+        "Respan"
+      ],
+      "provider": {
+        "only": [
+          "respan"
+        ],
+        "allow_fallbacks": false
+      },
+      "context_length": 131072,
+      "catalogue_context_length": 131072,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "output_modalities": [
+        "decisions"
+      ],
+      "pricing": {
+        "prompt": "0.00000001",
+        "completion": "0"
+      },
+      "endpoint_pricing": {
+        "prompt": "0.00000001",
+        "completion": "0",
+        "discount": 0
+      },
+      "endpoint_quantization": "unknown",
+      "state_adapter": "json",
+      "image_advertised": true,
+      "image_preflight_passed": true,
+      "request_model_preflight_passed": true,
+      "version_pin_status": "dated_native_request_verified",
+      "native_api_preflight": {
+        "passed": true,
+        "calls": 22,
+        "source": "playground/latency/20261101T140548Z/requests.jsonl",
+        "limitation": "Prior alias requests and observed provider names; exact selected request_model/provider combination pending."
+      },
+      "quality_status": "not_measured",
+      "eligibility": {
+        "ram": "preflight_passed",
+        "image": "preflight_passed"
+      },
+      "sources": {
+        "catalogue": "https://openrouter.ai/api/v1/models?output_modalities=decisions",
+        "provider_endpoints": "https://openrouter.ai/api/v1/models/respan/span-02-20261015/endpoints"
+      },
+      "notes": [
+        "Native HTTP/schema success establishes transport compatibility, not proof that every observation token was consumed or that image pixels causally influenced decisions."
+      ],
+      "selected_contract_preflight": {
+        "passed": true,
+        "source": "playground/benchmark-preflight/respan__span-02.ram.json",
+        "calls": 1,
+        "request_model_exact_match": true,
+        "returned_provider_exact_match": true
+      },
+      "image_preflight_source": "playground/benchmark-preflight/respan__span-02.image.json",
+      "observation_equivalence_verified": false
+    },
+    {
+      "id": "scaledown/classify-1",
+      "name": "ScaleDown: Classify-1",
+      "request_model": "scaledown/classify-1-20260928",
+      "canonical_slug": "scaledown/classify-1-20260928",
+      "expected_returned_model": "scaledown/classify-1-20260928",
+      "expected_returned_provider_names": [
+        "ScaleDown"
+      ],
+      "provider": {
+        "only": [
+          "scaledown"
+        ],
+        "allow_fallbacks": false
+      },
+      "context_length": 1000000,
+      "catalogue_context_length": 1000000,
+      "input_modalities": [
+        "text",
+        "image",
+        "file"
+      ],
+      "output_modalities": [
+        "decisions"
+      ],
+      "pricing": {
+        "prompt": "0.00000004",
+        "completion": "0"
+      },
+      "endpoint_pricing": {
+        "prompt": "0.00000004",
+        "completion": "0",
+        "discount": 0.2
+      },
+      "endpoint_quantization": "unknown",
+      "state_adapter": "text",
+      "image_advertised": true,
+      "image_preflight_passed": false,
+      "request_model_preflight_passed": true,
+      "version_pin_status": "dated_native_request_verified",
+      "native_api_preflight": {
+        "passed": true,
+        "calls": 22,
+        "source": "playground/latency/20261101T140548Z/requests.jsonl",
+        "limitation": "Prior alias requests and observed provider names; exact selected request_model/provider combination pending."
+      },
+      "quality_status": "not_measured",
+      "eligibility": {
+        "ram": "preflight_passed",
+        "image": "pending_upstream_adapter_support"
+      },
+      "sources": {
+        "catalogue": "https://openrouter.ai/api/v1/models?output_modalities=decisions",
+        "provider_endpoints": "https://openrouter.ai/api/v1/models/scaledown/classify-1-20260928/endpoints"
+      },
+      "notes": [
+        "Catalogue advertises images but selected native ScaleDown adapter rejects image_url parts (HTTP400); exclude image track pending upstream support, retain RAM string-state adapter.",
+        "Native HTTP/schema success establishes transport compatibility, not proof that every observation token was consumed or that image pixels causally influenced decisions."
+      ],
+      "selected_contract_preflight": {
+        "passed": true,
+        "source": "playground/benchmark-preflight/scaledown__classify-1.ram.json",
+        "calls": 1,
+        "request_model_exact_match": true,
+        "returned_provider_exact_match": true
+      },
+      "image_preflight_source": "playground/benchmark-preflight/scaledown__classify-1.image.json",
+      "observation_equivalence_verified": false
+    },
+    {
+      "id": "typesafe/jev-1.13",
+      "name": "TypeSafe: Jev 1.13",
+      "request_model": "typesafe/jev-1.13-20260917",
+      "canonical_slug": "typesafe/jev-1.13-20260917",
+      "expected_returned_model": "typesafe/jev-1.13-20260917",
+      "expected_returned_provider_names": [
+        "TypeSafe"
+      ],
+      "provider": {
+        "only": [
+          "typesafe"
+        ],
+        "allow_fallbacks": false
+      },
+      "context_length": 262144,
+      "catalogue_context_length": 262144,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "output_modalities": [
+        "decisions"
+      ],
+      "pricing": {
+        "prompt": "0.000000042",
+        "completion": "0"
+      },
+      "endpoint_pricing": {
+        "prompt": "0.000000042",
+        "completion": "0",
+        "discount": 0
+      },
+      "endpoint_quantization": "unknown",
+      "state_adapter": "json",
+      "image_advertised": true,
+      "image_preflight_passed": true,
+      "request_model_preflight_passed": true,
+      "version_pin_status": "dated_native_request_verified",
+      "native_api_preflight": {
+        "passed": true,
+        "calls": 22,
+        "source": "playground/latency/20261101T140548Z/requests.jsonl",
+        "limitation": "Prior alias requests and observed provider names; exact selected request_model/provider combination pending."
+      },
+      "quality_status": "not_measured",
+      "eligibility": {
+        "ram": "preflight_passed",
+        "image": "preflight_passed"
+      },
+      "sources": {
+        "catalogue": "https://openrouter.ai/api/v1/models?output_modalities=decisions",
+        "provider_endpoints": "https://openrouter.ai/api/v1/models/typesafe/jev-1.13-20260917/endpoints"
+      },
+      "notes": [
+        "Native HTTP/schema success establishes transport compatibility, not proof that every observation token was consumed or that image pixels causally influenced decisions."
+      ],
+      "selected_contract_preflight": {
+        "passed": true,
+        "source": "playground/benchmark-preflight/typesafe__jev-1.13.ram.json",
+        "calls": 1,
+        "request_model_exact_match": true,
+        "returned_provider_exact_match": true
+      },
+      "image_preflight_source": "playground/benchmark-preflight/typesafe__jev-1.13.image.json",
+      "observation_equivalence_verified": false
+    },
+    {
+      "id": "typesafe/jev-1.14",
+      "name": "TypeSafe: Jev 1.14",
+      "request_model": "typesafe/jev-1.14-20261014",
+      "canonical_slug": "typesafe/jev-1.14-20261014",
+      "expected_returned_model": "typesafe/jev-1.14-20261014",
+      "expected_returned_provider_names": [
+        "TypeSafe"
+      ],
+      "provider": {
+        "only": [
+          "typesafe"
+        ],
+        "allow_fallbacks": false
+      },
+      "context_length": 262144,
+      "catalogue_context_length": 262144,
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "output_modalities": [
+        "decisions"
+      ],
+      "pricing": {
+        "prompt": "0.000000042",
+        "completion": "0"
+      },
+      "endpoint_pricing": {
+        "prompt": "0.000000042",
+        "completion": "0",
+        "discount": 0
+      },
+      "endpoint_quantization": "unknown",
+      "state_adapter": "json",
+      "image_advertised": true,
+      "image_preflight_passed": true,
+      "request_model_preflight_passed": true,
+      "version_pin_status": "dated_native_request_verified",
+      "native_api_preflight": {
+        "passed": true,
+        "calls": 22,
+        "source": "playground/latency/20261101T140548Z/requests.jsonl",
+        "limitation": "Prior alias requests and observed provider names; exact selected request_model/provider combination pending."
+      },
+      "quality_status": "not_measured",
+      "eligibility": {
+        "ram": "preflight_passed",
+        "image": "preflight_passed"
+      },
+      "sources": {
+        "catalogue": "https://openrouter.ai/api/v1/models?output_modalities=decisions",
+        "provider_endpoints": "https://openrouter.ai/api/v1/models/typesafe/jev-1.14-20261014/endpoints"
+      },
+      "notes": [
+        "Native HTTP/schema success establishes transport compatibility, not proof that every observation token was consumed or that image pixels causally influenced decisions."
+      ],
+      "selected_contract_preflight": {
+        "passed": true,
+        "source": "playground/benchmark-preflight/typesafe__jev-1.14.ram.json",
+        "calls": 1,
+        "request_model_exact_match": true,
+        "returned_provider_exact_match": true
+      },
+      "image_preflight_source": "playground/benchmark-preflight/typesafe__jev-1.14.image.json",
+      "observation_equivalence_verified": false
+    },
+    {
+      "id": "upstage/solar-decide-flash",
+      "name": "Upstage: Solar Decide Flash",
+      "request_model": "upstage/solar-decide-flash-20261008",
+      "canonical_slug": "upstage/solar-decide-flash-20261008",
+      "expected_returned_model": "upstage/solar-decide-flash-20261008",
+      "expected_returned_provider_names": [
+        "Upstage"
+      ],
+      "provider": {
+        "only": [
+          "upstage/zdr"
+        ],
+        "allow_fallbacks": false
+      },
+      "context_length": 524288,
+      "catalogue_context_length": 524288,
+      "input_modalities": [
+        "text"
+      ],
+      "output_modalities": [
+        "decisions"
+      ],
+      "pricing": {
+        "prompt": "0.00000005",
+        "completion": "0",
+        "input_cache_read": "0.00000005"
+      },
+      "endpoint_pricing": {
+        "prompt": "0.00000005",
+        "completion": "0",
+        "input_cache_read": "0.00000005",
+        "discount": 0.5
+      },
+      "endpoint_quantization": "unknown",
+      "state_adapter": "json",
+      "image_advertised": false,
+      "image_preflight_passed": false,
+      "request_model_preflight_passed": true,
+      "version_pin_status": "dated_native_request_verified",
+      "native_api_preflight": {
+        "passed": true,
+        "calls": 22,
+        "source": "playground/latency/20261101T140548Z/requests.jsonl",
+        "limitation": "Prior alias requests and observed provider names; exact selected request_model/provider combination pending."
+      },
+      "quality_status": "not_measured",
+      "eligibility": {
+        "ram": "preflight_passed",
+        "image": "unsupported"
+      },
+      "sources": {
+        "catalogue": "https://openrouter.ai/api/v1/models?output_modalities=decisions",
+        "provider_endpoints": "https://openrouter.ai/api/v1/models/upstage/solar-decide-flash-20261008/endpoints"
+      },
+      "notes": [
+        "Native HTTP/schema success establishes transport compatibility, not proof that every observation token was consumed or that image pixels causally influenced decisions."
+      ],
+      "selected_contract_preflight": {
+        "passed": true,
+        "source": "playground/benchmark-preflight/upstage__solar-decide-flash.ram.json",
+        "calls": 1,
+        "request_model_exact_match": true,
+        "returned_provider_exact_match": true
+      },
+      "observation_equivalence_verified": false
+    }
+  ],
+  "sources": {
+    "catalogue_snapshot": "playground/benchmark-preflight/catalogue.json",
+    "provider_endpoints_snapshot": "playground/latency/image-models.endpoints.json",
+    "prior_native_requests": "playground/latency/20261101T140548Z/requests.jsonl",
+    "image_transport_guide": "https://openrouter.ai/docs/guides/community/multimodal-decisions",
+    "provider_pinning": "https://openrouter.ai/docs/guides/routing/provider-selection"
+  },
+  "limitations": [
+    "Accepting the image payload does not establish causal visual understanding.",
+    "RAM and image track are different observation contracts and must have separate results.",
+    "Do not trim observations differently by model; fit the common observation budget, and fail oversize requests explicitly.",
+    "Dated identity pinning is checked against actual returned model; Clef and Clef Flash have no dated identity in the catalogue.",
+    "Workers AI Clef/Clef Flash can silently truncate state text at roughly 2000 tokens; this manifest selects PrimeIntellect instead.",
+    "API availability and provider metadata can change; snapshot and audit the actual provider/model for every run.",
+    "Full observation consumption and RAM/image equivalence have not been causally verified for any contender. Clef Omni has documented remaining-context truncation, not a documented2000-token state cap."
+  ],
+  "catalogue_sha256": "5bba9a93424d0c284afa155b9ea94f2ca99e4130758eacddc957101b6dada8c7",
+  "readiness": {
+    "ram_candidates": 22,
+    "ram_selected_contract_passed": 22,
+    "image_advertised": 17,
+    "image_selected_contract_passed": 14,
+    "image_alternate_provider_transport_only": 2,
+    "image_upstream_adapter_rejected": 1,
+    "gameplay_quality": "not_measured",
+    "selection_criterion": "Technical native contract compatibility only; no gameplay score or latency threshold.",
+    "observation_equivalence": "Not causally verified for any model; fourteen means selected-provider native image contract passed, with no known model-specific truncation under current documented limits."
+  },
+  "input_contract_notes": {
+    "smallest_selected_context_tokens": 8192,
+    "smallest_context_model": "jaredpalmer/kev-4b",
+    "common_observation_budget": "Use identical observations, rules, questions, history and screenshot processing for all models within each track. Validate total provider-specific token budget; no model-specific evidence truncation.",
+    "image_common_format": "One top-level native image_url state part with base64 lossless 512x480 PNG; native256x240 nearest-neighbour2x; plain strings for text parts.",
+    "paired_image_requirement": "Use the same provider endpoint and state contract in RAM and image runs. Image HTTP success alone does not demonstrate visual grounding.",
+    "provider_text_truncation": "Workers AI Clef/Clef Flash silently reads only roughly first2000 state-text tokens. Main RAM pins PrimeIntellect; alternate Cloudflare image passes remain unpaired and ineligible for paired image track.",
+    "provider_text_truncation_scope": "OpenRouter documents roughly2000 state-text truncation for Workers Clef/ClefFlash only. Official Omni docs instead truncate state to remaining64Kcontext after questions/media. All providers still require common input budgeting; API success alone does not prove complete consumption."
+  }
+}

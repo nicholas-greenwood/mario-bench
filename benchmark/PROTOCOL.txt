@@ -1,0 +1,98 @@
+mario benchmark development protocol v0.2
+
+headline score: mean normalised furthest valid progress, from 0 to 100
+
+for each episode, retain the furthest legitimate native-game position reached
+before death or completion. on world 1-1, score = 100 * (max_valid_x - 40) /
+(3161 - 40). clamp unsuccessful episodes to [0, 99.9]; only the emulator's
+native flag_get can award 100. show clear rate separately. average every
+prespecified repeat within its level, then give each level equal weight. never
+select the best attempt or weight an easier level more because it has more runs
+
+world 1-1 is a public development level with 1 fixed deterministic start. it
+supports development comparisons, not a general mario ranking. repeating seed 0
+samples policy variability if the policy is stochastic, not new game layouts.
+new levels need their own validated route and endpoint mappings. unknown progress
+is null, never zero and never a borrowed 1-1 denominator. clear evidence may still
+be reported, but the progress aggregate stays null without full calibrated coverage
+
+an episode starts from the common emulator reset, with 1 life, at most 6,000
+native frames and 1,500 decisions at the shared 4-frame development cadence.
+first death ends it. no respawns, rescue, route-specific scripts or best-of retries
+are allowed. the hud's extra lives do not permit extra attempts. reset/setup frames
+are excluded; animation frames after reset count. inference freezes the emulator.
+a validated model-selected controller input is held for exactly 4 native frames,
+except when death/completion ends the action early. the frame budget must divide
+by cadence. any different cadence, budget or prompt is a separate experiment
+
+joint-visible-v1 uses 12 complete horizontal/run/jump choices, with vertical
+released. the native decision model selects the joint choice; the adapter expands
+that exact choice to buttons. general mechanics explain momentum, jump edges and
+jump phases. they supply no position-specific route or recommended action. this
+contract and cadence were developed on public 1-1; they are not yet a held-out
+benchmark freeze. exploratory clears prove feasibility under their logged
+configuration, not an unbiased selected-attempt aggregate
+
+state and image are separate observation tracks. state uses compact current
+visible ram-derived geometry, motion and recent positions. image is strictly
+pixels-only: the same-frame native 256x240 rgb screen enlarged to a lossless
+512x480 png by nearest neighbour, plus declared buttons, native frame and action
+interval. no ram coordinates, velocity, grounded flags, terrain, objects, position
+history, progress, goal distance or future layout reach the image policy. optional
+previous screenshots and model-selected control history must be declared and
+frozen in the manifest. the default sends the current screenshot only. legacy
+state-plus-image logs remain replayable but are not pixels-only benchmark results
+
+register eligible model/provider combinations before running. models.json locks
+requested routing and expected returned model/provider identities. image transport
+acceptance establishes compatibility, not evidence that pixels caused the answer.
+a provider that rejects images remains unavailable, not a zero game-skill result.
+all models in a comparable track use identical starts, mechanics, shared prompts,
+action schema, cadence, history and gameplay budgets. a result on one track cannot
+replace a missing result on another
+
+completion uses native flag_get, never x position, reward or model judgement.
+the evaluator reads x from ram[0x006d]*256 + ram[0x0086]. for the single-area 1-1
+mapping, a valid progress frame has player state ram[0x000e]=8, no emulator death
+or done, finite x/y, y<240 and x>=start. jumps count; death, falling, pipes and
+transition animation coordinates cannot inflate progress. sample every native
+frame, including between decisions. retain earlier progress through backtracking
+and death. first flag_get at x=3161 was reproduced twice by privileged offline
+endpoint calibration. that calibration edits ram to traverse safely: it is never
+a policy baseline or benchmark episode. reproduce with verify_scoring --calibrate
+
+the completed-only speedrun score reports authoritative native_frames_to_completion
+and nominal_game_seconds_to_completion = frames / 60. count from the common reset
+to first native completion, including gameplay animation frames. only explicitly
+recorded native completion clocks qualify. wall-clock request time, internet
+performance and api waiting never enter this measure. report the median of all
+prespecified completed attempts per level, alongside recorded/valid attempt,
+completion and timed-completion counts. no clears means null speed, not zero.
+legacy clears without an explicit clock remain untimed. conditional speed can
+improve when slower or unsuccessful attempts disappear, so show it alongside
+progress, clear rate and coverage. do not blend speed into the progress score
+
+malformed model actions end the episode as invalid_action, retaining earned
+progress and scoring zero clear. never retry a model mistake. network failures,
+quota/rate limits, outages, crashes and uncertain interrupted requests remain
+infrastructure/incomplete outcomes. keep every attempt. bounded transport retries
+use the identical frozen observation; recover that prespecified episode rather
+than replacing unlucky games. an incomplete cohort reports coverage and outcomes,
+with comparable aggregates null. the account's existing api cap is the financial
+limit; there is no extra benchmark dollar cutoff. timeouts are transport safeguards,
+not simulated gameplay or game deaths
+
+freeze model/provider identities, rom and initial-state hashes, prompts, actions,
+observation/history, software hashes, cadence, calibrated levels/routes, seeds,
+repeat counts and frame/decision/life budgets in the common manifest before an
+evaluation. compare the same complete cohort. retain exploratory runs separately;
+never assemble a ranking from each model's favourite prompt or selected success.
+held-out levels and prespecified paired repeats are needed for broader claims.
+resample matched trials within levels with fixed level weights when the cohort
+supports uncertainty; one deterministic start does not support a population interval
+
+run offline scorer boundaries, paused inference, replay and isolation checks before
+paid runs. reproduce native action/state/screen hashes for claimed clears. report
+all outcomes, denominators, coverage and protocol id. changes to the scientific
+contract require a new version and cohort. coins, points, power-ups, request latency,
+throughput and cost have no weight in the model game score

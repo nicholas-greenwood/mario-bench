@@ -15,3 +15,15 @@ AGENTS.md
 /web/tsconfig.tsbuildinfo
 /web/public/game/*.nes
 /.vercel/
+
+# Local Python environments, builds and emulator/API artefacts.
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+/build/
+/dist/
+/.pytest_cache/
+/prototype/runs/
+/benchmark/runs/
+/recordings/

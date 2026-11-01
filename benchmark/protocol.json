@@ -1,0 +1,189 @@
+{
+  "protocol_version": "paused-mario-development-v0.2",
+  "phase": "public_world_1_1_development_pilot",
+  "leaderboard_ready": false,
+  "primary_metric": "mean_progress_pct",
+  "secondary_metric": "clear_rate_pct",
+  "aggregation": "mean_independent_prespecified_repeats_within_level_then_equal_weight_per_level",
+  "composite_score": null,
+  "endpoint_calibration": {
+    "rom_sha256": "ec299b990e8bfee8ba46e3f61d63b2e1ae5b8a2e431de84e2e4bbd692dc53586",
+    "initial_ram_sha256": "7633d10d64e4f954fda37b2ba822ecb9b4cdb7392707ed5b9891fe1b6cb77196",
+    "first_flag_get_x": 3161,
+    "first_flag_get_frame": 1127,
+    "matching_repetitions": 2,
+    "ranked_baseline": false
+  },
+  "timing": {
+    "mode": "paused_fixed_step",
+    "native_frames_per_action": 4,
+    "cadence_status": "shared_development_default_not_final_frozen_suite",
+    "cadence_sensitivity_candidates": [
+      4,
+      8,
+      12
+    ],
+    "frame_budget": 6000,
+    "decision_budget": 1500,
+    "life_budget": 1,
+    "wall_clock_ranking": false,
+    "latency_metric": false
+  },
+  "tracks": {
+    "state": {
+      "observation": "compact_current_visible_RAM_state_and_recent_positions",
+      "eligible_models": "all_registered_models"
+    },
+    "image": {
+      "observation": "strict_pixels_only_same_frame_2x_nearest_neighbour_RGB_screenshot_plus_declared_buttons_native_frame_and_action_interval",
+      "eligible_models": "image_transport_verified_registered_model_provider_pairs",
+      "forbidden": [
+        "RAM_coordinates",
+        "RAM_velocity",
+        "RAM_grounded_state",
+        "RAM_terrain",
+        "RAM_objects",
+        "RAM_position_history",
+        "grader_progress_or_goal_metadata"
+      ],
+      "default_previous_screens": 0,
+      "default_previous_model_actions": 0,
+      "optional_history_must_be_frozen_in_manifest": true
+    }
+  },
+  "levels": [
+    {
+      "level": "1-1",
+      "seed": 0,
+      "trials": 1,
+      "start_x": 40,
+      "goal_x": 3161,
+      "goal_x_validation": "First emulator flag_get at x=3161 in privileged offline endpoint traversal; verify_scoring.py --calibrate. This is calibration, never a baseline.",
+      "progress_scope": "single_area_overworld_only",
+      "role": "public_development"
+    },
+    {
+      "level": "1-2",
+      "seed": 0,
+      "trials": 1,
+      "start_x": 40,
+      "goal_x": null,
+      "goal_x_validation": "not calibrated; do not substitute the World 1-1 endpoint",
+      "progress_scope": "unvalidated; native completion only",
+      "role": "public_development_uncalibrated"
+    },
+    {
+      "level": "1-3",
+      "seed": 0,
+      "trials": 1,
+      "start_x": 40,
+      "goal_x": null,
+      "goal_x_validation": "not calibrated; do not substitute the World 1-1 endpoint",
+      "progress_scope": "unvalidated; native completion only",
+      "role": "public_development_uncalibrated"
+    },
+    {
+      "level": "1-4",
+      "seed": 0,
+      "trials": 1,
+      "start_x": 40,
+      "goal_x": null,
+      "goal_x_validation": "not calibrated; do not substitute the World 1-1 endpoint",
+      "progress_scope": "unvalidated; native completion only",
+      "role": "public_development_uncalibrated"
+    }
+  ],
+  "progress": {
+    "formula": "100*(max_valid_x-start_x)/(goal_x-start_x)",
+    "failed_episode_range": [
+      0,
+      99.9
+    ],
+    "completion_value": 100,
+    "valid_frame": "normal player state 8, not death/done, finite x/y, y<240, x>=start_x",
+    "sample_every_native_frame": true,
+    "goal_and_scoring_metadata_are_evaluator_only": true,
+    "no_reset_or_best_trial_selection": true,
+    "unknown_mapping": "null; do not reuse World 1-1 goal for another route; progress aggregate remains null until complete calibrated coverage"
+  },
+  "failure_accounting": {
+    "rankable": [
+      "completed",
+      "game_over",
+      "frame_budget",
+      "decision_budget",
+      "invalid_action"
+    ],
+    "incomplete": [
+      "infra_error",
+      "request_budget",
+      "interrupted"
+    ],
+    "incomplete_cohort": "report coverage and null comparable aggregate until all prespecified episodes are valid; never silently omit failures",
+    "retry": "bounded transport retries at identical frozen observation; no retry or repair of malformed model decisions"
+  },
+  "future_suite": {
+    "level_cap": null,
+    "requirements": [
+      "prespecify development and held-out levels",
+      "validate per-route progress and completion semantics",
+      "paired starts across all models and tracks",
+      "repeat model trials without treating seed labels as new game layouts",
+      "freeze cadence after sensitivity pilot",
+      "record emulator and ROM hashes",
+      "report per-level results and matched-cohort uncertainty"
+    ]
+  },
+  "completion_timing": {
+    "metric": "completed_only_median_native_frames_to_completion",
+    "enabled": "only_when_explicit_authoritative_native_frames_to_completion_is_recorded",
+    "nominal_frame_rate": 60,
+    "seconds_field": "nominal_game_seconds_to_completion",
+    "formula": "native_frames_to_completion/60",
+    "includes": "all gameplay frames from common reset until first native flag_get",
+    "excludes": [
+      "API_wait",
+      "wall_clock_latency",
+      "reset_setup_frames",
+      "failed_episode_times"
+    ],
+    "aggregation": "median_of_all_prespecified_completed_attempts_per_level_with_attempt_completion_and_timed_completion_counts",
+    "combined_with_progress": false,
+    "best_of_selection": false,
+    "interpretation": "conditional descriptive speed; compare alongside primary progress, clear rate and complete attempt coverage",
+    "public_name": "speedrun",
+    "adopted": true,
+    "direction": "lower_is_better",
+    "episode_score_field": "speedrun_score_native_frames"
+  },
+  "release": {
+    "status": "development_candidate",
+    "final_common_freeze_requires": "verified common configuration and matched prespecified cohort; exploratory selected clears are evidence, never the aggregate",
+    "required_manifest_locks": [
+      "model_and_returned_identity",
+      "provider",
+      "ROM_sha256",
+      "initial_RAM_sha256",
+      "prompt_and_action_schema",
+      "observation_track_and_history",
+      "software_sha256",
+      "cadence",
+      "levels_and_progress_mappings",
+      "seeds",
+      "trials",
+      "frame_decision_and_life_budgets"
+    ]
+  },
+  "level_selection": {
+    "default": [
+      "1-1"
+    ],
+    "development_world_1": [
+      "1-1",
+      "1-2",
+      "1-3",
+      "1-4"
+    ],
+    "uncalibrated_levels": "native completion proof only; no progress headline until route mapping validated"
+  }
+}

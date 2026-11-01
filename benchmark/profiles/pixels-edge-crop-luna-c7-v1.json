@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "id": "pixels-edge-crop-luna-c7-v1",
+  "mode": "image",
+  "data_class": "selected_development_profile",
+  "common_benchmark_default": false,
+  "builder_settings": {
+    "model": "openai/gpt-6-luna-decisions-20261006",
+    "provider": {
+      "allow_fallbacks": false,
+      "only": [
+        "openai"
+      ]
+    },
+    "questions": {
+      "action": {
+        "criteria": {
+          "left_B_held_A_held": "Horizontal left; B held; A held; vertical released.",
+          "left_B_held_A_released": "Horizontal left; B held; A released; vertical released.",
+          "left_B_released_A_held": "Horizontal left; B released; A held; vertical released.",
+          "left_B_released_A_released": "Horizontal left; B released; A released; vertical released.",
+          "released_B_held_A_held": "Horizontal released; B held; A held; vertical released.",
+          "released_B_held_A_released": "Horizontal released; B held; A released; vertical released.",
+          "released_B_released_A_held": "Horizontal released; B released; A held; vertical released.",
+          "released_B_released_A_released": "Horizontal released; B released; A released; vertical released.",
+          "right_B_held_A_held": "Horizontal right; B held; A held; vertical released.",
+          "right_B_held_A_released": "Horizontal right; B held; A released; vertical released.",
+          "right_B_released_A_held": "Horizontal right; B released; A held; vertical released.",
+          "right_B_released_A_released": "Horizontal right; B released; A released; vertical released."
+        },
+        "instructions": "Choose one complete simultaneous BUTTON STATE for the interval, not an abstract jump request. If A is already held, choosing A_held continues that same press and cannot start a fresh jump after landing. Holding A remains useful during ascent. Infer surfaces and motion from the current/past images.",
+        "type": "choice"
+      }
+    },
+    "cadence_frames": 7,
+    "metadata_template": {
+      "a_button_note": "A is currently RELEASED. Selecting A_held creates a fresh press, which can start a jump only if Mario is on a surface.",
+      "control_interval_frames": 7,
+      "currently_held_buttons": {
+        "horizontal": "released",
+        "jump": "released",
+        "run": "released",
+        "vertical": "released"
+      },
+      "game": "Super Mario Bros., world 1-1",
+      "native_frame": 0,
+      "observation_interface": "image_only",
+      "previous_model_controls": [],
+      "rules_and_button_semantics": "Play Super Mario Bros 1-1 alive to the flag toward the right. Use the actual screenshots to infer Mario, enemies, surfaces and motion. Game physics pauses while you decide. The selected complete button state is held for the whole declared interval. A starts a jump only on a NEW press while on a surface. Holding A during ascent increases height and airtime; releasing during ascent makes a shorter jump. Once descending, release A to prepare the next fresh press. Holding A through landing cannot start another jump. B runs faster and farther; momentum persists on release. Jump onto solid pipes/blocks/stairs or over gaps; time takeoff from the visible ground. Enemies hurt on side contact and can be stomped from above. Background hills/clouds are decorative. You choose all controls; no automatic correction exists.",
+      "screenshot_format": "CURRENT fullpaused screenshot FIRST; remaining images are PAST motion context, oldest-to-newest. All screens are native256x240 enlarged2x nearest."
+    },
+    "text_suffix": "",
+    "metadata_encoding": "compact_sorted_json",
+    "controller_interface": "explicit_joint_A_B_states",
+    "previous_controls_schema": [
+      "frame",
+      "frames",
+      "buttons"
+    ],
+    "previous_controls_limit": 2,
+    "maximum_previous_full_screens": 1,
+    "image_order": "current_first_then_past",
+    "image_label_clock": "native_frame",
+    "current_image_label": "CURRENT paused screenshot, native frame {clock}.",
+    "past_image_label": "PAST screenshot for motion context, native frame {clock}.",
+    "full_image_size": [
+      512,
+      480
+    ],
+    "native_image_size": [
+      256,
+      240
+    ],
+    "interpolation": "nearest",
+    "normalise_png": true,
+    "crop": {
+      "native_box": [
+        0,
+        80,
+        256,
+        240
+      ],
+      "size": [
+        768,
+        480
+      ],
+      "label": "Static visual game rules: Mario is the red/orange humanoid. Brown mushroom faces and green turtles are dangerous walking enemies. Brick-pattern ground, blocks and green pipes are solid; background hills and clouds are decorative. The following image is a fixed crop of the bottom two thirds of the same CURRENT paused screenshot, enlarged3x nearest-neighbour for sprite detail; it contains only actual pixels, no annotations."
+    },
+    "a_button_notes": {
+      "released": "A is currently RELEASED. Selecting A_held creates a fresh press, which can start a jump only if Mario is on a surface.",
+      "held": "A is ALREADY HELD. Selecting A_held continues this SAME press; it cannot start a new jump after landing. Holding remains useful during ascent. Release A to enable a subsequent fresh press."
+    },
+    "a_state_duration_source": null
+  },
+  "source_files": [
+    {
+      "repo_path": "benchmark/profiles/image_v1.py",
+      "sha256": "920eb9982577e1fb32646e05eef83f17af4f7907fbac23a02a5f275203638481"
+    }
+  ],
+  "note": "Versioned near-miss profile; no extra result or clear is claimed by this snapshot"
+}

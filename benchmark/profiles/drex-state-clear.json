@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "id": "drex-state-clear",
+  "mode": "state",
+  "level": "1-1",
+  "cadence": 12,
+  "previous_screens": 0,
+  "contract": {
+    "adapter": "joint12",
+    "questions": {
+      "action": {
+        "criteria": {
+          "left_run_jump": "Hold horizontal=left, B(run)=held, A(jump)=held; vertical released.",
+          "left_run_release": "Hold horizontal=left, B(run)=held, A(jump)=released; vertical released.",
+          "left_walk_jump": "Hold horizontal=left, B(run)=released, A(jump)=held; vertical released.",
+          "left_walk_release": "Hold horizontal=left, B(run)=released, A(jump)=released; vertical released.",
+          "released_run_jump": "Hold horizontal=released, B(run)=held, A(jump)=held; vertical released.",
+          "released_run_release": "Hold horizontal=released, B(run)=held, A(jump)=released; vertical released.",
+          "released_walk_jump": "Hold horizontal=released, B(run)=released, A(jump)=held; vertical released.",
+          "released_walk_release": "Hold horizontal=released, B(run)=released, A(jump)=released; vertical released.",
+          "right_run_jump": "Hold horizontal=right, B(run)=held, A(jump)=held; vertical released.",
+          "right_run_release": "Hold horizontal=right, B(run)=held, A(jump)=released; vertical released.",
+          "right_walk_jump": "Hold horizontal=right, B(run)=released, A(jump)=held; vertical released.",
+          "right_walk_release": "Hold horizontal=right, B(run)=released, A(jump)=released; vertical released."
+        },
+        "instructions": "Select the complete controller input that best advances Mario towards the flag alive. Evaluate the next interval and the resulting jump trajectory. All named buttons are held throughout the interval; choose deliberately when to press or release jump.",
+        "type": "choice"
+      }
+    },
+    "rules": "You control Mario in Super Mario Bros. World 1-1. Reach the flag alive. Choose the controller buttons for the next short interval using only the current visible scene and recent motion.\nControls: right moves forward; B runs faster, extending jumps; A jumps. Grounded plus a new A press starts a jump. Holding A throughout ascent makes a higher, longer jump. Releasing A early during ascent makes a low, short hop. After releasing A, pressing it while airborne does not start another jump. Release A during descent so that it is ready for the next grounded takeoff. Holding A through landing does not automatically jump again.\nEnemy side contact kills small Mario. A descending landing onto an enemy stomps it. Choose jump timing early enough to rise before side contact, but gaps require takeoff near the edge so the jump lasts until the far side. Solid pipes and stairs can support Mario: the feet must rise above the obstacle top before the body crosses its side. A ceiling stops ascent. Momentum persists when controls are released. Avoid unnecessary hopping on open flat ground, which can waste the next jump near a hazard. All choices are yours.\nCoordinates: x increases right, y increases down. Mario is 16 pixels wide. Geometry outside the visible range is unknown. The game pauses during inference. No future map is provided."
+  },
+  "observation": "native current state and recent positions",
+  "model_id": "nace-ai/drex-max",
+  "returned_model": "nace-ai/drex-max-20261016",
+  "provider": "DeepInfra",
+  "data_class": "selected_development_profile",
+  "common_benchmark_default": false,
+  "observer": "compact_phase",
+  "rules": "You control Mario in Super Mario Bros. World 1-1. Reach the flag alive. Choose the controller buttons for the next short interval using only the current visible scene and recent motion.\nControls: right moves forward; B runs faster, extending jumps; A jumps. Grounded plus a new A press starts a jump. Holding A throughout ascent makes a higher, longer jump. Releasing A early during ascent makes a low, short hop. After releasing A, pressing it while airborne does not start another jump. Release A during descent so that it is ready for the next grounded takeoff. Holding A through landing does not automatically jump again.\nEnemy side contact kills small Mario. A descending landing onto an enemy stomps it. Choose jump timing early enough to rise before side contact, but gaps require takeoff near the edge so the jump lasts until the far side. Solid pipes and stairs can support Mario: the feet must rise above the obstacle top before the body crosses its side. A ceiling stops ascent. Momentum persists when controls are released. Avoid unnecessary hopping on open flat ground, which can waste the next jump near a hazard. All choices are yours.\nCoordinates: x increases right, y increases down. Mario is 16 pixels wide. Geometry outside the visible range is unknown. The game pauses during inference. No future map is provided.",
+  "source_files": [
+    {
+      "repo_path": "benchmark/profiles/state_v1.py",
+      "sha256": "e239653f7b45275eac6377c7369426d536c1ad31db64b06a8e4beb805fb9ecf8"
+    }
+  ]
+}
