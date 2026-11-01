@@ -19,7 +19,7 @@ await mkdir(destination, { recursive: true });
 await cp(source, destination, { recursive: true, filter: path => !path.endsWith('README.md') });
 
 const index = await readPublishedIndex(new URL('index.json', destination));
-for (const example of [...index.examples, ...(index.observations ?? []), ...(index.technical_diagnostics ?? []), ...(index.common_benchmark?.trials ?? []), ...(index.common_benchmark?.technical_recovery?.continuations ?? [])]) {
+for (const example of [...index.examples, ...(index.observations ?? []), ...(index.technical_diagnostics ?? []), ...[index.common_benchmark, index.common_image_benchmark].flatMap(cohort => cohort?.trials ?? []), ...(index.common_benchmark?.technical_recovery?.continuations ?? [])]) {
   for (const key of ['replay', 'trace', 'profile']) {
     const href = example[`${key}_href`];
     const expected = example[`${key}_sha256`];

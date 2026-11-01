@@ -13,7 +13,7 @@ export function renderResults(index) {
   const dataset = parseDataset(index), published = dataset.observations;
   if (published.some(run => run.level !== '1-1')) throw new Error('README tables currently cover world 1-1 only');
   const rawById = new Map([...index.examples, ...(index.observations ?? []), ...(index.technical_diagnostics ?? []),
-    ...(dataset.commonBenchmark?.trials ?? []).map(trial => ({ ...trial, verified: trial.native_replay_verified })),
+    ...dataset.commonBenchmarks.flatMap(cohort => cohort.trials).map(trial => ({ ...trial, verified: trial.native_replay_verified })),
   ].map(run => [run.id, run]));
   const lines = [begin, '',
     `${published.length} published runs, matching the website's all runs view, on world 1-1`,
@@ -47,19 +47,22 @@ export function renderResults(index) {
     lines.push('');
   }
   if (!dataset.commonBenchmark) return lines.join('\n') + end;
-  const cohort = dataset.commonBenchmark;
   const benchmark = [begin, '',
-    'mean progress over 3 prespecified evaluation runs per model and input, using the same frozen protocol',
+    dataset.commonBenchmarks.length > 1 ? 'mean progress over 3 prespecified evaluation runs per model and input; state and image use separate frozen protocols' : 'mean progress over 3 prespecified evaluation runs per model and input, using the same frozen protocol',
     'pending means the 3 prescribed results are not fully confirmed; best clear is the fastest completed run',
     'mean cost/run requires complete billing for all 3 runs; ~ includes a byok list-price estimate',
     `[protocol and trial evidence](results/${index.common_cohort_href ?? 'index.json'})`, ''];
-  if (cohort.stateOnly) benchmark.push('common image track: calibration pending. image replays and history remain development runs', '');
-  if (cohort.technicalRecovery) benchmark.push(`${cohort.technicalRecovery.resolved}/8 technical continuations independently verified under a separate registered authority; original aborts and proofs remain linked`, '');
+  if (dataset.commonBenchmark.stateOnly && !dataset.commonBenchmarks.some(cohort => cohort.imageOnly)) benchmark.push('common image track: calibration pending. image replays and history remain development runs', '');
+  const recovery = dataset.commonBenchmark.technicalRecovery;
+  if (recovery) benchmark.push(`${recovery.resolved}/8 technical continuations independently verified under a separate registered authority; original aborts and proofs remain linked`, '');
   for (const [track, title] of [['state', 'state'], ['image', 'pixels only']]) {
-    if (cohort.stateOnly && track === 'image') continue;
-    const rows = cohort.rows.filter(row => row.track === track).sort((a, b) =>
+    const cohorts = dataset.commonBenchmarks.filter(cohort => cohort.rows.some(row => row.track === track));
+    if (!cohorts.length) continue;
+    const rows = cohorts.flatMap(cohort => cohort.rows).filter(row => row.track === track).sort((a, b) =>
       (b.meanProgressPct ?? -1) - (a.meanProgressPct ?? -1) || a.name.localeCompare(b.name));
-    benchmark.push(`### ${title}`, '',
+    benchmark.push(`### ${title}`, '');
+    if (cohorts.some(cohort => cohort.imageOnly)) benchmark.push('shared image progress baseline; native clears are outcomes. earlier failed calibration gates remain failed; historical mechanics evidence is not a scored final trial', `[image protocol and trial evidence](results/${index.common_image_cohort_href ?? index.common_cohort_href ?? 'index.json'})`, '');
+    benchmark.push(
       '| model | mean progress | best clear (game s) | mean cost/run (usd) | valid runs | evidence |',
       '| --- | ---: | ---: | ---: | ---: | --- |');
     for (const row of rows) {

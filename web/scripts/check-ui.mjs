@@ -12,9 +12,10 @@ const shots = new URL('../screenshots/', import.meta.url).pathname;
 await fs.mkdir(shots, { recursive: true });
 
 const index = await (await fetch(`${BASE}/benchmark-data/index.json`)).json();
-if (index.common_cohort_href) {
-  const common = await (await fetch(`${BASE}/benchmark-data/${index.common_cohort_href}`)).json();
-  index.common_benchmark = common.common_benchmark;
+for (const [hrefKey,valueKey] of [['common_cohort_href','common_benchmark'],['common_image_cohort_href','common_image_benchmark']]) {
+  if (!index[hrefKey]) continue;
+  const common = await (await fetch(`${BASE}/benchmark-data/${index[hrefKey]}`)).json();
+  index[valueKey] = common.common_benchmark;
 }
 await hydrateRecoveryProofs(index, async relative => {
   const response = await fetch(`${BASE}/benchmark-data/${relative}`);
@@ -24,7 +25,7 @@ await hydrateRecoveryProofs(index, async relative => {
 const examples = index.examples;
 const observations = index.observations;
 const parsed = parseDataset(index);
-const rawById = new Map([...examples, ...observations, ...(index.technical_diagnostics ?? []), ...(parsed.commonBenchmark?.trials ?? [])].map(e => [e.id, e]));
+const rawById = new Map([...examples, ...observations, ...(index.technical_diagnostics ?? []), ...parsed.commonBenchmarks.flatMap(cohort => cohort.trials)].map(e => [e.id, e]));
 const published = parsed.observations.map(run => ({ ...rawById.get(run.id), id: run.id, model_id: run.modelId,
   display_name: run.name, mode: run.track, status: run.status, completed: run.completed,
   progress_pct: run.progressPct, native_frames: run.nativeFrames, decisions: run.decisions,
@@ -97,20 +98,23 @@ const noOverflow = page => page.evaluate(() => document.documentElement.scrollWi
 // Desktop
 const { context, page } = await open(1440, 1000);
 if (parsed.commonBenchmark) {
-  const table = page.locator('[data-common-benchmark]');
+  const table = page.locator('[data-common-benchmark]').first();
   assert.ok(await table.isVisible(), 'a valid evaluation cohort is the primary view');
-  if (parsed.commonBenchmark.stateOnly) {
+  if (parsed.commonBenchmark.stateOnly && !parsed.commonBenchmarks.some(cohort => cohort.imageOnly)) {
     assert.ok(await page.getByText('common image track: calibration pending. image replays and history remain development runs.', { exact: true }).isVisible());
     assert.equal(await table.locator('tr[data-track="image"]').count(), 0);
   }
-  assert.equal(await table.locator('tbody tr').count(), parsed.commonBenchmark.rows.length);
-  for (const row of parsed.commonBenchmark.rows) {
-    const element = table.locator(`tr[data-common-model="${row.modelId}"][data-track="${row.track}"]`);
-    const cells = await element.locator('td').allInnerTexts();
-    assert.equal(cells[2], row.meanProgressPct === null ? 'pending' : `${row.meanProgressPct.toFixed(2)}%`);
-    assert.equal(cells[3], formatSeconds(row.bestClearSeconds) ?? '–');
-    assert.equal(cells[4], formatRunCost({ costUsd: row.meanCostUsd, costEstimateUsd: row.meanCostEstimateUsd }) ?? '–');
-    assert.equal(await element.getAttribute('data-run-id'), null, 'a mean is not a replay episode');
+  for (const cohort of parsed.commonBenchmarks) {
+    const cohortTable = page.locator(`[data-common-protocol="${cohort.protocolSha256}"]`);
+    assert.equal(await cohortTable.locator('tbody tr').count(), cohort.rows.length);
+    for (const row of cohort.rows) {
+      const element = cohortTable.locator(`tr[data-common-model="${row.modelId}"][data-track="${row.track}"]`);
+      const cells = await element.locator('td').allInnerTexts();
+      assert.equal(cells[2], row.meanProgressPct === null ? 'pending' : `${row.meanProgressPct.toFixed(2)}%`);
+      assert.equal(cells[3], formatSeconds(row.bestClearSeconds) ?? '–');
+      assert.equal(cells[4], formatRunCost({ costUsd: row.meanCostUsd, costEstimateUsd: row.meanCostEstimateUsd }) ?? '–');
+      assert.equal(await element.getAttribute('data-run-id'), null, 'a mean is not a replay episode');
+    }
   }
   const evidence = parsed.commonBenchmark.rows.find(row => row.recordedTrialIds.length);
   if (evidence) {
@@ -299,6 +303,7 @@ const best = await page.getByTestId('human-best').innerText();
 assert.match(best, /^best \d+\.\d% · 1 attempt$/);
 await page.reload({ waitUntil: 'networkidle' });
 assert.equal(await page.getByTestId('human-best').innerText(), best);
+if (parsed.commonBenchmark) await page.getByRole('button', { name: `all runs (${published.length})`, exact: true }).click();
 assert.equal(await rows.count(), published.length, 'human best never joins the model table');
 
 // theme toggle persists
@@ -318,7 +323,7 @@ await context.close();
 for (const [width, name] of [[1920, 'wide'], [1440, 'desktop'], [1280, 'laptop'], [1024, 'small-desktop'], [768, 'tablet'], [390, 'mobile']]) {
   const { context, page } = await open(width, width === 390 ? 844 : 1000);
   if (parsed.commonBenchmark) {
-    assert.ok(await page.locator('[data-common-benchmark]').isVisible());
+    assert.ok(await page.locator('[data-common-benchmark]').first().isVisible());
     assert.ok(await noOverflow(page), `${width} benchmark has no page overflow`);
     assert.ok(await page.locator('.table-scroll').evaluate(el => el.scrollWidth <= el.clientWidth), `${width} benchmark table fits`);
     await page.getByRole('button', { name: `all runs (${published.length})`, exact: true }).click();
