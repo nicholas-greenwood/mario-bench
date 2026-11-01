@@ -1,13 +1,16 @@
 /** The local demo uses an actual NES emulator. No audio device is ever created. */
 export type GameOutcome = 'death' | 'complete';
-export type GameMode = 'replay' | 'human';
 export const NES_WIDTH = 256;
 export const NES_HEIGHT = 240;
-export const COURSE_DISTANCE = 3168;
+/** Calibrated World 1-1 endpoints, matching the benchmark evaluator. */
+export const START_X = 40;
+export const GOAL_X = 3161;
 
 export const BUTTON = { a: 0, b: 1, select: 2, start: 3, up: 4, down: 5, left: 6, right: 7 } as const;
 export interface Emulator {
   cpu: { mem: number[] };
+  /** jsnes paints an 8-pixel black overscan border unless this is false. */
+  ppu: { clipToTvSize: boolean; palTable: { curTable: Uint32Array; loadDefaultPalette(): void; makeTables(): void; setEmphasis(value: number): void } };
   frame(): void;
   loadROM(data: string): void;
   buttonDown(player: number, button: number): void;
@@ -32,9 +35,24 @@ export function releaseButtons(nes: Emulator) {
   for (let button = 0; button < 8; button++) nes.buttonUp(1, button);
 }
 
+/**
+ * jsnes's NTSC table renders the sky purple. Its default table is much closer to the
+ * recorded replays, but is packed as RGB while frames are BGR, so swap the channels.
+ */
+function applyReplayPalette(nes: Emulator) {
+  const palette = nes.ppu.palTable;
+  palette.loadDefaultPalette();
+  palette.curTable = palette.curTable.map(c => ((c & 0xff) << 16) | (c & 0xff00) | ((c >> 16) & 0xff));
+  palette.makeTables();
+  palette.setEmphasis(0);
+}
+
 /** Skip the title and pre-level card, then return at the first controllable frame. */
 export function bootMario(nes: Emulator, rom: string) {
   nes.loadROM(rom);
+  // loadROM recreates the PPU; show the full 256x240 frame, like the recorded replays.
+  nes.ppu.clipToTvSize = false;
+  applyReplayPalette(nes);
   releaseButtons(nes);
   for (let frame = 0; frame < 90; frame++) nes.frame();
   nes.buttonDown(1, BUTTON.start);
@@ -52,8 +70,9 @@ export function marioX(nes: Emulator) {
   return nes.cpu.mem[0x6d] * 256 + nes.cpu.mem[0x86];
 }
 
+/** Progress before the flag is capped at 99.9; only a real flag completion scores 100. */
 export function marioProgress(nes: Emulator) {
-  return Math.min(100, Math.max(0, (marioX(nes) - 40) / COURSE_DISTANCE * 100));
+  return Math.min(99.9, Math.max(0, (marioX(nes) - START_X) / (GOAL_X - START_X) * 100));
 }
 
 export function marioOutcome(nes: Emulator): GameOutcome | null {
@@ -62,51 +81,4 @@ export function marioOutcome(nes: Emulator): GameOutcome | null {
   const flag = Array.from({ length: 6 }, (_, i) => ram[0x16 + i]).includes(0x31);
   if ((flag && ram[0x1d] === 3) || ram[0x770] === 2 || ram[0x75c] > 0 || ram[0x75f] > 0) return 'complete';
   return null;
-}
-
-function tile(nes: Emulator, x: number, y: number) {
-  if (y < 32 || y > 239) return 0;
-  const page = (Math.floor(x / 256) & 1) * 208;
-  return nes.cpu.mem[0x500 + page + Math.floor((y - 32) / 16) * 16 + (Math.floor(x / 16) & 15)];
-}
-
-/** A deterministic scripted demo controller; these runs are not model submissions. */
-export class DemoDriver {
-  private jumpFrames = 0;
-  private releaseFrames = 0;
-  private seed: number;
-  constructor(seed = 0) { this.seed = seed; }
-
-  step(nes: Emulator) {
-    const ram = nes.cpu.mem;
-    const x = marioX(nes);
-    const y = ram[0xce];
-    const grounded = ram[0x1d] === 0;
-    nes.buttonDown(1, BUTTON.right);
-    nes.buttonDown(1, BUTTON.b);
-
-    if (this.jumpFrames > 0) {
-      nes.buttonDown(1, BUTTON.a);
-      this.jumpFrames--;
-      if (this.jumpFrames === 0) this.releaseFrames = 5;
-      return;
-    }
-    nes.buttonUp(1, BUTTON.a);
-    if (this.releaseFrames > 0) { this.releaseFrames--; return; }
-    if (!grounded) return;
-
-    const lead = 40 + Math.abs(this.seed % 3) * 4;
-    const obstacle = [18, 30, lead].some((dx) => tile(nes, x + dx, y + 6) !== 0 || tile(nes, x + dx, y + 20) !== 0);
-    const gap = tile(nes, x + lead + 8, 216) === 0 && y >= 160;
-    let enemy = false;
-    for (let i = 0; i < 5; i++) {
-      if (!ram[0xf + i] || ram[0x16 + i] >= 0x15) continue;
-      const dx = ram[0x6e + i] * 256 + ram[0x87 + i] - x;
-      if (dx > -10 && dx < 65 && Math.abs(ram[0xcf + i] - y) < 40) enemy = true;
-    }
-    if (obstacle || gap || enemy) {
-      this.jumpFrames = 25 + Math.abs(this.seed % 4);
-      nes.buttonDown(1, BUTTON.a);
-    }
-  }
 }

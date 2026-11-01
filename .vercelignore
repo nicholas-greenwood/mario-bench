@@ -1,0 +1,17 @@
+# Deploy only the website and its published benchmark dataset.
+/*
+!/web
+!web/**
+!/results
+!results/**
+!.vercelignore
+
+web/node_modules/
+web/.next/
+web/.vercel/
+web/screenshots/
+web/public/benchmark-data/
+web/tsconfig.tsbuildinfo
+**/.env
+**/.env.*
+**/.DS_Store

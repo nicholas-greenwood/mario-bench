@@ -7,8 +7,10 @@
     "build": "next build --webpack",
     "start": "next start --hostname 127.0.0.1 --port 3100",
     "typecheck": "tsc --noEmit --incremental false",
-    "prebuild": "node scripts/prepare-game.mjs",
-    "predev": "node scripts/prepare-game.mjs"
+    "prebuild": "npm run prepare-assets",
+    "predev": "npm run prepare-assets",
+    "prepare-assets": "node scripts/prepare-game.mjs && node scripts/prepare-data.mjs",
+    "check:ui": "node scripts/check-ui.mjs"
   },
   "dependencies": {
     "fflate": "^0.8.3",

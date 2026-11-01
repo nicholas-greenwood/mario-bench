@@ -1,97 +1,69 @@
-.variant-focus {
-  min-height: 100vh;
-}
-
-.variant-focus .focus-shell {
-  width: min(1440px, calc(100% - 80px));
+.page {
+  width: min(1320px, 100%);
   margin: 0 auto;
+  padding: 0 clamp(18px, 4vw, 56px);
 }
 
-.variant-focus .focus-main {
-  padding: 20px 0 48px;
+.masthead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
 }
+.wordmark { font-weight: 600; letter-spacing: -.02em; text-decoration: none; }
+.masthead-end { display: flex; align-items: center; gap: 14px; font-size: 12px; }
+.masthead-end .icon-button { margin-right: -6px; }
 
-.variant-focus .focus-stage {
+/* one column of text and play, two columns of model replays and results */
+.layout {
+  --gap: clamp(28px, 3.4vw, 48px);
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  align-items: start;
-  gap: 10px 20px;
+  column-gap: var(--gap);
+  row-gap: 88px;
+  padding: 28px 0 72px;
+}
+.intro { grid-column: 1; grid-row: 1; padding-right: 8px; }
+.watch { grid-column: 2 / 4; grid-row: 1; min-width: 0; }
+.human { grid-column: 1; grid-row: 2; min-width: 0; }
+.results { grid-column: 2 / 4; grid-row: 2; min-width: 0; }
+
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--gap); }
+
+.eyebrow { font-size: 12px; margin-bottom: 18px; }
+.intro h1 {
+  font-size: clamp(23px, 2.1vw, 29px);
+  line-height: 1.24;
+  font-weight: 500;
+  letter-spacing: -.025em;
+  text-wrap: balance;
+}
+.intro-detail { display: grid; gap: 12px; margin-top: 26px; color: var(--muted); font-size: 14px; line-height: 1.6; max-width: 40ch; }
+
+.section-label { font-size: 12px; font-weight: 400; color: var(--faint); margin-bottom: 14px; }
+.results .section-label { margin-bottom: 0; }
+
+.colophon { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 24px; padding: 0 0 40px; font-size: 12px; }
+.colophon p { max-width: 70ch; }
+
+@media (max-width: 1040px) {
+  .layout { grid-template-columns: minmax(0, 1fr); row-gap: 64px; padding-top: 16px; }
+  .intro, .watch, .human, .results { grid-column: 1; grid-row: auto; }
+  .intro { max-width: 620px; padding-right: 0; }
+  /* keep the human screen the same size as each replay */
+  .human { width: calc((100% - var(--gap)) / 2); }
 }
 
-.variant-focus .focus-model,
-.variant-focus .focus-player {
-  min-width: 0;
-}
-
-.variant-focus .focus-transport {
-  grid-column: 1 / 3;
-}
-
-.variant-focus .focus-results {
-  margin-top: 23px;
-  padding-top: 21px;
-  border-top: 1px solid var(--line);
-}
-
-@media (max-width: 1120px) {
-  .variant-focus .focus-shell {
-    width: calc(100% - 48px);
-  }
-
-  .variant-focus .focus-stage {
-    column-gap: 18px;
-  }
-}
-
-@media (max-width: 860px) {
-  .variant-focus .focus-stage {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px 18px;
-  }
-
-  .variant-focus .focus-player {
-    grid-column: 1 / -1;
-    grid-row: 1;
-    width: min(100%, 420px);
-    justify-self: center;
-    margin-bottom: 10px;
-  }
-
-  .variant-focus .focus-transport {
-    grid-column: 1 / -1;
-  }
-}
-
-@media (max-width: 520px) {
-  .variant-focus .focus-shell {
-    width: calc(100% - 28px);
-  }
-
-  .variant-focus .focus-main {
-    padding-top: 16px;
-  }
-
-  .variant-focus .focus-stage {
-    gap: 9px 12px;
-  }
-
-  .variant-focus .focus-player {
-    margin-bottom: 14px;
-  }
-
-  .variant-focus .focus-model .replay-header {
-    align-items: start;
-    flex-direction: column;
-    gap: 3px;
-    min-height: 49px;
-  }
-
-  .variant-focus .focus-model .replay-score {
-    flex-direction: row;
-  }
-
-  .variant-focus .focus-results {
-    margin-top: 20px;
-    padding-top: 19px;
-  }
+@media (max-width: 560px) {
+  .masthead { height: 60px; }
+  .layout { --gap: 12px; row-gap: 52px; padding-top: 8px; padding-bottom: 56px; }
+  .intro h1 { font-size: 22px; }
+  .eyebrow { margin-bottom: 12px; }
+  .intro-detail { margin-top: 18px; font-size: 13.5px; }
+  .watch .caption { flex-direction: column; gap: 8px; }
+  .watch .caption-line { flex-direction: column; gap: 1px; }
+  .watch .caption-result { margin-left: 0; font-size: 12px; }
+  .watch .caption-id { display: none; }
+  .human { width: 100%; }
+  .colophon { flex-direction: column; }
 }

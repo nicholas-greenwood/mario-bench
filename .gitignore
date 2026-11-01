@@ -14,6 +14,7 @@ AGENTS.md
 /web/next-env.d.ts
 /web/tsconfig.tsbuildinfo
 /web/public/game/*.nes
+/web/public/benchmark-data/
 /.vercel/
 
 # Local Python environments, builds and emulator/API artefacts.
