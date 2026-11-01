@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "id": "mammoth-pixels-first-clear",
+  "mode": "image",
+  "level": "1-1",
+  "cadence": null,
+  "initial_cadence_frames": 6,
+  "cadence_mode": "fixed initially; then native model selects2/4/6/8",
+  "contract": {
+    "adapter": "explicit_ab_joint12",
+    "questions": {
+      "action": {
+        "criteria": {
+          "left_B_held_A_held": "Hold {'horizontal': 'left', 'vertical': 'released', 'jump': 'held', 'run': 'held'} simultaneously for the next interval.",
+          "left_B_held_A_released": "Hold {'horizontal': 'left', 'vertical': 'released', 'jump': 'released', 'run': 'held'} simultaneously for the next interval.",
+          "left_B_released_A_held": "Hold {'horizontal': 'left', 'vertical': 'released', 'jump': 'held', 'run': 'released'} simultaneously for the next interval.",
+          "left_B_released_A_released": "Hold {'horizontal': 'left', 'vertical': 'released', 'jump': 'released', 'run': 'released'} simultaneously for the next interval.",
+          "released_B_held_A_held": "Hold {'horizontal': 'released', 'vertical': 'released', 'jump': 'held', 'run': 'held'} simultaneously for the next interval.",
+          "released_B_held_A_released": "Hold {'horizontal': 'released', 'vertical': 'released', 'jump': 'released', 'run': 'held'} simultaneously for the next interval.",
+          "released_B_released_A_held": "Hold {'horizontal': 'released', 'vertical': 'released', 'jump': 'held', 'run': 'released'} simultaneously for the next interval.",
+          "released_B_released_A_released": "Hold {'horizontal': 'released', 'vertical': 'released', 'jump': 'released', 'run': 'released'} simultaneously for the next interval.",
+          "right_B_held_A_held": "Hold {'horizontal': 'right', 'vertical': 'released', 'jump': 'held', 'run': 'held'} simultaneously for the next interval.",
+          "right_B_held_A_released": "Hold {'horizontal': 'right', 'vertical': 'released', 'jump': 'released', 'run': 'held'} simultaneously for the next interval.",
+          "right_B_released_A_held": "Hold {'horizontal': 'right', 'vertical': 'released', 'jump': 'held', 'run': 'released'} simultaneously for the next interval.",
+          "right_B_released_A_released": "Hold {'horizontal': 'right', 'vertical': 'released', 'jump': 'released', 'run': 'released'} simultaneously for the next interval."
+        },
+        "instructions": "Choose ONE coherent simultaneous controller state for the whole interval. Use the screenshots to anticipate collisions and landings, sustain jumps long enough to clear hazards and release A between separate jumps. All choices release vertical buttons.",
+        "type": "choice"
+      }
+    },
+    "duration_question": {
+      "criteria": {
+        "precision_2": "Hold selected buttons2nativeframes, then inspect again. Finest timing for contact, landing or a new A press.",
+        "precision_4": "Hold selected buttons4nativeframes, then inspect again. Precise timing near a solid side, enemy or edge.",
+        "routine_6": "Hold selected buttons6nativeframes, then inspect again. Routine progress when there is room.",
+        "sustain_8": "Hold selected buttons8nativeframes, then inspect again. Sustain an appropriate trajectory when there is enough safe travel."
+      },
+      "instructions": "Choose how many native frames to hold YOUR chosen complete controller state before observing again. Duration is your decision with no contact-triggered stopping or automatic correction. Consider precision near a landing, solid side, enemy or fresh A edge.",
+      "type": "choice"
+    },
+    "duration_choices": {
+      "precision_2": 2,
+      "precision_4": 4,
+      "routine_6": 6,
+      "sustain_8": 8
+    },
+    "initial_cadence_frames": 6,
+    "initial_provider_text": [
+      "{\"game\":\"Super Mario Bros 1-1\",\"instructions\":\"You control Mario in Super Mario Bros. World1-1. Reach the flag alive. Choose all simultaneous held buttons using only the screenshot and declared previous controls. Right moves forward; B runs faster and extends jumps. Grounded plus a new A press starts a jump. Holding A throughout ascent makes a higher, longer jump. Releasing A early during ascent makes a low, short hop. Pressing A while airborne does not start another jump on later landing. Release A during descent so it is ready for the next grounded takeoff. Holding A through landing does not automatically jump again. Enemy side contact kills small Mario; descending onto enemies stomps them. Jump early enough to rise before enemy side contact. Gaps require takeoff near the visible edge so the jump lasts until the far side. Pipes and stairs support Mario: feet must rise above their top before the body crosses the side. A ceiling stops ascent. Momentum persists when controls are released. Avoid unnecessary hopping on open flat ground; it can waste the next jump near a hazard. Background hills are decorative. Game pauses while deciding. All choices are yours. CURRENT full screenshot is FIRST. Any PAST screenshot is labelled and appears last. Mario is the red/brown person; brown mushroom-shaped enemies are different characters. A near landing is still airborne: feet must actually touch a solid surface before a NEW jump can begin. Infer contact and ascent/descent from the pixels, including the labelled past image. A_held means continue the exact same A press if already held, not a new jump. General running-jump mechanics: jump height and travel depend on actual horizontal speed at takeoff, not merely holding B. Holding right+B while pressed against a wall does not build running speed. If standing jumps cannot clear a tall obstacle, first back away to create run-up space, then run toward it and take off before hitting its side. Repeated stationary jumps can remain too low even with A held throughout ascent. You must judge the current situation from the screenshots; this text reports no current state or route. Begin an enemy jump early enough that your feet rise above its head before your body crosses its side: pressing A is not instant collision immunity.\",\"next_control_interval_native_frames\":6,\"previous_controls\":[]}",
+      "CURRENT paused screenshot; use this for your next action. Screenshot taken before decision 0",
+      "CURRENT paused screenshot fixed left zoom, exact pixels from this same screen enlarged4x. Screenshot taken before decision 0",
+      "CURRENT paused screenshot fixed middle zoom, exact pixels from this same screen enlarged4x. Screenshot taken before decision 0"
+    ],
+    "duration_event": "prior model control history only; see frozen builder",
+    "finish_rule": " General level-completion rule: finish by touching the flagpole above its solid base. The base obeys the same solid-side collision mechanics as other blocks: the feet must rise above its top before the body can cross its side. Choose any necessary jump yourself from the screenshots and declared controls.",
+    "finish_rule_event_own_input_frames": 240
+  },
+  "builder": "benchmark.profiles.memoryfinish_v1.build_request",
+  "decoder": "benchmark.profiles.memoryfinish_v1.decode_response",
+  "settings": {
+    "profile_version": "memoryfinish240-v1",
+    "track": "pixels_only",
+    "level": "1-1",
+    "from_reset": true,
+    "model": {
+      "id": "baseten/mammoth-1",
+      "request_model": "baseten/mammoth-1-20261021",
+      "expected_returned_model": "baseten/mammoth-1-20261021",
+      "provider": {
+        "only": [
+          "baseten"
+        ],
+        "allow_fallbacks": false
+      },
+      "expected_returned_provider_names": [
+        "BaseTen"
+      ]
+    },
+    "allowed_horizons": {
+      "initial_fixed_native_frames": 6,
+      "after_own_input_120_event": [
+        2,
+        4,
+        6,
+        8
+      ]
+    },
+    "horizon_events_use_only_prior_model_controls": true,
+    "finish_rule": " General level-completion rule: finish by touching the flagpole above its solid base. The base obeys the same solid-side collision mechanics as other blocks: the feet must rise above its top before the body can cross its side. Choose any necessary jump yourself from the screenshots and declared controls.",
+    "finish_rule_event_own_input_frames": 240,
+    "history_images": 2,
+    "media_order": [
+      "CURRENT full512x480",
+      "CURRENT left crop(native0:96,80:224)4x",
+      "CURRENT middle crop(native96:192,80:224)4x",
+      "PAST full512x480 whenavailable"
+    ],
+    "research_budget_used": {
+      "native_frames": 18000,
+      "decisions": 1600,
+      "stagnation_decisions": 120
+    },
+    "actual_outcome": {
+      "flag_get": true,
+      "death": false,
+      "native_frames": 1916,
+      "first_native_flag_frame": 1916,
+      "decisions": 467
+    },
+    "prompt_template_sha256": "9732011e4b5581273fa1c0a5be5f2e4edd41672bc7fbbdfaf5dbfd645d5f7c59",
+    "control_contract_sha256": "779f6a43a28d73c5f731b7e5a2a88d9fbf699eb6949814e7d39483deadd1fd19",
+    "questions_sha256_before_duration": "08e183d75d142fb51a81028688c3ab809badbb0cefb0b82518f670bf4240bb87",
+    "questions_sha256_after_duration": "f5a1d793c6e3a61a713f89e1d7f84b34f9a95d039147fcca1506d7f83a962e1f",
+    "original_runner_sha256": "064a2439a117f96b9a6b6f51975e0ce2c8a123a2f120eade99eab552644e1234",
+    "pure_module_sha256": "6eba72bff29b55f3c46835e8687f4ebe7084386ffaacd4150e909bf164479b30",
+    "scope": "One selected development clear; mixed settings across previous cases, not a mean or common held-out cohort."
+  },
+  "source_files": [
+    {
+      "repo_path": "benchmark/profiles/memorygate_v1.py",
+      "sha256": "28ca456a32b3e182aa5da5f716060903677c12d765638acec51a1765815546f2",
+      "original_sha256": "df9c1de027f10f08ac01eed883ffe12329a23395b73e85d56fc78c96b307c12e",
+      "adaptation": "import namespace only"
+    },
+    {
+      "repo_path": "benchmark/profiles/memoryduration_v1.py",
+      "sha256": "a1c3a1e1e04365a68b12b5c029d3200feb117d5130f34eda6837677725d87dbe",
+      "original_sha256": "635896b705ec6cde20feb9ad61a876faa63b91af27297991ce1c2a858704f922",
+      "adaptation": "import namespace only"
+    },
+    {
+      "repo_path": "benchmark/profiles/memoryfinish_v1.py",
+      "sha256": "7d044dd8f8940841faf4aaa326071e87d16e52fb1892bc937a53b03f3e771b9c",
+      "original_sha256": "6eba72bff29b55f3c46835e8687f4ebe7084386ffaacd4150e909bf164479b30",
+      "adaptation": "import namespace only"
+    },
+    {
+      "repo_path": "benchmark/profiles/edgezoom_v1.py",
+      "sha256": "f73acecaeb5f6bdaf746d59a1a7d36383f6a2ed7400c3bc3ed6950284a05504b"
+    }
+  ],
+  "data_class": "selected_development_profile",
+  "common_benchmark_default": false
+}

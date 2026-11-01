@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at_utc": "2026-11-01T16:47:22.826150+00:00",
+  "generated_at_utc": "2026-11-01T17:38:52.550720+00:00",
   "data_class": "selected_development_examples",
   "comparable_aggregate": null,
   "leaderboard_ready": false,
@@ -19,7 +19,7 @@
     {
       "id": "image",
       "input": "pixels plus declared controls and timing only; no RAM",
-      "verified_clear_models": 0
+      "verified_clear_models": 1
     }
   ],
   "metrics": {
@@ -629,6 +629,83 @@
       },
       "profile_href": "profiles/mammoth-pixels-partial.json",
       "profile_sha256": "28a034d1f76a7f6739c2a7c51b45010c81c542be2518dd0c6d17144510b643c5"
+    },
+    {
+      "id": "mammoth-pixels-first-clear",
+      "data_class": "selected_development_examples",
+      "model_id": "baseten/mammoth-1",
+      "display_name": "Baseten: Mammoth 1",
+      "returned_model": "baseten/mammoth-1-20261021",
+      "provider": "BaseTen",
+      "mode": "image",
+      "level": "1-1",
+      "status": "completed",
+      "completed": true,
+      "death": false,
+      "verified": true,
+      "start_x": 40,
+      "goal_x": 3161,
+      "furthest_valid_x": 3157.0,
+      "progress_pct": 100.0,
+      "observed_progress_pct": 100.0,
+      "native_frames": 1916,
+      "decisions": 467,
+      "speedrun_score_native_frames": 1916,
+      "nominal_game_seconds_to_completion": 31.933333333333334,
+      "experiment_config": {
+        "profile": "memoryfinish240-v1",
+        "adapter": "explicit_ab_joint12",
+        "cadence": null,
+        "initial_cadence_frames": 6,
+        "cadence_mode": "controller-history-triggered native model-selected durations",
+        "allowed_selected_durations": [
+          2,
+          4,
+          6,
+          8
+        ],
+        "previous_screens": 1,
+        "observation": "current full screen, fixed left/middle crops and past full screen; declared prior model controls only",
+        "contract_sha256": "429259115f9aaa9316e87287d8a8a7688bdaf3bf34898e232d296442e251530c",
+        "rom_sha256": "ec299b990e8bfee8ba46e3f61d63b2e1ae5b8a2e431de84e2e4bbd692dc53586",
+        "seed": 0,
+        "life_budget": 1,
+        "selected_attempt": true,
+        "matched_cohort": false,
+        "research_frame_budget": 18000,
+        "research_decision_budget": 1600
+      },
+      "input_audit": {
+        "privileged_state_sent": false,
+        "requests_audited": 467,
+        "actual_pixel_images_audited": 1867,
+        "native_replay_verified": true,
+        "all_frames_verified": 1916,
+        "duration_calls_audited": 255,
+        "finish_rule_calls_audited": 7,
+        "own_control_history_only": true,
+        "independent_audit_pass": true
+      },
+      "trace_href": "traces/mammoth-pixels-first-clear.json",
+      "trace_sha256": "58dadbda3e883f7892aefa5d723e4e8d50adfb2b77d7c4696fba4fcdcb9f3081",
+      "profile_href": "profiles/mammoth-pixels-first-clear.json",
+      "profile_sha256": "5c8ad5bf2566b8c828d574874b6c69e59093e0ad99841975fa3d5db7d4a7d209",
+      "replay_href": "replays/mammoth-pixels-first-clear.mp4",
+      "replay_sha256": "b9b1532ed8f97a75a544901849796d8b12db0de5e86f5aa0845cfb56324496b8",
+      "replay_includes_initial_still": false,
+      "proof_href": "proofs/mammoth-pixels-first-clear.json",
+      "source_hashes": {
+        "manifest_sha256": "fb31e92a607d29bf7a393065e9cb1fe330898f237b3e513cb93f96e1f2e377fd",
+        "requests_sha256": "e3fb3994793fc6fa97858a292ffbed0b6eb3e633d2e2fd916c2b0bf0614f6642",
+        "responses_sha256": "b403e00c43e5a9b1f4d7aa15c312192ead620e0c0590a6f1b3dbf94007c1e887",
+        "private_replay_sha256": "39627b92d18c4586a4db95626aa863188cbde2c946ec084bdbebb0f57bc508e0",
+        "profile_proof_sha256": "7e51d85c01c7b30451c6bbb8a114a2a29f82e76e20935a7910be684d46e85372",
+        "input_native_audit_sha256": "a041a012f2dfa749a93f03ed2968c2e34e3b4fac5fb54f1612783f1a51f77123"
+      },
+      "controls": {
+        "adapter": "native simultaneous buttons plus conditional native duration head",
+        "trace_href": "traces/mammoth-pixels-first-clear.json"
+      }
     }
   ],
   "protocol_sha256": "b50db77febc7519e1b7e5373d54bf69cf002c36a28e3b3bd297cb6191e7c0a54",
@@ -2580,12 +2657,89 @@
       },
       "profile_href": "profiles/jev-pixels-partial.json",
       "profile_sha256": "91400711a83623312598b9b60174fe068ba83cf43fd3dd0a87b95022ed936d18"
+    },
+    {
+      "id": "mammoth-pixels-first-clear",
+      "data_class": "selected_development_examples",
+      "model_id": "baseten/mammoth-1",
+      "display_name": "Baseten: Mammoth 1",
+      "returned_model": "baseten/mammoth-1-20261021",
+      "provider": "BaseTen",
+      "mode": "image",
+      "level": "1-1",
+      "status": "completed",
+      "completed": true,
+      "death": false,
+      "verified": true,
+      "start_x": 40,
+      "goal_x": 3161,
+      "furthest_valid_x": 3157.0,
+      "progress_pct": 100.0,
+      "observed_progress_pct": 100.0,
+      "native_frames": 1916,
+      "decisions": 467,
+      "speedrun_score_native_frames": 1916,
+      "nominal_game_seconds_to_completion": 31.933333333333334,
+      "experiment_config": {
+        "profile": "memoryfinish240-v1",
+        "adapter": "explicit_ab_joint12",
+        "cadence": null,
+        "initial_cadence_frames": 6,
+        "cadence_mode": "controller-history-triggered native model-selected durations",
+        "allowed_selected_durations": [
+          2,
+          4,
+          6,
+          8
+        ],
+        "previous_screens": 1,
+        "observation": "current full screen, fixed left/middle crops and past full screen; declared prior model controls only",
+        "contract_sha256": "429259115f9aaa9316e87287d8a8a7688bdaf3bf34898e232d296442e251530c",
+        "rom_sha256": "ec299b990e8bfee8ba46e3f61d63b2e1ae5b8a2e431de84e2e4bbd692dc53586",
+        "seed": 0,
+        "life_budget": 1,
+        "selected_attempt": true,
+        "matched_cohort": false,
+        "research_frame_budget": 18000,
+        "research_decision_budget": 1600
+      },
+      "input_audit": {
+        "privileged_state_sent": false,
+        "requests_audited": 467,
+        "actual_pixel_images_audited": 1867,
+        "native_replay_verified": true,
+        "all_frames_verified": 1916,
+        "duration_calls_audited": 255,
+        "finish_rule_calls_audited": 7,
+        "own_control_history_only": true,
+        "independent_audit_pass": true
+      },
+      "trace_href": "traces/mammoth-pixels-first-clear.json",
+      "trace_sha256": "58dadbda3e883f7892aefa5d723e4e8d50adfb2b77d7c4696fba4fcdcb9f3081",
+      "profile_href": "profiles/mammoth-pixels-first-clear.json",
+      "profile_sha256": "5c8ad5bf2566b8c828d574874b6c69e59093e0ad99841975fa3d5db7d4a7d209",
+      "replay_href": "replays/mammoth-pixels-first-clear.mp4",
+      "replay_sha256": "b9b1532ed8f97a75a544901849796d8b12db0de5e86f5aa0845cfb56324496b8",
+      "replay_includes_initial_still": false,
+      "proof_href": "proofs/mammoth-pixels-first-clear.json",
+      "source_hashes": {
+        "manifest_sha256": "fb31e92a607d29bf7a393065e9cb1fe330898f237b3e513cb93f96e1f2e377fd",
+        "requests_sha256": "e3fb3994793fc6fa97858a292ffbed0b6eb3e633d2e2fd916c2b0bf0614f6642",
+        "responses_sha256": "b403e00c43e5a9b1f4d7aa15c312192ead620e0c0590a6f1b3dbf94007c1e887",
+        "private_replay_sha256": "39627b92d18c4586a4db95626aa863188cbde2c946ec084bdbebb0f57bc508e0",
+        "profile_proof_sha256": "7e51d85c01c7b30451c6bbb8a114a2a29f82e76e20935a7910be684d46e85372",
+        "input_native_audit_sha256": "a041a012f2dfa749a93f03ed2968c2e34e3b4fac5fb54f1612783f1a51f77123"
+      },
+      "controls": {
+        "adapter": "native simultaneous buttons plus conditional native duration head",
+        "trace_href": "traces/mammoth-pixels-first-clear.json"
+      }
     }
   ],
-  "observation_selection": "State: post-hoc matched-input c4 development cohort with technical/stagnation aborts explicit. Pixels: best observed verified development run per model across differing settings, not averages or a ranking. Original eight showcases remain in examples.",
+  "observation_selection": "Common-profile state attempts, earlier selected pixel partials and newly verified distinct development episodes. Different settings; historical runs retained; no comparable aggregate or model mean.",
   "observation_counts": {
     "state": 22,
-    "image": 16
+    "image": 17
   },
   "technical_diagnostics": [
     {
