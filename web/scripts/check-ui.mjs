@@ -12,6 +12,7 @@ await fs.mkdir(shots, { recursive: true });
 const index = await (await fetch(`${BASE}/benchmark-data/index.json`)).json();
 const examples = index.examples;
 const observations = index.observations;
+const replays = [...new Map([...examples, ...observations.filter(e => e.replay_href)].map(e => [e.id, e])).values()];
 assert.ok(examples.length > 0);
 const pct = v => (v >= 100 ? '100%' : `${(Math.floor(v * 10) / 10).toFixed(1)}%`);
 
@@ -55,13 +56,13 @@ for (let i = 0; i < 2; i++) {
   const ids = await rows.evaluateAll(els => els.map(el => el.dataset.runId));
   assert.ok(ids.slice(-2).every(id => observations.find(e => e.id === id).progress_pct === null));
 }
-await page.getByRole('button', { name: `replays (${examples.length})`, exact: true }).click();
-assert.equal(await rows.count(), examples.length);
-for (const e of examples) {
+await page.getByRole('button', { name: `replays (${replays.length})`, exact: true }).click();
+assert.equal(await rows.count(), replays.length);
+for (const e of replays) {
   const cells = await page.locator(`tr[data-run-id="${e.id}"] td`).allInnerTexts();
   assert.ok(cells[0].includes(e.display_name) && cells[0].includes(e.model_id), `${e.id} identity`);
   assert.equal(cells[1], e.mode === 'image' ? 'pixels' : 'state');
-  assert.equal(cells[2], pct(e.progress_pct));
+  assert.equal(cells[2], e.progress_pct === null ? '–' : pct(e.progress_pct));
   assert.equal(cells[3], e.completed ? `${e.nominal_game_seconds_to_completion.toFixed(2)} s` : '–');
   assert.equal(Number(cells[4].replace(/,/g, '')), e.native_frames);
   assert.equal(Number(cells[5]), e.decisions);
@@ -72,7 +73,7 @@ assert.equal(await page.getByText(/cost|\$/i).count(), 0, 'no cost is shown for 
 const videos = await page.locator('video').evaluateAll(vs => vs.map(v => ({ src: v.currentSrc, muted: v.muted, inline: v.playsInline, audio: v.webkitAudioDecodedByteCount, paused: v.paused })));
 assert.equal(videos.length, 2);
 for (const v of videos) {
-  assert.ok(examples.some(e => v.src.endsWith('/benchmark-data/' + e.replay_href)), v.src);
+  assert.ok(replays.some(e => v.src.endsWith('/benchmark-data/' + e.replay_href)), v.src);
   assert.ok(v.muted && v.inline && v.audio === 0 && !v.paused);
 }
 
@@ -109,11 +110,21 @@ for (let col = 0; col < count; col++) {
 // a row click loads that replay into the chosen pane; rows only tint on hover
 await page.getByRole('button', { name: 'send table selections to pane b' }).click();
 const loaded = await page.locator('[data-side]').evaluateAll(fs => fs.map(f => f.dataset.runId));
-const pick = examples.find(e => !loaded.includes(e.id));
+const pick = observations.find(e => e.replay_href && !examples.some(example => example.id === e.id) && e.progress_pct !== null && !loaded.includes(e.id));
 await page.locator(`tr[data-run-id="${pick.id}"] td:nth-child(3)`).click();
 await page.waitForFunction(id => document.querySelector('[data-side="b"]').dataset.runId === id, pick.id);
 await page.waitForFunction(href => document.querySelector('[data-side="b"] video').currentSrc.endsWith(href), pick.replay_href);
 assert.equal(await page.locator('[data-side="a"]').getAttribute('data-run-id'), loaded[0]);
+// An API-abort prefix is playable while retaining its absent score and label.
+const prefix = observations.find(e => e.replay_href && e.progress_pct === null);
+assert.ok(prefix);
+await page.locator(`tr[data-run-id="${prefix.id}"] td:nth-child(3)`).click();
+await page.waitForFunction(id => document.querySelector('[data-side="b"]').dataset.runId === id, prefix.id);
+await page.waitForFunction(href => {
+  const video = document.querySelector('[data-side="b"] video');
+  return video.currentSrc.endsWith(href) && video.readyState >= 2;
+}, prefix.replay_href);
+assert.equal(await page.locator('[data-side="b"] .caption-result').innerText(), 'incomplete');
 await page.locator(`tr[data-run-id="${pick.id}"]`).hover();
 const hovered = await page.locator(`tr[data-run-id="${pick.id}"]`).evaluate(r => getComputedStyle(r).backgroundColor);
 assert.notEqual(hovered, 'rgba(0, 0, 0, 0)', 'hover tints the row');
@@ -213,4 +224,4 @@ for (const [width, name] of [[1920, 'wide'], [1440, 'desktop'], [1280, 'laptop']
 
 await browser.close();
 assert.deepEqual(errors, []);
-console.log(`ui check passed: ${observations.length} observations, ${examples.length} replays, 7 sortable columns, no table scrolling at 6 widths, hover-only rows, matched screens, human play, themes`);
+console.log(`ui check passed: ${observations.length} observations, ${replays.length} playable runs, null scores, abort status, 7 sortable columns, no table scrolling at 6 widths, hover-only rows, matched screens, human play, themes`);

@@ -34,7 +34,9 @@ export function Intro() {
 }
 
 function outcome(run: Run) {
-  return run.completed ? `cleared in ${formatSeconds(run.clearSeconds)}` : `reached ${formatProgress(run.progressPct)}`;
+  if (run.completed) return `cleared in ${formatSeconds(run.clearSeconds)}`;
+  if (run.progressPct === null) return 'incomplete';
+  return `${/abort/.test(run.status) ? 'aborted at' : 'reached'} ${formatProgress(run.progressPct)}`;
 }
 
 export function ReplayPane({ side }: { side: Side }) {
