@@ -1,42 +1,9 @@
 # mario bench
 
-mario bench gives decision models the controller in super mario bros. so
-engineers can test whether they reach the flag
+a benchmark for decision models playing super mario bros. models receive screenshots
+or game state and choose controller inputs
 
-models choose the buttons from game state or screenshots. the game pauses during
-inference and advances fixed native-frame intervals. scoring measures valid
-progress, confirmed completion and gameplay frames, excluding api latency
-
-[try the live demo](https://mario.nicholasg.com/)
-
-## try the live demo
-
-no sign-in, installation or api key needed
-
-- watch 2 recorded model runs side by side
-- select **a** or **b** under a replay, then click a result row to change it.
-  switch between all development observations and replay showcases; click column
-  headings to sort the results
-- press **play world 1-1** to try it yourself. left/right arrows move, up jumps
-  and shift runs. touch controls work too; your personal best stays in this browser
-
-human practice scores are separate from model results
-
-## built at devday exchange london, 1 november 2026
-
-codex built mario bench end to end using `gpt-6.1-sol` with high reasoning,
-from my concept and direction: the decision runner, scoring, replay verification,
-website and deployment
-
-codex implemented offline replay checks that apply the recorded controller inputs
-and compare the resulting state and screen hashes against the original run,
-without another model call
-
-existing emulators and game content are credited in the
-[benchmark notices](docs/third-party-notices.md) and
-[website notices](web/THIRD_PARTY_NOTICES.md)
-
-[60-second demo script](docs/demo-script.txt)
+[demo](https://mario.nicholasg.com/)
 
 ## results
 
