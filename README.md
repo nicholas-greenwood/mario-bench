@@ -5,7 +5,7 @@ or game state and choose controller inputs
 
 [demo](https://mario.nicholasg.com/)
 
-<img src="docs/media/first-clear.gif" alt="pplx decider v1.2 clearing world 1-1" width="256" height="240">
+<img src="docs/media/first-clear-1x.gif" alt="pplx decider v1.2 clearing world 1-1" width="512" height="480">
 
 *pplx decider v1.2, state input, replayed at 1x speed*
 
