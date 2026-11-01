@@ -2,6 +2,17 @@
 export const DATA_BASE = '/benchmark-data/';
 
 export type Track = 'state' | 'image';
+export type CostProvenance = {
+  kind: string;
+  cost_basis: string;
+  request_count: number;
+  costed_request_count: number;
+  actual_costed_request_count: number;
+  coverage_complete: boolean;
+  includes_retries: boolean;
+  includes_auxiliary_calls: boolean;
+  upstream_cost_basis?: string | null;
+};
 
 export type Run = {
   id: string;
@@ -16,6 +27,12 @@ export type Run = {
   status: string;
   nativeFrames: number;
   decisions: number;
+  costUsd: number | null;
+  costEstimateUsd: number | null;
+  openrouterCostUsd: number | null;
+  upstreamCostUsd: number | null;
+  upstreamCostEstimateUsd: number | null;
+  costProvenance: CostProvenance | null;
   /** Native frames to the flag; null when the run did not finish. */
   clearFrames: number | null;
   clearSeconds: number | null;
@@ -47,6 +64,30 @@ type RawExample = Record<string, unknown> & { experiment_config?: Record<string,
 
 const num = (value: unknown) => (typeof value === 'number' && Number.isFinite(value) ? value : null);
 const text = (value: unknown, fallback = '') => (typeof value === 'string' ? value : fallback);
+function runCost(raw: RawExample) {
+  const provenance = raw.cost_provenance && typeof raw.cost_provenance === 'object' && !Array.isArray(raw.cost_provenance)
+    ? raw.cost_provenance as CostProvenance : null;
+  const value = num(raw.cost_usd);
+  const complete = provenance && provenance.kind === 'recorded_response_usage' && provenance.cost_basis === 'all_in_inference'
+    && provenance.coverage_complete === true
+    && provenance.includes_retries === true && provenance.includes_auxiliary_calls === true
+    && Number.isInteger(provenance.request_count) && provenance.request_count >= 0
+    && provenance.costed_request_count === provenance.request_count;
+  const nonnegative = (amount: unknown) => { const result = num(amount); return result !== null && result >= 0 ? result : null; };
+  const actualComplete = complete && provenance.actual_costed_request_count === provenance.request_count;
+  const estimateComplete = complete && provenance.upstream_cost_basis === 'openrouter_activity_list_price_estimate'
+    && Number.isInteger(provenance.actual_costed_request_count) && provenance.actual_costed_request_count >= 0
+    && provenance.actual_costed_request_count < provenance.request_count;
+  const recorded = provenance?.kind === 'recorded_response_usage';
+  return {
+    costUsd: actualComplete && value !== null && value >= 0 ? value : null,
+    costEstimateUsd: estimateComplete ? nonnegative(raw.cost_estimate_usd) : null,
+    openrouterCostUsd: recorded ? nonnegative(raw.openrouter_cost_usd) : null,
+    upstreamCostUsd: recorded ? nonnegative(raw.upstream_cost_usd) : null,
+    upstreamCostEstimateUsd: recorded ? nonnegative(raw.upstream_cost_estimate_usd) : null,
+    costProvenance: provenance ?? null,
+  };
+}
 const isJsonRetest = (raw: RawExample) => raw.data_class === 'technical_serialization_diagnostic'
   && raw.verified === true && raw.experiment_config?.state_serialization === 'json_object'
   && (raw.completed === true || raw.death === true);
@@ -78,6 +119,7 @@ function toRun(raw: RawExample): Run {
     status: text(raw.status, completed ? 'completed' : 'game_over'),
     nativeFrames: frames,
     decisions,
+    ...runCost(raw),
     clearFrames: completed ? num(raw.speedrun_score_native_frames) : null,
     clearSeconds: completed ? num(raw.nominal_game_seconds_to_completion) : null,
     cadence: num(config.cadence),
@@ -101,6 +143,7 @@ function toObservation(raw: RawExample): Result {
     provider: text(raw.provider), track: raw.mode, level: text(raw.level, '1-1'),
     // A failed API episode has no score, even if some movement was observed.
     progressPct: num(raw.progress_pct), nativeFrames: num(raw.native_frames), decisions: num(raw.decisions),
+    ...runCost(raw),
     completed, status: text(raw.status), clearFrames: completed ? num(raw.speedrun_score_native_frames) : null,
     clearSeconds: completed ? num(raw.nominal_game_seconds_to_completion) : null,
     cadence: num(config.cadence), previousScreens: num(config.previous_screens), profile: text(config.profile),
@@ -131,6 +174,11 @@ export function parseDataset(index: unknown): Dataset {
     const sameIdentity = ['model_id', 'mode', 'level', 'native_frames', 'decisions']
       .every(key => alias[key] === canonical[key]);
     if (sameSource && sameIdentity) {
+      const canonicalCost = runCost(canonical), aliasCost = runCost(alias);
+      if ((canonicalCost.costUsd === null && aliasCost.costUsd !== null)
+        || (canonicalCost.costUsd === null && canonicalCost.costEstimateUsd === null && aliasCost.costEstimateUsd !== null)) {
+        for (const key of ['cost_usd', 'cost_estimate_usd', 'openrouter_cost_usd', 'upstream_cost_usd', 'upstream_cost_estimate_usd', 'cost_provenance']) canonical[key] = alias[key];
+      }
       (canonical.alias_ids as string[]).push(aliasId);
       byEpisode.delete(aliasId);
     }
@@ -153,6 +201,17 @@ export function formatProgress(value: number) {
 
 export function formatSeconds(value: number | null) {
   return value === null ? null : `${value.toFixed(2)} s`;
+}
+
+export function formatCost(value: number | null) {
+  if (value === null) return null;
+  if (value > 0 && value < .000001) return '<$0.000001';
+  return `$${value.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 6 })}`;
+}
+
+export function formatRunCost(run: Pick<Run, 'costUsd' | 'costEstimateUsd'>) {
+  if (run.costUsd !== null) return formatCost(run.costUsd);
+  return run.costEstimateUsd === null ? null : `~${formatCost(run.costEstimateUsd)}`;
 }
 
 export type Side = 'a' | 'b';

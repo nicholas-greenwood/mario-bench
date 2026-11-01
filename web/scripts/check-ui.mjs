@@ -3,7 +3,7 @@
 import { chromium } from '@playwright/test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
-import { parseDataset } from '../lib/data.ts';
+import { formatCost, formatRunCost, parseDataset } from '../lib/data.ts';
 
 const BASE = process.env.BASE_URL ?? 'http://127.0.0.1:3112';
 const CHROME = process.env.CHROME ?? '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
@@ -27,6 +27,36 @@ assert.equal(mercuryPixels[0].id, 'mercury-pixels-partial', 'original replay ID 
 const repeated = parseDataset({ ...index, observations: [...observations, { ...examples.find(e => e.id === 'mercury-pixels-partial'), id: 'independent-repeat' }] });
 assert.equal(repeated.runs.filter(run => run.modelId === 'inception/mercury-decide' && run.track === 'image').length, 2, 'independent repeat IDs survive even when source contents match');
 assert.ok(examples.length > 0);
+const receipt = { kind: 'recorded_response_usage', cost_basis: 'all_in_inference', request_count: 1, costed_request_count: 1, actual_costed_request_count: 1, coverage_complete: true, includes_retries: true, includes_auxiliary_calls: true };
+const costFixture = (value, provenance) => parseDataset({ examples: [{ ...examples[0], cost_usd: value, cost_provenance: provenance }], observations: [] }).runs[0].costUsd;
+assert.equal(costFixture(0, receipt), 0, 'verified actual zero remains zero');
+assert.equal(costFixture(null, receipt), null, 'missing billing is unknown');
+assert.equal(costFixture(1, undefined), null, 'a number without billing provenance is unknown');
+assert.equal(costFixture(.1, { ...receipt, kind: 'catalogue_estimate' }), null, 'estimates are never displayed as actual costs');
+assert.equal(costFixture(.1, { ...receipt, cost_basis: 'unknown' }), null, 'unverified billing basis stays unknown');
+assert.equal(costFixture(.1, { ...receipt, coverage_complete: false }), null, 'partial receipts do not become exact totals');
+assert.equal(costFixture(.1, { ...receipt, request_count: 2 }), null, 'every request must have a recorded cost');
+assert.equal(costFixture(.1, { ...receipt, includes_retries: false }), null, 'omitted retries make complete run cost unknown');
+assert.equal(costFixture(.1, { ...receipt, includes_auxiliary_calls: false }), null, 'omitted auxiliary calls make complete run cost unknown');
+assert.equal(costFixture(-1, receipt), null, 'invalid negative billing is unknown');
+assert.equal(formatCost(null), null);
+assert.equal(formatCost(0), '$0.00');
+assert.equal(formatCost(.001234), '$0.001234');
+assert.equal(formatCost(.0000001), '<$0.000001');
+const byokEstimate = parseDataset({ examples: [{ ...examples[0], cost_usd: 0, cost_estimate_usd: .031234,
+  openrouter_cost_usd: 0, upstream_cost_estimate_usd: .031234,
+  cost_provenance: { ...receipt, actual_costed_request_count: 0, upstream_cost_basis: 'openrouter_activity_list_price_estimate' },
+}], observations: [] }).runs[0];
+assert.equal(byokEstimate.costUsd, null, 'zero openrouter credits do not imply free byok inference');
+assert.equal(byokEstimate.costEstimateUsd, .031234);
+assert.equal(formatRunCost(byokEstimate), '~$0.031234');
+assert.equal(formatRunCost({ costUsd: .02, costEstimateUsd: .03 }), '$0.02', 'actual cost takes precedence over an estimate');
+const aliasBilling = parseDataset({ ...index,
+  examples: examples.map(e => e.id === 'mercury-pixels-partial' ? { ...e, cost_usd: null, cost_provenance: null } : e),
+  observations: observations.map(e => e.id === 'pixels-best-inception--mercury-decide' ? { ...e, cost_usd: .012345, cost_provenance: receipt } : e),
+});
+assert.equal(aliasBilling.runs.find(run => run.id === 'mercury-pixels-partial').costUsd, .012345);
+assert.equal(aliasBilling.observations.find(run => run.id === 'mercury-pixels-partial').costUsd, .012345, 'known episode alias has the same cost in both views');
 const pct = v => (v >= 100 ? '100%' : `${(Math.floor(v * 10) / 10).toFixed(1)}%`);
 
 const browser = await chromium.launch({ executablePath: CHROME, headless: true, args: ['--mute-audio', '--disable-gpu', '--autoplay-policy=no-user-gesture-required'] });
@@ -55,6 +85,8 @@ for (const [side, track] of [['a', 'state'], ['b', 'image']]) {
 
 // every recorded run, with the exact identity and numbers from the index
 const rows = page.locator('tbody tr');
+assert.equal(await page.getByRole('columnheader', { name: 'frames', exact: true }).count(), 0);
+assert.equal(await page.getByRole('columnheader', { name: 'cost', exact: true }).count(), 1);
 assert.equal(await rows.count(), published.length, 'every published run shown by default');
 const clearIds = examples.filter(e => e.completed).map(e => e.id).sort();
 for (const id of ['pplx-state-clear', 'mercury-state-clear', 'drex-state-clear', 'liquid-state-clear']) assert.ok(clearIds.includes(id), `${id}: previous verified clear remains published`);
@@ -76,7 +108,7 @@ for (const e of published) {
   const cells = await page.locator(`tr[data-run-id="${e.id}"] td`).allInnerTexts();
   assert.ok(cells[0].includes(e.model_id), `${e.id}: exact model identity`);
   assert.equal(cells[2], e.progress_pct === null ? '–' : pct(e.progress_pct), `${e.id}: no invented score`);
-  assert.equal(Number(cells[4].replaceAll(',', '')), e.native_frames);
+  assert.equal(cells[4], formatRunCost(parsed.observations.find(run => run.id === e.id)) ?? '–', `${e.id}: actual cost, marked estimate or unknown`);
   if (e.status === 'api_abort') assert.equal(cells[6], 'api error');
   else if (/abort/.test(e.status)) assert.equal(cells[6], 'aborted');
   if (!e.replay_href) assert.ok((await page.locator(`tr[data-run-id="${e.id}"] a`).getAttribute('href')).endsWith(e.trace_href));
@@ -95,10 +127,9 @@ for (const e of replays) {
   assert.equal(cells[1], e.mode === 'image' ? 'pixels' : 'state');
   assert.equal(cells[2], e.progress_pct === null ? '–' : pct(e.progress_pct));
   assert.equal(cells[3], e.completed ? `${e.nominal_game_seconds_to_completion.toFixed(2)} s` : '–');
-  assert.equal(Number(cells[4].replace(/,/g, '')), e.native_frames);
+  assert.equal(cells[4], formatRunCost(parsed.runs.find(run => run.id === e.id)) ?? '–');
   assert.equal(Number(cells[5]), e.decisions);
 }
-assert.equal(await page.getByText(/cost|\$/i).count(), 0, 'no cost is shown for api runs');
 
 // real, silent replays
 const videos = await page.locator('video').evaluateAll(vs => vs.map(v => ({ src: v.currentSrc, muted: v.muted, inline: v.playsInline, audio: v.webkitAudioDecodedByteCount, paused: v.paused })));
@@ -117,7 +148,7 @@ const parse = (text, col) => {
   if (col === 0) return text.split('\n')[0].trim().toLowerCase();
   if (col === 1) return text;
   if (col === 6) return text;
-  return Number(text.replace(/[,%s ]/g, ''));
+  return Number(text.replace(/[~<,$%s ]/g, ''));
 };
 for (let col = 0; col < count; col++) {
   let previous;
@@ -240,6 +271,9 @@ for (const [width, name] of [[1920, 'wide'], [1440, 'desktop'], [1280, 'laptop']
   assert.ok(await noOverflow(page), `${width} has no page overflow`);
   assert.ok(await page.locator('.table-scroll').evaluate(el => el.scrollWidth <= el.clientWidth), `${width} table fits without scrolling`);
   assert.equal(await page.getByRole('columnheader', { name: 'cadence', exact: true }).count(), 0);
+  assert.equal(await page.getByRole('columnheader', { name: 'frames', exact: true }).count(), 0);
+  assert.equal(await page.locator('td[data-label="frames"]').count(), 0);
+  assert.equal(await page.locator('td[data-label="cost"]').count(), published.length);
   assert.equal(await page.getByText('saved in this browser · no frame limit', { exact: true }).count(), 0);
   assert.equal(await page.locator('tbody tr').count(), published.length);
   assert.ok(await page.locator('h1').isVisible());
@@ -255,4 +289,4 @@ for (const [width, name] of [[1920, 'wide'], [1440, 'desktop'], [1280, 'laptop']
 
 await browser.close();
 assert.deepEqual(errors, []);
-console.log(`ui check passed: ${published.length} published runs, ${replays.length} playable runs, ${clearIds.length} matching clears in both views, separate profiles, zero-action run, null scores, abort status, 7 sortable columns, no table scrolling at 6 widths`);
+console.log(`ui check passed: ${published.length} published runs, ${replays.length} playable runs, verified costs/unknown billing, no frames column, ${clearIds.length} matching clears, aliases, 7 sortable columns, no table scrolling at 6 widths`);
