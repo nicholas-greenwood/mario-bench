@@ -3,8 +3,9 @@ import assert from 'node:assert/strict';
 import { mkdtemp, readFile, writeFile, mkdir, rm } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
+import { createHash } from 'node:crypto';
 import { parseDataset, formatRunCost } from '../lib/data.ts';
-import { readPublishedIndex } from '../lib/read-results.mjs';
+import { hydrateRecoveryProofs, readPublishedIndex } from '../lib/read-results.mjs';
 import { renderResults } from './update-readme-results.mjs';
 
 const legacy = JSON.parse(await readFile(new URL('../../results/index.json', import.meta.url), 'utf8'));
@@ -83,6 +84,149 @@ function stateOnlyFixture() {
   }
   return data;
 }
+
+const recoveryParent = 'e1c1086b8dc2d5613deaad37cbc75003dedaf7564cf82802a17b0e81fcdb8371';
+const hashValue = value => createHash('sha256').update(typeof value === 'string' ? value : JSON.stringify(value, Object.keys(value).sort())).digest('hex');
+function recoveryFixture(selected = 0) {
+  const data = stateOnlyFixture(), cohort = data.common_benchmark, base = cohort.manifest;
+  base.protocol_sha256 = recoveryParent;
+  cohort.release_provenance = { source_manifest_sha256: 'c'.repeat(64) };
+  for (const trial of cohort.trials) trial.protocol_sha256 = recoveryParent;
+  for (const row of cohort.rows) row.protocol_sha256 = recoveryParent;
+  const authority = { protocol_id: 'mario-state-technical-recovery-v1', protocol_sha256: 'b'.repeat(64),
+    parent_protocol_sha256: recoveryParent, parent_manifest_file_sha256: 'c'.repeat(64), parent_audit_sha256: hash,
+    prefix_proof_sha256: hash, phase: 'technical_recovery', preregistered: true, frozen_at_utc: '2026-01-03T00:00:00Z',
+    tracks: ['state'], native_frame_budget: 6000, native_frame_cap: 6000, cadence_native_frames: 4, life_budget: 1,
+    retries_after_initial: 2, max_continuations_per_slot: 1, provider_seed: null, emulator_seed: 0,
+    provider_outcome_unknown_attempt_count: 5, slots: [],
+  };
+  for (let i = 0; i < 8; i++) {
+    const original = cohort.trials[i * 3 + 2], pair = base.eligible_model_provider_pairs[i];
+    Object.assign(original, { status: 'infra_error', rankable: false, technical_pending: true, flag_get: false,
+      completed: false, death: false, progress_pct: null, native_frames: 400, decisions: 100, native_frames_to_completion: null,
+      attempt_proof: { source_episode_sha256: hashValue(original.id), request_intent_count: 103, request_result_count: 103,
+        error_attempt_count: 3, unanswered_attempt_count: 0, terminal_at_utc: '2026-01-02T01:00:00Z' } });
+    const kind = i < 5 ? 'timeout_then_socket_gaierror_dns' : i < 7 ? 'socket_gaierror_dns' : 'typed_service_429';
+    const pin = { id: pair.model_id, request_model: pair.request_model, provider: pair.provider,
+      expected_returned_model: pair.expected_returned_model, expected_returned_provider_names: pair.expected_returned_provider_names };
+    authority.slots.push({ original_trial_id: original.id, child_run_id: `${original.id}-recovery`, model_id: original.model_id,
+      track: 'state', repeat_id: 2, local_rng_seed: null, emulator_seed: 0, temperature: null,
+      parent_episode_sha256: original.attempt_proof.source_episode_sha256, parent_abort_status: 'infra_error', failure_kind: kind,
+      checkpoint_native_frame: 400, checkpoint_ram_sha256: hash, checkpoint_rgb_sha256: hash, checkpoint_observation_sha256: hash,
+      controller_history_sha256: hash, failed_request_sha256: hash, controller_sha256: hash, pin_sha256: null, pin_payload: pin,
+      rng_mode: 'not_used_native_choice', rng_state_sha256: null, failed_decision_index: 100, failed_stage: 'motor',
+      parent_valid_native_actions: 100, parent_http_attempts: 103, remaining_native_frame_budget: 5600,
+      provider_outcome_unknown_attempt_count: i < 5 ? 1 : 0, no_observed_valid_choice_discarded: true, unmatched_ledger_intent_count: 0,
+      failed_attempt_chain: [0, 1, 2].map(attempt => ({ attempt, error: kind === 'typed_service_429' ? 'HTTP429' : i < 5 && attempt === 0 ? 'TimeoutError' : 'gaierror',
+        error_type: kind === 'typed_service_429' ? 'http' : 'transport', http_status: kind === 'typed_service_429' ? 429 : null,
+        request_sha256: hash, valid: false, retryable: true, raw_response_present: kind === 'typed_service_429', native_answers_present: false })),
+    });
+  }
+  const slot = authority.slots[selected], original = cohort.trials.find(t => t.id === slot.original_trial_id);
+  const checkpointKeys = ['checkpoint_native_frame', 'checkpoint_ram_sha256', 'checkpoint_rgb_sha256', 'checkpoint_observation_sha256',
+    'controller_history_sha256', 'failed_request_sha256', 'controller_sha256', 'pin_sha256', 'rng_mode', 'rng_state_sha256'];
+  const child = { ...structuredClone(original), id: slot.child_run_id, record_kind: 'technical_continuation', phase: 'technical_recovery',
+    protocol_sha256: authority.protocol_sha256, parent_protocol_sha256: recoveryParent, parent_episode_sha256: slot.parent_episode_sha256,
+    resolves_original_trial_id: original.id, status: 'game_over', rankable: true, technical_pending: false, native_replay_verified: true,
+    level: '1-1', start_x: 40, started_at_utc: '2026-01-04T00:00:00Z', native_frames: 404, decisions: 101, continuation_native_frames: 4,
+    continuation_decisions: 1, completed: false, flag_get: false, death: true, progress_pct: 40, max_progress_x: 1288.4,
+    cadence_native_frames: 4, trace_href: 'common/recovery/child.json', trace_sha256: hash,
+    attempt_proof: { source_episode_sha256: hashValue(slot.child_run_id), scope: 'composed_trajectory', request_intent_count: 104, request_result_count: 104,
+      error_attempt_count: 3, unanswered_attempt_count: 0, native_audit_sha256: null },
+    cost_usd: .12, cost_provenance: { ...structuredClone(billing), request_count: 104, source_request_count: 104, source_attempt_count: 104,
+      costed_request_count: 104, actual_costed_request_count: 104, error_count: 3, joined_attempt_count: 104 },
+  };
+  const logical = { ...structuredClone(child), id: original.id, logical_trial_id: original.id, source_run_id: child.id,
+    record_kind: 'technical_resolution', base_protocol_sha256: recoveryParent };
+  const proof = { schema_version: 1, verified: true, original_trial_id: original.id, child_run_id: child.id,
+    parent_protocol_sha256: recoveryParent, recovery_protocol_sha256: authority.protocol_sha256,
+    parent_episode_sha256: slot.parent_episode_sha256, child_episode_sha256: child.attempt_proof.source_episode_sha256,
+    original_attempt_count: 103, recovery_attempt_count: 1, joined_attempt_count: 104,
+    original_error_attempt_count: 3, recovery_error_attempt_count: 0, joined_error_attempt_count: 3,
+    original_request_result_count: 103, recovery_request_result_count: 1, joined_request_result_count: 104,
+    original_unanswered_attempt_count: 0, recovery_unanswered_attempt_count: 0, joined_unanswered_attempt_count: 0,
+    provider_outcome_unknown_attempt_count: selected < 5 ? 1 : 0, new_provider_outcome_unknown_attempt_count: 0,
+    total_provider_outcome_unknown_attempt_count: selected < 5 ? 1 : 0, no_observed_valid_choice_discarded: true,
+    prefix_replay_verified: true, failed_body_identical: true, controller_pin_history_rng_verified: true, total_native_budget_verified: true,
+    total_native_frames: 404, new_native_frames: 4, total_native_frame_budget: 6000,
+  };
+  const resolution = { original_trial_id: original.id, child_run_id: child.id, parent_episode_sha256: slot.parent_episode_sha256,
+    child_episode_sha256: child.attempt_proof.source_episode_sha256, proof_href: 'common/recovery/proof.json', proof_sha256: null,
+    prefix_replay_verified: true, failed_body_identical: true, controller_pin_history_rng_verified: true, total_native_budget_verified: true,
+    effective_trial: logical };
+  cohort.technical_recovery = { manifest: authority, continuations: [child], resolutions: [resolution] };
+  return { data, authority, slot, child, logical, proof, resolution, original, checkpointKeys };
+}
+
+async function prepareRecovery(fixture, mutate = () => {}) {
+  // Hydrate once to derive Python-compatible canonical pin digests.
+  const resolutions = fixture.data.common_benchmark.technical_recovery.resolutions;
+  fixture.data.common_benchmark.technical_recovery.resolutions = [];
+  await hydrateRecoveryProofs(fixture.data, () => { throw new Error('no proofs yet'); });
+  fixture.data.common_benchmark.technical_recovery.resolutions = resolutions;
+  for (const slot of fixture.authority.slots) slot.pin_sha256 = slot._computed_pin_sha256;
+  const checkpoint = Object.fromEntries(fixture.checkpointKeys.map(k => [k, fixture.slot[k]]));
+  fixture.child.checkpoint = structuredClone(checkpoint); fixture.child.reconstructed_checkpoint = structuredClone(checkpoint);
+  fixture.logical.checkpoint = structuredClone(checkpoint); fixture.logical.reconstructed_checkpoint = structuredClone(checkpoint);
+  fixture.proof.declared_checkpoint = structuredClone(checkpoint); fixture.proof.reconstructed_checkpoint = structuredClone(checkpoint);
+  const { attempt_proof, ...grade } = fixture.child;
+  fixture.proof.result = { ...structuredClone(grade), frames: fixture.child.native_frames };
+  mutate(fixture);
+  const bytes = Buffer.from(JSON.stringify(fixture.proof)), proofHash = createHash('sha256').update(bytes).digest('hex');
+  fixture.resolution.proof_sha256 = proofHash;
+  fixture.child.attempt_proof.native_audit_sha256 = proofHash; fixture.logical.attempt_proof.native_audit_sha256 = proofHash;
+  await hydrateRecoveryProofs(fixture.data, () => bytes);
+  return parseDataset(fixture.data);
+}
+
+test('an audited continuation resolves one logical slot, preserving66 source records and the new authority', async () => {
+  const fixture = recoveryFixture(), before = structuredClone(fixture.original), parsed = await prepareRecovery(fixture);
+  const cohort = parsed.commonBenchmark, trajectory = cohort.trials.find(t => t.id === fixture.original.id);
+  assert.equal(cohort.rows.length, 22); assert.equal(cohort.trials.length, 66);
+  assert.equal(cohort.rows[0].meanProgressPct, 80); assert.equal(cohort.technicalRecovery.resolved, 1);
+  assert.equal(trajectory.phase, 'technical_recovery'); assert.equal(trajectory.protocol_sha256, fixture.authority.protocol_sha256);
+  assert.equal(trajectory.base_protocol_sha256, recoveryParent); assert.equal(trajectory.source_run_id, fixture.child.id);
+  assert.deepEqual(fixture.original, before, 'original abort is not rewritten');
+  assert.equal(cohort.rows[0].meanCostUsd, null, 'unknown original provider outcome prevents a child-only bill');
+  assert.ok(parsed.observations.find(r => r.id === fixture.original.id).name.endsWith('(technical continuation)'));
+  assert.ok(!parsed.observations.some(r => r.id === fixture.child.id), 'a continuation is not a fourth quality trial');
+});
+
+for (const [reason, mutate] of [
+  ['replayed RAM differs', f => { f.proof.reconstructed_checkpoint.checkpoint_ram_sha256 = 'd'.repeat(64); }],
+  ['failed body differs', f => { f.child.reconstructed_checkpoint.failed_request_sha256 = 'd'.repeat(64); }],
+  ['source hash differs', f => { f.resolution.parent_episode_sha256 = 'd'.repeat(64); }],
+  ['wrong seed', f => { f.child.local_rng_seed = 5; }],
+  ['wrong pin', f => { f.child.returned_model = 'other/model'; }],
+  ['extra6000 frame budget', f => { f.child.native_frames = 6400; f.logical.native_frames = 6400; f.proof.total_native_frames = 6400; }],
+  ['child remains infrastructure', f => { f.child.status = 'infra_error'; f.child.rankable = false; }],
+  ['missing lineage proof', f => { f.proof.verified = false; }],
+  ['post-freeze start missing', f => { delete f.child.started_at_utc; }],
+  ['audit grade forged in public copies', f => { for (const t of [f.child, f.logical]) Object.assign(t, { status: 'completed', flag_get: true, completed: true, death: false, progress_pct: 100, native_frames_to_completion: 404 }); }],
+  ['wrong level', f => { f.child.level = f.logical.level = '1-2'; }],
+  ['arbitrary logical trace', f => { f.logical.trace_href = 'common/not-the-child.json'; }],
+  ['new provider unknown outcome dropped', f => { f.proof.new_provider_outcome_unknown_attempt_count = 1; }],
+]) test(`recovery rejects ${reason} without replacing the original`, async () => {
+  const fixture = recoveryFixture(), parsed = await prepareRecovery(fixture, mutate);
+  assert.equal(parsed.commonBenchmark.rows[0].meanProgressPct, null);
+  assert.equal(parsed.commonBenchmark.technicalRecovery?.resolved ?? 0, 0);
+});
+
+test('extra resolutions and attempts to recover valid deaths invalidate the overlay', async () => {
+  const duplicate = recoveryFixture();
+  const parsed = await prepareRecovery(duplicate, f => f.data.common_benchmark.technical_recovery.resolutions.push(structuredClone(f.resolution)));
+  assert.equal(parsed.commonBenchmark.technicalRecovery, null);
+  const death = recoveryFixture(); death.original.rankable = true; death.original.status = 'game_over'; death.original.death = true;
+  assert.equal((await prepareRecovery(death)).commonBenchmark.technicalRecovery, null);
+});
+
+test('proof bytes and pin payloads are checked, not trusted boolean attestations', async () => {
+  const fixture = recoveryFixture(); await prepareRecovery(fixture);
+  await assert.rejects(hydrateRecoveryProofs(fixture.data, () => Buffer.from('{}')), /checksum mismatch/);
+  const wrongPin = recoveryFixture();
+  const parsed = await prepareRecovery(wrongPin, f => { f.slot.pin_payload.request_model = 'other/model'; });
+  assert.equal(parsed.commonBenchmark.technicalRecovery, null);
+});
 
 test('explicit state-only authority accepts exactly 22 models and 66 fresh state trials without fabricating an image gate', () => {
   const data = stateOnlyFixture(), parsed = parseDataset(data), cohort = parsed.commonBenchmark;
