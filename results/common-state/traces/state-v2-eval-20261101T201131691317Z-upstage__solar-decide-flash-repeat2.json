@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "id": "state-v2-eval-20261101T201131691317Z-upstage__solar-decide-flash-repeat2",
+  "phase": "evaluation",
+  "protocol_sha256": "e1c1086b8dc2d5613deaad37cbc75003dedaf7564cf82802a17b0e81fcdb8371",
+  "model_id": "upstage/solar-decide-flash",
+  "track": "state",
+  "mode": "state",
+  "level": "1-1",
+  "actions": [],
+  "request_attempts": [
+    {
+      "decision_index": 0,
+      "stage": "motor",
+      "attempt": 0,
+      "request_sha256": "30cd56df75caab9613589c441c8ae1ffd4a77897490a297b6236081a7c0c2154",
+      "http_status": null,
+      "valid": false,
+      "response_recorded": true,
+      "failure_class": "transport",
+      "raw_response_sha256": null
+    },
+    {
+      "decision_index": 0,
+      "stage": "motor",
+      "attempt": 1,
+      "request_sha256": "30cd56df75caab9613589c441c8ae1ffd4a77897490a297b6236081a7c0c2154",
+      "http_status": null,
+      "valid": false,
+      "response_recorded": true,
+      "failure_class": "transport",
+      "raw_response_sha256": null
+    },
+    {
+      "decision_index": 0,
+      "stage": "motor",
+      "attempt": 2,
+      "request_sha256": "30cd56df75caab9613589c441c8ae1ffd4a77897490a297b6236081a7c0c2154",
+      "http_status": null,
+      "valid": false,
+      "response_recorded": true,
+      "failure_class": "transport",
+      "raw_response_sha256": null
+    }
+  ],
+  "attempt_proof": {
+    "request_intent_count": 3,
+    "request_result_count": 3,
+    "error_attempt_count": 3,
+    "unanswered_attempt_count": 0,
+    "source_episode_sha256": "b27f2ffa9ecf01301ac6fc2674f8c7f9a7424eae4ec059614422ddbd8e277860",
+    "native_audit_sha256": "d0f88b196787300645a104b9ea9b143e0b1341958d77eb3fbb6d5f0987c1b33e",
+    "started_at_utc": "2026-11-01T20:46:50.391845+00:00",
+    "terminal_at_utc": "2026-11-01T20:46:53.446144+00:00"
+  },
+  "source_episode_sha256": "b27f2ffa9ecf01301ac6fc2674f8c7f9a7424eae4ec059614422ddbd8e277860",
+  "native_replay_verified": true
+}
