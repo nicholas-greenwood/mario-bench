@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "track": "state",
+  "pilot_policy": "openrouter",
+  "state_profile": "common-state-compact-v2",
+  "software_sha256": {
+    "benchmark/common_state_run_v2.py": "09398273d816532329a24c2c9309df10935cd8b4a3a395dc39ab45fd411cbb6d",
+    "benchmark/common_state_runtime_v2.py": "b82b84c30d90d75e77a2de21dbb9a9eda9cd4f1e6ade9f4ebc6a1f7b3d8801ab",
+    "benchmark/common_state_compact_v2.py": "2d8c0cc9a4e779ce96c969a722620787315248fc7da2ddc634ff4265bd2deab3",
+    "benchmark/common_profiles/state-compact-v2.json": "17f34b6812362a051d788fbbffb10805ff5a76ea16590070d69ab6b6d0b0e06e",
+    "benchmark/common_policy.py": "4a779292f668e7c3fbecaa9b6c636e6d5545ecdc20863d380062159989ae2b40",
+    "benchmark/client.py": "71c601070c57e0920089a41d5a054157c633b38396e2c9f0637ef2d86d762d58",
+    "benchmark/costs.py": "014aed8425326468bf1a570f95126a135dfcec3f45ee4ef27490c47e123db1c7",
+    "benchmark/scoring.py": "0bb6eaf7e76e7e019b8f042fc9af10728828206928dc588b38c7132703b46423",
+    "benchmark/profiles/state_v1.py": "e239653f7b45275eac6377c7369426d536c1ad31db64b06a8e4beb805fb9ecf8",
+    "prototype/emulator.py": "d71541a6c12a1cae821fbf2cd22381a709c639fefe06f07aee4d209c218ee0d8",
+    "prototype/decisions.py": "f4b90349b98c3a79dac41cc17cc45288f61a7c72c2bc024aa759b8f955fee391",
+    "prototype/control.py": "70452cbb94e4fa4a340b2450086d6b1d9b5268a689e1bce0e35fd24a217eb634",
+    "requirements.lock.txt": "36f24452255efa14dd0088b4f82fe325c48e5f2d8c3716a4ae3538ef0a5db455"
+  },
+  "controller_contracts_sha256": "e9f3c3b8f2448b6c059a8498f260093a744f71cec732873926e8091d9049364c",
+  "state_native_clears": 2,
+  "promotion_eligible": true,
+  "pilot_manifest_sha256": "ca14da19b545bcae5cbd9cf93a69bb6de1f5bcf4f7522e4456b2ae5cda6bd9e1",
+  "pilot_summary_sha256": "ae24723b08198ad911f6a9f47ecf686729bc513bfd9aa644a9a92e8d13ef0714",
+  "pilot_audit_sha256": "f492bb630398029632f1eafd1b7e13216b088c5717d2ab9016400dee966cc666",
+  "interpretation": "State-only calibration evidence. Does not authorise any final/common cohort without separately verified image selected-T clear evidence."
+}
