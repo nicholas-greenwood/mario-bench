@@ -197,7 +197,8 @@ export function parseCommonBenchmark(value: unknown, legacyIds: Set<string>, rea
     const valid = recorded.map(id => recovery.effective.get(id) ?? byId.get(id)!).filter(trial => trialCounts.get(string(trial.id)) === 1
       && nativeTrials.filter(candidate => candidate.repeat_id === trial.repeat_id).length === 1
       && (recovery.effective.has(string(trial.id)) || matching(trial)) && validOutcome(trial));
-    const complete = row.expected_trials === 3 && row.coverage_complete === true && row.protocol_sha256 === manifest.protocol_sha256
+    const recovered = expected.some(id => recovery.effective.has(id));
+    const complete = row.expected_trials === 3 && (row.coverage_complete === true || recovered) && row.protocol_sha256 === manifest.protocol_sha256
       && row.level === '1-1' && expected.length === 3 && new Set(expected).size === 3 && valid.length === 3
       && new Set(valid.map(trial => trial.repeat_id)).size === 3 && nativeTrials.length === 3
       && sameIds(strings(row.expected_trial_ids), expected)
