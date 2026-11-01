@@ -1,0 +1,1 @@
+"""Paused Mario development benchmark."""

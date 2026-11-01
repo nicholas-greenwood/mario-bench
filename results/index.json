@@ -1,0 +1,635 @@
+{
+  "schema_version": 1,
+  "generated_at_utc": "2026-11-01T16:17:10.101622+00:00",
+  "data_class": "selected_development_examples",
+  "comparable_aggregate": null,
+  "leaderboard_ready": false,
+  "selection": "One verified clear per distinct state model and selected verified pixels-only partial runs. Different development prompts, cadence and history. No best-of result is a model average.",
+  "models_href": "models.json",
+  "model_counts": {
+    "state": 22,
+    "image": 14
+  },
+  "tracks": [
+    {
+      "id": "state",
+      "input": "current visible memory-derived state",
+      "verified_clear_models": 4
+    },
+    {
+      "id": "image",
+      "input": "pixels plus declared controls and timing only; no RAM",
+      "verified_clear_models": 0
+    }
+  ],
+  "metrics": {
+    "primary": {
+      "id": "mean_progress_pct",
+      "direction": "higher_is_better",
+      "range": [
+        0,
+        100
+      ],
+      "aggregation": "mean all prespecified repeats within level; equal level weights; not available for selected examples"
+    },
+    "speedrun": {
+      "id": "speedrun_score_native_frames",
+      "direction": "lower_is_better",
+      "completed_only": true,
+      "nominal_seconds": "native_frames/60",
+      "aggregation": "completed-only median per level with attempt/completion counts; unavailable for these selected examples",
+      "failed_episode_value": null
+    }
+  },
+  "levels": [
+    {
+      "level": "1-1",
+      "start_x": 40,
+      "goal_x": 3161,
+      "progress_mapping_validated": true
+    },
+    {
+      "level": "1-2",
+      "start_x": 40,
+      "goal_x": null,
+      "progress_mapping_validated": false
+    },
+    {
+      "level": "1-3",
+      "start_x": 40,
+      "goal_x": null,
+      "progress_mapping_validated": false
+    },
+    {
+      "level": "1-4",
+      "start_x": 40,
+      "goal_x": null,
+      "progress_mapping_validated": false
+    }
+  ],
+  "search_context": [
+    {
+      "scope": "first state development search",
+      "episodes_started": 145,
+      "episodes_finished": 135,
+      "unfinished_or_interrupted": 10,
+      "completed_episodes": 3,
+      "distinct_completed_models": 2,
+      "note": "Includes two Pplx clears and one Liquid clear; separate additional-state search not included"
+    },
+    {
+      "scope": "additional pixels development search",
+      "index_sha256": "d103bf6034a1735fbde07bf053fe4613b947281a3fcef11fe33dc30b15ad8e00",
+      "note": "All attempted runs retained in local research registry; selected episodes are not a denominator for clear rate",
+      "episodes_started": 92,
+      "status_counts": {
+        "death": 69,
+        "development_stagnation_abort": 14,
+        "api_failure": 2,
+        "development_external_stagnation_abort": 2,
+        "running": 4,
+        "development_external_abort": 1
+      },
+      "completed_episodes": 0
+    },
+    {
+      "scope": "first pixels development search",
+      "episodes_started": 168,
+      "episodes_finished": 151,
+      "unfinished_or_interrupted": 17,
+      "completed_episodes": 0,
+      "note": "Directory snapshot of all exploratory profiles; not a matched cohort or clear-rate estimate"
+    },
+    {
+      "scope": "additional state development search",
+      "episodes_started": 131,
+      "episodes_finished": 124,
+      "unfinished_or_interrupted": 7,
+      "completed_episodes": 4,
+      "note": "Independent exploratory contracts and cadence sweeps; no best-of clear rate"
+    }
+  ],
+  "examples": [
+    {
+      "id": "pplx-state-clear",
+      "data_class": "selected_development_examples",
+      "model_id": "perplexity/pplx-decider-v1.2",
+      "display_name": "Perplexity: Decider V1.2",
+      "returned_model": "perplexity/pplx-decider-v1.2-20261016",
+      "provider": "Perplexity",
+      "mode": "state",
+      "level": "1-1",
+      "status": "completed",
+      "completed": true,
+      "death": false,
+      "verified": true,
+      "start_x": 40,
+      "goal_x": 3161,
+      "furthest_valid_x": 3155.0,
+      "progress_pct": 100.0,
+      "native_frames": 1208,
+      "decisions": 302,
+      "speedrun_score_native_frames": 1208,
+      "nominal_game_seconds_to_completion": 20.133333333333333,
+      "experiment_config": {
+        "profile": "phase guidance; compact visible state",
+        "adapter": "joint12",
+        "cadence": 4,
+        "previous_screens": 0,
+        "observation": "native current state and recent positions",
+        "contract_sha256": "905208dc2a10e81fc31923f84ca614968e21979de9141a8f2409c238a4e63a3c",
+        "rom_sha256": "ec299b990e8bfee8ba46e3f61d63b2e1ae5b8a2e431de84e2e4bbd692dc53586",
+        "seed": 0,
+        "life_budget": 1,
+        "selected_attempt": true,
+        "matched_cohort": false,
+        "profile_id": "pplx-state-clear"
+      },
+      "input_audit": {
+        "privileged_state_sent": true,
+        "description": "state track intentionally receives current visible memory-derived state; independently replayed requests and outputs"
+      },
+      "trace_href": "traces/pplx-state-clear.json",
+      "trace_sha256": "f2b470ca6ce60e07f60a69a36d1a965db44bbde75abc81da51038a6f5be02891",
+      "replay_href": "replays/pplx-state-clear.mp4",
+      "replay_sha256": "06949c052e4823c82b4736de0e67f074d7b532237dffbc2fc6f2fb723b5844b6",
+      "source_hashes": {
+        "episode_sha256": "e2e503b1067ec1e485c5e82cc88581868341a5544d9ffc8f794a92e12c0bbcdb"
+      },
+      "controls": {
+        "adapter": "joint12",
+        "questions": [
+          "action"
+        ],
+        "trace_href": "traces/pplx-state-clear.json"
+      },
+      "selected_attempt_counts": {
+        "selected_examples": 1,
+        "completions": 1,
+        "note": "Selected showcase only, not the number of research attempts or a model clear rate"
+      },
+      "profile_href": "profiles/pplx-state-clear.json",
+      "profile_sha256": "05b21e926579c535547784e784dc1608ce19cd61ecf677567eaddc3ce9c2a8ec"
+    },
+    {
+      "id": "mercury-state-clear",
+      "data_class": "selected_development_examples",
+      "model_id": "inception/mercury-decide",
+      "display_name": "Inception: Mercury Decide",
+      "returned_model": "inception/mercury-decide-20260930",
+      "provider": "Inception",
+      "mode": "state",
+      "level": "1-1",
+      "status": "completed",
+      "completed": true,
+      "death": false,
+      "verified": true,
+      "start_x": 40,
+      "goal_x": 3161,
+      "furthest_valid_x": 3157.0,
+      "progress_pct": 100.0,
+      "native_frames": 1320,
+      "decisions": 264,
+      "speedrun_score_native_frames": 1320,
+      "nominal_game_seconds_to_completion": 22.0,
+      "experiment_config": {
+        "profile": "phase guidance; compact visible state",
+        "adapter": "joint12",
+        "cadence": 5,
+        "previous_screens": 0,
+        "observation": "native current state and recent positions",
+        "contract_sha256": "905208dc2a10e81fc31923f84ca614968e21979de9141a8f2409c238a4e63a3c",
+        "rom_sha256": "ec299b990e8bfee8ba46e3f61d63b2e1ae5b8a2e431de84e2e4bbd692dc53586",
+        "seed": 0,
+        "life_budget": 1,
+        "selected_attempt": true,
+        "matched_cohort": false,
+        "profile_id": "mercury-state-clear"
+      },
+      "input_audit": {
+        "privileged_state_sent": true,
+        "description": "state track intentionally receives current visible memory-derived state; independently replayed requests and outputs"
+      },
+      "trace_href": "traces/mercury-state-clear.json",
+      "trace_sha256": "02125cb726ce2aa17fbd624f0ea5c0f94f1f832d560c510e9a99800de7271d34",
+      "replay_href": "replays/mercury-state-clear.mp4",
+      "replay_sha256": "343500fbd58d3c6233f90a8b7912166afdc451989d63111eebf545e7adb96b4f",
+      "source_hashes": {
+        "episode_sha256": "e6ccedd108f4145dcf8dc9eadee5440b9db53477fd4d814d353ef53303adc536"
+      },
+      "controls": {
+        "adapter": "joint12",
+        "questions": [
+          "action"
+        ],
+        "trace_href": "traces/mercury-state-clear.json"
+      },
+      "selected_attempt_counts": {
+        "selected_examples": 1,
+        "completions": 1,
+        "note": "Selected showcase only, not the number of research attempts or a model clear rate"
+      },
+      "profile_href": "profiles/mercury-state-clear.json",
+      "profile_sha256": "b3596ca64ff41529d76c47c817b1f9cedb0c5ad411e7119cb2714d0366c7e025"
+    },
+    {
+      "id": "drex-state-clear",
+      "data_class": "selected_development_examples",
+      "model_id": "nace-ai/drex-max",
+      "display_name": "Nace.AI: Drex Max",
+      "returned_model": "nace-ai/drex-max-20261016",
+      "provider": "DeepInfra",
+      "mode": "state",
+      "level": "1-1",
+      "status": "completed",
+      "completed": true,
+      "death": false,
+      "verified": true,
+      "start_x": 40,
+      "goal_x": 3161,
+      "furthest_valid_x": 3156.0,
+      "progress_pct": 100.0,
+      "native_frames": 1384,
+      "decisions": 116,
+      "speedrun_score_native_frames": 1384,
+      "nominal_game_seconds_to_completion": 23.066666666666666,
+      "experiment_config": {
+        "profile": "short rules; compact visible state",
+        "adapter": "joint12",
+        "cadence": 12,
+        "previous_screens": 0,
+        "observation": "native current state and recent positions",
+        "contract_sha256": "44c3be57bf21acee2a4f004d9ec4b528b3a8d605d879bccb7a8ca5c3607dc7ee",
+        "rom_sha256": "ec299b990e8bfee8ba46e3f61d63b2e1ae5b8a2e431de84e2e4bbd692dc53586",
+        "seed": 0,
+        "life_budget": 1,
+        "selected_attempt": true,
+        "matched_cohort": false,
+        "profile_id": "drex-state-clear"
+      },
+      "input_audit": {
+        "privileged_state_sent": true,
+        "description": "state track intentionally receives current visible memory-derived state; independently replayed requests and outputs"
+      },
+      "trace_href": "traces/drex-state-clear.json",
+      "trace_sha256": "0af10e40124efaea2def0e4c4e6339c5ae458a2f8f15212c2b10f837d278c6bc",
+      "replay_href": "replays/drex-state-clear.mp4",
+      "replay_sha256": "cdc6b96fbbc032ead6a85db0cf42076d5b32f1694d8ce58929df6cf93c971a6c",
+      "source_hashes": {
+        "episode_sha256": "dc0a8981e5e36618ee6cd8e08d55af740d621138f929a9144a45d80926f47fca"
+      },
+      "controls": {
+        "adapter": "joint12",
+        "questions": [
+          "action"
+        ],
+        "trace_href": "traces/drex-state-clear.json"
+      },
+      "selected_attempt_counts": {
+        "selected_examples": 1,
+        "completions": 1,
+        "note": "Selected showcase only, not the number of research attempts or a model clear rate"
+      },
+      "profile_href": "profiles/drex-state-clear.json",
+      "profile_sha256": "ce93dd7b9d59896ca6914ab8c4afd32d3fa98240b33a74f20a981cf909d8f25e"
+    },
+    {
+      "id": "liquid-state-clear",
+      "data_class": "selected_development_examples",
+      "model_id": "liquid/d1-ultra",
+      "display_name": "LiquidAI: d1-ultra",
+      "returned_model": "liquid/d1-ultra-20261015",
+      "provider": "Liquid",
+      "mode": "state",
+      "level": "1-1",
+      "status": "completed",
+      "completed": true,
+      "death": false,
+      "verified": true,
+      "start_x": 40,
+      "goal_x": 3161,
+      "furthest_valid_x": 3157.0,
+      "progress_pct": 100.0,
+      "native_frames": 1255,
+      "decisions": 314,
+      "speedrun_score_native_frames": 1255,
+      "nominal_game_seconds_to_completion": 20.916666666666668,
+      "experiment_config": {
+        "profile": "visible surfaces; movement plus A questions",
+        "adapter": "movement_and_jump",
+        "cadence": 4,
+        "previous_screens": 0,
+        "observation": "native current state and recent positions",
+        "contract_sha256": "5b15378e4b1cf845d02cddb86455954d9e166a2393c2ed0ccedeadfa6937cd09",
+        "rom_sha256": "ec299b990e8bfee8ba46e3f61d63b2e1ae5b8a2e431de84e2e4bbd692dc53586",
+        "seed": 0,
+        "life_budget": 1,
+        "selected_attempt": true,
+        "matched_cohort": false,
+        "profile_id": "liquid-state-clear"
+      },
+      "input_audit": {
+        "privileged_state_sent": true,
+        "description": "state track intentionally receives current visible memory-derived state; independently replayed requests and outputs"
+      },
+      "trace_href": "traces/liquid-state-clear.json",
+      "trace_sha256": "112a424917bb92b253f89d78eb96ac2d1242278d2174a2a04823fd03daae389a",
+      "replay_href": "replays/liquid-state-clear.mp4",
+      "replay_sha256": "d61d0b43b61666d0c55fb3f2a11e44e95b596aa1bc083de58d82ba965d02d4ff",
+      "source_hashes": {
+        "episode_sha256": "923582d608eee0eca83658b9c08a968d56048985ae1e7a1bf419e409abaf6ee4"
+      },
+      "controls": {
+        "adapter": "movement_and_jump",
+        "questions": [
+          "jump",
+          "movement"
+        ],
+        "trace_href": "traces/liquid-state-clear.json"
+      },
+      "selected_attempt_counts": {
+        "selected_examples": 1,
+        "completions": 1,
+        "note": "Selected showcase only, not the number of research attempts or a model clear rate"
+      },
+      "profile_href": "profiles/liquid-state-clear.json",
+      "profile_sha256": "74ed1ff9590ea1c33d1ba9fa0e0da58aaac849b9f9643240291271bdfd639a4d"
+    },
+    {
+      "id": "pplx-pixels-partial",
+      "data_class": "selected_development_examples",
+      "model_id": "perplexity/pplx-decider-v1.2",
+      "display_name": "Perplexity: Decider V1.2",
+      "returned_model": "perplexity/pplx-decider-v1.2-20261016",
+      "provider": "Perplexity",
+      "mode": "image",
+      "level": "1-1",
+      "status": "game_over",
+      "completed": false,
+      "death": true,
+      "verified": true,
+      "start_x": 40,
+      "goal_x": 3161,
+      "furthest_valid_x": 2469.0,
+      "progress_pct": 77.82761935277155,
+      "native_frames": 1302,
+      "decisions": 186,
+      "speedrun_score_native_frames": null,
+      "nominal_game_seconds_to_completion": null,
+      "experiment_config": {
+        "profile": "short edge semantics; explicit A and B choices",
+        "adapter": "explicit_ab_joint12",
+        "cadence": 7,
+        "previous_screens": 1,
+        "observation": "current full screen plus 1 past full screen; no RAM",
+        "contract_sha256": "c25f2f228f875ed725c1f9044a70d18f08edad1612690b1b555b10f8c7f420fa",
+        "rom_sha256": "ec299b990e8bfee8ba46e3f61d63b2e1ae5b8a2e431de84e2e4bbd692dc53586",
+        "seed": 0,
+        "life_budget": 1,
+        "selected_attempt": true,
+        "matched_cohort": false,
+        "profile_id": "pplx-pixels-partial"
+      },
+      "input_audit": {
+        "privileged_state_sent": false,
+        "requests_audited": 186,
+        "description": "actual current/past screenshots and fixed pixel crops; declared rules/horizons and previous model controls ONLY",
+        "every_request_images_checked": true,
+        "native_replay_verified": true
+      },
+      "trace_href": "traces/pplx-pixels-partial.json",
+      "trace_sha256": "a3fc585f21f9f774d3ae0bb9b80af48832358158e873d237ab3e72d6b306d79d",
+      "replay_href": "replays/pplx-pixels-partial.mp4",
+      "replay_sha256": "fe44a6ba6f7da0325cd0d22ba2321cb85b15176a61d8bee46cbd75ca93472f14",
+      "source_hashes": {
+        "manifest_sha256": "22fca3a0aaf79205431590a3c40c62d92dfbdfecb5aa2b89caa974f824a16396",
+        "requests_sha256": "421a36ebbc951e5dc355f200061140ee0291efe2a7ff4faec80191cb42cd04de",
+        "responses_sha256": "77ec3925b542085646f6e4d75f391da5d71af0849176591358841b2708e4f739",
+        "private_replay_sha256": "124ae679407fb24e38a5fbcca953ad4047f3ca739a51dfc4ae27c6fe6724cdb6",
+        "input_audit_sha256": "483d1a8277d5af5ec13c1b50804f8ec0cb25ee09e7d94f85ede915453a4d270c"
+      },
+      "controls": {
+        "adapter": "explicit_ab_joint12",
+        "questions": [
+          "action"
+        ],
+        "trace_href": "traces/pplx-pixels-partial.json"
+      },
+      "selected_attempt_counts": {
+        "selected_examples": 1,
+        "completions": 0,
+        "note": "Selected showcase only, not the number of research attempts or a model clear rate"
+      },
+      "profile_href": "profiles/pplx-pixels-partial.json",
+      "profile_sha256": "231d246ba671e176586b212ac4cbc35178c83c1973b497bcbf8fb26621f45fb7"
+    },
+    {
+      "id": "jev-pixels-partial",
+      "data_class": "selected_development_examples",
+      "model_id": "typesafe/jev-1.14",
+      "display_name": "TypeSafe: Jev 1.14",
+      "returned_model": "typesafe/jev-1.14-20261014",
+      "provider": "TypeSafe",
+      "mode": "image",
+      "level": "1-1",
+      "status": "game_over",
+      "completed": false,
+      "death": true,
+      "verified": true,
+      "start_x": 40,
+      "goal_x": 3161,
+      "furthest_valid_x": 1661.0,
+      "progress_pct": 51.93848125600769,
+      "native_frames": 1134,
+      "decisions": 189,
+      "speedrun_score_native_frames": null,
+      "nominal_game_seconds_to_completion": null,
+      "experiment_config": {
+        "profile": "long-jump mechanics; four independent button questions",
+        "adapter": "independent_buttons",
+        "cadence": 6,
+        "previous_screens": 1,
+        "observation": "2 chronological full screens; no RAM",
+        "contract_sha256": "27056f6bead483924a7ba096dfb72dd57148a4d389e3fbdddb45411eee74395b",
+        "rom_sha256": "ec299b990e8bfee8ba46e3f61d63b2e1ae5b8a2e431de84e2e4bbd692dc53586",
+        "seed": 0,
+        "life_budget": 1,
+        "selected_attempt": true,
+        "matched_cohort": false,
+        "profile_id": "jev-pixels-partial"
+      },
+      "input_audit": {
+        "privileged_state_sent": false,
+        "requests_audited": 189,
+        "description": "screenshots, declared rules/horizons and previous model controls only",
+        "every_request_images_checked": true,
+        "native_replay_verified": true
+      },
+      "trace_href": "traces/jev-pixels-partial.json",
+      "trace_sha256": "ab93c6e564f69416614ff71763b232280c7c8b4bc51341ec2e7416d014749909",
+      "replay_href": "replays/jev-pixels-partial.mp4",
+      "replay_sha256": "e5a690942ff1ffc78a936aada4dfe731ed4156a644913b653580cf9f57d7b828",
+      "source_hashes": {
+        "manifest_sha256": "f227b23f42c9900b547b829d407aff4319b68ae8ba68483ad852e5209920492d",
+        "requests_sha256": "3aae5ed5534d33b2efd52b5b333e74a9f614dafb23b206f1487a7de90930bf1a",
+        "responses_sha256": "e018715610a9f14c5e27529177fd7db9a0109f90ec6f3e9f77de2882973c9125",
+        "private_replay_sha256": "7a7a14f2559bee48006f2a5328f214344b1d67aee1ce6a9e8a608e8926731625",
+        "input_audit_sha256": "090b1d762940a5311dcc24c39aba45a118c9343ef02687944e00d9b8252d57f8"
+      },
+      "controls": {
+        "adapter": "independent_buttons",
+        "questions": [
+          "horizontal",
+          "jump",
+          "run",
+          "vertical"
+        ],
+        "trace_href": "traces/jev-pixels-partial.json"
+      },
+      "selected_attempt_counts": {
+        "selected_examples": 1,
+        "completions": 0,
+        "note": "Selected showcase only, not the number of research attempts or a model clear rate"
+      },
+      "profile_href": "profiles/jev-pixels-partial.json",
+      "profile_sha256": "91400711a83623312598b9b60174fe068ba83cf43fd3dd0a87b95022ed936d18"
+    },
+    {
+      "id": "mercury-pixels-partial",
+      "data_class": "selected_development_examples",
+      "model_id": "inception/mercury-decide",
+      "display_name": "Inception: Mercury Decide",
+      "returned_model": "inception/mercury-decide-20260930",
+      "provider": "Inception",
+      "mode": "image",
+      "level": "1-1",
+      "status": "game_over",
+      "completed": false,
+      "death": true,
+      "verified": true,
+      "start_x": 40,
+      "goal_x": 3161,
+      "furthest_valid_x": 1797.0,
+      "progress_pct": 56.29605895546299,
+      "native_frames": 740,
+      "decisions": 124,
+      "speedrun_score_native_frames": null,
+      "nominal_game_seconds_to_completion": null,
+      "experiment_config": {
+        "profile": "edgezoom; explicit A and B choices",
+        "adapter": "explicit_ab_joint12",
+        "cadence": 6,
+        "previous_screens": 1,
+        "observation": "current full screen, fixed left/middle crops, 1 past full screen; no RAM",
+        "contract_sha256": "64d290fceaf2469f6037d490db6dddff02376c48a8d0d7c27fbb22bd1ccf6569",
+        "rom_sha256": "ec299b990e8bfee8ba46e3f61d63b2e1ae5b8a2e431de84e2e4bbd692dc53586",
+        "seed": 0,
+        "life_budget": 1,
+        "selected_attempt": true,
+        "matched_cohort": false,
+        "profile_id": "mercury-pixels-partial"
+      },
+      "input_audit": {
+        "privileged_state_sent": false,
+        "requests_audited": 124,
+        "description": "screenshots, declared rules/horizons and previous model controls only",
+        "every_request_images_checked": true,
+        "native_replay_verified": true
+      },
+      "trace_href": "traces/mercury-pixels-partial.json",
+      "trace_sha256": "1e06548f10b887b15f2278912e6d9538c4ff5153ec6e1de0c0f780a1af49a6aa",
+      "replay_href": "replays/mercury-pixels-partial.mp4",
+      "replay_sha256": "600ddef3f4f11b1c6db825642e9ca97c9ec71de87fec0ac3e4810b1f90d986c8",
+      "source_hashes": {
+        "manifest_sha256": "6144d74f8001126d45d7fa1479db133136dc744dcb1f295dc69787c8fc2c1edd",
+        "requests_sha256": "d5c91fc570f58ad0db9c01b468a7bbbc92749aaff3091a19a2a7d6c1d9b3eb2e",
+        "responses_sha256": "0407d3b7001e1ac51c05b00f861b481e5b08251cc600629be11b4357a57d6501",
+        "private_replay_sha256": "d85302ebd02c8cbd8c779bcdf582b1e96e1b09131eb47cae23c0d34fee3a7ee1",
+        "input_audit_sha256": "941cd6bf7b28644576bad3e8d1c815de601af2131e49a2db0ea23ecbe3bcdd36"
+      },
+      "controls": {
+        "adapter": "explicit_ab_joint12",
+        "questions": [
+          "action"
+        ],
+        "trace_href": "traces/mercury-pixels-partial.json"
+      },
+      "selected_attempt_counts": {
+        "selected_examples": 1,
+        "completions": 0,
+        "note": "Selected showcase only, not the number of research attempts or a model clear rate"
+      },
+      "profile_href": "profiles/mercury-pixels-partial.json",
+      "profile_sha256": "dcf1d9a585735061ee13464d4831866d4f88139fffbed4959f324c500b1994ec"
+    },
+    {
+      "id": "mammoth-pixels-partial",
+      "data_class": "selected_development_examples",
+      "model_id": "baseten/mammoth-1",
+      "display_name": "Baseten: Mammoth 1",
+      "returned_model": "baseten/mammoth-1-20261021",
+      "provider": "BaseTen",
+      "mode": "image",
+      "level": "1-1",
+      "status": "game_over",
+      "completed": false,
+      "death": true,
+      "verified": true,
+      "start_x": 40,
+      "goal_x": 3161,
+      "furthest_valid_x": 1788.0,
+      "progress_pct": 56.00768984299904,
+      "native_frames": 866,
+      "decisions": 145,
+      "speedrun_score_native_frames": null,
+      "nominal_game_seconds_to_completion": null,
+      "experiment_config": {
+        "profile": "edgezoom; explicit A and B choices",
+        "adapter": "explicit_ab_joint12",
+        "cadence": 6,
+        "previous_screens": 1,
+        "observation": "current full screen, fixed left/middle crops, 1 past full screen; no RAM",
+        "contract_sha256": "64d290fceaf2469f6037d490db6dddff02376c48a8d0d7c27fbb22bd1ccf6569",
+        "rom_sha256": "ec299b990e8bfee8ba46e3f61d63b2e1ae5b8a2e431de84e2e4bbd692dc53586",
+        "seed": 0,
+        "life_budget": 1,
+        "selected_attempt": true,
+        "matched_cohort": false,
+        "profile_id": "mammoth-pixels-partial"
+      },
+      "input_audit": {
+        "privileged_state_sent": false,
+        "requests_audited": 145,
+        "description": "screenshots, declared rules/horizons and previous model controls only",
+        "every_request_images_checked": true,
+        "native_replay_verified": true
+      },
+      "trace_href": "traces/mammoth-pixels-partial.json",
+      "trace_sha256": "fe29c40485f38d73bb6a1441bf65950e04df867809e4b12c5b31c3fa812fbf8e",
+      "replay_href": "replays/mammoth-pixels-partial.mp4",
+      "replay_sha256": "3874b1fda33f539da566510e7f20182b6608e4e3cd7d394657ad5b75c768b191",
+      "source_hashes": {
+        "manifest_sha256": "e8bd2cd53528abc69ab8d3eb0d0a7aa0011e80101d68a78f5fbfa490142314e5",
+        "requests_sha256": "10315b85ad9f0f6ea499fa10acffd05580bd6177567d093e3a2b77957fb137bf",
+        "responses_sha256": "64791471a0869d630932eca27d27f4bfd1cb6071e070644b768ba8431a438752",
+        "private_replay_sha256": "d909d35c82c34a951991a34550293c0470e9d39afe967f604a95596d77aa744d",
+        "input_audit_sha256": "f15f630b0630bc3001add66bdb4109b06a12c3528d62aeb20ba3d5e877fce2df"
+      },
+      "controls": {
+        "adapter": "explicit_ab_joint12",
+        "questions": [
+          "action"
+        ],
+        "trace_href": "traces/mammoth-pixels-partial.json"
+      },
+      "selected_attempt_counts": {
+        "selected_examples": 1,
+        "completions": 0,
+        "note": "Selected showcase only, not the number of research attempts or a model clear rate"
+      },
+      "profile_href": "profiles/mammoth-pixels-partial.json",
+      "profile_sha256": "28a034d1f76a7f6739c2a7c51b45010c81c542be2518dd0c6d17144510b643c5"
+    }
+  ],
+  "protocol_sha256": "b50db77febc7519e1b7e5373d54bf69cf002c36a28e3b3bd297cb6191e7c0a54"
+}

@@ -1,0 +1,643 @@
+{
+  "schema_version": 1,
+  "models": [
+    {
+      "id": "baseten/elephant-1",
+      "display_name": "Baseten: Elephant 1",
+      "request_model": "baseten/elephant-1-20261021",
+      "expected_returned_model": "baseten/elephant-1-20261021",
+      "provider": {
+        "only": [
+          "baseten"
+        ],
+        "allow_fallbacks": false
+      },
+      "expected_returned_providers": [
+        "BaseTen"
+      ],
+      "modes": {
+        "state": true,
+        "image": true
+      },
+      "image_provider": {
+        "only": [
+          "baseten"
+        ],
+        "allow_fallbacks": false
+      },
+      "image_expected_returned_providers": [
+        "BaseTen"
+      ],
+      "eligibility_note": "Technical transport eligibility only; not a game score or proof pixels influenced decisions"
+    },
+    {
+      "id": "baseten/joey-1",
+      "display_name": "Baseten: Joey 1",
+      "request_model": "baseten/joey-1-20261029",
+      "expected_returned_model": "baseten/joey-1-20261029",
+      "provider": {
+        "only": [
+          "baseten"
+        ],
+        "allow_fallbacks": false
+      },
+      "expected_returned_providers": [
+        "BaseTen"
+      ],
+      "modes": {
+        "state": true,
+        "image": true
+      },
+      "image_provider": {
+        "only": [
+          "baseten"
+        ],
+        "allow_fallbacks": false
+      },
+      "image_expected_returned_providers": [
+        "BaseTen"
+      ],
+      "eligibility_note": "Technical transport eligibility only; not a game score or proof pixels influenced decisions"
+    },
+    {
+      "id": "baseten/mammoth-1",
+      "display_name": "Baseten: Mammoth 1",
+      "request_model": "baseten/mammoth-1-20261021",
+      "expected_returned_model": "baseten/mammoth-1-20261021",
+      "provider": {
+        "only": [
+          "baseten"
+        ],
+        "allow_fallbacks": false
+      },
+      "expected_returned_providers": [
+        "BaseTen"
+      ],
+      "modes": {
+        "state": true,
+        "image": true
+      },
+      "image_provider": {
+        "only": [
+          "baseten"
+        ],
+        "allow_fallbacks": false
+      },
+      "image_expected_returned_providers": [
+        "BaseTen"
+      ],
+      "eligibility_note": "Technical transport eligibility only; not a game score or proof pixels influenced decisions"
+    },
+    {
+      "id": "cloudflare/clef",
+      "display_name": "Cloudflare: Clef",
+      "request_model": "cloudflare/clef",
+      "expected_returned_model": "cloudflare/clef",
+      "provider": {
+        "only": [
+          "primeintellect"
+        ],
+        "allow_fallbacks": false
+      },
+      "expected_returned_providers": [
+        "PrimeIntellect"
+      ],
+      "modes": {
+        "state": true,
+        "image": false
+      },
+      "image_provider": {
+        "only": [
+          "primeintellect"
+        ],
+        "allow_fallbacks": false
+      },
+      "image_expected_returned_providers": [
+        "PrimeIntellect"
+      ],
+      "eligibility_note": "Technical transport eligibility only; not a game score or proof pixels influenced decisions"
+    },
+    {
+      "id": "cloudflare/clef-flash",
+      "display_name": "Cloudflare: Clef Flash",
+      "request_model": "cloudflare/clef-flash",
+      "expected_returned_model": "cloudflare/clef-flash",
+      "provider": {
+        "only": [
+          "primeintellect"
+        ],
+        "allow_fallbacks": false
+      },
+      "expected_returned_providers": [
+        "PrimeIntellect"
+      ],
+      "modes": {
+        "state": true,
+        "image": false
+      },
+      "image_provider": {
+        "only": [
+          "primeintellect"
+        ],
+        "allow_fallbacks": false
+      },
+      "image_expected_returned_providers": [
+        "PrimeIntellect"
+      ],
+      "eligibility_note": "Technical transport eligibility only; not a game score or proof pixels influenced decisions"
+    },
+    {
+      "id": "cloudflare/clef-omni",
+      "display_name": "Cloudflare: Clef Omni",
+      "request_model": "cloudflare/clef-omni-20261009",
+      "expected_returned_model": "cloudflare/clef-omni-20261009",
+      "provider": {
+        "only": [
+          "cloudflare"
+        ],
+        "allow_fallbacks": false
+      },
+      "expected_returned_providers": [
+        "Cloudflare"
+      ],
+      "modes": {
+        "state": true,
+        "image": true
+      },
+      "image_provider": {
+        "only": [
+          "cloudflare"
+        ],
+        "allow_fallbacks": false
+      },
+      "image_expected_returned_providers": [
+        "Cloudflare"
+      ],
+      "eligibility_note": "Technical transport eligibility only; not a game score or proof pixels influenced decisions"
+    },
+    {
+      "id": "inception/mercury-decide",
+      "display_name": "Inception: Mercury Decide",
+      "request_model": "inception/mercury-decide-20260930",
+      "expected_returned_model": "inception/mercury-decide-20260930",
+      "provider": {
+        "only": [
+          "inception"
+        ],
+        "allow_fallbacks": false
+      },
+      "expected_returned_providers": [
+        "Inception"
+      ],
+      "modes": {
+        "state": true,
+        "image": true
+      },
+      "image_provider": {
+        "only": [
+          "inception"
+        ],
+        "allow_fallbacks": false
+      },
+      "image_expected_returned_providers": [
+        "Inception"
+      ],
+      "eligibility_note": "Technical transport eligibility only; not a game score or proof pixels influenced decisions"
+    },
+    {
+      "id": "jaredpalmer/kev-4b",
+      "display_name": "Jared Palmer: Kev 4B",
+      "request_model": "jaredpalmer/kev-4b-20260924",
+      "expected_returned_model": "jaredpalmer/kev-4b-20260924",
+      "provider": {
+        "only": [
+          "phala"
+        ],
+        "allow_fallbacks": false
+      },
+      "expected_returned_providers": [
+        "Phala"
+      ],
+      "modes": {
+        "state": true,
+        "image": false
+      },
+      "image_provider": {
+        "only": [
+          "phala"
+        ],
+        "allow_fallbacks": false
+      },
+      "image_expected_returned_providers": [
+        "Phala"
+      ],
+      "eligibility_note": "Technical transport eligibility only; not a game score or proof pixels influenced decisions"
+    },
+    {
+      "id": "liquid/d1-ultra",
+      "display_name": "LiquidAI: d1-ultra",
+      "request_model": "liquid/d1-ultra-20261015",
+      "expected_returned_model": "liquid/d1-ultra-20261015",
+      "provider": {
+        "only": [
+          "liquid"
+        ],
+        "allow_fallbacks": false
+      },
+      "expected_returned_providers": [
+        "Liquid"
+      ],
+      "modes": {
+        "state": true,
+        "image": true
+      },
+      "image_provider": {
+        "only": [
+          "liquid"
+        ],
+        "allow_fallbacks": false
+      },
+      "image_expected_returned_providers": [
+        "Liquid"
+      ],
+      "eligibility_note": "Technical transport eligibility only; not a game score or proof pixels influenced decisions"
+    },
+    {
+      "id": "liquid/d1.1",
+      "display_name": "LiquidAI: d1.1",
+      "request_model": "liquid/d1.1-20261027",
+      "expected_returned_model": "liquid/d1.1-20261027",
+      "provider": {
+        "only": [
+          "liquid"
+        ],
+        "allow_fallbacks": false
+      },
+      "expected_returned_providers": [
+        "Liquid"
+      ],
+      "modes": {
+        "state": true,
+        "image": true
+      },
+      "image_provider": {
+        "only": [
+          "liquid"
+        ],
+        "allow_fallbacks": false
+      },
+      "image_expected_returned_providers": [
+        "Liquid"
+      ],
+      "eligibility_note": "Technical transport eligibility only; not a game score or proof pixels influenced decisions"
+    },
+    {
+      "id": "microsoft/microsoft-decision-1",
+      "display_name": "Microsoft: Microsoft-Decision-1",
+      "request_model": "microsoft/microsoft-decision-1-20261009",
+      "expected_returned_model": "microsoft/microsoft-decision-1-20261009",
+      "provider": {
+        "only": [
+          "azure"
+        ],
+        "allow_fallbacks": false
+      },
+      "expected_returned_providers": [
+        "Azure"
+      ],
+      "modes": {
+        "state": true,
+        "image": false
+      },
+      "image_provider": {
+        "only": [
+          "azure"
+        ],
+        "allow_fallbacks": false
+      },
+      "image_expected_returned_providers": [
+        "Azure"
+      ],
+      "eligibility_note": "Technical transport eligibility only; not a game score or proof pixels influenced decisions"
+    },
+    {
+      "id": "nace-ai/drex-max",
+      "display_name": "Nace.AI: Drex Max",
+      "request_model": "nace-ai/drex-max-20261016",
+      "expected_returned_model": "nace-ai/drex-max-20261016",
+      "provider": {
+        "only": [
+          "deepinfra"
+        ],
+        "allow_fallbacks": false
+      },
+      "expected_returned_providers": [
+        "DeepInfra"
+      ],
+      "modes": {
+        "state": true,
+        "image": true
+      },
+      "image_provider": {
+        "only": [
+          "deepinfra"
+        ],
+        "allow_fallbacks": false
+      },
+      "image_expected_returned_providers": [
+        "DeepInfra"
+      ],
+      "eligibility_note": "Technical transport eligibility only; not a game score or proof pixels influenced decisions"
+    },
+    {
+      "id": "nace-ai/drex-v1.5",
+      "display_name": "Nace.AI: Drex v1.5",
+      "request_model": "nace-ai/drex-v1.5-20261009",
+      "expected_returned_model": "nace-ai/drex-v1.5-20261009",
+      "provider": {
+        "only": [
+          "deepinfra/us"
+        ],
+        "allow_fallbacks": false
+      },
+      "expected_returned_providers": [
+        "DeepInfra"
+      ],
+      "modes": {
+        "state": true,
+        "image": false
+      },
+      "image_provider": {
+        "only": [
+          "deepinfra/us"
+        ],
+        "allow_fallbacks": false
+      },
+      "image_expected_returned_providers": [
+        "DeepInfra"
+      ],
+      "eligibility_note": "Technical transport eligibility only; not a game score or proof pixels influenced decisions"
+    },
+    {
+      "id": "nace-ai/drex-v2.0",
+      "display_name": "Nace.AI: Drex v2.0",
+      "request_model": "nace-ai/drex-v2.0-20261009",
+      "expected_returned_model": "nace-ai/drex-v2.0-20261009",
+      "provider": {
+        "only": [
+          "deepinfra/us"
+        ],
+        "allow_fallbacks": false
+      },
+      "expected_returned_providers": [
+        "DeepInfra"
+      ],
+      "modes": {
+        "state": true,
+        "image": false
+      },
+      "image_provider": {
+        "only": [
+          "deepinfra/us"
+        ],
+        "allow_fallbacks": false
+      },
+      "image_expected_returned_providers": [
+        "DeepInfra"
+      ],
+      "eligibility_note": "Technical transport eligibility only; not a game score or proof pixels influenced decisions"
+    },
+    {
+      "id": "openai/gpt-6-luna-decisions",
+      "display_name": "OpenAI: GPT-6 Luna Decisions",
+      "request_model": "openai/gpt-6-luna-decisions-20261006",
+      "expected_returned_model": "openai/gpt-6-luna-decisions-20261006",
+      "provider": {
+        "only": [
+          "openai"
+        ],
+        "allow_fallbacks": false
+      },
+      "expected_returned_providers": [
+        "OpenAI"
+      ],
+      "modes": {
+        "state": true,
+        "image": true
+      },
+      "image_provider": {
+        "only": [
+          "openai"
+        ],
+        "allow_fallbacks": false
+      },
+      "image_expected_returned_providers": [
+        "OpenAI"
+      ],
+      "eligibility_note": "Technical transport eligibility only; not a game score or proof pixels influenced decisions"
+    },
+    {
+      "id": "perplexity/pplx-decider-flash-v1.2",
+      "display_name": "Perplexity: Decider Flash V1.2",
+      "request_model": "perplexity/pplx-decider-flash-v1.2-20261016",
+      "expected_returned_model": "perplexity/pplx-decider-flash-v1.2-20261016",
+      "provider": {
+        "only": [
+          "perplexity"
+        ],
+        "allow_fallbacks": false
+      },
+      "expected_returned_providers": [
+        "Perplexity"
+      ],
+      "modes": {
+        "state": true,
+        "image": true
+      },
+      "image_provider": {
+        "only": [
+          "perplexity"
+        ],
+        "allow_fallbacks": false
+      },
+      "image_expected_returned_providers": [
+        "Perplexity"
+      ],
+      "eligibility_note": "Technical transport eligibility only; not a game score or proof pixels influenced decisions"
+    },
+    {
+      "id": "perplexity/pplx-decider-v1.2",
+      "display_name": "Perplexity: Decider V1.2",
+      "request_model": "perplexity/pplx-decider-v1.2-20261016",
+      "expected_returned_model": "perplexity/pplx-decider-v1.2-20261016",
+      "provider": {
+        "only": [
+          "perplexity"
+        ],
+        "allow_fallbacks": false
+      },
+      "expected_returned_providers": [
+        "Perplexity"
+      ],
+      "modes": {
+        "state": true,
+        "image": true
+      },
+      "image_provider": {
+        "only": [
+          "perplexity"
+        ],
+        "allow_fallbacks": false
+      },
+      "image_expected_returned_providers": [
+        "Perplexity"
+      ],
+      "eligibility_note": "Technical transport eligibility only; not a game score or proof pixels influenced decisions"
+    },
+    {
+      "id": "respan/span-02",
+      "display_name": "Respan: Span-02",
+      "request_model": "respan/span-02-20261015",
+      "expected_returned_model": "respan/span-02-20261015",
+      "provider": {
+        "only": [
+          "respan"
+        ],
+        "allow_fallbacks": false
+      },
+      "expected_returned_providers": [
+        "Respan"
+      ],
+      "modes": {
+        "state": true,
+        "image": true
+      },
+      "image_provider": {
+        "only": [
+          "respan"
+        ],
+        "allow_fallbacks": false
+      },
+      "image_expected_returned_providers": [
+        "Respan"
+      ],
+      "eligibility_note": "Technical transport eligibility only; not a game score or proof pixels influenced decisions"
+    },
+    {
+      "id": "scaledown/classify-1",
+      "display_name": "ScaleDown: Classify-1",
+      "request_model": "scaledown/classify-1-20260928",
+      "expected_returned_model": "scaledown/classify-1-20260928",
+      "provider": {
+        "only": [
+          "scaledown"
+        ],
+        "allow_fallbacks": false
+      },
+      "expected_returned_providers": [
+        "ScaleDown"
+      ],
+      "modes": {
+        "state": true,
+        "image": false
+      },
+      "image_provider": {
+        "only": [
+          "scaledown"
+        ],
+        "allow_fallbacks": false
+      },
+      "image_expected_returned_providers": [
+        "ScaleDown"
+      ],
+      "eligibility_note": "Technical transport eligibility only; not a game score or proof pixels influenced decisions"
+    },
+    {
+      "id": "typesafe/jev-1.13",
+      "display_name": "TypeSafe: Jev 1.13",
+      "request_model": "typesafe/jev-1.13-20260917",
+      "expected_returned_model": "typesafe/jev-1.13-20260917",
+      "provider": {
+        "only": [
+          "typesafe"
+        ],
+        "allow_fallbacks": false
+      },
+      "expected_returned_providers": [
+        "TypeSafe"
+      ],
+      "modes": {
+        "state": true,
+        "image": true
+      },
+      "image_provider": {
+        "only": [
+          "typesafe"
+        ],
+        "allow_fallbacks": false
+      },
+      "image_expected_returned_providers": [
+        "TypeSafe"
+      ],
+      "eligibility_note": "Technical transport eligibility only; not a game score or proof pixels influenced decisions"
+    },
+    {
+      "id": "typesafe/jev-1.14",
+      "display_name": "TypeSafe: Jev 1.14",
+      "request_model": "typesafe/jev-1.14-20261014",
+      "expected_returned_model": "typesafe/jev-1.14-20261014",
+      "provider": {
+        "only": [
+          "typesafe"
+        ],
+        "allow_fallbacks": false
+      },
+      "expected_returned_providers": [
+        "TypeSafe"
+      ],
+      "modes": {
+        "state": true,
+        "image": true
+      },
+      "image_provider": {
+        "only": [
+          "typesafe"
+        ],
+        "allow_fallbacks": false
+      },
+      "image_expected_returned_providers": [
+        "TypeSafe"
+      ],
+      "eligibility_note": "Technical transport eligibility only; not a game score or proof pixels influenced decisions"
+    },
+    {
+      "id": "upstage/solar-decide-flash",
+      "display_name": "Upstage: Solar Decide Flash",
+      "request_model": "upstage/solar-decide-flash-20261008",
+      "expected_returned_model": "upstage/solar-decide-flash-20261008",
+      "provider": {
+        "only": [
+          "upstage/zdr"
+        ],
+        "allow_fallbacks": false
+      },
+      "expected_returned_providers": [
+        "Upstage"
+      ],
+      "modes": {
+        "state": true,
+        "image": false
+      },
+      "image_provider": {
+        "only": [
+          "upstage/zdr"
+        ],
+        "allow_fallbacks": false
+      },
+      "image_expected_returned_providers": [
+        "Upstage"
+      ],
+      "eligibility_note": "Technical transport eligibility only; not a game score or proof pixels influenced decisions"
+    }
+  ]
+}

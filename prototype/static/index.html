@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#111410">
+  <title>Mario 1–1 · Decision Observatory</title>
+  <link rel="stylesheet" href="/static/styles.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <main class="observatory">
+    <header class="masthead">
+      <a class="wordmark" href="/" aria-label="Mario benchmark home"><span class="mark" aria-hidden="true">M</span>mario<span class="wordmark-light">bench</span></a>
+      <span class="edition">DECISION OBSERVATORY <span class="slash">/</span> LOCAL PROTOTYPE</span>
+    </header>
+    <section class="heading">
+      <div><p class="eyebrow">SUPER MARIO BROS. <span>/</span> WORLD 1—1</p><h1>A small world. <br>A thousand decisions.</h1></div>
+      <div class="model-label"><span class="model-icon" aria-hidden="true">◈</span><div><span class="small-label">NATIVE DECISION MODEL</span><strong id="model">openai/gpt-6-luna-decisions</strong></div></div>
+    </section>
+    <div class="workspace">
+      <section class="stage" aria-label="Live Mario gameplay">
+        <div class="stage-top"><span><span class="status-dot" id="status-dot"></span><span id="status-text">CONNECTING</span></span><span id="episode">EPISODE —</span></div>
+        <div class="screen">
+          <img id="game-stream" src="/stream.mjpg" alt="Live emulator video of Super Mario Bros. world 1–1" draggable="false">
+          <div class="feed-message" id="feed-message"><span class="feed-cross" aria-hidden="true">+</span><strong>Waiting for the emulator</strong><span>The emulator stays frozen while the model decides.</span></div>
+        </div>
+        <div class="stage-bottom"><span>CURRENT EMULATOR FRAME <span class="dim">/ NO AUDIO</span></span><span id="frame">FRAME —</span></div>
+        <div class="progress-block"><div class="progress-caption"><span>LEVEL PROGRESS</span><strong id="progress-text">—</strong></div><div class="progress-track" role="progressbar" aria-label="Level progress" aria-valuemin="0" aria-valuemax="100" id="progress"><span id="progress-fill"></span></div><div class="progress-endpoints"><span>START</span><span id="position">X —</span><span>FLAG</span></div></div>
+      </section>
+      <aside class="telemetry" aria-label="Model controls and telemetry">
+        <div class="control-heading"><h2>Paused fixed-step</h2><span class="tiny-tag">AI PLAYER</span></div>
+        <div class="controls"><button class="primary" id="start" type="button"><span aria-hidden="true">▶</span> Run 10 decisions</button><button id="step" type="button">1 decision</button><button id="pause" type="button" disabled>Pause</button><button class="reset" id="reset" type="button" title="Reset the episode">↺ <span>Reset</span></button></div>
+        <div class="track-control"><label class="small-label" for="track">INPUT TRACK</label><select id="track"><option value="state" selected>State only</option><option value="image">Pixels only</option></select><label class="small-label" for="cadence">NATIVE FRAMES / ACTION</label><select id="cadence"><option value="4" selected>4</option><option value="8">8</option><option value="12">12</option></select><span>4 is the shared development default. Inference consumes zero game frames.</span><label class="small-label" for="model-choice">MODEL</label><select id="model-choice"><option value="perplexity/pplx-decider-v1.2">Pplx Decider v1.2</option><option value="openai/gpt-6-luna-decisions">GPT-6 Luna Decisions</option><option value="typesafe/jev-1.14">Jev 1.14</option><option value="typesafe/jev-1.13">Jev 1.13</option></select></div>
+        <p class="connection-message" id="connection-message" role="status" aria-live="polite">Connecting to the local runner…</p>
+        <div class="metrics"><div class="metric"><span class="small-label">NATIVE FRAMES</span><strong id="native-frames">0</strong></div><div class="metric"><span class="small-label">MODEL DECISIONS</span><strong id="decisions">0</strong></div><div class="metric metric-minor"><span class="small-label">APPLIED ACTIONS</span><strong id="actions">0</strong></div><div class="metric metric-minor"><span class="small-label">BATCH REMAINING</span><strong id="remaining">0</strong></div></div>
+        <details class="observed-state" open><summary>Decision input screenshot <span aria-hidden="true">+</span></summary><p class="empty-state" id="screenshot-caption">Captured at the same frame as the next decision state.</p><img id="input-screenshot" alt="Exact PNG captured for the model decision" hidden></details>
+        <section class="input-section"><div class="section-label"><h2>Last model input</h2><span id="input-caption">WAITING</span></div><div class="input-layout"><div class="dpad" aria-label="Directional controls"><span class="key up" id="key-up">↑</span><span class="key left" id="key-left">←</span><span class="dpad-centre">·</span><span class="key right" id="key-right">→</span><span class="key down" id="key-down">↓</span></div><div class="action-keys"><div><span class="key round" id="key-run">B</span><span class="key-label">RUN</span></div><div><span class="key round" id="key-jump">A</span><span class="key-label">JUMP</span></div></div></div></section>
+        <section class="probability-section"><div class="section-label"><h2>Decision probabilities</h2><span>DISTRIBUTION</span></div><div id="probabilities" class="probabilities"><p class="empty-state">Waiting for the first model decision.</p></div></section>
+        <details class="observed-state"><summary>Observed state <span aria-hidden="true">+</span></summary><pre id="context">No observation received.</pre></details>
+        <div class="run-footer"><span id="outcome">READY WHEN YOU ARE</span><span id="cost">COST —</span></div>
+      </aside>
+    </div>
+    <footer class="page-footer"><span>Paused observation and fixed native-frame control.</span><span>FREEZE → OBSERVE → DECIDE → STEP</span></footer>
+  </main>
+</body>
+</html>

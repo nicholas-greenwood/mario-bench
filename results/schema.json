@@ -1,0 +1,239 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "mario bench development checkpoint index",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "data_class",
+    "comparable_aggregate",
+    "leaderboard_ready",
+    "model_counts",
+    "tracks",
+    "examples",
+    "search_context"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "data_class": {
+      "const": "selected_development_examples"
+    },
+    "comparable_aggregate": {
+      "type": "null"
+    },
+    "leaderboard_ready": {
+      "const": false
+    },
+    "models_href": {
+      "type": "string"
+    },
+    "model_counts": {
+      "type": "object",
+      "required": [
+        "state",
+        "image"
+      ],
+      "properties": {
+        "state": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "image": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "tracks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "input",
+          "verified_clear_models"
+        ],
+        "properties": {
+          "id": {
+            "enum": [
+              "state",
+              "image"
+            ]
+          },
+          "input": {
+            "type": "string"
+          },
+          "verified_clear_models": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      }
+    },
+    "examples": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/example"
+      }
+    },
+    "search_context": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    }
+  },
+  "$defs": {
+    "example": {
+      "type": "object",
+      "required": [
+        "id",
+        "data_class",
+        "model_id",
+        "display_name",
+        "returned_model",
+        "provider",
+        "mode",
+        "level",
+        "completed",
+        "verified",
+        "progress_pct",
+        "native_frames",
+        "speedrun_score_native_frames",
+        "nominal_game_seconds_to_completion",
+        "experiment_config",
+        "trace_href",
+        "trace_sha256",
+        "replay_href",
+        "replay_sha256",
+        "source_hashes",
+        "input_audit"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "data_class": {
+          "const": "selected_development_examples"
+        },
+        "mode": {
+          "enum": [
+            "state",
+            "image"
+          ]
+        },
+        "verified": {
+          "const": true
+        },
+        "completed": {
+          "type": "boolean"
+        },
+        "progress_pct": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "native_frames": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "speedrun_score_native_frames": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        },
+        "nominal_game_seconds_to_completion": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "exclusiveMinimum": 0
+        },
+        "trace_href": {
+          "type": "string"
+        },
+        "replay_href": {
+          "type": "string"
+        },
+        "trace_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "replay_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "experiment_config": {
+          "type": "object",
+          "required": [
+            "profile",
+            "adapter",
+            "cadence",
+            "contract_sha256",
+            "selected_attempt",
+            "matched_cohort"
+          ],
+          "properties": {
+            "selected_attempt": {
+              "const": true
+            },
+            "matched_cohort": {
+              "const": false
+            },
+            "cadence": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "completed": {
+                "const": false
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "speedrun_score_native_frames": {
+                "type": "null"
+              },
+              "nominal_game_seconds_to_completion": {
+                "type": "null"
+              },
+              "progress_pct": {
+                "exclusiveMaximum": 100
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "completed": {
+                "const": true
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "progress_pct": {
+                "const": 100
+              },
+              "speedrun_score_native_frames": {
+                "type": "integer",
+                "minimum": 1
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

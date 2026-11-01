@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mario-bench"
+version = "0.1.0"
+description = "Paused, fixed-frame Mario development benchmark for decision models"
+readme = "README.md"
+requires-python = ">=3.13"
+license = "MIT"
+license-files = ["LICENSE", "docs/third-party-notices.md"]
+dependencies = [
+    "gym-super-mario-bros==9.1.0",
+    "nes-py==9.0.1",
+    "pillow==13.0.0",
+]
+
+[project.scripts]
+mario-demo = "prototype.server:main"
+mario-bench = "benchmark.run:main"
+mario-bench-audit = "benchmark.audit:main"
+
+[tool.setuptools]
+packages = ["prototype", "benchmark", "benchmark.profiles"]
+include-package-data = false
+
+[tool.setuptools.package-data]
+prototype = ["static/*"]
+benchmark = ["models.json", "protocol.json", "PROTOCOL.txt"]
+"benchmark.profiles" = ["*.json"]

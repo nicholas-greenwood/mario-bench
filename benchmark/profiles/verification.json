@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "network_calls": 0,
+  "state_profiles": [
+    {
+      "profile": "pplx-state-clear",
+      "actual_provider_requests_roundtripped": 302,
+      "raw_choices_expanded_exactly": 302
+    },
+    {
+      "profile": "mercury-state-clear",
+      "actual_provider_requests_roundtripped": 264,
+      "raw_choices_expanded_exactly": 264
+    },
+    {
+      "profile": "drex-state-clear",
+      "actual_provider_requests_roundtripped": 116,
+      "raw_choices_expanded_exactly": 116
+    },
+    {
+      "profile": "liquid-state-clear",
+      "actual_provider_requests_roundtripped": 314,
+      "raw_choices_expanded_exactly": 314
+    }
+  ],
+  "image_profiles": {
+    "profiles": [
+      {
+        "profile": "pixels-edge-pplx-c7-v1",
+        "actual_provider_requests_roundtripped": 186,
+        "raw_choices_expanded_exactly": 186,
+        "native_frames": 1302
+      },
+      {
+        "profile": "pixels-edge-crop-luna-c7-v1",
+        "actual_provider_requests_roundtripped": 175,
+        "raw_choices_expanded_exactly": 175,
+        "native_frames": 1223
+      },
+      {
+        "profile": "pixels-edge-a-age-pplx-c4-v1",
+        "actual_provider_requests_roundtripped": 267,
+        "raw_choices_expanded_exactly": 267,
+        "native_frames": 1065
+      },
+      {
+        "profile": "pixels-four-question-jev-c6-v1",
+        "actual_provider_requests_roundtripped": 189,
+        "raw_choices_expanded_exactly": 189,
+        "native_frames": 1134
+      }
+    ],
+    "adapter_sha256": "920eb9982577e1fb32646e05eef83f17af4f7907fbac23a02a5f275203638481"
+  },
+  "edgezoom": {
+    "profile": "edgezoom-v1",
+    "native_request_bodies_reproduced_byte_for_byte": 269,
+    "raw_native_responses_decoded_to_identical_buttons": 269,
+    "network_calls": 0,
+    "source_sha256": "f73acecaeb5f6bdaf746d59a1a7d36383f6a2ed7400c3bc3ed6950284a05504b"
+  }
+}

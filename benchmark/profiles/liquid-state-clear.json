@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "id": "liquid-state-clear",
+  "mode": "state",
+  "level": "1-1",
+  "cadence": 4,
+  "previous_screens": 0,
+  "contract": {
+    "adapter": "movement_and_jump",
+    "questions": {
+      "jump": {
+        "criteria": {
+          "held": "Hold A for all4 frames. Start a jump if eligible or sustain an ongoing jump.",
+          "released": "Release A for all4 frames. Shorten current ascent and prepare a future fresh jump."
+        },
+        "instructions": "Choose A for the next4 native frames. A fresh press while grounded starts a jump; A held during ascent sustains height; releasing A during descent prepares the next fresh jump. Keeping A held through a landing does not initiate another jump. Choose from current geometry, current phase, and current button state.",
+        "type": "choice"
+      },
+      "movement": {
+        "criteria": {
+          "brake_left": "Hold left+B to brake rightward momentum, then move left.",
+          "coast": "Release horizontal directions and B; existing momentum may continue.",
+          "run_right": "Hold right+B for running forward progress.",
+          "walk_right": "Hold right, release B for walking forward; existing running momentum does not stop immediately."
+        },
+        "instructions": "Choose horizontal movement for the next4 native frames. Advance to the flag alive. Consider the current exposed top surfaces and momentum when positioning for a landing. This question controls only horizontal and run buttons; jumping is decided by the jump question.",
+        "type": "choice"
+      }
+    },
+    "rules": "Play Super Mario Bros. World 1-1 to the flag. Coordinates are world pixels, x increases right, y increases down. Scene is current visible information, not a future map. Each action lasts the declared interval with physics paused until your answer. A jump starts only on a fresh A press while grounded; keeping A held through landing will NOT jump again. Release A before the next fresh jump. Holding A during ascent increases height; releasing A shortens the jump. B makes running faster and jumps longer. Momentum persists on release. Mario can jump onto pipes, blocks and stairs and must clear floor gaps. Enemy side contact is dangerous, landing from above stomps ordinary walking enemies. Think ahead about visible hazards and the size of your body. All action choices are your own. Reach the flag alive, avoid waiting indefinitely or running into walls. No action or route recommendation is supplied. General jump phases: hold A while ascending when height or distance is needed; release A while descending to prepare the next fresh jump. Releasing A during ascent shortens the jump, but keeping it held through landing prevents the next jump. On the ground a fresh jump needs the A release-to-press edge. For stairs, the feet must rise above each solid step before crossing its side; landing on a raised step permits another jump. A jump begun too far before a gap can end above the gap; the current visible geometry determines takeoff timing.",
+    "movement": {
+      "brake_left": {
+        "horizontal": "left",
+        "jump": "released",
+        "run": "held",
+        "vertical": "released"
+      },
+      "coast": {
+        "horizontal": "released",
+        "jump": "released",
+        "run": "released",
+        "vertical": "released"
+      },
+      "run_right": {
+        "horizontal": "right",
+        "jump": "released",
+        "run": "held",
+        "vertical": "released"
+      },
+      "walk_right": {
+        "horizontal": "right",
+        "jump": "released",
+        "run": "released",
+        "vertical": "released"
+      }
+    }
+  },
+  "observation": "native current state and recent positions",
+  "model_id": "liquid/d1-ultra",
+  "returned_model": "liquid/d1-ultra-20261015",
+  "provider": "Liquid",
+  "data_class": "selected_development_profile",
+  "common_benchmark_default": false,
+  "observer": "exposed_surfaces",
+  "rules": "Play Super Mario Bros. World 1-1 to the flag. Coordinates are world pixels, x increases right, y increases down. Scene is current visible information, not a future map. Each action lasts the declared interval with physics paused until your answer. A jump starts only on a fresh A press while grounded; keeping A held through landing will NOT jump again. Release A before the next fresh jump. Holding A during ascent increases height; releasing A shortens the jump. B makes running faster and jumps longer. Momentum persists on release. Mario can jump onto pipes, blocks and stairs and must clear floor gaps. Enemy side contact is dangerous, landing from above stomps ordinary walking enemies. Think ahead about visible hazards and the size of your body. All action choices are your own. Reach the flag alive, avoid waiting indefinitely or running into walls. No action or route recommendation is supplied. General jump phases: hold A while ascending when height or distance is needed; release A while descending to prepare the next fresh jump. Releasing A during ascent shortens the jump, but keeping it held through landing prevents the next jump. On the ground a fresh jump needs the A release-to-press edge. For stairs, the feet must rise above each solid step before crossing its side; landing on a raised step permits another jump. A jump begun too far before a gap can end above the gap; the current visible geometry determines takeoff timing.",
+  "source_files": [
+    {
+      "repo_path": "benchmark/profiles/state_v1.py",
+      "sha256": "e239653f7b45275eac6377c7369426d536c1ad31db64b06a8e4beb805fb9ecf8"
+    }
+  ]
+}

@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "id": "jev-pixels-partial",
+  "mode": "image",
+  "level": "1-1",
+  "cadence": 6,
+  "previous_screens": 1,
+  "contract": {
+    "adapter": "independent_buttons",
+    "questions": {
+      "horizontal": {
+        "criteria": {
+          "left": "Hold left.",
+          "released": "Release horizontal movement.",
+          "right": "Hold right."
+        },
+        "instructions": "Choose horizontal movement for survival and progress toward the flag based on the images.",
+        "type": "choice"
+      },
+      "jump": {
+        "criteria": {
+          "held": "Press/hold A: initiate jump if on a surface and eligible, or sustain existing jump.",
+          "released": "Release A: shorten/finish jump and allow a fresh press for the next jump."
+        },
+        "instructions": "Choose A from the screenshots and current/previous button state. A held sustains ascent and airtime; A released early makes a short hop. For a new jump, release A before pressing. Decide whether starting, sustaining, or finishing a jump best clears the visible hazard.",
+        "type": "choice"
+      },
+      "run": {
+        "criteria": {
+          "held": "Hold B to run faster/fire when eligible.",
+          "released": "Release B to walk at ordinary speed."
+        },
+        "instructions": "Choose B. Running moves faster and farther; walking offers more precise control.",
+        "type": "choice"
+      },
+      "vertical": {
+        "criteria": {
+          "down": "Hold down, crouching or entering a pipe when eligible.",
+          "released": "Release vertical directions.",
+          "up": "Hold up."
+        },
+        "instructions": "Choose vertical control. Usually released in ordinary movement; up/down do not jump.",
+        "type": "choice"
+      }
+    },
+    "initial_provider_text": [
+      "{\"game\":\"Super Mario Bros 1-1\",\"instructions\":\"Play Super Mario Bros world 1-1 to reach the flag alive by moving right. All evidence about the game comes from the screenshots; infer Mario, enemies, surfaces, and motion visually. The game is paused while you decide. You choose all four simultaneous button states, held for the stated number of native 60Hz frames. Right/left moves, A jumps, B runs, down crouches or enters pipes. Holding A sustains a jump; release A before a fresh jump after landing. Holding A through landing does not start another jump. Side contact with enemies and falling into gaps are dangerous; landing on an enemy can defeat it. Aim jumps using visible obstacles and motion, and release A when appropriate to prepare another jump. Images are native 256x240, nearest-neighbour enlarged to 512x480; chronological oldest first, current last. No automatic action correction or controller assists exist.\",\"next_control_interval_native_frames\":6,\"previous_controls\":[]} General control guidance: walk for precision near hazards; high-speed movement requires anticipating collisions. Jumping underneath a solid block can stop the ascent. Sustained A increases height; releasing A very early can make a jump too short to clear tall obstacles. A pressed while airborne cannot restart a jump. If repeated jumps cannot clear an obstacle, consider backing away to gain running momentum. Work out the actual situation from the screenshots. Watch where the solid ground ends: initiate gap jumps while still standing on the ground, before moving beyond the edge. Do not confuse decorative background hills with solid platforms. When approaching an enemy beneath low blocks, account for the ceiling interrupting a jump. General gap-jumping principle: approach toward the visible edge before beginning a gap jump; jumping far before a gap can leave you descending into it. Sustain A during ascent for enough height and airtime to clear the gap or tall obstacle. Let the image determine whether you have actually cleared it. Releasing A very shortly after takeoff makes a low short hop.",
+      "Screenshot taken before decision 0"
+    ]
+  },
+  "observation": "2 chronological full screens; no RAM",
+  "model_id": "typesafe/jev-1.14",
+  "returned_model": "typesafe/jev-1.14-20261014",
+  "provider": "TypeSafe",
+  "data_class": "selected_development_profile",
+  "common_benchmark_default": false,
+  "source_files": [
+    {
+      "repo_path": "benchmark/profiles/image_v1.py",
+      "sha256": "920eb9982577e1fb32646e05eef83f17af4f7907fbac23a02a5f275203638481"
+    }
+  ],
+  "input_builder_version": "jev-longjump-c6",
+  "frozen_builder_profile_id": "pixels-four-question-jev-c6-v1",
+  "builder_settings": {
+    "model": "typesafe/jev-1.14-20261014",
+    "provider": {
+      "allow_fallbacks": false,
+      "only": [
+        "typesafe"
+      ]
+    },
+    "questions": {
+      "horizontal": {
+        "criteria": {
+          "left": "Hold left.",
+          "released": "Release horizontal movement.",
+          "right": "Hold right."
+        },
+        "instructions": "Choose horizontal movement for survival and progress toward the flag based on the images.",
+        "type": "choice"
+      },
+      "jump": {
+        "criteria": {
+          "held": "Press/hold A: initiate jump if on a surface and eligible, or sustain existing jump.",
+          "released": "Release A: shorten/finish jump and allow a fresh press for the next jump."
+        },
+        "instructions": "Choose A from the screenshots and current/previous button state. A held sustains ascent and airtime; A released early makes a short hop. For a new jump, release A before pressing. Decide whether starting, sustaining, or finishing a jump best clears the visible hazard.",
+        "type": "choice"
+      },
+      "run": {
+        "criteria": {
+          "held": "Hold B to run faster/fire when eligible.",
+          "released": "Release B to walk at ordinary speed."
+        },
+        "instructions": "Choose B. Running moves faster and farther; walking offers more precise control.",
+        "type": "choice"
+      },
+      "vertical": {
+        "criteria": {
+          "down": "Hold down, crouching or entering a pipe when eligible.",
+          "released": "Release vertical directions.",
+          "up": "Hold up."
+        },
+        "instructions": "Choose vertical control. Usually released in ordinary movement; up/down do not jump.",
+        "type": "choice"
+      }
+    },
+    "cadence_frames": 6,
+    "metadata_template": {
+      "game": "Super Mario Bros 1-1",
+      "instructions": "Play Super Mario Bros world 1-1 to reach the flag alive by moving right. All evidence about the game comes from the screenshots; infer Mario, enemies, surfaces, and motion visually. The game is paused while you decide. You choose all four simultaneous button states, held for the stated number of native 60Hz frames. Right/left moves, A jumps, B runs, down crouches or enters pipes. Holding A sustains a jump; release A before a fresh jump after landing. Holding A through landing does not start another jump. Side contact with enemies and falling into gaps are dangerous; landing on an enemy can defeat it. Aim jumps using visible obstacles and motion, and release A when appropriate to prepare another jump. Images are native 256x240, nearest-neighbour enlarged to 512x480; chronological oldest first, current last. No automatic action correction or controller assists exist.",
+      "next_control_interval_native_frames": 6,
+      "previous_controls": []
+    },
+    "text_suffix": " General control guidance: walk for precision near hazards; high-speed movement requires anticipating collisions. Jumping underneath a solid block can stop the ascent. Sustained A increases height; releasing A very early can make a jump too short to clear tall obstacles. A pressed while airborne cannot restart a jump. If repeated jumps cannot clear an obstacle, consider backing away to gain running momentum. Work out the actual situation from the screenshots. Watch where the solid ground ends: initiate gap jumps while still standing on the ground, before moving beyond the edge. Do not confuse decorative background hills with solid platforms. When approaching an enemy beneath low blocks, account for the ceiling interrupting a jump. General gap-jumping principle: approach toward the visible edge before beginning a gap jump; jumping far before a gap can leave you descending into it. Sustain A during ascent for enough height and airtime to clear the gap or tall obstacle. Let the image determine whether you have actually cleared it. Releasing A very shortly after takeoff makes a low short hop.",
+    "metadata_encoding": "compact_sorted_json",
+    "controller_interface": "four_independent_simultaneous_button_states",
+    "previous_controls_schema": [
+      "decision",
+      "buttons",
+      "held_native_frames"
+    ],
+    "previous_controls_limit": 12,
+    "maximum_previous_full_screens": 1,
+    "image_order": "past_then_current",
+    "image_label_clock": "decision_index",
+    "current_image_label": "Screenshot taken before decision {clock}",
+    "past_image_label": "Screenshot taken before decision {clock}",
+    "full_image_size": [
+      512,
+      480
+    ],
+    "native_image_size": [
+      256,
+      240
+    ],
+    "interpolation": "nearest",
+    "normalise_png": false,
+    "crop": null,
+    "a_button_notes": {},
+    "a_state_duration_source": null
+  }
+}
