@@ -27,7 +27,7 @@ export function Intro() {
     <section className="intro" aria-labelledby="intro-title">
       <h1 id="intro-title">a benchmark for decision models playing super mario bros.</h1>
       <div className="intro-detail">
-        <p>models choose every controller input. state models receive visible geometry and motion from game memory; pixels models receive screenshots without that memory data.</p>
+        <p>models choose every controller input. state models receive privileged current-viewport ram terrain and motion, which can include unrevealed tile ids; pixels models receive screenshots without that memory data.</p>
         <p>the game pauses during inference, then advances a fixed number of frames per action. we measure progress, completion and gameplay time, excluding api waits. published runs are verified by replaying their recorded actions offline.</p>
       </div>
     </section>
