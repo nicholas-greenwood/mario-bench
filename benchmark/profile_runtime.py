@@ -12,10 +12,9 @@ import random
 from benchmark.profiles import load_profile, state_text
 from benchmark.profiles import image_v1, memoryfinish_v1
 from benchmark.profiles.probability_sampler_v1 import sample_choice
-from prototype.control import ACTIONS as STATE_ACTIONS
 from prototype.decisions import PolicyError
 
-PROFILE_IDS = ('pplx-state-clear', 'mammoth-pixels-first-clear',
+PROFILE_IDS = ('pplx-state-clear', 'mercury-state-clear', 'drex-state-clear', 'liquid-state-clear', 'mammoth-pixels-first-clear',
                'pplx-pixels-sampled-clear-t005-seed0', 'mercury-pixels-planner-sampled-clear-t02-seed0')
 NEUTRAL = dict(horizontal='released', vertical='released', jump='released', run='released')
 
@@ -62,7 +61,14 @@ class ProfileSession:
         self.min_hold = 2 if profile_id == 'mammoth-pixels-first-clear' or self.multistage else self.cadence
         self.mode = self.profile['mode']
         self.sampler = self.profile.get('probability_sampler')
-        if self.multistage:
+        if self.mode == 'state':
+            provider = {'Perplexity': 'perplexity', 'Inception': 'inception',
+                        'DeepInfra': 'deepinfra', 'Liquid': 'liquid'}[self.profile['provider']]
+            self.model = dict(id=self.profile['model_id'], request_model=self.profile['returned_model'],
+                              expected_returned_model=self.profile['returned_model'],
+                              provider=dict(only=[provider], allow_fallbacks=False),
+                              expected_returned_provider_names=[self.profile['provider']])
+        elif self.multistage:
             self.model = dict(id='inception/mercury-decide', request_model=self.profile['settings']['model'],
                               expected_returned_model=self.profile['settings']['model'],
                               provider=dict(only=['inception'], allow_fallbacks=False),
@@ -100,7 +106,7 @@ class ProfileSession:
     def parse(self, response, body, header_id=None):
         """Transport validation preserves the provider choice; it never draws RNG."""
         planning = self.multistage and 'action' not in body['questions']
-        validate_response(response, body, require_action=not planning)
+        validate_response(response, body, require_action='action' in body['questions'])
         if (response.get('model') != self.model['expected_returned_model']
                 or response.get('provider') not in self.model['expected_returned_provider_names']):
             raise PolicyError('Returned model/provider differs from pinned expected identity')
@@ -111,7 +117,7 @@ class ProfileSession:
                               for key, answer in response['answers'].items()}) if planning else self._decode(response))
         return dict(**decoded, model=response['model'], provider=response['provider'],
                     probabilities={key: answer['probabilities'] for key, answer in response['answers'].items()},
-                    native_choice=(response['answers']['action']['choice'] if not planning else None), usage=usage,
+                    native_choice=response['answers'].get('action', {}).get('choice'), usage=usage,
                     request_id=response.get('id') or header_id)
 
     def accept_stage(self, stage, response, body):
@@ -135,9 +141,9 @@ class ProfileSession:
                 raise PolicyError('Motor response requires a committed native plan')
             duration = policy.DURATIONS[self.current_plan['duration']['choice']] if 'duration' in self.current_plan else 12
             return dict(buttons=dict(policy.ACTIONS[response['answers']['action']['choice']]), native_frames=duration)
-        if self.id == 'pplx-state-clear':
-            return dict(buttons=dict(STATE_ACTIONS[response['answers']['action']['choice']]),
-                        native_frames=self.cadence)
+        if self.mode == 'state':
+            from benchmark.public_results import decode_answers
+            return dict(buttons=decode_answers(self.profile, response), native_frames=self.cadence)
         if self.id == 'mammoth-pixels-first-clear':
             return memoryfinish_v1.decode_response(response, self.controls)
         return dict(buttons=image_v1.decode_profile_response(self.profile['base_builder_profile'], response),
@@ -189,7 +195,10 @@ def fixture_response(model, body, index):
     for name, question in body['questions'].items():
         keys = list(question['criteria'])
         preferred = 'right_run_release' if 'right_run_release' in keys else 'right_B_held_A_released'
-        choice = preferred if name == 'action' else ('precision_2' if 'precision_2' in keys else keys[0])
+        preferred_by_question = {'action': preferred, 'movement': 'run_right', 'jump': 'released'}
+        choice = preferred_by_question.get(name, 'precision_2')
+        if choice not in keys:
+            choice = keys[0]
         # Slightly nontrivial probabilities exercise the full sampler contract.
         weights = {key: (0.8 if key == choice else 0.2 / (len(keys) - 1)) for key in keys}
         answers[name] = dict(type='choice', choice=choice, probabilities=weights)
