@@ -505,7 +505,8 @@
         "state-c4-openai--gpt-6-luna-decisions",
         "pixels-best-openai--gpt-6-luna-decisions"
       ],
-      "published_image_observation_available": true
+      "published_image_observation_available": true,
+      "state_serialization": "json_object"
     },
     {
       "id": "perplexity/pplx-decider-flash-v1.2",

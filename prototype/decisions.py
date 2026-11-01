@@ -77,7 +77,7 @@ class PolicyError(RuntimeError):
 
 
 class OpenRouterPolicy:
-    def __init__(self, api_key: str, model: str = DEFAULT_MODEL, *, timeout: float = 4.0):
+    def __init__(self, api_key: str, model: str = DEFAULT_MODEL, *, timeout: float = 4.0, state_serialization: str = "auto"):
         if not isinstance(api_key, str) or not api_key.strip():
             raise PolicyError("OPENROUTER_API_KEY is missing; set it in .env before starting.")
         if not isinstance(model, str) or not model.strip():
@@ -87,6 +87,9 @@ class OpenRouterPolicy:
         self._api_key = api_key.strip()
         self.model = model
         self.timeout = float(timeout)
+        if state_serialization not in ("auto", "text", "json_object"):
+            raise ValueError("Unknown state serialization")
+        self.state_serialization = state_serialization
         self._connection: http.client.HTTPSConnection | None = None
 
     def close(self) -> None:
@@ -109,14 +112,18 @@ class OpenRouterPolicy:
         if not isinstance(state, dict):
             raise ValueError("Mario state must be a dictionary.")
         interval = state.get("control_interval_frames", 4)
-        if image_png is None:
-            parts = state_text(state, interval)
-        else:
-            from prototype.image_observation import image_parts
-            parts = image_parts(image_png, state["frame"], interval, state["buttons"], level=state.get("level", "1-1"))
         from pathlib import Path
         roster = json.loads((Path(__file__).resolve().parents[1] / "benchmark/models.json").read_text())
         selected = next((m for m in roster["models"] if m["id"] == self.model), None)
+        if image_png is None:
+            text = state_text(state, interval)
+            mode = self.state_serialization
+            if mode == "auto":
+                mode = selected.get("state_serialization", "text") if selected else "text"
+            parts = text if mode == "text" else {"observation_text": text}
+        else:
+            from prototype.image_observation import image_parts
+            parts = image_parts(image_png, state["frame"], interval, state["buttons"], level=state.get("level", "1-1"))
         body = {"model": selected.get("request_model", self.model) if selected else self.model,
                 "state": parts, "questions": QUESTIONS}
         if selected:

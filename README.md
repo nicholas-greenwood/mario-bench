@@ -21,6 +21,10 @@ assembled after development, with a stagnation stop. incomplete api calls have n
 score. pplx's earlier clear finished within the common budget, but its original
 configured cap was larger. no comparable aggregate is claimed
 
+[luna serialization retest](results/diagnostics/openai-state-serialization.json):
+the original incomplete row stays. the recovered prefix and longer diagnostic
+are separate records, with no replacement cohort score
+
 | model | observed progress | clear time (game s) | evidence |
 | --- | ---: | ---: | --- |
 | decider v1.2 | 100.00% | 20.13 | [trace](results/traces/pplx-state-clear.json) · [profile](results/profiles/pplx-state-clear.json) |

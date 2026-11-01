@@ -40,17 +40,24 @@ def legacy_request_body(model, state, image_png=None):
                 questions=LEGACY_QUESTIONS, provider=model['provider'])
 
 
-def request_body(model, state, image_png=None, *, profile="joint-visible-v1"):
+def request_body(model, state, image_png=None, *, profile="joint-visible-v1", state_serialization="auto"):
     if profile == "legacy":
         if image_png is not None:
             raise ValueError("Legacy RAM-plus-image inputs are replay-only; use the pixels-only profile")
         return legacy_request_body(model, state, image_png)
     if profile != "joint-visible-v1":
         raise ValueError(f"Unknown control profile: {profile}")
+    if state_serialization == "auto":
+        state_serialization = model.get("state_serialization", "text") if image_png is None else "text"
+    if state_serialization not in ("text", "json_object"):
+        raise ValueError(f"Unknown state serialization: {state_serialization}")
     interval = state.get("control_interval_frames", 4)
     if image_png is None:
-        parts = state_text(state, interval)
+        text = state_text(state, interval)
+        parts = text if state_serialization == "text" else {"observation_text": text}
     else:
+        if state_serialization != "text":
+            raise ValueError("State serialization adapters cannot add text state to the pixels-only track")
         from prototype.image_observation import image_parts
         # Deliberately enumerate permitted metadata. No RAM-derived state/history
         # is passed to the visual observation contract.
@@ -128,7 +135,8 @@ class FakeClient:
     """Deterministic smoke fixture, never used in model scoring."""
     def call(self, body):
         evidence = body['state']
-        text = evidence if isinstance(evidence, str) else next(p for p in evidence if isinstance(p, str))
+        text = (evidence['observation_text'] if isinstance(evidence, dict) and set(evidence) == {'observation_text'}
+                else evidence if isinstance(evidence, str) else next(p for p in evidence if isinstance(p, str)))
         try:
             data = json.loads(text)
             frame = data['native_frame'] if 'native_frame' in data else data['observation']['frame']

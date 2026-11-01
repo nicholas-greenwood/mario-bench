@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "id": "openai-state-json-object-cohort-prefix",
+  "mode": "state",
+  "level": "1-1",
+  "cadence": 4,
+  "observer": "compact_state",
+  "state_serialization": "json_object",
+  "envelope_key": "observation_text",
+  "contract": {
+    "adapter": "joint12",
+    "questions": {
+      "action": {
+        "type": "choice",
+        "instructions": "Select the complete controller input that best advances Mario towards the flag alive. Evaluate the next interval and the resulting jump trajectory. All named buttons are held throughout the interval; choose deliberately when to press or release jump.",
+        "criteria": {
+          "left_walk_release": "Hold horizontal=left, B(run)=released, A(jump)=released; vertical released.",
+          "left_walk_jump": "Hold horizontal=left, B(run)=released, A(jump)=held; vertical released.",
+          "left_run_release": "Hold horizontal=left, B(run)=held, A(jump)=released; vertical released.",
+          "left_run_jump": "Hold horizontal=left, B(run)=held, A(jump)=held; vertical released.",
+          "released_walk_release": "Hold horizontal=released, B(run)=released, A(jump)=released; vertical released.",
+          "released_walk_jump": "Hold horizontal=released, B(run)=released, A(jump)=held; vertical released.",
+          "released_run_release": "Hold horizontal=released, B(run)=held, A(jump)=released; vertical released.",
+          "released_run_jump": "Hold horizontal=released, B(run)=held, A(jump)=held; vertical released.",
+          "right_walk_release": "Hold horizontal=right, B(run)=released, A(jump)=released; vertical released.",
+          "right_walk_jump": "Hold horizontal=right, B(run)=released, A(jump)=held; vertical released.",
+          "right_run_release": "Hold horizontal=right, B(run)=held, A(jump)=released; vertical released.",
+          "right_run_jump": "Hold horizontal=right, B(run)=held, A(jump)=held; vertical released."
+        }
+      }
+    },
+    "rules": "Play Super Mario Bros. World 1-1 to the flag. Coordinates are world pixels, x increases right, y increases down. Scene is current visible information, not a future map. Each action lasts the declared interval with physics paused until your answer. A jump starts only on a fresh A press while grounded; keeping A held through landing will NOT jump again. Release A before the next fresh jump. Holding A during ascent increases height; releasing A shortens the jump. B makes running faster and jumps longer. Momentum persists on release. Mario can jump onto pipes, blocks and stairs and must clear floor gaps. Enemy side contact is dangerous, landing from above stomps ordinary walking enemies. Think ahead about visible hazards and the size of your body. All action choices are your own. Reach the flag alive, avoid waiting indefinitely or running into walls. No action or route recommendation is supplied. General jump phases: hold A while ascending when height or distance is needed; release A while descending to prepare the next fresh jump. Releasing A during ascent shortens the jump, but keeping it held through landing prevents the next jump. On the ground a fresh jump needs the A release-to-press edge. For stairs, the feet must rise above each solid step before crossing its side; landing on a raised step permits another jump. A jump begun too far before a gap can end above the gap; the current visible geometry determines takeoff timing.",
+    "state_serialization": "json_object",
+    "state_envelope_key": "observation_text",
+    "evidence_text_unchanged": true,
+    "cadence": 4
+  },
+  "maximum_native_frames": 6000,
+  "maximum_decisions": 1500,
+  "life_budget": 1,
+  "legacy_cohort_stall_abort_frames": 600,
+  "full_diagnostic_uses_stall_cutoff": null,
+  "source_hashes": {
+    "source_episode_sha256": "b398e376aef9949c2faf35d2930804c90b00f130311f630643d9662b57a174c7",
+    "frozen_manifest_sha256": "8f9b42264d0a8524b9240f954994f1427192ebbe21fcf7e0a2617342da2a220a",
+    "technical_report_sha256": "67b2f54f67763d3fd9a1678d9bb7f5d8470f9fff13c6e31085d268071099cf29"
+  }
+}

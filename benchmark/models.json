@@ -1110,7 +1110,8 @@
         "returned_provider_exact_match": true
       },
       "image_preflight_source": "playground/prototype/preflight/image_preflight.json",
-      "observation_equivalence_verified": false
+      "observation_equivalence_verified": false,
+      "state_serialization": "json_object"
     },
     {
       "id": "perplexity/pplx-decider-flash-v1.2",

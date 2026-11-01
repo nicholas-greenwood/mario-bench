@@ -49,7 +49,8 @@ def audit(path):
                     assert (hashlib.sha256(image).hexdigest() if image else None) == row['image_sha256']
                     profile = manifest['config'].get('control_profile', 'legacy')
                     body = (legacy_request_body(models[model_id], row['observation'], image) if profile == 'legacy'
-                            else request_body(models[model_id], row['observation'], image, profile=profile))
+                            else request_body(models[model_id], row['observation'], image, profile=profile,
+                                              state_serialization='text' if manifest['config']['track'] == 'image' else manifest['config'].get('state_serialization', 'text')))
                     # Requests use the manifest's frozen questions/rules. Current code must match that contract.
                     assert body['questions'] == manifest['questions']
                     assert digest(body) == row['request_sha256']

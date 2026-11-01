@@ -89,3 +89,11 @@ against actual screenshots; private requests and memory snapshots stay local
 
 `--render` recreates the mp4s from the public actions. it never asks a model to
 play again. the hashes in `index.json` identify the checked-in replay files
+
+## technical retests
+
+`technical_diagnostics` retains transport corrections separately from `observations`
+luna's json-object retest preserves the same evidence text, rules and questions
+the old api-aborted row stays unchanged. its retrospective stagnation prefix has
+null final progress and 17.81% observed progress; the longer full diagnostic reached
+34.76% and is not comparable with that prefix. both have null speedrun values
