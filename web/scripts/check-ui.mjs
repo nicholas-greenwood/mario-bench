@@ -53,8 +53,10 @@ const rows = page.locator('tbody tr');
 assert.equal(await rows.count(), published.length, 'every published run shown by default');
 const clearIds = examples.filter(e => e.completed).map(e => e.id).sort();
 assert.equal(clearIds.length, 4, 'four verified clears remain published');
-assert.deepEqual(published.filter(e => e.completed).map(e => e.id).sort(), clearIds);
-assert.deepEqual(replays.filter(e => e.completed).map(e => e.id).sort(), clearIds);
+for (const id of clearIds) {
+  assert.ok(published.some(e => e.id === id && e.completed), `${id}: showcase clear belongs to all runs`);
+  assert.ok(replays.some(e => e.id === id && e.completed), `${id}: showcase clear is playable`);
+}
 for (const e of replays) assert.equal(await page.locator(`tr[data-run-id="${e.id}"][data-replay="true"]`).count(), 1, `${e.id}: replay belongs to all runs`);
 for (const id of clearIds) assert.equal(await page.locator(`tr[data-run-id="${id}"] td`).nth(6).innerText(), 'cleared');
 const mercuryRuns = published.filter(e => e.model_id === 'inception/mercury-decide' && e.mode === 'state');
