@@ -3,6 +3,7 @@
 import { useMemo, useState } from 'react';
 import { useBenchmark } from './benchmark-provider';
 import { formatRunCost, formatProgress, formatSeconds, isApiError, trackLabel, type Result } from '../lib/data';
+import CommonBenchmarkTable from './common-benchmark-table';
 
 type Value = string | number | null;
 type Column = { key: string; label: string; title?: string; numeric?: boolean; first: 'ascending' | 'descending'; value: (run: Result) => Value };
@@ -43,8 +44,9 @@ function costTitle(run: Result) {
 
 export default function ResultsTable() {
   const { runs, dataset, watch, slots, activeSide } = useBenchmark();
-  const [view, setView] = useState<'observations' | 'replays'>(dataset.observations.length ? 'observations' : 'replays');
-  const results: Result[] = view === 'observations' ? dataset.observations : runs;
+  const [view, setView] = useState<'benchmark' | 'observations' | 'replays'>(dataset.commonBenchmark ? 'benchmark' : dataset.observations.length ? 'observations' : 'replays');
+  const [evidenceIds, setEvidenceIds] = useState<string[] | null>(null);
+  const results: Result[] = view === 'observations' ? dataset.observations.filter(run => evidenceIds === null || evidenceIds.includes(run.id)) : runs;
   const playable = new Set(runs.map(run => run.id));
   const [sort, setSort] = useState<{ key: string; direction: 'ascending' | 'descending' }>({ key: 'progress', direction: 'descending' });
 
@@ -68,10 +70,15 @@ export default function ResultsTable() {
     <section className="results" aria-labelledby="results-title">
       <div className="results-head">
         <h2 id="results-title" className="section-label">results</h2>
-        <div className="result-views" aria-label="result datasets"><button aria-pressed={view === 'observations'} onClick={() => setView('observations')}>all runs ({dataset.observations.length})</button><button aria-pressed={view === 'replays'} onClick={() => setView('replays')}>replays ({runs.length})</button></div>
-        <p className="results-note">{view === 'observations' ? 'development runs, not a ranking. aborted runs show observed progress; incomplete runs have no score.' : 'selected runs with different settings, not a ranking.'} cost is usd; ~ includes a byok list-price estimate. missing billing is unknown.</p>
+        <div className="result-views" aria-label="result datasets">
+          {dataset.commonBenchmark && <button aria-pressed={view === 'benchmark'} onClick={() => setView('benchmark')}>benchmark ({dataset.commonBenchmark.rows.length})</button>}
+          <button aria-pressed={view === 'observations'} onClick={() => { setView('observations'); setEvidenceIds(null); }}>all runs ({dataset.observations.length})</button>
+          <button aria-pressed={view === 'replays'} onClick={() => { setView('replays'); setEvidenceIds(null); }}>replays ({runs.length})</button>
+        </div>
+        <p className="results-note">{view === 'benchmark' ? 'mean progress over 3 prespecified runs with the same frozen protocol. pending means the 3 prescribed results are not fully confirmed. best clear is the fastest completed run.' : view === 'observations' ? 'development runs, not a ranking. aborted runs show observed progress; incomplete runs have no score.' : 'selected runs with different settings, not a ranking.'} cost is usd; ~ includes a byok list-price estimate. missing billing is unknown.</p>
+        {evidenceIds !== null && view === 'observations' && <p className="results-note">showing {results.length} cohort runs <button onClick={() => setEvidenceIds(null)}>show all runs</button></p>}
       </div>
-      <div className="table-scroll">
+      {view === 'benchmark' && dataset.commonBenchmark ? <CommonBenchmarkTable cohort={dataset.commonBenchmark} showRuns={ids => { setEvidenceIds(ids); setView('observations'); }} /> : <div className="table-scroll">
         <table className="runs">
           <caption className="visually-hidden">selected development runs; choose a row to watch it in pane {activeSide}</caption>
           <thead>
@@ -113,7 +120,7 @@ export default function ResultsTable() {
             })}
           </tbody>
         </table>
-      </div>
+      </div>}
     </section>
   );
 }

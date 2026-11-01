@@ -2,6 +2,7 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { formatRunCost, parseDataset, unavailableProgress } from '../lib/data.ts';
+import { readPublishedIndex } from '../lib/read-results.mjs';
 
 const begin = '<!-- BEGIN GENERATED RESULTS -->';
 const end = '<!-- END GENERATED RESULTS -->';
@@ -9,9 +10,11 @@ const root = new URL('../../', import.meta.url);
 const escape = value => String(value).replaceAll('|', '\\|').replaceAll('\n', ' ');
 
 export function renderResults(index) {
-  const published = parseDataset(index).observations;
+  const dataset = parseDataset(index), published = dataset.observations;
   if (published.some(run => run.level !== '1-1')) throw new Error('README tables currently cover world 1-1 only');
-  const rawById = new Map([...index.examples, ...(index.observations ?? []), ...(index.technical_diagnostics ?? [])].map(run => [run.id, run]));
+  const rawById = new Map([...index.examples, ...(index.observations ?? []), ...(index.technical_diagnostics ?? []),
+    ...(dataset.commonBenchmark?.trials ?? []).map(trial => ({ ...trial, verified: trial.native_replay_verified })),
+  ].map(run => [run.id, run]));
   const lines = [begin, '',
     `${published.length} published runs, matching the website's all runs view, on world 1-1`,
     'individual development runs use different settings; these are not model averages or a ranking', '',
@@ -41,7 +44,32 @@ export function renderResults(index) {
     }
     lines.push('');
   }
-  return lines.join('\n') + end;
+  if (!dataset.commonBenchmark) return lines.join('\n') + end;
+  const cohort = dataset.commonBenchmark;
+  const benchmark = [begin, '',
+    'mean progress over 3 prespecified evaluation runs per model and input, using the same frozen protocol',
+    'pending means the 3 prescribed results are not fully confirmed; best clear is the fastest completed run',
+    'mean cost/run requires complete billing for all 3 runs; ~ includes a byok list-price estimate',
+    `[protocol and trial evidence](results/${index.common_cohort_href ?? 'index.json'})`, ''];
+  for (const [track, title] of [['state', 'state'], ['image', 'pixels only']]) {
+    const rows = cohort.rows.filter(row => row.track === track).sort((a, b) =>
+      (b.meanProgressPct ?? -1) - (a.meanProgressPct ?? -1) || a.name.localeCompare(b.name));
+    benchmark.push(`### ${title}`, '',
+      '| model | mean progress | best clear (game s) | mean cost/run (usd) | valid runs | evidence |',
+      '| --- | ---: | ---: | ---: | ---: | --- |');
+    for (const row of rows) {
+      const evidence = row.recordedTrialIds.map((id, position) => {
+        const trial = rawById.get(id);
+        return trial?.trace_href ? `[run ${position + 1}](results/${trial.trace_href})` : null;
+      }).filter(Boolean).join(' · ') || '-';
+      benchmark.push(`| ${escape(row.name.toLowerCase())} | ${row.meanProgressPct === null ? 'pending' : `${row.meanProgressPct.toFixed(2)}%`} | ${row.bestClearSeconds === null ? '-' : row.bestClearSeconds.toFixed(2)} | ${formatRunCost({ costUsd: row.meanCostUsd, costEstimateUsd: row.meanCostEstimateUsd }) ?? '-'} | ${row.validTrials}/3 | ${evidence} |`);
+    }
+    benchmark.push('', '<details>', '<summary>completed-run timing</summary>', '');
+    for (const row of rows) benchmark.push(`- ${escape(row.name.toLowerCase())}: ${row.coverageComplete ? `${row.nCompleted}/3 completed; mean completed time ${row.meanCompletedSeconds === null ? 'unavailable' : `${row.meanCompletedSeconds.toFixed(2)} game s`}` : 'pending'}`);
+    benchmark.push('', '</details>', '');
+  }
+  benchmark.push('<details>', '<summary>individual runs and development history</summary>', '', ...lines.slice(1), '</details>', '', end);
+  return benchmark.join('\n');
 }
 
 export function replaceResults(readme, generated) {
@@ -52,7 +80,7 @@ export function replaceResults(readme, generated) {
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const readmeUrl = new URL('README.md', root);
-  const index = JSON.parse(await readFile(new URL('results/index.json', root), 'utf8'));
+  const index = await readPublishedIndex(new URL('results/index.json', root));
   const before = await readFile(readmeUrl, 'utf8');
   const after = replaceResults(before, renderResults(index));
   if (process.argv.includes('--check')) {
