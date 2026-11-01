@@ -12,6 +12,7 @@ export type Run = {
   level: string;
   progressPct: number;
   completed: boolean;
+  status: string;
   nativeFrames: number;
   decisions: number;
   /** Native frames to the flag; null when the run did not finish. */
@@ -26,9 +27,17 @@ export type Run = {
 
 export type Dataset = {
   runs: Run[];
+  observations: Result[];
   generatedAt: string;
   leaderboardReady: boolean;
   catalogue: { state: number; image: number };
+};
+
+export type Result = Omit<Run, 'progressPct' | 'nativeFrames' | 'decisions' | 'replaySrc'> & {
+  progressPct: number | null;
+  nativeFrames: number | null;
+  decisions: number | null;
+  replaySrc: string | null;
 };
 
 type RawExample = Record<string, unknown> & { experiment_config?: Record<string, unknown> };
@@ -55,6 +64,7 @@ function toRun(raw: RawExample): Run {
     level: text(raw.level, '1-1'),
     progressPct: progress,
     completed,
+    status: text(raw.status, completed ? 'completed' : 'game_over'),
     nativeFrames: frames,
     decisions,
     clearFrames: completed ? num(raw.speedrun_score_native_frames) : null,
@@ -67,11 +77,29 @@ function toRun(raw: RawExample): Run {
   };
 }
 
+function toObservation(raw: RawExample): Result {
+  if (raw.mode !== 'state' && raw.mode !== 'image') throw new Error('unknown observation track');
+  const config = raw.experiment_config ?? {};
+  const completed = raw.completed === true;
+  const replay = text(raw.replay_href);
+  return {
+    id: text(raw.id), modelId: text(raw.model_id), name: text(raw.display_name, text(raw.model_id)),
+    provider: text(raw.provider), track: raw.mode, level: text(raw.level, '1-1'),
+    // A failed API episode has no score, even if some movement was observed.
+    progressPct: num(raw.progress_pct), nativeFrames: num(raw.native_frames), decisions: num(raw.decisions),
+    completed, status: text(raw.status), clearFrames: completed ? num(raw.speedrun_score_native_frames) : null,
+    clearSeconds: completed ? num(raw.nominal_game_seconds_to_completion) : null,
+    cadence: num(config.cadence), previousScreens: num(config.previous_screens), profile: text(config.profile),
+    replaySrc: replay ? DATA_BASE + replay : null, traceSrc: DATA_BASE + text(raw.trace_href),
+  };
+}
+
 export function parseDataset(index: unknown): Dataset {
-  const data = index as { examples?: RawExample[]; generated_at_utc?: string; leaderboard_ready?: boolean; model_counts?: { state?: number; image?: number } };
+  const data = index as { examples?: RawExample[]; observations?: RawExample[]; generated_at_utc?: string; leaderboard_ready?: boolean; model_counts?: { state?: number; image?: number } };
   if (!Array.isArray(data?.examples)) throw new Error('benchmark index has no examples');
   return {
     runs: data.examples.map(toRun),
+    observations: (data.observations ?? []).map(toObservation),
     generatedAt: text(data.generated_at_utc),
     leaderboardReady: data.leaderboard_ready === true,
     catalogue: { state: num(data.model_counts?.state) ?? 0, image: num(data.model_counts?.image) ?? 0 },

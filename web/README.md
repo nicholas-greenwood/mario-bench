@@ -9,7 +9,7 @@ npm run dev
 
 ## data
 
-The page reads the 8 verified development examples in `../results/index.json` and plays their silent MP4 replays. These are selected runs with different prompts, cadence and image history, so the UI labels them as such and shows no averages, clear rates or costs. Failed runs have no clear time.
+The table defaults to all 38 published development observations in `../results/index.json`: 22 state attempts and 16 selected pixels runs. A second view shows the 8 verified video showcases. Incomplete API runs have no score, aborted runs keep explicitly labelled observed progress, and failed runs have no clear time. Only actual recorded episodes load a video; other model names open their action trace. Settings and selection differ, so the UI shows no comparable averages, clear rates or costs.
 
 `npm run prepare-assets` (run automatically before `dev` and `build`) copies `../results/` into the ignored `public/benchmark-data/` folder and checks every replay, trace and profile hash. The page reads that copy at build time, so builds need the repository checkout but no Python or private experiment files. Every `*_href` in the index resolves under `/benchmark-data/`.
 

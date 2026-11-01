@@ -11,7 +11,8 @@ await fs.mkdir(shots, { recursive: true });
 
 const index = await (await fetch(`${BASE}/benchmark-data/index.json`)).json();
 const examples = index.examples;
-assert.equal(examples.length, 8);
+const observations = index.observations;
+assert.ok(examples.length > 0);
 const pct = v => (v >= 100 ? '100%' : `${(Math.floor(v * 10) / 10).toFixed(1)}%`);
 
 const browser = await chromium.launch({ executablePath: CHROME, headless: true, args: ['--mute-audio', '--disable-gpu', '--autoplay-policy=no-user-gesture-required'] });
@@ -36,7 +37,26 @@ assert.ok(await page.getByText(/rather than a ranking/).isVisible());
 
 // every recorded run, with the exact identity and numbers from the index
 const rows = page.locator('tbody tr');
-assert.equal(await rows.count(), 8);
+assert.equal(await rows.count(), observations.length, 'all published observations shown by default');
+assert.equal(observations.filter(e => e.mode === 'state').length, index.observation_counts.state);
+assert.equal(observations.filter(e => e.mode === 'image').length, index.observation_counts.image);
+for (const e of observations) {
+  const cells = await page.locator(`tr[data-run-id="${e.id}"] td`).allInnerTexts();
+  assert.ok(cells[0].includes(e.model_id), `${e.id}: exact model identity`);
+  assert.equal(cells[2], e.progress_pct === null ? '–' : pct(e.progress_pct), `${e.id}: no invented score`);
+  assert.equal(Number(cells[4].replaceAll(',', '')), e.native_frames);
+  if (e.status === 'api_abort') assert.equal(cells[7], 'incomplete');
+  else if (/abort/.test(e.status)) assert.equal(cells[7], 'aborted');
+  if (!e.replay_href) assert.ok((await page.locator(`tr[data-run-id="${e.id}"] a`).getAttribute('href')).endsWith(e.trace_href));
+}
+// Check null-score sorting in both directions before moving to the replay view.
+for (let i = 0; i < 2; i++) {
+  await page.getByRole('columnheader').filter({ hasText: 'progress' }).getByRole('button').click();
+  const ids = await rows.evaluateAll(els => els.map(el => el.dataset.runId));
+  assert.ok(ids.slice(-2).every(id => observations.find(e => e.id === id).progress_pct === null));
+}
+await page.getByRole('button', { name: `replay showcases (${examples.length})`, exact: true }).click();
+assert.equal(await rows.count(), examples.length);
 for (const e of examples) {
   const cells = await page.locator(`tr[data-run-id="${e.id}"] td`).allInnerTexts();
   assert.ok(cells[0].includes(e.display_name) && cells[0].includes(e.model_id), `${e.id} identity`);
@@ -60,11 +80,12 @@ for (const v of videos) {
 // every column sorts both ways; missing values stay last
 const headers = page.locator('thead th');
 const count = await headers.count();
-assert.equal(count, 7);
+assert.equal(count, 8);
 const parse = (text, col) => {
   if (text === '–') return null;
   if (col === 0) return text.split('\n')[0].trim().toLowerCase();
   if (col === 1) return text;
+  if (col === 7) return text;
   return Number(text.replace(/[,%s ]/g, ''));
 };
 for (let col = 0; col < count; col++) {
@@ -157,7 +178,7 @@ const best = await page.getByTestId('human-best').innerText();
 assert.match(best, /^best \d+\.\d% · 1 attempt$/);
 await page.reload({ waitUntil: 'networkidle' });
 assert.equal(await page.getByTestId('human-best').innerText(), best);
-assert.equal(await rows.count(), 8, 'human best never joins the model table');
+assert.equal(await rows.count(), observations.length, 'human best never joins the model table');
 
 // theme toggle persists
 const lightBg = await page.evaluate(() => getComputedStyle(document.body).backgroundColor);
@@ -176,7 +197,7 @@ await context.close();
 for (const [width, name] of [[1440, 'desktop'], [768, 'tablet'], [390, 'mobile']]) {
   const { context, page } = await open(width, width === 390 ? 844 : 1000);
   assert.ok(await noOverflow(page), `${width} has no page overflow`);
-  assert.equal(await page.locator('tbody tr').count(), 8);
+  assert.equal(await page.locator('tbody tr').count(), observations.length);
   assert.ok(await page.locator('h1').isVisible());
   const screens = await page.locator('.screen').evaluateAll(s => s.map(e => e.getBoundingClientRect().width));
   assert.ok(screens.every(w => w > 120 && w <= width), `${width} screens ${screens}`);
@@ -190,4 +211,4 @@ for (const [width, name] of [[1440, 'desktop'], [768, 'tablet'], [390, 'mobile']
 
 await browser.close();
 assert.deepEqual(errors, []);
-console.log('ui check passed: 8 real runs, muted replays, 7 sortable columns, pane selection, hover-only rows, no rules, matched screens, human play, themes, responsive');
+console.log(`ui check passed: all ${observations.length} observations, ${examples.length} replays, null scores, abort status, 8 sortable columns, hover-only rows, matched screens, human play, themes, responsive`);
