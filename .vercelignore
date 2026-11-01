@@ -1,5 +1,6 @@
 # Deploy only the website and its published benchmark dataset.
 /*
+!/README.md
 !/web
 !web/**
 !/results
