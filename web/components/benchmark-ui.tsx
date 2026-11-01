@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { ArrowLeft, ArrowRight, ArrowUp, Moon, Pause, Play, RotateCcw, Sun, X } from 'lucide-react';
 import { useBenchmark } from './benchmark-provider';
 import GameCanvas from './game-canvas';
-import { formatProgress, formatSeconds, trackLabel, type Run, type Side } from '../lib/data';
+import { formatProgress, formatSeconds, trackLabel, unavailableProgress, type Run, type Side } from '../lib/data';
 
 export function Masthead() {
   const { theme, toggleTheme } = useBenchmark();
@@ -36,7 +36,7 @@ export function Intro() {
 
 function outcome(run: Run) {
   if (run.completed) return `cleared in ${formatSeconds(run.clearSeconds)}`;
-  if (run.progressPct === null) return 'incomplete';
+  if (run.progressPct === null) return unavailableProgress(run.status);
   return `${/abort/.test(run.status) ? 'aborted at' : 'reached'} ${formatProgress(run.progressPct)}`;
 }
 

@@ -22,6 +22,8 @@ export type Run = {
   cadence: number | null;
   previousScreens: number | null;
   profile: string;
+  retrospective: boolean;
+  matchedCohort: boolean;
   replaySrc: string;
   traceSrc: string;
 };
@@ -45,6 +47,13 @@ type RawExample = Record<string, unknown> & { experiment_config?: Record<string,
 
 const num = (value: unknown) => (typeof value === 'number' && Number.isFinite(value) ? value : null);
 const text = (value: unknown, fallback = '') => (typeof value === 'string' ? value : fallback);
+const isJsonRetest = (raw: RawExample) => raw.data_class === 'technical_serialization_diagnostic'
+  && raw.verified === true && raw.experiment_config?.state_serialization === 'json_object'
+  && (raw.completed === true || raw.death === true);
+const displayName = (raw: RawExample) => text(raw.display_name, text(raw.model_id)) + (isJsonRetest(raw) ? ' (json retest)' : '');
+
+export const isApiError = (status: string) => /api|infra|error|failure/.test(status);
+export const unavailableProgress = (status: string) => isApiError(status) ? 'api error' : 'incomplete';
 
 function toRun(raw: RawExample): Run {
   const config = raw.experiment_config ?? {};
@@ -60,7 +69,7 @@ function toRun(raw: RawExample): Run {
     id: text(raw.id),
     aliasIds: Array.isArray(raw.alias_ids) ? raw.alias_ids.filter((id): id is string => typeof id === 'string') : [],
     modelId: text(raw.model_id),
-    name: text(raw.display_name, text(raw.model_id)),
+    name: displayName(raw),
     provider: text(raw.provider),
     track: raw.mode,
     level: text(raw.level, '1-1'),
@@ -74,6 +83,8 @@ function toRun(raw: RawExample): Run {
     cadence: num(config.cadence),
     previousScreens: num(config.previous_screens),
     profile: text(config.profile),
+    retrospective: config.retrospective === true,
+    matchedCohort: config.matched_cohort === true,
     replaySrc: DATA_BASE + replay,
     traceSrc: DATA_BASE + text(raw.trace_href),
   };
@@ -86,23 +97,26 @@ function toObservation(raw: RawExample): Result {
   const replay = text(raw.replay_href);
   return {
     id: text(raw.id), aliasIds: Array.isArray(raw.alias_ids) ? raw.alias_ids.filter((id): id is string => typeof id === 'string') : [],
-    modelId: text(raw.model_id), name: text(raw.display_name, text(raw.model_id)),
+    modelId: text(raw.model_id), name: displayName(raw),
     provider: text(raw.provider), track: raw.mode, level: text(raw.level, '1-1'),
     // A failed API episode has no score, even if some movement was observed.
     progressPct: num(raw.progress_pct), nativeFrames: num(raw.native_frames), decisions: num(raw.decisions),
     completed, status: text(raw.status), clearFrames: completed ? num(raw.speedrun_score_native_frames) : null,
     clearSeconds: completed ? num(raw.nominal_game_seconds_to_completion) : null,
     cadence: num(config.cadence), previousScreens: num(config.previous_screens), profile: text(config.profile),
+    retrospective: config.retrospective === true, matchedCohort: config.matched_cohort === true,
     replaySrc: replay ? DATA_BASE + replay : null, traceSrc: DATA_BASE + text(raw.trace_href),
   };
 }
 
 export function parseDataset(index: unknown): Dataset {
-  const data = index as { examples?: RawExample[]; observations?: RawExample[]; generated_at_utc?: string; leaderboard_ready?: boolean; model_counts?: { state?: number; image?: number } };
+  const data = index as { examples?: RawExample[]; observations?: RawExample[]; technical_diagnostics?: RawExample[]; generated_at_utc?: string; leaderboard_ready?: boolean; model_counts?: { state?: number; image?: number } };
   if (!Array.isArray(data?.examples)) throw new Error('benchmark index has no examples');
   const byId = [...new Map([
     ...data.examples,
     ...(data.observations ?? []),
+    // A verified full retest is an additional episode; its overlapping prefix is evidence only.
+    ...(data.technical_diagnostics ?? []).filter(isJsonRetest),
   ].map(raw => [text(raw.id), raw] as const)).values()];
   const byEpisode = new Map<string, RawExample>(byId.map(raw => [text(raw.id), { ...raw, alias_ids: [] }]));
   // These exports refer to the same original episode, not independent repeats.

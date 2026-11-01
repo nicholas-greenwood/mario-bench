@@ -9,10 +9,11 @@ or game state and choose controller inputs
 
 <!-- BEGIN GENERATED RESULTS -->
 
-44 published runs, matching the website's all runs view, on world 1-1
+45 published runs, matching the website's all runs view, on world 1-1
 individual development runs use different settings; these are not model averages or a ranking
 
-[serialization diagnostics](results/diagnostics/openai-state-serialization.json) are separate from these runs
+the json retest is a separate retrospective run; its overlapping prefix is evidence only
+[serialization diagnostics and prefix](results/diagnostics/openai-state-serialization.json)
 
 ### state
 
@@ -26,6 +27,7 @@ individual development runs use different settings; these are not model averages
 | respan: span-02 | 55.94% | - | [replay](results/replays/state-c4-respan--span-02.mp4) · [trace](results/traces/state-c4-respan--span-02.json) · [profile](results/profiles/state-c4-respan--span-02.json) <!-- run:state-c4-respan--span-02 --> |
 | cloudflare: clef | 47.48% | - | [replay](results/replays/state-c4-cloudflare--clef.mp4) · [trace](results/traces/state-c4-cloudflare--clef.json) · [profile](results/profiles/state-c4-cloudflare--clef.json) <!-- run:state-c4-cloudflare--clef --> |
 | microsoft: microsoft-decision-1 | 44.25% | - | [replay](results/replays/state-c4-microsoft--microsoft-decision-1.mp4) · [trace](results/traces/state-c4-microsoft--microsoft-decision-1.json) · [profile](results/profiles/state-c4-microsoft--microsoft-decision-1.json) <!-- run:state-c4-microsoft--microsoft-decision-1 --> |
+| openai: gpt-6 luna decisions (json retest) | 34.76% | - | [replay](results/replays/openai-state-json-object-full-diagnostic.mp4) · [trace](results/traces/openai-state-json-object-full-diagnostic.json) · [profile](results/profiles/openai-state-json-object-full-diagnostic.json) <!-- run:openai-state-json-object-full-diagnostic --> |
 | typesafe: jev 1.13 | 21.88% (aborted) | - | [replay](results/replays/state-c4-typesafe--jev-1-13.mp4) · [trace](results/traces/state-c4-typesafe--jev-1-13.json) · [profile](results/profiles/state-c4-typesafe--jev-1-13.json) <!-- run:state-c4-typesafe--jev-1-13 --> |
 | liquidai: d1-ultra | 20.47% | - | [replay](results/replays/state-c4-liquid--d1-ultra.mp4) · [trace](results/traces/state-c4-liquid--d1-ultra.json) · [profile](results/profiles/state-c4-liquid--d1-ultra.json) <!-- run:state-c4-liquid--d1-ultra --> |
 | nace.ai: drex max | 20.19% | - | [replay](results/replays/state-c4-nace-ai--drex-max.mp4) · [trace](results/traces/state-c4-nace-ai--drex-max.json) · [profile](results/profiles/state-c4-nace-ai--drex-max.json) <!-- run:state-c4-nace-ai--drex-max --> |
@@ -41,8 +43,8 @@ individual development runs use different settings; these are not model averages
 | cloudflare: clef flash | 8.55% | - | [replay](results/replays/state-c4-cloudflare--clef-flash.mp4) · [trace](results/traces/state-c4-cloudflare--clef-flash.json) · [profile](results/profiles/state-c4-cloudflare--clef-flash.json) <!-- run:state-c4-cloudflare--clef-flash --> |
 | scaledown: classify-1 | 0.00% (aborted) | - | [replay](results/replays/state-c4-scaledown--classify-1.mp4) · [trace](results/traces/state-c4-scaledown--classify-1.json) · [profile](results/profiles/state-c4-scaledown--classify-1.json) <!-- run:state-c4-scaledown--classify-1 --> |
 | upstage: solar decide flash | 0.00% (aborted) | - | [replay](results/replays/state-c4-upstage--solar-decide-flash.mp4) · [trace](results/traces/state-c4-upstage--solar-decide-flash.json) · [profile](results/profiles/state-c4-upstage--solar-decide-flash.json) <!-- run:state-c4-upstage--solar-decide-flash --> |
-| jared palmer: kev 4b | incomplete | - | [trace](results/traces/state-c4-jaredpalmer--kev-4b.json) · [profile](results/profiles/state-c4-jaredpalmer--kev-4b.json) <!-- run:state-c4-jaredpalmer--kev-4b --> |
-| openai: gpt-6 luna decisions | incomplete | - | [replay](results/replays/state-c4-openai--gpt-6-luna-decisions.mp4) · [trace](results/traces/state-c4-openai--gpt-6-luna-decisions.json) · [profile](results/profiles/state-c4-openai--gpt-6-luna-decisions.json) <!-- run:state-c4-openai--gpt-6-luna-decisions --> |
+| jared palmer: kev 4b | api error | - | [trace](results/traces/state-c4-jaredpalmer--kev-4b.json) · [profile](results/profiles/state-c4-jaredpalmer--kev-4b.json) <!-- run:state-c4-jaredpalmer--kev-4b --> |
+| openai: gpt-6 luna decisions | api error | - | [replay](results/replays/state-c4-openai--gpt-6-luna-decisions.mp4) · [trace](results/traces/state-c4-openai--gpt-6-luna-decisions.json) · [profile](results/profiles/state-c4-openai--gpt-6-luna-decisions.json) <!-- run:state-c4-openai--gpt-6-luna-decisions --> |
 
 ### pixels only
 
