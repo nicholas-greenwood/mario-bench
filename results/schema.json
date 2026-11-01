@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "mario bench development checkpoint index",
+  "title": "mario bench published results index",
   "type": "object",
   "required": [
     "schema_version",
@@ -17,7 +17,10 @@
       "const": 1
     },
     "data_class": {
-      "const": "selected_development_examples"
+      "enum": [
+        "selected_development_examples",
+        "development_history_and_partial_common_evaluation"
+      ]
     },
     "comparable_aggregate": {
       "type": "null"
@@ -97,6 +100,33 @@
           "profile_href"
         ]
       }
+    },
+    "common_cohort_href": {
+      "type": "string",
+      "minLength": 1
+    },
+    "common_benchmark_status": {
+      "type": "object",
+      "required": [
+        "scope",
+        "expected_models",
+        "complete_model_means",
+        "pending_model_means",
+        "published_trials",
+        "prespecified_trials",
+        "captured_at_utc",
+        "image_status",
+        "protocol_sha256"
+      ]
+    },
+    "input_scope_erratum": {
+      "type": "object",
+      "required": [
+        "state_input",
+        "clarification",
+        "scope",
+        "frozen_controller_and_scores_unchanged"
+      ]
     }
   },
   "$defs": {
@@ -199,7 +229,10 @@
               "const": false
             },
             "cadence": {
-              "type": "integer",
+              "type": [
+                "integer",
+                "null"
+              ],
               "minimum": 1
             }
           }

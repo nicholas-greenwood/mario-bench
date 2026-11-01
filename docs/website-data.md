@@ -1,99 +1,93 @@
 # website data
 
-`results/index.json` is the entry point for real recorded gameplay
-it includes both `state` and strictly pixels-only `image` examples, with a model
-catalogue, exact action traces and silent mp4 replays
+`results/index.json` is the entry point. the website and README both use
+`readPublishedIndex` and `parseDataset`; they resolve the optional
+`common_cohort_href` before selecting rows
 
-this is a development checkpoint, not a leaderboard. the examples were selected
-from many experiments with different prompts, controls, cadence and image history
-`data_class` is `selected_development_examples`, `matched_cohort` is false, and
-`comparable_aggregate` is null. show those limits with the results
+## common evaluation
 
-## expanded observations
+`common-state/index.json` contains the frozen state manifest, all prescribed
+repeat IDs, actual published trials and all 22 model rows. a model's mean requires
+3 valid, independently replayed attempts with matching protocol, provider,
+budget and seeds. missing or technical results leave the mean pending
 
-`observations` contains 22 common-profile state attempts and 16 best-observed
-pixels-only development runs. `examples` preserves the original 8 replay showcases
-and their stable ids. use `observations` for expanded tables; new records have
-compact traces and profiles, with null replay links where no video was exported
-api-aborted state attempts have null scores and separate observed progress
-stagnation stops are explicitly aborted. no comparable aggregate is supplied
+mean progress is the primary score. best clear is the fastest native completion
+among the 3 attempts, in frames / 60. completed counts and mean completed time are
+separate details. api waiting time affects neither score. only world 1-1 has a
+calibrated progress mapping; other world 1 endpoints remain null
 
-## files
+the state track uses privileged current-viewport ram terrain and motion, which
+can include unrevealed tile ids. the frozen term visible refers to viewport scope,
+not rendered pixels. there is no offscreen or future-buffer lookahead or rollout
+common image calibration is pending; the image development history remains
+pixels-only and outside the common state means
 
-- `results/index.json`: website cards, per-run progress, completion, speedrun,
-  experiment settings, verification and asset references
-- `results/models.json`: 22 state models and 14 currently image-compatible
-  model/provider pairs. compatibility is separate from game performance
-- `results/traces/*.json`: exact native answers, button sequences, prompt/action
-  contracts and state/screen hashes for offline replay
-- `results/replays/*.mp4`: silent gameplay at native game speed, with api waiting
-  removed. pixel enlarging uses nearest neighbour
-- `results/profiles/*.json`: byte-stable prompt, controller and observation settings
-- `benchmark/profiles/`: frozen pure observation/controller adapters for these profiles
-- `results/schema.json`: the version 1 index format
+`common_benchmark_status` reports the published cutoff and complete/pending
+counts. do not turn pending means into zero or claim that a partial publication
+is a finished 22-model ranking
 
-all `*_href` fields resolve relative to the directory containing `index.json`
-serve the complete directory together, or rewrite these references in your adapter
-this repository doesn't mount these assets on the website automatically
+## individual history
+
+`examples`, `observations` and `technical_diagnostics` preserve development
+runs and retrospective transport tests. settings differ, so their selected
+outcomes are not comparable model averages. original IDs and replay paths stay
+stable. repeated evaluation attempts remain distinct even when they produce
+identical gameplay
+
+luna's full json-object retest is a separate actual run. its overlapping
+stagnation prefix is evidence only and is not another attempt. the original api
+error remains in history. fresh common evaluation repeats are separate from all
+of these earlier records
+
+## files and paths
+
+- `results/index.json`: entry point, legacy records and optional cohort reference
+- `results/common-state/index.json`: frozen evaluation manifest, trials and means
+- `results/models.json`: model/provider catalogue; compatibility is separate from performance
+- `results/traces/` and `results/common-state/traces/`: native answers, actual inputs,
+  request/attempt proofs and state/screen hashes
+- `results/replays/` and `results/common-state/replays/`: silent native-speed mp4s
+- `results/profiles/` and `results/common-state/profiles/`: frozen contracts and source hashes
+- `benchmark/common_profiles/` and `benchmark/profiles/`: executable controller definitions
+- `results/schema.json`: entry-point and development-record json schema
+
+all asset `*_href` fields use the `results/` root as their base, including fields
+inside the nested cohort file. the build copies the complete directory to
+`/benchmark-data/`; serve that directory together
 
 ```js
-// after publishing results/ at your chosen static base path
 const base = '/benchmark-data/';
-const data = await fetch(base + 'index.json').then(response => response.json());
-const example = data.examples[0];
-const replayUrl = base + example.replay_href;
+const index = await fetch(base + 'index.json').then(response => response.json());
+const cohort = index.common_cohort_href
+  ? await fetch(base + index.common_cohort_href).then(response => response.json())
+  : null;
+const trial = cohort?.common_benchmark.trials[0];
+const replayUrl = trial?.replay_href ? base + trial.replay_href : null;
 ```
 
-## card fields
+## scores and billing
 
-| field | meaning |
-| --- | --- |
-| `id` | stable example identifier |
-| `model_id`, `display_name` | model catalogue key and label |
-| `returned_model`, `provider` | identities actually returned by the api |
-| `mode` | `state` or pixels-only `image` |
-| `progress_pct` | this episode's normalised furthest valid progress |
-| `completed` | native completion flag, required for 100 |
-| `native_frames`, `decisions` | gameplay frames and model decisions |
-| `speedrun_score_native_frames` | native frames to completion, lower is better; null on failure |
-| `nominal_game_seconds_to_completion` | completion frames / 60; null on failure |
-| `experiment_config` | exact profile, cadence, history, seed and contract hash |
-| `controls`, `trace_href` | controller adapter and full action trace |
-| `replay_href`, `replay_sha256` | recorded gameplay and its file hash |
-| `source_hashes`, `verified`, `input_audit` | source provenance, native replay and input audit |
+individual `progress_pct` is normalised furthest valid progress. 100 requires
+native completion. `native_frames_to_completion` in cohort trials and
+`speedrun_score_native_frames` in development records are null on failure
 
-render null as unavailable, never as zero. each selected attempt has its own
-progress and completion clock; these are not a model average or a speedrun median
-research attempt counts are disclosed separately in `search_context`, with each
-search's scope and snapshot. don't derive a win rate from the selected examples
-
-for a matched benchmark cohort, the primary score averages every declared repeat
-within a level, then gives each level equal weight. speedrun uses the median
-native completion frames per level, accompanied by attempt and completion counts
-failures have no speedrun value. neither measure uses api latency or internet speed
-
-only 1-1 has a calibrated progress mapping. the other world 1 levels keep null
-endpoints and cannot supply a comparable progress aggregate yet
+`cost_usd` is a complete actual total. `cost_estimate_usd` is a separate complete
+byok list-price estimate, displayed with `~`. coverage includes every request,
+retry and auxiliary stage, with explicit source-attempt counts. missing receipts
+or billing components leave totals unknown. a model's mean cost requires all 3
+complete scopes; never display missing billing as free or zero
 
 ## verification
 
 ```sh
+.venv/bin/python -m benchmark.common_state_release --verify-public results
 .venv/bin/python -m benchmark.public_results
+npm --prefix web run check:readme
 ```
 
-this checks provider identities and native choice distributions, expands those
-choices directly to controls, and replays every native frame. all recorded state
-and screen hashes must match, along with completion, valid progress and speedrun
-there are no api calls. the image input audits also checked the original requests
-against actual screenshots; private requests and memory snapshots stay local
+the common verifier reconstructs request hashes and native controls, checks every
+recorded frame checkpoint, recomputes outcomes and validates the three-run means
+it needs no private ledgers, credentials or model calls. private generation IDs,
+request logs and account metadata remain outside the public dataset
 
-`--render` recreates the mp4s from the public actions. it never asks a model to
-play again. the hashes in `index.json` identify the checked-in replay files
-
-## technical retests
-
-`technical_diagnostics` retains transport corrections separately from `observations`
-luna's json-object retest preserves the same evidence text, rules and questions
-the old api-aborted row stays unchanged. its retrospective stagnation prefix has
-null final progress and 17.81% observed progress; the longer full diagnostic reached
-34.76% and is not comparable with that prefix. both have null speedrun values
+see [the common state workflow](common-state-benchmark.md) for a new evaluation

@@ -1,21 +1,26 @@
-# recorded development examples
+# recorded benchmark results
 
-4 verified state-based clears and 4 verified pixels-only partial runs, with
-silent replays and exact native model actions
+[index.json](index.json) is the entry point. its `common_cohort_href` points to the
+fresh, preregistered state evaluation in [common-state/index.json](common-state/index.json)
+a model gets a mean only after all 3 prescribed attempts pass native replay;
+incomplete models remain pending, never zero
 
-`observations` now adds 22 state attempts and 16 best-observed pixels-only runs
-with compact traces. api failures remain incomplete; these are not model means
+common image calibration is pending. `examples`, `observations` and
+`technical_diagnostics` retain the earlier development runs, including verified
+state and pixels clears. those settings differ and their selected outcomes are
+not model averages
 
-start with [index.json](index.json), [models.json](models.json) and the
-[website data guide](../docs/website-data.md)
+all asset references use the `results/` root as their base. the
+[website data guide](../docs/website-data.md) describes the shared website/README
+selector, billing fields and evidence links
 
-these are selected development examples, not comparable model averages
-settings differ, all research attempts are not shown here, and there are no
-pixels-only clears in this checkpoint. speedrun is native completion frames;
-failed runs keep a null speedrun value
-
-verify all 8 recorded episodes without an api key:
+verify without a key or model calls:
 
 ```sh
+.venv/bin/python -m benchmark.common_state_release --verify-public results
 .venv/bin/python -m benchmark.public_results
 ```
+
+the first command checks the published common cohort; the second checks the
+legacy development traces. both replay actual native inputs. replays are silent
+and exclude api waiting time. failed attempts have no completion-time score
