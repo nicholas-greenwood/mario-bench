@@ -1,7 +1,7 @@
 // Node 24 reads the same TypeScript selector used by the website.
 import { readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
-import { parseDataset, unavailableProgress } from '../lib/data.ts';
+import { formatRunCost, parseDataset, unavailableProgress } from '../lib/data.ts';
 
 const begin = '<!-- BEGIN GENERATED RESULTS -->';
 const end = '<!-- END GENERATED RESULTS -->';
@@ -16,15 +16,16 @@ export function renderResults(index) {
     `${published.length} published runs, matching the website's all runs view, on world 1-1`,
     'individual development runs use different settings; these are not model averages or a ranking', '',
     'the json retest is a separate retrospective run; its overlapping prefix is evidence only',
-    '[serialization diagnostics and prefix](results/diagnostics/openai-state-serialization.json)', ''];
+    '[serialization diagnostics and prefix](results/diagnostics/openai-state-serialization.json)', '',
+    'cost is usd; ~ includes a byok list-price estimate, and missing billing is shown as -', ''];
   for (const [track, title] of [['state', 'state'], ['image', 'pixels only']]) {
     const runs = published.filter(run => run.track === track).sort((a, b) =>
       (b.progressPct ?? -1) - (a.progressPct ?? -1)
       || (a.clearSeconds ?? Infinity) - (b.clearSeconds ?? Infinity)
       || a.id.localeCompare(b.id));
     lines.push(`### ${title}`, '',
-      '| model | observed progress | clear time (game s) | evidence |',
-      '| --- | ---: | ---: | --- |');
+      '| model | observed progress | clear time (game s) | cost (usd) | evidence |',
+      '| --- | ---: | ---: | ---: | --- |');
     for (const run of runs) {
       const raw = rawById.get(run.id);
       if (run.completed && (run.progressPct !== 100 || raw.verified !== true || run.clearSeconds === null)) {
@@ -36,7 +37,7 @@ export function renderResults(index) {
       const seconds = run.completed ? run.clearSeconds.toFixed(2) : '-';
       const links = [raw.replay_href && `[replay](results/${raw.replay_href})`,
         `[trace](results/${raw.trace_href})`, `[profile](results/${raw.profile_href})`].filter(Boolean).join(' · ');
-      lines.push(`| ${escape(run.name.toLowerCase())} | ${progress} | ${seconds} | ${links} <!-- run:${run.id} --> |`);
+      lines.push(`| ${escape(run.name.toLowerCase())} | ${progress} | ${seconds} | ${formatRunCost(run) ?? '-'} | ${links} <!-- run:${run.id} --> |`);
     }
     lines.push('');
   }
