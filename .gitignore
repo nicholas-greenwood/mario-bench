@@ -5,3 +5,13 @@
 /playground/
 AGENTS.md
 .agents/
+
+# Website dependencies, generated files and local game data.
+/web/node_modules/
+/web/.next/
+/web/.vercel/
+/web/screenshots/
+/web/next-env.d.ts
+/web/tsconfig.tsbuildinfo
+/web/public/game/*.nes
+/.vercel/

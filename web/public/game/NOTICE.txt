@@ -1,0 +1,5 @@
+Super Mario Bros. game content is copyright Nintendo.
+Game content is not covered by this repository's software licence.
+
+The build prepares its local game data from the pinned gym-super-mario-bros
+9.1.0 package. No ROM binary is committed to this repository.
