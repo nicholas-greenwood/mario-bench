@@ -1,0 +1,23 @@
+mario bench gives decision models the controller in super mario bros, so engineers can see whether they reach the flag
+
+the model sees game state or screenshots and chooses the buttons. the game pauses while it thinks, then advances a fixed number of frames
+
+we measure progress, completion and gameplay time. api latency doesn't count
+
+alongside the development results, there are 8 recorded showcases: 4 state-based clears and 4 pixels-only partial runs. settings differ, so these aren't model rankings
+
+pick a replay to watch, then play the level yourself
+
+codex built this end to end using gpt-6.1-sol with high reasoning, from my concept and direction. it also built offline replay checks that compare the resulting state and screen hashes with the original run
+
+it's live at mario.nicholasg.com, with no sign-in
+
+
+screen directions (not spoken)
+
+0-8s: open the live site with both model replays playing
+8-24s: show the state and pixels captions and gameplay clocks
+24-35s: show all observations, then switch to replay showcases
+35-41s: select a replay row, start human play and jump once
+41-56s: show the README's Codex build and replay-verification explanation
+56-60s: return to the site with its address visible

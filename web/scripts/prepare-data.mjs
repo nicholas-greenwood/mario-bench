@@ -18,7 +18,7 @@ await mkdir(destination, { recursive: true });
 await cp(source, destination, { recursive: true, filter: path => !path.endsWith('README.md') });
 
 const index = JSON.parse(await readFile(new URL('index.json', destination), 'utf8'));
-for (const example of index.examples) {
+for (const example of [...index.examples, ...(index.observations ?? [])]) {
   for (const key of ['replay', 'trace', 'profile']) {
     const href = example[`${key}_href`];
     const expected = example[`${key}_sha256`];
@@ -27,4 +27,4 @@ for (const example of index.examples) {
     if (actual !== expected) throw new Error(`${example.id}: ${key} checksum mismatch`);
   }
 }
-console.log(`Prepared ${index.examples.length} benchmark examples in public/benchmark-data`);
+console.log(`Prepared ${index.observations?.length ?? 0} observations and ${index.examples.length} replays in public/benchmark-data`);

@@ -196,7 +196,7 @@ export function Colophon() {
   const { dataset } = useBenchmark();
   return (
     <footer className="colophon faint">
-      <p>the model catalogue covers {dataset.catalogue.state} state and {dataset.catalogue.image} pixels-compatible model/provider pairs. only the runs listed here have published replays.</p>
+      <p>the model catalogue covers {dataset.catalogue.state} state and {dataset.catalogue.image} pixels-compatible model/provider pairs. {dataset.runs.length} showcases have video; development observations retain their action traces.</p>
       <p><a href="/benchmark-data/index.json">raw data</a> · generated {dataset.generatedAt.slice(0, 10)}</p>
     </footer>
   );

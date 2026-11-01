@@ -100,13 +100,16 @@ kbd { font: inherit; }
 .runs th:first-child, .runs td:first-child { padding-left: 4px; }
 .runs td.num, .runs th.num { text-align: right; }
 .runs td.num { font-family: var(--mono); font-size: 12.5px; letter-spacing: -.01em; }
-.runs tbody tr { cursor: pointer; background: transparent; transition: background .12s; }
+.runs tbody tr { background: transparent; transition: background .12s; }
+.runs tbody tr[data-replay] { cursor: pointer; }
 .runs tbody tr:hover { background: var(--hover); }
 .run-name { display: grid; gap: 2px; text-align: left; }
 .run-name > span:first-child { display: inline-flex; align-items: baseline; gap: 8px; font-weight: 500; }
 .run-id { font-size: 11.5px; color: var(--faint); }
 .loaded { font-size: 10.5px; font-weight: 400; color: var(--faint); letter-spacing: .08em; }
 .results-hint { margin-top: 12px; font-size: 12px; }
+.result-views { display:flex; flex-wrap:wrap; gap:16px; margin:12px 0; font-size:12px; color:var(--muted); }
+.result-views button[aria-pressed='true'] { color:var(--ink); font-weight:600; }
 
 @media (pointer: coarse), (max-width: 760px) { .touch-pad { display: grid; } }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; animation: none !important; } }

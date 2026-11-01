@@ -15,7 +15,8 @@ no sign-in, installation or api key needed
 
 - watch 2 recorded model runs side by side
 - select **a** or **b** under a replay, then click a result row to change it.
-  click column headings to sort all 8 published runs
+  switch between all development observations and replay showcases; click column
+  headings to sort the results
 - press **play world 1-1** to try it yourself. left/right arrows move, up jumps
   and shift runs. touch controls work too; your personal best stays in this browser
 
@@ -35,14 +36,16 @@ existing emulators and game content are credited in the
 [benchmark notices](docs/third-party-notices.md) and
 [website notices](web/THIRD_PARTY_NOTICES.md)
 
+[60-second demo script](docs/demo-script.txt)
+
 ## results
 
 22 models have recorded state attempts. the tables show individual development
 runs, not model averages or a ranking. earlier verified clears and all 8 replay
 showcases remain in [the recorded examples](results/README.md)
 
-the live website shows the 8 replay showcases; the tables below also include
-the broader development observations
+the live website shows the broader development observations and the 8 replay
+showcases, with incomplete and aborted attempts labelled separately
 
 ### state: common input profile
 
