@@ -82,6 +82,21 @@
       "items": {
         "type": "object"
       }
+    },
+    "observations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "model_id",
+          "mode",
+          "status",
+          "progress_pct",
+          "trace_href",
+          "profile_href"
+        ]
+      }
     }
   },
   "$defs": {

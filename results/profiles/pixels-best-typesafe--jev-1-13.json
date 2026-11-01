@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "id": "pixels-best-typesafe--jev-1-13",
+  "mode": "image",
+  "cadence": 4,
+  "history": 2,
+  "contract": {
+    "questions": {
+      "action": {
+        "criteria": {
+          "left_run_jump": "Hold horizontal=left, B(run)=held, A(jump)=held; vertical released.",
+          "left_run_release": "Hold horizontal=left, B(run)=held, A(jump)=released; vertical released.",
+          "left_walk_jump": "Hold horizontal=left, B(run)=released, A(jump)=held; vertical released.",
+          "left_walk_release": "Hold horizontal=left, B(run)=released, A(jump)=released; vertical released.",
+          "released_run_jump": "Hold horizontal=released, B(run)=held, A(jump)=held; vertical released.",
+          "released_run_release": "Hold horizontal=released, B(run)=held, A(jump)=released; vertical released.",
+          "released_walk_jump": "Hold horizontal=released, B(run)=released, A(jump)=held; vertical released.",
+          "released_walk_release": "Hold horizontal=released, B(run)=released, A(jump)=released; vertical released.",
+          "right_run_jump": "Hold horizontal=right, B(run)=held, A(jump)=held; vertical released.",
+          "right_run_release": "Hold horizontal=right, B(run)=held, A(jump)=released; vertical released.",
+          "right_walk_jump": "Hold horizontal=right, B(run)=released, A(jump)=held; vertical released.",
+          "right_walk_release": "Hold horizontal=right, B(run)=released, A(jump)=released; vertical released."
+        },
+        "instructions": "Select the complete controller input that best advances Mario towards the flag alive. Evaluate the next interval and the resulting jump trajectory. All named buttons are held throughout the interval; choose deliberately when to press or release jump.",
+        "type": "choice"
+      }
+    },
+    "initial_provider_text": [
+      "{\"game\":\"Super Mario Bros., world 1-1\",\"rules_and_button_semantics\":\"Play Super Mario Bros. World 1-1 to the flag. Coordinates are world pixels, x increases right, y increases down. Scene is current visible information, not a future map. Each action lasts the declared interval with physics paused until your answer. A jump starts only on a fresh A press while grounded; keeping A held through landing will NOT jump again. Release A before the next fresh jump. Holding A during ascent increases height; releasing A shortens the jump. B makes running faster and jumps longer. Momentum persists on release. Mario can jump onto pipes, blocks and stairs and must clear floor gaps. Enemy side contact is dangerous, landing from above stomps ordinary walking enemies. Think ahead about visible hazards and the size of your body. All action choices are your own. Reach the flag alive, avoid waiting indefinitely or running into walls. No action or route recommendation is supplied. General jump phases: hold A while ascending when height or distance is needed; release A while descending to prepare the next fresh jump. Releasing A during ascent shortens the jump, but keeping it held through landing prevents the next jump. On the ground a fresh jump needs the A release-to-press edge. For stairs, the feet must rise above each solid step before crossing its side; landing on a raised step permits another jump. A jump begun too far before a gap can end above the gap; the current visible geometry determines takeoff timing.\",\"observation_interface\":\"image_only\",\"native_frame\":0,\"control_interval_frames\":4,\"currently_held_buttons\":{\"horizontal\":\"released\",\"vertical\":\"released\",\"jump\":\"released\",\"run\":\"released\"},\"previous_model_controls\":[],\"screenshot_format\":\"Native 256x240 game screens enlarged to 512x480 with nearest-neighbour interpolation. Chronological oldest first, CURRENT last. Infer all game geometry and motion from these pixels.\"}",
+      "CURRENT paused screenshot, native frame 0."
+    ],
+    "cadence": 4
+  },
+  "source_hashes": {
+    "requests_sha256": "2ea6fe27373c3836c629f8ed28a9f87bd48e20f011d9031b79dab260af92fe3c",
+    "responses_sha256": "414e08ff9a07294e0bb4792f4f77e538cda0606ea215c4fd130a1076967d50e2",
+    "private_replay_sha256": "08fb25c9a71a751342712a1fede32cb4456c049cd1a91d591e833d24f518a279",
+    "audit_sha256": "927d26e7e0f5020b0ee0d9821c735cca48bb6d5ff37e520415777ebd8584333c"
+  },
+  "common_benchmark_default": false,
+  "data_class": "development_observation"
+}

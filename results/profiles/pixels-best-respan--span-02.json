@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "id": "pixels-best-respan--span-02",
+  "mode": "image",
+  "cadence": 8,
+  "history": 1,
+  "contract": {
+    "questions": {
+      "action": {
+        "criteria": {
+          "coast_release_jump_4": "Release all directions and A+B for 4 frames. Momentum may continue.",
+          "fresh_left_jump_24": "Hold left+B throughout: release A for 1 frame then hold A for 24 frames (25 total).",
+          "fresh_running_jump_24": "Hold right+B throughout: release A for 1 frame, then hold A for 24 frames (25 total). Starts a fresh medium running jump if grounded and sustains it.",
+          "fresh_running_jump_40": "Hold right+B throughout: release A for 1 frame, then hold A for 40 frames (41 total). Starts a fresh full-height running jump if grounded and sustains it.",
+          "fresh_walking_jump_24": "Hold right, release B throughout: release A for 1 frame, then hold A for 24 frames (25 total). Starts a fresh medium walking jump if grounded and sustains it.",
+          "fresh_walking_jump_40": "Hold right, release B throughout: release A for 1 frame, then hold A for 40 frames (41 total). Starts a fresh full-height walking jump if grounded and sustains it.",
+          "run_forward_16": "Hold right+B, A released, 16 frames.",
+          "run_forward_8": "Hold right+B, A released, 8 frames.",
+          "run_left_8": "Hold left+B, release A for 8 frames.",
+          "sustain_running_jump_8": "Hold right+B+A for 8 frames. Maintains an ongoing jump; does not reset A.",
+          "sustain_walking_jump_8": "Hold right+A, release B for 8 frames. Maintains an ongoing jump; does not reset A.",
+          "walk_forward_8": "Hold right, A+B released, 8 frames."
+        },
+        "instructions": "Choose the fixed controller sequence that best progresses to the flag alive. Your chosen sequence executes exactly, without obstacle detection, correction, autojump, or early stopping except terminal game state. Choose the jump duration and horizontal direction based on the current visible geometry and current trajectory.",
+        "type": "choice"
+      }
+    },
+    "initial_provider_text": [
+      "{\"game\":\"Super Mario Bros 1-1\",\"instructions\":\"Play Super Mario Bros world 1-1 to reach the flag alive by moving right. All evidence about the game comes from the screenshots; infer Mario, enemies, surfaces, and motion visually. The game is paused while you decide. You choose all four simultaneous button states, held for the stated number of native 60Hz frames. Right/left moves, A jumps, B runs, down crouches or enters pipes. Holding A sustains a jump; release A before a fresh jump after landing. Holding A through landing does not start another jump. Side contact with enemies and falling into gaps are dangerous; landing on an enemy can defeat it. Aim jumps using visible obstacles and motion, and release A when appropriate to prepare another jump. Images are native 256x240, nearest-neighbour enlarged to 512x480; chronological oldest first, current last. No automatic action correction or controller assists exist. Fresh jump choices explicitly release A for 1 frame before holding it for the chosen duration. A full jump needs sustained A; repeatedly ending the hold too soon makes low hops. A macro never checks for hazards or grounded state. Do not rely on a fresh jump command issued in midair to start a new jump on landing.\",\"next_control_interval_native_frames\":\"You choose a fixed temporal input sequence and duration from the available actions.\",\"previous_controls\":[]}",
+      "CURRENT paused screenshot; use this for your next action. Screenshot taken before decision 0"
+    ],
+    "cadence": 8
+  },
+  "source_hashes": {
+    "requests_sha256": "c6b546421a38614b7d81561b22f740fdc0049c11eca995b87d28d53441055388",
+    "responses_sha256": "3346ba52bec520efd180dcebe9311505797ad0d488bc71eb59e628d8c30968e6",
+    "private_replay_sha256": "7b07fb02b26dce1bcfa5576e1e3fc36de8c77dcf7e053ea806251728ec2ac140",
+    "audit_sha256": "25038e6957fbf4022fb0723363796119fbe7839b4d12847086d32d9475e74e55"
+  },
+  "common_benchmark_default": false,
+  "data_class": "development_observation"
+}

@@ -1,0 +1,3167 @@
+{
+  "schema_version": 1,
+  "evidence_kind": "compact_native_action_trace",
+  "id": "state-c4-openai--gpt-6-luna-decisions",
+  "mode": "state",
+  "level": "1-1",
+  "contract": {
+    "questions": {
+      "action": {
+        "criteria": {
+          "left_run_jump": "Hold horizontal=left, B(run)=held, A(jump)=held; vertical released.",
+          "left_run_release": "Hold horizontal=left, B(run)=held, A(jump)=released; vertical released.",
+          "left_walk_jump": "Hold horizontal=left, B(run)=released, A(jump)=held; vertical released.",
+          "left_walk_release": "Hold horizontal=left, B(run)=released, A(jump)=released; vertical released.",
+          "released_run_jump": "Hold horizontal=released, B(run)=held, A(jump)=held; vertical released.",
+          "released_run_release": "Hold horizontal=released, B(run)=held, A(jump)=released; vertical released.",
+          "released_walk_jump": "Hold horizontal=released, B(run)=released, A(jump)=held; vertical released.",
+          "released_walk_release": "Hold horizontal=released, B(run)=released, A(jump)=released; vertical released.",
+          "right_run_jump": "Hold horizontal=right, B(run)=held, A(jump)=held; vertical released.",
+          "right_run_release": "Hold horizontal=right, B(run)=held, A(jump)=released; vertical released.",
+          "right_walk_jump": "Hold horizontal=right, B(run)=released, A(jump)=held; vertical released.",
+          "right_walk_release": "Hold horizontal=right, B(run)=released, A(jump)=released; vertical released."
+        },
+        "instructions": "Select the complete controller input that best advances Mario towards the flag alive. Evaluate the next interval and the resulting jump trajectory. All named buttons are held throughout the interval; choose deliberately when to press or release jump.",
+        "type": "choice"
+      }
+    },
+    "rules": "Play Super Mario Bros. World 1-1 to the flag. Coordinates are world pixels, x increases right, y increases down. Scene is current visible information, not a future map. Each action lasts the declared interval with physics paused until your answer. A jump starts only on a fresh A press while grounded; keeping A held through landing will NOT jump again. Release A before the next fresh jump. Holding A during ascent increases height; releasing A shortens the jump. B makes running faster and jumps longer. Momentum persists on release. Mario can jump onto pipes, blocks and stairs and must clear floor gaps. Enemy side contact is dangerous, landing from above stomps ordinary walking enemies. Think ahead about visible hazards and the size of your body. All action choices are your own. Reach the flag alive, avoid waiting indefinitely or running into walls. No action or route recommendation is supplied. General jump phases: hold A while ascending when height or distance is needed; release A while descending to prepare the next fresh jump. Releasing A during ascent shortens the jump, but keeping it held through landing prevents the next jump. On the ground a fresh jump needs the A release-to-press edge. For stairs, the feet must rise above each solid step before crossing its side; landing on a raised step permits another jump. A jump begun too far before a gap can end above the gap; the current visible geometry determines takeoff timing.",
+    "cadence": 4
+  },
+  "actions": [
+    {
+      "index": 0,
+      "frame_before": 0,
+      "frame_after": 4,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_jump",
+            "confidence": 0.79,
+            "probabilities": {
+              "left_run_jump": 0.01,
+              "left_run_release": 0,
+              "left_walk_jump": 0.01,
+              "left_walk_release": 0,
+              "released_run_jump": 0.01,
+              "released_run_release": 0,
+              "released_walk_jump": 0,
+              "released_walk_release": 0.01,
+              "right_run_jump": 0.81,
+              "right_run_release": 0,
+              "right_walk_jump": 0.15,
+              "right_walk_release": 0
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "30dbea6e22caa769a671083665a0f3e20ee19db942323793dab7ad5b48ef6901",
+      "screen_after_sha256": "dfe589b2603af3119b24a9776c4fc7675122a4bd6120a4e59ca7f4e6fda92628",
+      "request_sha256": "1c442cea2d841f275d1a3c6a5985e946722f4dc559b75965e0d1eddd2b548a35"
+    },
+    {
+      "index": 1,
+      "frame_before": 4,
+      "frame_after": 8,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_jump",
+            "confidence": 0.84,
+            "probabilities": {
+              "left_run_jump": 0,
+              "left_run_release": 0.01,
+              "left_walk_jump": 0,
+              "left_walk_release": 0,
+              "released_run_jump": 0.02,
+              "released_run_release": 0,
+              "released_walk_jump": 0,
+              "released_walk_release": 0,
+              "right_run_jump": 0.85,
+              "right_run_release": 0.11,
+              "right_walk_jump": 0,
+              "right_walk_release": 0.01
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "ec20f13785b39d10d7e92f953add657bc28855cc1da87f19840e88808a391bf0",
+      "screen_after_sha256": "b98d31708b06871307cfc1f9b7f1b33d9ed8c55bbaabd4d54838b373ded44a8f",
+      "request_sha256": "86285f0ef800d67cfe812ac794798cbb1df4bf3ee2ce3e48deaa232c0e4ec1d1"
+    },
+    {
+      "index": 2,
+      "frame_before": 8,
+      "frame_after": 12,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.55,
+            "probabilities": {
+              "left_run_jump": 0.01,
+              "left_run_release": 0.01,
+              "left_walk_jump": 0.01,
+              "left_walk_release": 0,
+              "released_run_jump": 0,
+              "released_run_release": 0,
+              "released_walk_jump": 0,
+              "released_walk_release": 0.01,
+              "right_run_jump": 0.33,
+              "right_run_release": 0.59,
+              "right_walk_jump": 0.02,
+              "right_walk_release": 0.02
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "4aa7c56f4e52986de9b42e851fc03e5b841e25de0453324b3b45e51546809377",
+      "screen_after_sha256": "4c2c3493ec5160757aef4be7a332b2a206019c655027c5edf49f6c37d86a8339",
+      "request_sha256": "a1fc42aa8701a94ef53e6ba26b7dc77eeb2467514998b20447078379305033d8"
+    },
+    {
+      "index": 3,
+      "frame_before": 12,
+      "frame_after": 16,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_jump",
+            "confidence": 0.53,
+            "probabilities": {
+              "left_run_jump": 0.01,
+              "left_run_release": 0.01,
+              "left_walk_jump": 0,
+              "left_walk_release": 0,
+              "released_run_jump": 0,
+              "released_run_release": 0,
+              "released_walk_jump": 0,
+              "released_walk_release": 0,
+              "right_run_jump": 0.57,
+              "right_run_release": 0.39,
+              "right_walk_jump": 0.01,
+              "right_walk_release": 0.01
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "1cce5fc190f6c56cdf279625fc9af0d84a27433ddcd7f4692c3704643e524154",
+      "screen_after_sha256": "da626044f6e54d6158ee9f2806629229d00a00980307566a6d4e51f8cf487184",
+      "request_sha256": "13ac3fe393e0cc5185eb7378a86f6706f0ae3ea324daa38fe21c3ccf55af377b"
+    },
+    {
+      "index": 4,
+      "frame_before": 16,
+      "frame_after": 20,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.74,
+            "probabilities": {
+              "left_run_jump": 0.01,
+              "left_run_release": 0.03,
+              "left_walk_jump": 0,
+              "left_walk_release": 0,
+              "released_run_jump": 0.01,
+              "released_run_release": 0,
+              "released_walk_jump": 0,
+              "released_walk_release": 0.01,
+              "right_run_jump": 0.14,
+              "right_run_release": 0.76,
+              "right_walk_jump": 0.01,
+              "right_walk_release": 0.03
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "fe991250ece330e53c9aeb9cc3d48931969a9e7d094ff650891b245a4308567a",
+      "screen_after_sha256": "72455c23f88eef255c2a2fe4ba8a5ba10b10be8ae184ff3f67e3e123105f3bca",
+      "request_sha256": "a32acc605ff04f54035724af92c649c041004eecedb8ce98fb5d6cf0153f2962"
+    },
+    {
+      "index": 5,
+      "frame_before": 20,
+      "frame_after": 24,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.72,
+            "probabilities": {
+              "left_run_jump": 0.01,
+              "left_run_release": 0.02,
+              "left_walk_jump": 0,
+              "left_walk_release": 0,
+              "released_run_jump": 0.01,
+              "released_run_release": 0.01,
+              "released_walk_jump": 0,
+              "released_walk_release": 0,
+              "right_run_jump": 0.19,
+              "right_run_release": 0.74,
+              "right_walk_jump": 0.01,
+              "right_walk_release": 0.01
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "491d4b738860dc81dfd2305ee0c5b0260cc01bb8f40049df1363e7473b3a7c13",
+      "screen_after_sha256": "db338930ce0d474a6aa0edacb86b22f3989cbe23ab3e79649ea3e62fbe8ee6c6",
+      "request_sha256": "07083ab80e4bf962d659b258689d6be50462fc32881b50a9bc61d1c23a5a5880"
+    },
+    {
+      "index": 6,
+      "frame_before": 24,
+      "frame_after": 28,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.76,
+            "probabilities": {
+              "left_run_jump": 0,
+              "left_run_release": 0.02,
+              "left_walk_jump": 0,
+              "left_walk_release": 0,
+              "released_run_jump": 0,
+              "released_run_release": 0,
+              "released_walk_jump": 0,
+              "released_walk_release": 0.01,
+              "right_run_jump": 0.1,
+              "right_run_release": 0.78,
+              "right_walk_jump": 0.02,
+              "right_walk_release": 0.07
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "d7e45ca1a3bfc487e655f6bac5f2c98ca6eceed56704d211718d1916c975eda4",
+      "screen_after_sha256": "2c3fa255c2d7428ebe52b7aba21861f725618e5cb184ecf95d6308149dac1fbd",
+      "request_sha256": "c7a0ccad6cde5ce774340475d92702cebd9b1ccdac369a14c24632b15dbe9e9f"
+    },
+    {
+      "index": 7,
+      "frame_before": 28,
+      "frame_after": 32,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_jump",
+            "confidence": 0.6,
+            "probabilities": {
+              "left_run_jump": 0.01,
+              "left_run_release": 0.01,
+              "left_walk_jump": 0.01,
+              "left_walk_release": 0,
+              "released_run_jump": 0,
+              "released_run_release": 0,
+              "released_walk_jump": 0,
+              "released_walk_release": 0,
+              "right_run_jump": 0.63,
+              "right_run_release": 0.28,
+              "right_walk_jump": 0.03,
+              "right_walk_release": 0.03
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "cfd359c15acf010d2560dacbfd8db56c3b63e2f8ef5e529cc3c22b116bb6cb79",
+      "screen_after_sha256": "5fa82f674fb992a4a9d0e04a922c04702c304b8c02eb5d7da956af4837fa9547",
+      "request_sha256": "4740f9afaa48263734e78ea45858968525303fa0ed47b9a8b9a4a08b0f03a1a4"
+    },
+    {
+      "index": 8,
+      "frame_before": 32,
+      "frame_after": 36,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.51,
+            "probabilities": {
+              "left_run_jump": 0.01,
+              "left_run_release": 0,
+              "left_walk_jump": 0,
+              "left_walk_release": 0,
+              "released_run_jump": 0,
+              "released_run_release": 0,
+              "released_walk_jump": 0,
+              "released_walk_release": 0,
+              "right_run_jump": 0.42,
+              "right_run_release": 0.55,
+              "right_walk_jump": 0.01,
+              "right_walk_release": 0.01
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "e9c681c3a52fecf49ca428cfee3d88170f68ac9f553732907e281c50d8bdfc11",
+      "screen_after_sha256": "c288603c50eb7ef7c779e80070edff0816215223d5ae071c02067e9139e34941",
+      "request_sha256": "2033f974f45cd1d4ae63ae7b3f70846bf74fead36fb266402f91ec4e707fe19e"
+    },
+    {
+      "index": 9,
+      "frame_before": 36,
+      "frame_after": 40,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.45,
+            "probabilities": {
+              "left_run_jump": 0.01,
+              "left_run_release": 0.01,
+              "left_walk_jump": 0,
+              "left_walk_release": 0,
+              "released_run_jump": 0,
+              "released_run_release": 0,
+              "released_walk_jump": 0,
+              "released_walk_release": 0,
+              "right_run_jump": 0.46,
+              "right_run_release": 0.5,
+              "right_walk_jump": 0.01,
+              "right_walk_release": 0.01
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "a08df6af4c0e99d9491f6849b05c16519e3290839304a424ed9d43eb3904686b",
+      "screen_after_sha256": "890371372b9e29b336e78cd98aa4f142a6a1ccb9d92a89190143db564d9c54dd",
+      "request_sha256": "8e764abcab4b8aa3f685b939714d0eb9dd2fc5092ff4e1b163999f06785a2b4d"
+    },
+    {
+      "index": 10,
+      "frame_before": 40,
+      "frame_after": 44,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.74,
+            "probabilities": {
+              "left_run_jump": 0,
+              "left_run_release": 0.01,
+              "left_walk_jump": 0,
+              "left_walk_release": 0.01,
+              "released_run_jump": 0,
+              "released_run_release": 0,
+              "released_walk_jump": 0,
+              "released_walk_release": 0.01,
+              "right_run_jump": 0.05,
+              "right_run_release": 0.76,
+              "right_walk_jump": 0.03,
+              "right_walk_release": 0.13
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "2986dbb89ee2f768d4b19977ce97a4bea4359efffd6b672d3638149db195dae3",
+      "screen_after_sha256": "d57f920cf65a090c320e5701bc2d409c2999403f0ed3fa90386742e6699d5a7b",
+      "request_sha256": "a9c630e0010087c2b86bdc35039e3a56db6edd1604501a96214920874d7d26f5"
+    },
+    {
+      "index": 11,
+      "frame_before": 44,
+      "frame_after": 48,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_jump",
+            "confidence": 0.48,
+            "probabilities": {
+              "left_run_jump": 0.03,
+              "left_run_release": 0.01,
+              "left_walk_jump": 0.01,
+              "left_walk_release": 0,
+              "released_run_jump": 0.01,
+              "released_run_release": 0,
+              "released_walk_jump": 0,
+              "released_walk_release": 0,
+              "right_run_jump": 0.52,
+              "right_run_release": 0.37,
+              "right_walk_jump": 0.04,
+              "right_walk_release": 0.01
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "f7665a7e3771579d6cf422a4ac63af2ee408f5b1f5dca455dd3d2195d36bed40",
+      "screen_after_sha256": "640a9e8061b48d7295ba9106f59d2e64daeaa344c2de530a2639812408083b15",
+      "request_sha256": "551eef3abf47cb640f8fffe03a20cd82d20a9a6e8e8140b1b2578e8aae2f8f92"
+    },
+    {
+      "index": 12,
+      "frame_before": 48,
+      "frame_after": 52,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.67,
+            "probabilities": {
+              "left_run_jump": 0.01,
+              "left_run_release": 0.18,
+              "left_walk_jump": 0.01,
+              "left_walk_release": 0.01,
+              "released_run_jump": 0,
+              "released_run_release": 0,
+              "released_walk_jump": 0,
+              "released_walk_release": 0.01,
+              "right_run_jump": 0.04,
+              "right_run_release": 0.7,
+              "right_walk_jump": 0.01,
+              "right_walk_release": 0.03
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "c01f30de9f17ed18ea369ae3b02af5d25b97b80d361385d8194a07b127707e21",
+      "screen_after_sha256": "19027ec54dcb75fd412245b12f84c99baef553b460d0303d0fa48d3baf6cbfe1",
+      "request_sha256": "8eb73259fbac07afd087d14ec3d73e59ac917c3289b36b86f979136b78c70b35"
+    },
+    {
+      "index": 13,
+      "frame_before": 52,
+      "frame_after": 56,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_jump",
+            "confidence": 0.81,
+            "probabilities": {
+              "left_run_jump": 0.01,
+              "left_run_release": 0.01,
+              "left_walk_jump": 0.01,
+              "left_walk_release": 0,
+              "released_run_jump": 0.01,
+              "released_run_release": 0,
+              "released_walk_jump": 0,
+              "released_walk_release": 0,
+              "right_run_jump": 0.83,
+              "right_run_release": 0.09,
+              "right_walk_jump": 0.03,
+              "right_walk_release": 0.01
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "a522d86cd401eac814109c85870cd14aaa774064d99437f819e7402f0f3cd945",
+      "screen_after_sha256": "2869ff0a1d59eee9ac0e276f959184a5e98859be1e67b67e00b1d661d2780628",
+      "request_sha256": "de9b43cf35424c3bab7b46c638373dc1712468f04aa7352c66629ce48ac94f2b"
+    },
+    {
+      "index": 14,
+      "frame_before": 56,
+      "frame_after": 60,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.41,
+            "probabilities": {
+              "left_run_jump": 0.01,
+              "left_run_release": 0.15,
+              "left_walk_jump": 0,
+              "left_walk_release": 0,
+              "released_run_jump": 0.01,
+              "released_run_release": 0,
+              "released_walk_jump": 0,
+              "released_walk_release": 0.01,
+              "right_run_jump": 0.34,
+              "right_run_release": 0.46,
+              "right_walk_jump": 0.01,
+              "right_walk_release": 0.01
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "c4b0fd99548c6d284a5ffebab5ae7e5c9aeec926c7da999c1b57c0db1858d531",
+      "screen_after_sha256": "28882a7d40c130917ca5095e5354e4154003b82a6103e95e6ea65f2295c304e2",
+      "request_sha256": "060f5d24f1e0ed6cf194f7085cc670229436ff49d19b847f8356a21c97ba564f"
+    },
+    {
+      "index": 15,
+      "frame_before": 60,
+      "frame_after": 64,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.49,
+            "probabilities": {
+              "left_run_jump": 0.01,
+              "left_run_release": 0.01,
+              "left_walk_jump": 0.01,
+              "left_walk_release": 0,
+              "released_run_jump": 0,
+              "released_run_release": 0,
+              "released_walk_jump": 0,
+              "released_walk_release": 0.01,
+              "right_run_jump": 0.41,
+              "right_run_release": 0.53,
+              "right_walk_jump": 0.01,
+              "right_walk_release": 0.01
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "be4528569e2895d922eaa5c536667cf0378e37cade63ff1d7e1eb635908d1191",
+      "screen_after_sha256": "1ea3578b5057f5bb4f259563f64d356ee60ed785e3bf713431d6c7e4b304a372",
+      "request_sha256": "2b5d339853f49fbb2296e2c564f0d2b4ccb53e886a57731a15d76f8d6532aee1"
+    },
+    {
+      "index": 16,
+      "frame_before": 64,
+      "frame_after": 68,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.36,
+            "probabilities": {
+              "left_run_jump": 0.04,
+              "left_run_release": 0.02,
+              "left_walk_jump": 0.01,
+              "left_walk_release": 0.01,
+              "released_run_jump": 0.04,
+              "released_run_release": 0.01,
+              "released_walk_jump": 0,
+              "released_walk_release": 0.02,
+              "right_run_jump": 0.39,
+              "right_run_release": 0.41,
+              "right_walk_jump": 0.03,
+              "right_walk_release": 0.02
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "e8ff4635d6278d8e3310604faa7f147993208df2fa97f734e4156fb64b376a2b",
+      "screen_after_sha256": "a62990f4353377b96d74b2a8e605db568d946c84568fc7652cc7aef88c26bcf5",
+      "request_sha256": "26cfca7eb8ef3eeda4d6e74a6d3f02657a72ac4e600e25c8953c1953d51429b4"
+    },
+    {
+      "index": 17,
+      "frame_before": 68,
+      "frame_after": 72,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.77,
+            "probabilities": {
+              "left_run_jump": 0.01,
+              "left_run_release": 0.04,
+              "left_walk_jump": 0.01,
+              "left_walk_release": 0,
+              "released_run_jump": 0.01,
+              "released_run_release": 0,
+              "released_walk_jump": 0,
+              "released_walk_release": 0,
+              "right_run_jump": 0.12,
+              "right_run_release": 0.79,
+              "right_walk_jump": 0.01,
+              "right_walk_release": 0.01
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "971aa2224af3bfa7be266671398f6da17de6f71535a7b7280d3ce3f595dffde6",
+      "screen_after_sha256": "6d3483474db4312936992345cf1372cafb6c3e6a0a93e8ee38f4c9051991d9fe",
+      "request_sha256": "0be9f97aca29fa13fd28e19653d638df75be920978696b078ae619ed913e02e2"
+    },
+    {
+      "index": 18,
+      "frame_before": 72,
+      "frame_after": 76,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.66,
+            "probabilities": {
+              "left_run_jump": 0.02,
+              "left_run_release": 0.03,
+              "left_walk_jump": 0.01,
+              "left_walk_release": 0.01,
+              "released_run_jump": 0,
+              "released_run_release": 0,
+              "released_walk_jump": 0,
+              "released_walk_release": 0,
+              "right_run_jump": 0.22,
+              "right_run_release": 0.69,
+              "right_walk_jump": 0.01,
+              "right_walk_release": 0.01
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "ffe818f8c41387f4237bb02c43f4e739f75f9277f1333b93db669d95203724fc",
+      "screen_after_sha256": "e8706c97548567c1198d9b1982ba5624a8ff5fb982a6b58b2f1b4558c867d15d",
+      "request_sha256": "0d13e63f5a6d0343c8cb627ffa8be14a4c5f61bcf7924d3b5501a5bcf17a4efe"
+    },
+    {
+      "index": 19,
+      "frame_before": 76,
+      "frame_after": 80,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_jump",
+            "confidence": 0.99,
+            "probabilities": {
+              "left_run_jump": 0,
+              "left_run_release": 0,
+              "left_walk_jump": 0,
+              "left_walk_release": 0,
+              "released_run_jump": 0,
+              "released_run_release": 0,
+              "released_walk_jump": 0,
+              "released_walk_release": 0,
+              "right_run_jump": 0.99,
+              "right_run_release": 0.01,
+              "right_walk_jump": 0,
+              "right_walk_release": 0
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "5133fd697652deffe1f550c430d87718e966b3b58dc8b794b47862d8f6d32b4f",
+      "screen_after_sha256": "bbcfc4ffca2e4863ac4bd9fe2a489b52dd6c6b55c352edfa2cd22cde4029be26",
+      "request_sha256": "67cefd8e0bf9edc7179bd96707ca642f865a122a14563bbe14ca3085cb4df75f"
+    },
+    {
+      "index": 20,
+      "frame_before": 80,
+      "frame_after": 84,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.56,
+            "probabilities": {
+              "left_run_jump": 0.03,
+              "left_run_release": 0.06,
+              "left_walk_jump": 0.01,
+              "left_walk_release": 0,
+              "released_run_jump": 0.01,
+              "released_run_release": 0,
+              "released_walk_jump": 0,
+              "released_walk_release": 0.01,
+              "right_run_jump": 0.27,
+              "right_run_release": 0.6,
+              "right_walk_jump": 0,
+              "right_walk_release": 0.01
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "e6e1f493217f891b8ca0e187f78989f1765d670f06c3f34a788aee24d4b92f4d",
+      "screen_after_sha256": "13662a024c2a8fd35b13e1a06a75aac4e9f33fe1a62500d27fd95fca59c8418a",
+      "request_sha256": "3aaa7e0e4f4ca3c5ef1e08bc13160770c7d715a9d3ff855aeee83fd62cba1c29"
+    },
+    {
+      "index": 21,
+      "frame_before": 84,
+      "frame_after": 88,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_jump",
+            "confidence": 0.71,
+            "probabilities": {
+              "left_run_jump": 0.02,
+              "left_run_release": 0.01,
+              "left_walk_jump": 0,
+              "left_walk_release": 0,
+              "released_run_jump": 0.01,
+              "released_run_release": 0,
+              "released_walk_jump": 0,
+              "released_walk_release": 0,
+              "right_run_jump": 0.73,
+              "right_run_release": 0.22,
+              "right_walk_jump": 0.01,
+              "right_walk_release": 0
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "d18cf87cc4b90b9878b728be41e612a5f513409b2eac0a930152a13cc43cf87c",
+      "screen_after_sha256": "7758e05ddb117d91a334f69426065612e909cb62418617fd2790c691051909f0",
+      "request_sha256": "82fb7a6d74f163e075cca90075de6e39fb6626e276f4d54d069adac601815deb"
+    },
+    {
+      "index": 22,
+      "frame_before": 88,
+      "frame_after": 92,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.39,
+            "probabilities": {
+              "left_run_jump": 0.03,
+              "left_run_release": 0.1,
+              "left_walk_jump": 0.02,
+              "left_walk_release": 0.01,
+              "released_run_jump": 0.02,
+              "released_run_release": 0.01,
+              "released_walk_jump": 0,
+              "released_walk_release": 0.01,
+              "right_run_jump": 0.32,
+              "right_run_release": 0.44,
+              "right_walk_jump": 0.02,
+              "right_walk_release": 0.02
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "f6922edd0dbaebe2e53f2e1ef9abcba97d8698ce4b59102dd04209c618e6c2d0",
+      "screen_after_sha256": "7e5aca0218d4543dd5fc7bbca22da9ca7e85a844d784ae192ed8ed60ab82d407",
+      "request_sha256": "c36e1119bf3170e5369cac2e62a139c2e2fb5d712983315653072ec315e54e29"
+    },
+    {
+      "index": 23,
+      "frame_before": 92,
+      "frame_after": 96,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.74,
+            "probabilities": {
+              "left_run_jump": 0.01,
+              "left_run_release": 0.02,
+              "left_walk_jump": 0.01,
+              "left_walk_release": 0.01,
+              "released_run_jump": 0,
+              "released_run_release": 0,
+              "released_walk_jump": 0,
+              "released_walk_release": 0.01,
+              "right_run_jump": 0.16,
+              "right_run_release": 0.76,
+              "right_walk_jump": 0.01,
+              "right_walk_release": 0.01
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "f624a0eb8eed41d8fbdc2d2d55bf0cc3fd60eb97bb86db2a658d33dbc5d3c089",
+      "screen_after_sha256": "67e7a3b702b82b07c27928cc5dc665a6e3228fe2fc9db45d640dad2bb81e9ddb",
+      "request_sha256": "0282d6a9e1c860f8e9c4c45ba665ba9df7ce6db5f417c7443f70e56ef7cac04e"
+    },
+    {
+      "index": 24,
+      "frame_before": 96,
+      "frame_after": 100,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.63,
+            "probabilities": {
+              "left_run_jump": 0.01,
+              "left_run_release": 0.04,
+              "left_walk_jump": 0,
+              "left_walk_release": 0,
+              "released_run_jump": 0,
+              "released_run_release": 0,
+              "released_walk_jump": 0,
+              "released_walk_release": 0.01,
+              "right_run_jump": 0.27,
+              "right_run_release": 0.66,
+              "right_walk_jump": 0.01,
+              "right_walk_release": 0
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "6db15ecce08181bcd1b4d11e38d0ff4a65de8dc2e42e0f501b132e10f45b7836",
+      "screen_after_sha256": "c96a4c4eb7bb698162e3b70f5c22938b943df7099dbafbe36c52bac798e4fb14",
+      "request_sha256": "9de741a675b1de73b0842b02c4d311f197363462f2aa8b7763fd524f24a1ed92"
+    },
+    {
+      "index": 25,
+      "frame_before": 100,
+      "frame_after": 104,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_jump",
+            "confidence": 0.8,
+            "probabilities": {
+              "left_run_jump": 0.08,
+              "left_run_release": 0.01,
+              "left_walk_jump": 0.02,
+              "left_walk_release": 0.01,
+              "released_run_jump": 0.03,
+              "released_run_release": 0,
+              "released_walk_jump": 0,
+              "released_walk_release": 0,
+              "right_run_jump": 0.82,
+              "right_run_release": 0,
+              "right_walk_jump": 0.03,
+              "right_walk_release": 0
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "4a8546c58196ce2f2305ae6f592c5f28fd40a8129344a69d9b481cb535322c43",
+      "screen_after_sha256": "7f1d44ef0cbf49e87c3781b8c351a182355461e7596d67b90b77526c2522947d",
+      "request_sha256": "d6643337e07b10509d3b974faf7a0d784b7880942ff46241ca565b7a1855c717"
+    },
+    {
+      "index": 26,
+      "frame_before": 104,
+      "frame_after": 108,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.35,
+            "probabilities": {
+              "left_run_jump": 0.04,
+              "left_run_release": 0.33,
+              "left_walk_jump": 0.01,
+              "left_walk_release": 0.03,
+              "released_run_jump": 0.02,
+              "released_run_release": 0.01,
+              "released_walk_jump": 0,
+              "released_walk_release": 0.02,
+              "right_run_jump": 0.11,
+              "right_run_release": 0.4,
+              "right_walk_jump": 0.01,
+              "right_walk_release": 0.02
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "6cf0b4d12451cbabab794fb8a05d456c31e0965c870d08b40755a94c9a90aae8",
+      "screen_after_sha256": "bd885cc78fcbc5d8d607e5ceb6abac5adf41c4777c6f3f3cf2ac0afd9f5483d8",
+      "request_sha256": "9d59a3ff2c486a0f04e8a5d9ba25a9e0b98da83210486fe7c2f58e75e59c902c"
+    },
+    {
+      "index": 27,
+      "frame_before": 108,
+      "frame_after": 112,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_jump",
+            "confidence": 0.52,
+            "probabilities": {
+              "left_run_jump": 0.01,
+              "left_run_release": 0.01,
+              "left_walk_jump": 0,
+              "left_walk_release": 0,
+              "released_run_jump": 0,
+              "released_run_release": 0,
+              "released_walk_jump": 0,
+              "released_walk_release": 0.01,
+              "right_run_jump": 0.56,
+              "right_run_release": 0.39,
+              "right_walk_jump": 0.01,
+              "right_walk_release": 0.01
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "fea10efc989810cf630b44721a54964b11362ea901f2d2a6ed680a89c188a1d0",
+      "screen_after_sha256": "2f29e49fd40bc39efb9bc775cd58f34f950219a4e06980383af7d974a62c86f3",
+      "request_sha256": "2c9b7001f1371f66d45d48f3746591f6504f62c1bdd6a26eec9367d761c43fb7"
+    },
+    {
+      "index": 28,
+      "frame_before": 112,
+      "frame_after": 116,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_jump",
+            "confidence": 0.43,
+            "probabilities": {
+              "left_run_jump": 0.13,
+              "left_run_release": 0.15,
+              "left_walk_jump": 0.04,
+              "left_walk_release": 0.03,
+              "released_run_jump": 0.01,
+              "released_run_release": 0.01,
+              "released_walk_jump": 0,
+              "released_walk_release": 0.01,
+              "right_run_jump": 0.48,
+              "right_run_release": 0.08,
+              "right_walk_jump": 0.04,
+              "right_walk_release": 0.02
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "7752aa55af9604c1effd7d7f975ed2dc229921b824ef6c72e4cad0830729a291",
+      "screen_after_sha256": "f9af772212818cd3f781cece329367f1487e5e76381456f51810948c1e7c2c0c",
+      "request_sha256": "d0396e049d8b482724c13568e1413115a3dae9e4b8ada389b2eae55322062fa1"
+    },
+    {
+      "index": 29,
+      "frame_before": 116,
+      "frame_after": 120,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "left",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "left_run_release",
+            "confidence": 0.51,
+            "probabilities": {
+              "left_run_jump": 0.01,
+              "left_run_release": 0.55,
+              "left_walk_jump": 0,
+              "left_walk_release": 0.04,
+              "released_run_jump": 0,
+              "released_run_release": 0,
+              "released_walk_jump": 0,
+              "released_walk_release": 0.01,
+              "right_run_jump": 0.02,
+              "right_run_release": 0.34,
+              "right_walk_jump": 0.01,
+              "right_walk_release": 0.02
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "966fa6a176dbf529581fff6311cbea579d694c62468df39a839ef13c72622882",
+      "screen_after_sha256": "0370c2d188007527dc4d8b13c5b56753eb3242321b15b4058d86b2448ab2e7c0",
+      "request_sha256": "619deb2f4d17d7603e2013a7a5467e8e877cd887a048cbe6d09c097bd44ed5f8"
+    },
+    {
+      "index": 30,
+      "frame_before": 120,
+      "frame_after": 124,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_jump",
+            "confidence": 0.21,
+            "probabilities": {
+              "left_run_jump": 0.13,
+              "left_run_release": 0.27,
+              "left_walk_jump": 0.03,
+              "left_walk_release": 0.05,
+              "released_run_jump": 0.02,
+              "released_run_release": 0.01,
+              "released_walk_jump": 0.01,
+              "released_walk_release": 0.03,
+              "right_run_jump": 0.28,
+              "right_run_release": 0.09,
+              "right_walk_jump": 0.05,
+              "right_walk_release": 0.03
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "8267d42a7620aecc2e6df72b481b9fa3c3350e89879409994a77f66812fe764f",
+      "screen_after_sha256": "ed18377460af6c0ad24d29c38ed957f5e049bc2e879ab0291461da607ac6d666",
+      "request_sha256": "998aaf14af49bca1d89e185915d6a447583c0f3650c1d737bf7c491e93f0e619"
+    },
+    {
+      "index": 31,
+      "frame_before": 124,
+      "frame_after": 128,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.45,
+            "probabilities": {
+              "left_run_jump": 0.01,
+              "left_run_release": 0.38,
+              "left_walk_jump": 0,
+              "left_walk_release": 0.03,
+              "released_run_jump": 0,
+              "released_run_release": 0.01,
+              "released_walk_jump": 0,
+              "released_walk_release": 0.02,
+              "right_run_jump": 0.02,
+              "right_run_release": 0.5,
+              "right_walk_jump": 0.01,
+              "right_walk_release": 0.02
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "ce17f878148ccb9b72fc9c4170e4c52d0e5792a83c7240945981410c3840e24f",
+      "screen_after_sha256": "f76c4856eb92b6b4e6b02f1d40a64cfdc492da9f98ec5dfcc9ca068a728236ee",
+      "request_sha256": "7afdc804b32aa243ce0f45fdbef0ad593458b49bd7ba3990217616ef1f92070e"
+    },
+    {
+      "index": 32,
+      "frame_before": 128,
+      "frame_after": 132,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.42,
+            "probabilities": {
+              "left_run_jump": 0.04,
+              "left_run_release": 0.11,
+              "left_walk_jump": 0.01,
+              "left_walk_release": 0.03,
+              "released_run_jump": 0.01,
+              "released_run_release": 0,
+              "released_walk_jump": 0,
+              "released_walk_release": 0.01,
+              "right_run_jump": 0.24,
+              "right_run_release": 0.47,
+              "right_walk_jump": 0.05,
+              "right_walk_release": 0.03
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "9eefbe16bf8f023970f6d571b025b3d4ffda1c2f74203a0c1bd388525591e9de",
+      "screen_after_sha256": "0c2d657a923b8377fe9627f3622fca4430928f69c3ca97d1311c7314a888a12e",
+      "request_sha256": "847bdaa6bd0f64d4726a0774d077e0be5478bd7d3e9946bbf9060f6edef9ec94"
+    },
+    {
+      "index": 33,
+      "frame_before": 132,
+      "frame_after": 136,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.45,
+            "probabilities": {
+              "left_run_jump": 0.02,
+              "left_run_release": 0.01,
+              "left_walk_jump": 0.01,
+              "left_walk_release": 0,
+              "released_run_jump": 0,
+              "released_run_release": 0,
+              "released_walk_jump": 0,
+              "released_walk_release": 0.01,
+              "right_run_jump": 0.4,
+              "right_run_release": 0.5,
+              "right_walk_jump": 0.04,
+              "right_walk_release": 0.01
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "5e2e9fc24efef3df7892771a54a49f5444e6cefee5655d0fff31cd75c3775d22",
+      "screen_after_sha256": "45be799ce2e7e920c6fe4d87f7c6512987cfb00ee5536a152964c31d1de5acce",
+      "request_sha256": "10958f21126667fb6525dfd2f7b9462c1a20a1e4fd5c26686ce01423b99bdb23"
+    },
+    {
+      "index": 34,
+      "frame_before": 136,
+      "frame_after": 140,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_jump",
+            "confidence": 0.37,
+            "probabilities": {
+              "left_run_jump": 0.18,
+              "left_run_release": 0.07,
+              "left_walk_jump": 0.06,
+              "left_walk_release": 0.05,
+              "released_run_jump": 0.05,
+              "released_run_release": 0.01,
+              "released_walk_jump": 0.01,
+              "released_walk_release": 0.01,
+              "right_run_jump": 0.42,
+              "right_run_release": 0.03,
+              "right_walk_jump": 0.09,
+              "right_walk_release": 0.02
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "6f0624280a891f1a1d82972bff3c3b0f017bab48b60b3a0c6535bb8edc11eac2",
+      "screen_after_sha256": "118f844b480e00a10820718b983638240d5961687ecf6cc59e37040b1da5633b",
+      "request_sha256": "ffd32959c9443cf4db9daef6edb8fd8f884be8ab0e868ac73a943b872c0e8f42"
+    },
+    {
+      "index": 35,
+      "frame_before": 140,
+      "frame_after": 144,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.32,
+            "probabilities": {
+              "left_run_jump": 0.01,
+              "left_run_release": 0.28,
+              "left_walk_jump": 0.01,
+              "left_walk_release": 0.04,
+              "released_run_jump": 0.02,
+              "released_run_release": 0.07,
+              "released_walk_jump": 0,
+              "released_walk_release": 0.05,
+              "right_run_jump": 0.08,
+              "right_run_release": 0.38,
+              "right_walk_jump": 0.01,
+              "right_walk_release": 0.05
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "14f486a2990814fcbdd8c215136268557fc77e882ac5f5bf9aac2cf78c626d32",
+      "screen_after_sha256": "30cb9f79f0ab631eb6c3b45c712583982c3c7a1c7d7a468c8858af45e860d509",
+      "request_sha256": "1ee02ad68a86f356f2d20df652d64565a35595d94aeea100a7468cd3714a2007"
+    },
+    {
+      "index": 36,
+      "frame_before": 144,
+      "frame_after": 148,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_jump",
+            "confidence": 0.44,
+            "probabilities": {
+              "left_run_jump": 0.03,
+              "left_run_release": 0.01,
+              "left_walk_jump": 0.01,
+              "left_walk_release": 0,
+              "released_run_jump": 0.01,
+              "released_run_release": 0,
+              "released_walk_jump": 0,
+              "released_walk_release": 0,
+              "right_run_jump": 0.49,
+              "right_run_release": 0.34,
+              "right_walk_jump": 0.09,
+              "right_walk_release": 0.02
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "8d8819c10ef2c4b71dc58f8d63a9d55b76157e859e32a894d0ad05e46e26ae01",
+      "screen_after_sha256": "ef99feecde5f5e58c0c483c74e674d1e422af4da2e42120665994a251c95b5a3",
+      "request_sha256": "3fde6bc33870cc2c460676563efb81652ab8ae6744ec1034dc174c6927679cd9"
+    },
+    {
+      "index": 37,
+      "frame_before": 148,
+      "frame_after": 152,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.6,
+            "probabilities": {
+              "left_run_jump": 0,
+              "left_run_release": 0.05,
+              "left_walk_jump": 0,
+              "left_walk_release": 0.01,
+              "released_run_jump": 0.01,
+              "released_run_release": 0,
+              "released_walk_jump": 0,
+              "released_walk_release": 0,
+              "right_run_jump": 0.26,
+              "right_run_release": 0.63,
+              "right_walk_jump": 0.02,
+              "right_walk_release": 0.02
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "e9f2cc2c671b20cc5cf2df3c3bf130b950c5c1ab82b84a1576a6630251eec325",
+      "screen_after_sha256": "736e912320402dd5ff6b8776ae3269d967063e6e24d9f9fd4cfab773d39036f7",
+      "request_sha256": "6a15d751058c76f4fdbdf308adf9104204772b6000a5b76e9f98a347f18c7919"
+    },
+    {
+      "index": 38,
+      "frame_before": 152,
+      "frame_after": 156,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.52,
+            "probabilities": {
+              "left_run_jump": 0.02,
+              "left_run_release": 0.05,
+              "left_walk_jump": 0,
+              "left_walk_release": 0.01,
+              "released_run_jump": 0.01,
+              "released_run_release": 0,
+              "released_walk_jump": 0,
+              "released_walk_release": 0.01,
+              "right_run_jump": 0.31,
+              "right_run_release": 0.56,
+              "right_walk_jump": 0.02,
+              "right_walk_release": 0.01
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "9a827aa891756a97df8fea31a9053acd7c7da581d849c00ae7fc3f337ecaef20",
+      "screen_after_sha256": "442f009d17dcdd95b229d2ac2269855ad70e69b37c77ef542b115dfecf8bc4ba",
+      "request_sha256": "83e8ab2cbe1c161d79727266220ac81dc40718559efaab6e60cf67a3d55e7202"
+    },
+    {
+      "index": 39,
+      "frame_before": 156,
+      "frame_after": 160,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.72,
+            "probabilities": {
+              "left_run_jump": 0.01,
+              "left_run_release": 0.02,
+              "left_walk_jump": 0,
+              "left_walk_release": 0,
+              "released_run_jump": 0,
+              "released_run_release": 0,
+              "released_walk_jump": 0,
+              "released_walk_release": 0,
+              "right_run_jump": 0.21,
+              "right_run_release": 0.74,
+              "right_walk_jump": 0.01,
+              "right_walk_release": 0.01
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "8c0b58be436f3b1add31ccdea208881f76dd0aca05efdd326434ef24ded41797",
+      "screen_after_sha256": "7fee4ff2d2f54724ac30b519043303a4ddfe0d8d014dd21e60410d30cd935bbf",
+      "request_sha256": "59161deee5265a1a9e67917f2be0006b0e425782d5b58f2a0551a94528fc5f56"
+    },
+    {
+      "index": 40,
+      "frame_before": 160,
+      "frame_after": 164,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_jump",
+            "confidence": 0.91,
+            "probabilities": {
+              "left_run_jump": 0.02,
+              "left_run_release": 0,
+              "left_walk_jump": 0.01,
+              "left_walk_release": 0,
+              "released_run_jump": 0.02,
+              "released_run_release": 0,
+              "released_walk_jump": 0,
+              "released_walk_release": 0,
+              "right_run_jump": 0.92,
+              "right_run_release": 0.01,
+              "right_walk_jump": 0.02,
+              "right_walk_release": 0
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "5e18e70b3293fd1fe7bb80435aef3f866b63e211cab6eabc895391df7bab8368",
+      "screen_after_sha256": "5e8ae2f6c52885f8c5f3a73e73a0a5aa7b88b5fce561af5f68cb9f7a4d928490",
+      "request_sha256": "21c7e5d7a13f77988327c497136f54f46c3825e60c9d74a312284500831703ee"
+    },
+    {
+      "index": 41,
+      "frame_before": 164,
+      "frame_after": 168,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.59,
+            "probabilities": {
+              "left_run_jump": 0.02,
+              "left_run_release": 0.23,
+              "left_walk_jump": 0.01,
+              "left_walk_release": 0.02,
+              "released_run_jump": 0,
+              "released_run_release": 0,
+              "released_walk_jump": 0,
+              "released_walk_release": 0.01,
+              "right_run_jump": 0.04,
+              "right_run_release": 0.62,
+              "right_walk_jump": 0.01,
+              "right_walk_release": 0.04
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "09776b6665761596eece88873059cb3fb1f7795418c8f0edb230c15a3edd20d2",
+      "screen_after_sha256": "d2aa65944b5bd8e592ebd88c363ecda998348e08e36cece8ddec32e5d74931af",
+      "request_sha256": "637c208af01a9eb7308dd2de6c0ed702c232e4e2389a0fc67b5e113286207641"
+    },
+    {
+      "index": 42,
+      "frame_before": 168,
+      "frame_after": 172,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.56,
+            "probabilities": {
+              "left_run_jump": 0.02,
+              "left_run_release": 0.02,
+              "left_walk_jump": 0,
+              "left_walk_release": 0.01,
+              "released_run_jump": 0,
+              "released_run_release": 0,
+              "released_walk_jump": 0,
+              "released_walk_release": 0.01,
+              "right_run_jump": 0.31,
+              "right_run_release": 0.6,
+              "right_walk_jump": 0.02,
+              "right_walk_release": 0.01
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "655c63253733b8112cd18d48c1a53b1989dc649b6c1d0a6699738a92fc40e3bc",
+      "screen_after_sha256": "5c8c2b785d01c4e34f629615399a4ffb07f0510c22604bc04a26de4607973bc2",
+      "request_sha256": "8f98b9c4f7e19e74d11d086f3b50538a9a74eb18a7fcec0658a28f7550f5eddd"
+    },
+    {
+      "index": 43,
+      "frame_before": 172,
+      "frame_after": 176,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.67,
+            "probabilities": {
+              "left_run_jump": 0.01,
+              "left_run_release": 0.05,
+              "left_walk_jump": 0,
+              "left_walk_release": 0.01,
+              "released_run_jump": 0,
+              "released_run_release": 0,
+              "released_walk_jump": 0,
+              "released_walk_release": 0,
+              "right_run_jump": 0.18,
+              "right_run_release": 0.7,
+              "right_walk_jump": 0.02,
+              "right_walk_release": 0.03
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "6aa4553368a803edaa23c0a765a1a43f65d88e5d8d05b0a12aab122ed4d61571",
+      "screen_after_sha256": "4a86795b1b337df9353f14f3b3a6f7104a737e43f1d5b6b26628d62f9493e388",
+      "request_sha256": "2d7d6ee29e208aae73b48080849c1d3de4e42b4bde8949d59d1187cca14dc420"
+    },
+    {
+      "index": 44,
+      "frame_before": 176,
+      "frame_after": 180,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.54,
+            "probabilities": {
+              "left_run_jump": 0.04,
+              "left_run_release": 0.06,
+              "left_walk_jump": 0.01,
+              "left_walk_release": 0.01,
+              "released_run_jump": 0.02,
+              "released_run_release": 0,
+              "released_walk_jump": 0,
+              "released_walk_release": 0.01,
+              "right_run_jump": 0.22,
+              "right_run_release": 0.58,
+              "right_walk_jump": 0.03,
+              "right_walk_release": 0.02
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "1974222a0cbe43eefcabcf11f76cb70a04dc73f6fe56900c3eff9efd77029e32",
+      "screen_after_sha256": "4bbc832aeb8f02552df56c40de35c0d7c601d2dadfc9d73a3dd3b4a128f5d387",
+      "request_sha256": "a5363bd58844474ab51d9ff35be3b80966fa15686f0adab6b80d189d01d360da"
+    },
+    {
+      "index": 45,
+      "frame_before": 180,
+      "frame_after": 184,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_jump",
+            "confidence": 0.75,
+            "probabilities": {
+              "left_run_jump": 0.14,
+              "left_run_release": 0.01,
+              "left_walk_jump": 0.01,
+              "left_walk_release": 0,
+              "released_run_jump": 0.02,
+              "released_run_release": 0,
+              "released_walk_jump": 0,
+              "released_walk_release": 0,
+              "right_run_jump": 0.77,
+              "right_run_release": 0.02,
+              "right_walk_jump": 0.03,
+              "right_walk_release": 0
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "cb735c1653ec8f20314bd7b3bc1b651ab576d5dd834b64e6030f3381992b478f",
+      "screen_after_sha256": "5f87463f62418df7d2b0a3874646200d9b8de46ad34a14887d706f8dd2c0aa42",
+      "request_sha256": "a46a746043f12d73f6fa526b64686531a8ba703b2acd87dde55116d566040885"
+    },
+    {
+      "index": 46,
+      "frame_before": 184,
+      "frame_after": 188,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.53,
+            "probabilities": {
+              "left_run_jump": 0.01,
+              "left_run_release": 0.25,
+              "left_walk_jump": 0.01,
+              "left_walk_release": 0.02,
+              "released_run_jump": 0.01,
+              "released_run_release": 0.01,
+              "released_walk_jump": 0,
+              "released_walk_release": 0.01,
+              "right_run_jump": 0.07,
+              "right_run_release": 0.57,
+              "right_walk_jump": 0.01,
+              "right_walk_release": 0.03
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "993db8eab97d7dee92ed6b7396d6ba89ed694a76752175ccc40c4bef680e3f8c",
+      "screen_after_sha256": "1c990cd806f63507b9f1c6ff6e4a332686c2ae41d89a80b7f4fc050fe0567d13",
+      "request_sha256": "055d5eba6446f2de75c82410bf37742a5451949f66ad6f314ab27ae07240512c"
+    },
+    {
+      "index": 47,
+      "frame_before": 188,
+      "frame_after": 192,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.4,
+            "probabilities": {
+              "left_run_jump": 0.05,
+              "left_run_release": 0.04,
+              "left_walk_jump": 0.01,
+              "left_walk_release": 0.01,
+              "released_run_jump": 0.01,
+              "released_run_release": 0,
+              "released_walk_jump": 0,
+              "released_walk_release": 0,
+              "right_run_jump": 0.39,
+              "right_run_release": 0.45,
+              "right_walk_jump": 0.03,
+              "right_walk_release": 0.01
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "9c5c841f0b948b2063ea3b2e008c77ce3c7f927286e396b1bd806ece9420a0f1",
+      "screen_after_sha256": "cfef93bfcaf18269dda8086b68262c57ef34ef2413715606d3f8fa87253436df",
+      "request_sha256": "907f3af80a3cd0824d7563f22ccd899830e97c6d7742eb8e9073ac0479b4ac2b"
+    },
+    {
+      "index": 48,
+      "frame_before": 192,
+      "frame_after": 196,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.75,
+            "probabilities": {
+              "left_run_jump": 0.01,
+              "left_run_release": 0.09,
+              "left_walk_jump": 0.01,
+              "left_walk_release": 0.01,
+              "released_run_jump": 0.01,
+              "released_run_release": 0.01,
+              "released_walk_jump": 0,
+              "released_walk_release": 0.01,
+              "right_run_jump": 0.03,
+              "right_run_release": 0.77,
+              "right_walk_jump": 0.01,
+              "right_walk_release": 0.04
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "ebb7a7ace43ac85027fb0c05b34d68aa85a9fc5e70c61199ecaf3b154fec0f44",
+      "screen_after_sha256": "ee8028b23fe0f915f10c5f844073515f2044cdf7e0cef646b37f8d8677294412",
+      "request_sha256": "883ec8a4e2c2be417b8c6cc0ee98844b730b45feace75b4d935fac31a2040820"
+    },
+    {
+      "index": 49,
+      "frame_before": 196,
+      "frame_after": 200,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.8,
+            "probabilities": {
+              "left_run_jump": 0.01,
+              "left_run_release": 0.09,
+              "left_walk_jump": 0,
+              "left_walk_release": 0.01,
+              "released_run_jump": 0,
+              "released_run_release": 0,
+              "released_walk_jump": 0,
+              "released_walk_release": 0.01,
+              "right_run_jump": 0.03,
+              "right_run_release": 0.82,
+              "right_walk_jump": 0,
+              "right_walk_release": 0.03
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "804cc8360f5e97b0417c29c8fbae00b34d49da697f1e29c88cf54716757a4845",
+      "screen_after_sha256": "31811aa514b55b11c551c967d793c7d487ca79867dbeab4e3ac69173afb4d2ea",
+      "request_sha256": "ae02bd540242fcef3e99699ed2bd07a878f47da56e46c98253029332b72634dc"
+    },
+    {
+      "index": 50,
+      "frame_before": 200,
+      "frame_after": 204,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_jump",
+            "confidence": 0.61,
+            "probabilities": {
+              "left_run_jump": 0.24,
+              "left_run_release": 0.01,
+              "left_walk_jump": 0.02,
+              "left_walk_release": 0.01,
+              "released_run_jump": 0.04,
+              "released_run_release": 0,
+              "released_walk_jump": 0,
+              "released_walk_release": 0,
+              "right_run_jump": 0.64,
+              "right_run_release": 0.01,
+              "right_walk_jump": 0.03,
+              "right_walk_release": 0
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "33e49dafdbd1df3055a14f67c84b686cd4bf428d64ec9f27b716c30d70e733cd",
+      "screen_after_sha256": "1243c66859a5276b73f8b42dc5e489a68016718b0fa7a81f7c533a0d29ff4c36",
+      "request_sha256": "437638dd69101ce53bbd988657c90a135a5985636e654405ef498a23a70eff17"
+    },
+    {
+      "index": 51,
+      "frame_before": 204,
+      "frame_after": 208,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.72,
+            "probabilities": {
+              "left_run_jump": 0.01,
+              "left_run_release": 0.06,
+              "left_walk_jump": 0.01,
+              "left_walk_release": 0.01,
+              "released_run_jump": 0,
+              "released_run_release": 0,
+              "released_walk_jump": 0,
+              "released_walk_release": 0,
+              "right_run_jump": 0.14,
+              "right_run_release": 0.74,
+              "right_walk_jump": 0.01,
+              "right_walk_release": 0.02
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "26d0432c0015e1b0b781e7508c5bdb6ff3d45b4dbbf73cb6766766a7c3cb4fe3",
+      "screen_after_sha256": "c5dca2dccf6b5a007e284fd9ab2246c8e67019352e7e6c04d97c74c3ec8d7a9a",
+      "request_sha256": "abc446c8da5cbe264573562edb7c93979fe162f5d3460b1c71dcfdde47a7b0ff"
+    },
+    {
+      "index": 52,
+      "frame_before": 208,
+      "frame_after": 212,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.48,
+            "probabilities": {
+              "left_run_jump": 0.01,
+              "left_run_release": 0.02,
+              "left_walk_jump": 0,
+              "left_walk_release": 0,
+              "released_run_jump": 0.01,
+              "released_run_release": 0,
+              "released_walk_jump": 0,
+              "released_walk_release": 0.01,
+              "right_run_jump": 0.43,
+              "right_run_release": 0.52,
+              "right_walk_jump": 0,
+              "right_walk_release": 0
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "d915f702b9b4a47ac4fb2b29b539bbf4192d4cf350bebf4c08fe6490ef9a58f8",
+      "screen_after_sha256": "853edfa2d28faf317be4e3d0187e2bb598c9311c6c51ce52cbc936f5a9799549",
+      "request_sha256": "ccb5a70349f245e63f35256247d1617811eb7edfedb3d9c9cea876ab79e13f32"
+    },
+    {
+      "index": 53,
+      "frame_before": 212,
+      "frame_after": 216,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_jump",
+            "confidence": 0.89,
+            "probabilities": {
+              "left_run_jump": 0.06,
+              "left_run_release": 0,
+              "left_walk_jump": 0.01,
+              "left_walk_release": 0,
+              "released_run_jump": 0.02,
+              "released_run_release": 0,
+              "released_walk_jump": 0,
+              "released_walk_release": 0,
+              "right_run_jump": 0.9,
+              "right_run_release": 0,
+              "right_walk_jump": 0.01,
+              "right_walk_release": 0
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "f635a2df65cf083ea15df74f3e45e5b8c44558d0dcc3908274839ecdd77dcbb2",
+      "screen_after_sha256": "ee0b45146d9f0af9eb0f7cf4e94d6d04fe191de546402d7dc054df67fa9fe0e5",
+      "request_sha256": "3c6f4d4739a713865104927d9f0781f290ba3f0a85092f5f6691f19c3e7ed110"
+    },
+    {
+      "index": 54,
+      "frame_before": 216,
+      "frame_after": 220,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.38,
+            "probabilities": {
+              "left_run_jump": 0.03,
+              "left_run_release": 0.07,
+              "left_walk_jump": 0.01,
+              "left_walk_release": 0.01,
+              "released_run_jump": 0.04,
+              "released_run_release": 0.03,
+              "released_walk_jump": 0,
+              "released_walk_release": 0.01,
+              "right_run_jump": 0.31,
+              "right_run_release": 0.43,
+              "right_walk_jump": 0.03,
+              "right_walk_release": 0.03
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "611ce266637b7a08edd2fda343aec570032209b03128a649d0b62e4ba3af529b",
+      "screen_after_sha256": "0d8bb1179978dc64e41a683109bb71d06b170e920d97241ffcc75436351da958",
+      "request_sha256": "dca0743d64b4449bb00cc2bfa46315d57031f333bf1b26dbfd838e0a6b6e6cdb"
+    },
+    {
+      "index": 55,
+      "frame_before": 220,
+      "frame_after": 224,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_jump",
+            "confidence": 0.48,
+            "probabilities": {
+              "left_run_jump": 0.02,
+              "left_run_release": 0.01,
+              "left_walk_jump": 0.01,
+              "left_walk_release": 0,
+              "released_run_jump": 0.01,
+              "released_run_release": 0,
+              "released_walk_jump": 0,
+              "released_walk_release": 0.01,
+              "right_run_jump": 0.52,
+              "right_run_release": 0.4,
+              "right_walk_jump": 0.01,
+              "right_walk_release": 0.01
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "4f6db02992e349eb3510baab5ebe86f9023198a6ab4d70a4717ca0bd1e59cb11",
+      "screen_after_sha256": "c7405e802d7749cb7f0be07e2a15706cb68329a5f9fd5ec0135e59d5d9854036",
+      "request_sha256": "56bfe6506142861ac8c57ab870df4024e3d74c14e142c96a2ce15237ce136662"
+    },
+    {
+      "index": 56,
+      "frame_before": 224,
+      "frame_after": 228,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.43,
+            "probabilities": {
+              "left_run_jump": 0.02,
+              "left_run_release": 0.11,
+              "left_walk_jump": 0.01,
+              "left_walk_release": 0.01,
+              "released_run_jump": 0.01,
+              "released_run_release": 0.01,
+              "released_walk_jump": 0,
+              "released_walk_release": 0.01,
+              "right_run_jump": 0.32,
+              "right_run_release": 0.48,
+              "right_walk_jump": 0.01,
+              "right_walk_release": 0.01
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "d5793d3f7d41f890e965090914d05f2adfb64ae59289a46b947a2fa702300d7a",
+      "screen_after_sha256": "00b76580aec63c2b7f085f95d7e17573cc4bb7ff6453527aa78a34a03996bd73",
+      "request_sha256": "3f497a764970666a9081b8596d368659c65f6b794fba8607e7cb5d26229c058b"
+    },
+    {
+      "index": 57,
+      "frame_before": 228,
+      "frame_after": 232,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.85,
+            "probabilities": {
+              "left_run_jump": 0.01,
+              "left_run_release": 0.01,
+              "left_walk_jump": 0,
+              "left_walk_release": 0,
+              "released_run_jump": 0,
+              "released_run_release": 0,
+              "released_walk_jump": 0,
+              "released_walk_release": 0,
+              "right_run_jump": 0.1,
+              "right_run_release": 0.86,
+              "right_walk_jump": 0.01,
+              "right_walk_release": 0.01
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "aa9b775df6c215d04631352518c91df48c515be2fd2c4846647e6323a65520e1",
+      "screen_after_sha256": "4730ad54fd50477c89d638bad4fd49211d18620ecff04d2e1c541a7a9a2f9392",
+      "request_sha256": "7647d108d0cc9e6852d93722d5d1ffa341d60aa8b2f5afb7e32c2f97e6e17db6"
+    },
+    {
+      "index": 58,
+      "frame_before": 232,
+      "frame_after": 236,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_jump",
+            "confidence": 0.56,
+            "probabilities": {
+              "left_run_jump": 0.03,
+              "left_run_release": 0.01,
+              "left_walk_jump": 0,
+              "left_walk_release": 0,
+              "released_run_jump": 0,
+              "released_run_release": 0,
+              "released_walk_jump": 0,
+              "released_walk_release": 0,
+              "right_run_jump": 0.6,
+              "right_run_release": 0.35,
+              "right_walk_jump": 0.01,
+              "right_walk_release": 0
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "c2e09e79b58391ece03960d40a0b161740065cdac1392ef52eb60a010fe83d8f",
+      "screen_after_sha256": "1b767bcb3e1bde0abda1033973d4302590ac54bc23deebb6c57f737780f4b295",
+      "request_sha256": "df8d8bf79e7d896fe99c8d9bbf4962cbc4053195731633194111628d09a6ed08"
+    },
+    {
+      "index": 59,
+      "frame_before": 236,
+      "frame_after": 240,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.5,
+            "probabilities": {
+              "left_run_jump": 0,
+              "left_run_release": 0.31,
+              "left_walk_jump": 0,
+              "left_walk_release": 0.04,
+              "released_run_jump": 0,
+              "released_run_release": 0.01,
+              "released_walk_jump": 0,
+              "released_walk_release": 0.01,
+              "right_run_jump": 0.01,
+              "right_run_release": 0.54,
+              "right_walk_jump": 0.01,
+              "right_walk_release": 0.07
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "49491b0b04289253081e26d42fdce9350743d9198c1df9789ac52f44388a1458",
+      "screen_after_sha256": "c19bf0f3d6f78f1132de617e95df45bc780695b3c3d5cfa8c612fcecb5263d4c",
+      "request_sha256": "613dd72de924dcce984d961811cb98f25ee041ef149739808698af1bc6beda53"
+    },
+    {
+      "index": 60,
+      "frame_before": 240,
+      "frame_after": 244,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_jump",
+            "confidence": 0.95,
+            "probabilities": {
+              "left_run_jump": 0.02,
+              "left_run_release": 0,
+              "left_walk_jump": 0,
+              "left_walk_release": 0,
+              "released_run_jump": 0.02,
+              "released_run_release": 0,
+              "released_walk_jump": 0,
+              "released_walk_release": 0,
+              "right_run_jump": 0.95,
+              "right_run_release": 0,
+              "right_walk_jump": 0.01,
+              "right_walk_release": 0
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "cfc26742b7cf31f37f7f51a9cd82cdeb87e0407fb8e1a93c2433d4d10ff972a0",
+      "screen_after_sha256": "250ccb4083c8b8558f0a68aada976ec19c9ea8476cebc48251be99e3d0e98c2f",
+      "request_sha256": "ad32d54811a92923a07a8f2c54de295ba86e7e13029bd21cc6d3f1d5cb31af7e"
+    },
+    {
+      "index": 61,
+      "frame_before": 244,
+      "frame_after": 248,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.56,
+            "probabilities": {
+              "left_run_jump": 0.01,
+              "left_run_release": 0.07,
+              "left_walk_jump": 0.01,
+              "left_walk_release": 0.01,
+              "released_run_jump": 0.02,
+              "released_run_release": 0.03,
+              "released_walk_jump": 0,
+              "released_walk_release": 0.02,
+              "right_run_jump": 0.19,
+              "right_run_release": 0.6,
+              "right_walk_jump": 0.02,
+              "right_walk_release": 0.02
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "dcd893d41120044ca3b09687927b8d0cea8e73e87098bc2c872cecffed558cc3",
+      "screen_after_sha256": "6969e43b8a2d7223b67071dd529aafe701cf5759beba443a219d11687ee2db3a",
+      "request_sha256": "6884f2e03a077d1690af47ef1d1a8e933df9e2fcd7fee4ae668d80a44cc8db2a"
+    },
+    {
+      "index": 62,
+      "frame_before": 248,
+      "frame_after": 252,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_jump",
+            "confidence": 0.62,
+            "probabilities": {
+              "left_run_jump": 0.04,
+              "left_run_release": 0.02,
+              "left_walk_jump": 0.01,
+              "left_walk_release": 0,
+              "released_run_jump": 0.02,
+              "released_run_release": 0,
+              "released_walk_jump": 0,
+              "released_walk_release": 0.01,
+              "right_run_jump": 0.65,
+              "right_run_release": 0.23,
+              "right_walk_jump": 0.01,
+              "right_walk_release": 0.01
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "879cbd4a13c2c2ec67b7f9d75098078644b70c378c160fb9ce273dce64868661",
+      "screen_after_sha256": "ae44067b1d6e658b867c22dd0ea9fda188f0b274b2a18e95b88779378d2bdac5",
+      "request_sha256": "56056b89dc783d9da81a26af88ac5462b17d501a70ae3a9a7a2ee1a4767f5605"
+    },
+    {
+      "index": 63,
+      "frame_before": 252,
+      "frame_after": 256,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "left",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "left_run_release",
+            "confidence": 0.35,
+            "probabilities": {
+              "left_run_jump": 0.01,
+              "left_run_release": 0.4,
+              "left_walk_jump": 0.01,
+              "left_walk_release": 0.02,
+              "released_run_jump": 0.01,
+              "released_run_release": 0,
+              "released_walk_jump": 0,
+              "released_walk_release": 0.03,
+              "right_run_jump": 0.05,
+              "right_run_release": 0.38,
+              "right_walk_jump": 0.01,
+              "right_walk_release": 0.08
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "cd75d99f7b99afca7962f74ff6ef25c4113a1a6e4c6e67a9b566900e728c210f",
+      "screen_after_sha256": "09b4e4dd1681537385ac16a0ca33569f9971ab284e3af3620ab47462b8103222",
+      "request_sha256": "9b1ffd21d06c0223a8c0878438c8ea3a1c8b9ad10c1707b9c42d93d85b6a934f"
+    },
+    {
+      "index": 64,
+      "frame_before": 256,
+      "frame_after": 260,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "left",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "left_run_release",
+            "confidence": 0.4,
+            "probabilities": {
+              "left_run_jump": 0.09,
+              "left_run_release": 0.45,
+              "left_walk_jump": 0.04,
+              "left_walk_release": 0.07,
+              "released_run_jump": 0.01,
+              "released_run_release": 0.01,
+              "released_walk_jump": 0,
+              "released_walk_release": 0.02,
+              "right_run_jump": 0.15,
+              "right_run_release": 0.09,
+              "right_walk_jump": 0.05,
+              "right_walk_release": 0.02
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "63cd09baedd201d2795921d0382da62c771198c6b461e4c553e085aaf18902a1",
+      "screen_after_sha256": "28d08c12d55df9a44ba107b9c7420807f804464be6c5334c1c3bd2ffdb890080",
+      "request_sha256": "25428c3ad0e0f55e9ddd21413c4c4c6c3d98d7060ffe3dba354489685e53319f"
+    },
+    {
+      "index": 65,
+      "frame_before": 260,
+      "frame_after": 264,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "left",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "left_run_release",
+            "confidence": 0.35,
+            "probabilities": {
+              "left_run_jump": 0.06,
+              "left_run_release": 0.4,
+              "left_walk_jump": 0.04,
+              "left_walk_release": 0.02,
+              "released_run_jump": 0.01,
+              "released_run_release": 0.01,
+              "released_walk_jump": 0.01,
+              "released_walk_release": 0.02,
+              "right_run_jump": 0.3,
+              "right_run_release": 0.03,
+              "right_walk_jump": 0.07,
+              "right_walk_release": 0.03
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "d500bf8c017bdb5341f0d69f8a686c135773a942ee688e5d1e13556bcdb7239a",
+      "screen_after_sha256": "5e3d11e77ac325521b150d1e071b0c40860eee20a5a62e00a7659f5516a87d18",
+      "request_sha256": "e47cc6b328689f6c1f3d5bf9a3ecd18d2c1e22fd75155f991e855ccda5c0715b"
+    },
+    {
+      "index": 66,
+      "frame_before": 264,
+      "frame_after": 268,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "right_run_jump",
+            "confidence": 0.33,
+            "probabilities": {
+              "left_run_jump": 0.06,
+              "left_run_release": 0.15,
+              "left_walk_jump": 0.09,
+              "left_walk_release": 0.05,
+              "released_run_jump": 0.02,
+              "released_run_release": 0,
+              "released_walk_jump": 0.01,
+              "released_walk_release": 0.03,
+              "right_run_jump": 0.39,
+              "right_run_release": 0.02,
+              "right_walk_jump": 0.13,
+              "right_walk_release": 0.05
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "9567eee32198292488dbb40b1fd883461f965a5bd9228b670542d2dcdabb642f",
+      "screen_after_sha256": "fea68e94ff7aa8e4799afa664a8ab4c71be41f0704e47c72b3f5f789d7bd6b1a",
+      "request_sha256": "079a895503369f464355e641c3532831aaa3778229ac487d6c1384e33cf9f70a"
+    },
+    {
+      "index": 67,
+      "frame_before": 268,
+      "frame_after": 272,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "left",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "left_run_release",
+            "confidence": 0.39,
+            "probabilities": {
+              "left_run_jump": 0.06,
+              "left_run_release": 0.44,
+              "left_walk_jump": 0.03,
+              "left_walk_release": 0.06,
+              "released_run_jump": 0.01,
+              "released_run_release": 0.01,
+              "released_walk_jump": 0,
+              "released_walk_release": 0.02,
+              "right_run_jump": 0.1,
+              "right_run_release": 0.23,
+              "right_walk_jump": 0.02,
+              "right_walk_release": 0.02
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "2b0d394e963aed7866a19eadfa8def0a42c6a6b4d5f28820c9b1010a72058f8e",
+      "screen_after_sha256": "98c93f75375efeba3770873ae3972794e0c15100653313338c43c3e859714cca",
+      "request_sha256": "32e1b8d6cd3465d9cb6eea59a471511499418c5ee525153b9ee6dfe9b9cd8f39"
+    },
+    {
+      "index": 68,
+      "frame_before": 272,
+      "frame_after": 276,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "left",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "left_run_release",
+            "confidence": 0.26,
+            "probabilities": {
+              "left_run_jump": 0.1,
+              "left_run_release": 0.32,
+              "left_walk_jump": 0.04,
+              "left_walk_release": 0.06,
+              "released_run_jump": 0.02,
+              "released_run_release": 0,
+              "released_walk_jump": 0.01,
+              "released_walk_release": 0.03,
+              "right_run_jump": 0.24,
+              "right_run_release": 0.05,
+              "right_walk_jump": 0.08,
+              "right_walk_release": 0.05
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "a9cd1338db53dcb15abee96dc7cb897bb436b152c3762a3a0c7065a547c0ad90",
+      "screen_after_sha256": "14a53f14e5ff79cf4efc3d615c5d7b6e01888678a4b48d040e0c6962fd0bc8ec",
+      "request_sha256": "e4ff6699e2cd3afefefe9a14cd823458c27fa680f622cd366ec90cc07ffe2b37"
+    },
+    {
+      "index": 69,
+      "frame_before": 276,
+      "frame_after": 280,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "left",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "left_run_release",
+            "confidence": 0.2,
+            "probabilities": {
+              "left_run_jump": 0.08,
+              "left_run_release": 0.27,
+              "left_walk_jump": 0.07,
+              "left_walk_release": 0.06,
+              "released_run_jump": 0.02,
+              "released_run_release": 0.01,
+              "released_walk_jump": 0.01,
+              "released_walk_release": 0.09,
+              "right_run_jump": 0.19,
+              "right_run_release": 0.03,
+              "right_walk_jump": 0.1,
+              "right_walk_release": 0.07
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "2968781fd427b5b5c51655333dc4da111e68af6c772c178c1580708561e2be40",
+      "screen_after_sha256": "8d1f5bd0c4f3356d842d07894612625404f17a2f61852bfa9092cf004984288b",
+      "request_sha256": "f41a5ae50693755ebd8ba3d6ff0c7b2fe2b94ea12011df634aea7dcfd8a2bb26"
+    },
+    {
+      "index": 70,
+      "frame_before": 280,
+      "frame_after": 284,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "left",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "action": {
+            "choice": "left_run_release",
+            "confidence": 0.27,
+            "probabilities": {
+              "left_run_jump": 0.08,
+              "left_run_release": 0.33,
+              "left_walk_jump": 0.06,
+              "left_walk_release": 0.06,
+              "released_run_jump": 0.01,
+              "released_run_release": 0,
+              "released_walk_jump": 0,
+              "released_walk_release": 0.03,
+              "right_run_jump": 0.25,
+              "right_run_release": 0.03,
+              "right_walk_jump": 0.09,
+              "right_walk_release": 0.06
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "4f71927768615bc5f92ffe9bab29375de451e27a9fdb656cbe94dee859de0818",
+      "screen_after_sha256": "992d6219a7481b0d328601121c3ef5b1c755115d7451799984049a6ee498bfe5",
+      "request_sha256": "32867f9bfae1318a0fd82dbc4b1fbb553daca18b4c71041eb3f31ad69411984c"
+    }
+  ],
+  "source_hashes": {
+    "episode_sha256": "388987085e2a74c3e58684f28392c63b712d3e6132e7a4be3400d3198a41260b",
+    "observer_source_sha256": "e9a16a88c9fbffbe62d62b7ce4f17714a764e5430528014ccb39cc9e23a2529c",
+    "audit_sha256": "cd01c692af00d7fde1c364c6752bce5af554a49e5a8f80fcd36a74d4ddfd5ea4"
+  },
+  "input_audit": {
+    "native_replay_verified": true,
+    "exact_request_audit_complete": true,
+    "privileged_state_sent": true
+  }
+}

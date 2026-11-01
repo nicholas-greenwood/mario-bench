@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "id": "pixels-best-inception--mercury-decide",
+  "mode": "image",
+  "cadence": 6,
+  "history": 2,
+  "contract": {
+    "questions": {
+      "action": {
+        "criteria": {
+          "left_B_held_A_held": "Hold {'horizontal': 'left', 'vertical': 'released', 'jump': 'held', 'run': 'held'} simultaneously for the next interval.",
+          "left_B_held_A_released": "Hold {'horizontal': 'left', 'vertical': 'released', 'jump': 'released', 'run': 'held'} simultaneously for the next interval.",
+          "left_B_released_A_held": "Hold {'horizontal': 'left', 'vertical': 'released', 'jump': 'held', 'run': 'released'} simultaneously for the next interval.",
+          "left_B_released_A_released": "Hold {'horizontal': 'left', 'vertical': 'released', 'jump': 'released', 'run': 'released'} simultaneously for the next interval.",
+          "released_B_held_A_held": "Hold {'horizontal': 'released', 'vertical': 'released', 'jump': 'held', 'run': 'held'} simultaneously for the next interval.",
+          "released_B_held_A_released": "Hold {'horizontal': 'released', 'vertical': 'released', 'jump': 'released', 'run': 'held'} simultaneously for the next interval.",
+          "released_B_released_A_held": "Hold {'horizontal': 'released', 'vertical': 'released', 'jump': 'held', 'run': 'released'} simultaneously for the next interval.",
+          "released_B_released_A_released": "Hold {'horizontal': 'released', 'vertical': 'released', 'jump': 'released', 'run': 'released'} simultaneously for the next interval.",
+          "right_B_held_A_held": "Hold {'horizontal': 'right', 'vertical': 'released', 'jump': 'held', 'run': 'held'} simultaneously for the next interval.",
+          "right_B_held_A_released": "Hold {'horizontal': 'right', 'vertical': 'released', 'jump': 'released', 'run': 'held'} simultaneously for the next interval.",
+          "right_B_released_A_held": "Hold {'horizontal': 'right', 'vertical': 'released', 'jump': 'held', 'run': 'released'} simultaneously for the next interval.",
+          "right_B_released_A_released": "Hold {'horizontal': 'right', 'vertical': 'released', 'jump': 'released', 'run': 'released'} simultaneously for the next interval."
+        },
+        "instructions": "Choose ONE coherent simultaneous controller state for the whole interval. Use the screenshots to anticipate collisions and landings, sustain jumps long enough to clear hazards and release A between separate jumps. All choices release vertical buttons.",
+        "type": "choice"
+      }
+    },
+    "initial_provider_text": [
+      "{\"game\":\"Super Mario Bros 1-1\",\"instructions\":\"You control Mario in Super Mario Bros. World1-1. Reach the flag alive. Choose all simultaneous held buttons using only the screenshot and declared previous controls. Right moves forward; B runs faster and extends jumps. Grounded plus a new A press starts a jump. Holding A throughout ascent makes a higher, longer jump. Releasing A early during ascent makes a low, short hop. Pressing A while airborne does not start another jump on later landing. Release A during descent so it is ready for the next grounded takeoff. Holding A through landing does not automatically jump again. Enemy side contact kills small Mario; descending onto enemies stomps them. Jump early enough to rise before enemy side contact. Gaps require takeoff near the visible edge so the jump lasts until the far side. Pipes and stairs support Mario: feet must rise above their top before the body crosses the side. A ceiling stops ascent. Momentum persists when controls are released. Avoid unnecessary hopping on open flat ground; it can waste the next jump near a hazard. Background hills are decorative. Game pauses while deciding. All choices are yours. CURRENT full screenshot is FIRST. Any PAST screenshot is labelled and appears last. Mario is the red/brown person; brown mushroom-shaped enemies are different characters. A near landing is still airborne: feet must actually touch a solid surface before a NEW jump can begin. Infer contact and ascent/descent from the pixels, including the labelled past image. A_held means continue the exact same A press if already held, not a new jump.\",\"next_control_interval_native_frames\":6,\"previous_controls\":[]}",
+      "CURRENT paused screenshot; use this for your next action. Screenshot taken before decision 0",
+      "CURRENT paused screenshot fixed left zoom, exact pixels from this same screen enlarged4x. Screenshot taken before decision 0",
+      "CURRENT paused screenshot fixed middle zoom, exact pixels from this same screen enlarged4x. Screenshot taken before decision 0"
+    ],
+    "cadence": 6
+  },
+  "source_hashes": {
+    "requests_sha256": "d5c91fc570f58ad0db9c01b468a7bbbc92749aaff3091a19a2a7d6c1d9b3eb2e",
+    "responses_sha256": "0407d3b7001e1ac51c05b00f861b481e5b08251cc600629be11b4357a57d6501",
+    "private_replay_sha256": "d85302ebd02c8cbd8c779bcdf582b1e96e1b09131eb47cae23c0d34fee3a7ee1",
+    "audit_sha256": "941cd6bf7b28644576bad3e8d1c815de601af2131e49a2db0ea23ecbe3bcdd36"
+  },
+  "common_benchmark_default": false,
+  "data_class": "development_observation"
+}

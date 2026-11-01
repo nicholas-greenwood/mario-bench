@@ -1,0 +1,1231 @@
+{
+  "schema_version": 1,
+  "evidence_kind": "compact_native_action_trace",
+  "id": "state-c4-liquid--d1-1",
+  "mode": "state",
+  "level": "1-1",
+  "contract": {
+    "questions": {
+      "action": {
+        "criteria": {
+          "left_run_jump": "Hold horizontal=left, B(run)=held, A(jump)=held; vertical released.",
+          "left_run_release": "Hold horizontal=left, B(run)=held, A(jump)=released; vertical released.",
+          "left_walk_jump": "Hold horizontal=left, B(run)=released, A(jump)=held; vertical released.",
+          "left_walk_release": "Hold horizontal=left, B(run)=released, A(jump)=released; vertical released.",
+          "released_run_jump": "Hold horizontal=released, B(run)=held, A(jump)=held; vertical released.",
+          "released_run_release": "Hold horizontal=released, B(run)=held, A(jump)=released; vertical released.",
+          "released_walk_jump": "Hold horizontal=released, B(run)=released, A(jump)=held; vertical released.",
+          "released_walk_release": "Hold horizontal=released, B(run)=released, A(jump)=released; vertical released.",
+          "right_run_jump": "Hold horizontal=right, B(run)=held, A(jump)=held; vertical released.",
+          "right_run_release": "Hold horizontal=right, B(run)=held, A(jump)=released; vertical released.",
+          "right_walk_jump": "Hold horizontal=right, B(run)=released, A(jump)=held; vertical released.",
+          "right_walk_release": "Hold horizontal=right, B(run)=released, A(jump)=released; vertical released."
+        },
+        "instructions": "Select the complete controller input that best advances Mario towards the flag alive. Evaluate the next interval and the resulting jump trajectory. All named buttons are held throughout the interval; choose deliberately when to press or release jump.",
+        "type": "choice"
+      }
+    },
+    "rules": "Play Super Mario Bros. World 1-1 to the flag. Coordinates are world pixels, x increases right, y increases down. Scene is current visible information, not a future map. Each action lasts the declared interval with physics paused until your answer. A jump starts only on a fresh A press while grounded; keeping A held through landing will NOT jump again. Release A before the next fresh jump. Holding A during ascent increases height; releasing A shortens the jump. B makes running faster and jumps longer. Momentum persists on release. Mario can jump onto pipes, blocks and stairs and must clear floor gaps. Enemy side contact is dangerous, landing from above stomps ordinary walking enemies. Think ahead about visible hazards and the size of your body. All action choices are your own. Reach the flag alive, avoid waiting indefinitely or running into walls. No action or route recommendation is supplied. General jump phases: hold A while ascending when height or distance is needed; release A while descending to prepare the next fresh jump. Releasing A during ascent shortens the jump, but keeping it held through landing prevents the next jump. On the ground a fresh jump needs the A release-to-press edge. For stairs, the feet must rise above each solid step before crossing its side; landing on a raised step permits another jump. A jump begun too far before a gap can end above the gap; the current visible geometry determines takeoff timing.",
+    "cadence": 4
+  },
+  "actions": [
+    {
+      "index": 0,
+      "frame_before": 0,
+      "frame_after": 4,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "liquid/d1.1-20261027",
+        "provider": "Liquid",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.2192783373717556,
+            "probabilities": {
+              "left_run_jump": 0.002526316129874282,
+              "left_run_release": 0.018000943300511957,
+              "left_walk_jump": 0.003862589189556896,
+              "left_walk_release": 0.018000943300511957,
+              "released_run_jump": 0.02475075112584152,
+              "released_run_release": 0.07154271998787769,
+              "released_walk_jump": 0.018000943300511957,
+              "released_walk_release": 0.05203221669994483,
+              "right_run_jump": 0.16724267258022316,
+              "right_run_release": 0.28433847592410927,
+              "right_walk_jump": 0.12163371734603567,
+              "right_walk_release": 0.2180677111150008
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "ffe24436cdd5013a6381fde9a17a1318ec5bc22a6ca0556130a67407c681fbee",
+      "screen_after_sha256": "ec8e137fb518c7d627e1933e90bcc3f4461520ce09b83c4e89a5ecb986b8e171",
+      "request_sha256": "3e690a6a292ed1d59b4fb1fdd59c8566d86f7a01339237cf3d192959866adabb"
+    },
+    {
+      "index": 1,
+      "frame_before": 4,
+      "frame_after": 8,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "liquid/d1.1-20261027",
+        "provider": "Liquid",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.5858309993093598,
+            "probabilities": {
+              "left_run_jump": 0.001626154460565179,
+              "left_run_release": 0.009370741354437469,
+              "left_walk_jump": 0.0008601523502011625,
+              "left_walk_release": 0.005226808221173865,
+              "released_run_jump": 0.04605105111490635,
+              "released_run_release": 0.08256137796478222,
+              "released_walk_jump": 0.004457486185257196,
+              "released_walk_release": 0.006128908323101039,
+              "right_run_jump": 0.164593251468487,
+              "right_run_release": 0.6203450827002465,
+              "right_walk_jump": 0.015108231467260777,
+              "right_walk_release": 0.04367075438958138
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "d479af9315776c570664864e593aa398f8d96d33c9b0296cf271e5f1337dc33f",
+      "screen_after_sha256": "4f16921dd41f8df2e18fe9f9143f61dad30d25b1b540cf66e7ab5e1f6c8d7485",
+      "request_sha256": "6b9d1df3dec8bc36fa7fdc32e47b0984b363205a7f2123deaac6849f59af007b"
+    },
+    {
+      "index": 2,
+      "frame_before": 8,
+      "frame_after": 12,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "liquid/d1.1-20261027",
+        "provider": "Liquid",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.641723487182453,
+            "probabilities": {
+              "left_run_jump": 0.0016694644913442928,
+              "left_run_release": 0.011895556258987323,
+              "left_walk_jump": 0.0012803624245084106,
+              "left_walk_release": 0.0041153586629014,
+              "released_run_jump": 0.03438443619370747,
+              "released_run_release": 0.07622452133216764,
+              "released_walk_jump": 0.004576204221312553,
+              "released_walk_release": 0.009620316106606294,
+              "right_run_jump": 0.12959350558833546,
+              "right_run_release": 0.6715798632505818,
+              "right_walk_jump": 0.01254392961559554,
+              "right_walk_release": 0.042516481853951835
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "9af573ff380864ea7142c2fde9a5de33111f335bb4437fb9760ec39b254064c3",
+      "screen_after_sha256": "d3f3e09411552f72246808c691d61d394fcfa21c758301c7973de8145d7cf0ea",
+      "request_sha256": "b62098ce7ff58d407fec0968de38ddee35eda1a5b27fce3328f51bd6d893edf7"
+    },
+    {
+      "index": 3,
+      "frame_before": 12,
+      "frame_after": 16,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "liquid/d1.1-20261027",
+        "provider": "Liquid",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.6413093322501983,
+            "probabilities": {
+              "left_run_jump": 0.002063132252518639,
+              "left_run_release": 0.016346784743083674,
+              "left_walk_jump": 0.001213496522678718,
+              "left_walk_release": 0.0031544082076542133,
+              "released_run_jump": 0.023701417275314274,
+              "released_run_release": 0.08932965295158805,
+              "released_walk_jump": 0.0056552951991806115,
+              "released_walk_release": 0.006631348300754577,
+              "right_run_jump": 0.13657980001689005,
+              "right_run_release": 0.6712002212293484,
+              "right_walk_jump": 0.013220166685042575,
+              "right_walk_release": 0.03090427661594612
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "ee11bb3cb1c67997910022c04cc3ed2ff073e8fe4854e51c24efff83b5b8babd",
+      "screen_after_sha256": "eb1f71bdbda3972c1ba3107e3d5806ea69392b1c02390fbe6431b3b6ddd576e4",
+      "request_sha256": "e5af0acd50be505f7c72ea3e463d5e302fe2ea827a0508b7f4576579999539b6"
+    },
+    {
+      "index": 4,
+      "frame_before": 16,
+      "frame_after": 20,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "liquid/d1.1-20261027",
+        "provider": "Liquid",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.6913973564828776,
+            "probabilities": {
+              "left_run_jump": 0.001879822118664558,
+              "left_run_release": 0.009741620458167899,
+              "left_walk_jump": 0.0011056768665552975,
+              "left_walk_release": 0.002090328114605831,
+              "released_run_jump": 0.021595536778334323,
+              "released_run_release": 0.07718563484434313,
+              "released_walk_jump": 0.002451099951921042,
+              "released_walk_release": 0.007084971144148478,
+              "right_run_jump": 0.11801230859959001,
+              "right_run_release": 0.7171142434426379,
+              "right_walk_jump": 0.01204554953597228,
+              "right_walk_release": 0.029693208145059196
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "6da5c5710a833cd81723d83a5ef68a0bea2d04591fa77e25a4bb9abfaa26a27e",
+      "screen_after_sha256": "1303253d60b41a96c697bef5c5e7cbf4b057bb2c327ea904f5a45493a53570d1",
+      "request_sha256": "f2905f1dde8f632bcee9d4d1a40f0a166da70bd188eb0cd760b13d27847c0419"
+    },
+    {
+      "index": 5,
+      "frame_before": 20,
+      "frame_after": 24,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "liquid/d1.1-20261027",
+        "provider": "Liquid",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.6043486459447851,
+            "probabilities": {
+              "left_run_jump": 0.003703552705186661,
+              "left_run_release": 0.011288713394607722,
+              "left_walk_jump": 0.0010362058797164873,
+              "left_walk_release": 0.001958990323854184,
+              "released_run_jump": 0.03263033341119926,
+              "released_run_release": 0.08944369303651838,
+              "released_walk_jump": 0.0028403657253525637,
+              "released_walk_release": 0.00597115312489797,
+              "right_run_jump": 0.15206814724171613,
+              "right_run_release": 0.6373195921160529,
+              "right_walk_jump": 0.019192563191234274,
+              "right_walk_release": 0.04254668984966341
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "9a882c2f50cf617c3cdc773d91050a7a6fd0522de4c671846381e7e44d7eff28",
+      "screen_after_sha256": "58e6a980dd53a4675c693c053b6b06e3fade011bf7af0389092a4dcb44f9ea3e",
+      "request_sha256": "91f6f970f3456de26ff77f34bed91b536032ebe49d943a4a8e1bbd572f58a19c"
+    },
+    {
+      "index": 6,
+      "frame_before": 24,
+      "frame_after": 28,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "liquid/d1.1-20261027",
+        "provider": "Liquid",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.5504154784365688,
+            "probabilities": {
+              "left_run_jump": 0.004005873141264434,
+              "left_run_release": 0.013577531400293958,
+              "left_walk_jump": 0.0015410539179491443,
+              "left_walk_release": 0.005507954083623452,
+              "released_run_jump": 0.04364108090574456,
+              "released_run_release": 0.1402717675292547,
+              "released_walk_jump": 0.007181821011417642,
+              "released_walk_release": 0.009364376001861765,
+              "right_run_jump": 0.1330213699634681,
+              "right_run_release": 0.5878808552335214,
+              "right_walk_jump": 0.016788667528237745,
+              "right_walk_release": 0.03721764928336311
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "5e92ec955d2e9a472a7a4746f80c18e088dea682037154613f7fa8ee6b6e5c6e",
+      "screen_after_sha256": "54b29490aea2a3d537af5989cb8cc1642162c72c17a200d34630bd911e34b8ae",
+      "request_sha256": "78e95d78e2925fd7159486340124af1bbbcc21a5e2da3cf6cadd560b4d51e187"
+    },
+    {
+      "index": 7,
+      "frame_before": 28,
+      "frame_after": 32,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "liquid/d1.1-20261027",
+        "provider": "Liquid",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.5894458509437751,
+            "probabilities": {
+              "left_run_jump": 0.003259196432796972,
+              "left_run_release": 0.014403844572679202,
+              "left_walk_jump": 0.0018179132327984736,
+              "left_walk_release": 0.003624167343736976,
+              "released_run_jump": 0.025823542071681613,
+              "released_run_release": 0.057246456577794584,
+              "released_walk_jump": 0.004481296253852104,
+              "released_walk_release": 0.007618898498369282,
+              "right_run_jump": 0.2046072824630667,
+              "right_run_release": 0.6236586966984605,
+              "right_walk_jump": 0.016016814021782802,
+              "right_walk_release": 0.037441891832980766
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "7fcf4d27e785122b248f026828460c680b57667df3831a6cd079b1bfd27a94d7",
+      "screen_after_sha256": "259f1fc56ed096b08dd48825594d2fd567cdd3fe7b795ba9fc8bf695c6281913",
+      "request_sha256": "018ee34906967bcd9a8702e62f37e010b9d12cadaa9bf8e4720f67e03fd8d3c6"
+    },
+    {
+      "index": 8,
+      "frame_before": 32,
+      "frame_after": 36,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "liquid/d1.1-20261027",
+        "provider": "Liquid",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.5509778079682682,
+            "probabilities": {
+              "left_run_jump": 0.0029159801492646365,
+              "left_run_release": 0.014330130970934194,
+              "left_walk_jump": 0.001315381607285932,
+              "left_walk_release": 0.003242517058992034,
+              "released_run_jump": 0.030125495068098813,
+              "released_run_release": 0.08707856368459625,
+              "released_walk_jump": 0.007579907765942907,
+              "released_walk_release": 0.01358943205097943,
+              "right_run_jump": 0.17359865209816597,
+              "right_run_release": 0.5883963239709126,
+              "right_walk_jump": 0.031767500530603406,
+              "right_walk_release": 0.046060115044223936
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "ddd4ed1452fab43e9c7ac73c30221b0d5facc958e716814a6c4a1a5d47de4f68",
+      "screen_after_sha256": "4026eabbb105576e8d046ea775f9f4cd3dbd432929fc3b7f6788f84153f114a4",
+      "request_sha256": "a62d93bf71d30b1e3f080ec6e7b482893baaf19714358749bfd274159938b88d"
+    },
+    {
+      "index": 9,
+      "frame_before": 36,
+      "frame_after": 40,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "liquid/d1.1-20261027",
+        "provider": "Liquid",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.5650350639207568,
+            "probabilities": {
+              "left_run_jump": 0.0029798401111997466,
+              "left_run_release": 0.013169244228805874,
+              "left_walk_jump": 0.001274709757953363,
+              "left_walk_release": 0.003494133721045689,
+              "released_run_jump": 0.023610122330802293,
+              "released_run_release": 0.1100309798784681,
+              "released_walk_jump": 0.0077459077373510845,
+              "released_walk_release": 0.006264362871608051,
+              "right_run_jump": 0.1682309147177368,
+              "right_run_release": 0.6012821419273604,
+              "right_walk_jump": 0.02768501715377445,
+              "right_walk_release": 0.03423262556389413
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "81f4915355d0c98f223324e4b5bfc7a0230c95c4e4ad45a5eaae82f35fb7725a",
+      "screen_after_sha256": "d371c6936c2d05c2c114e0a5598d1dafef7f60bb0284623625e56082949e91f3",
+      "request_sha256": "fad6dacf3cd6d1fd577cce8b746bd54227355f53bdb861c0ed7b745eb9653ca0"
+    },
+    {
+      "index": 10,
+      "frame_before": 40,
+      "frame_after": 44,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "liquid/d1.1-20261027",
+        "provider": "Liquid",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.5481600950403274,
+            "probabilities": {
+              "left_run_jump": 0.0046807318498829405,
+              "left_run_release": 0.015864901714806066,
+              "left_walk_jump": 0.002347894995463829,
+              "left_walk_release": 0.0049358575249516265,
+              "released_run_jump": 0.07011407164588676,
+              "released_run_release": 0.0779655764956118,
+              "released_walk_jump": 0.008391723143207248,
+              "released_walk_release": 0.007546636658659167,
+              "right_run_jump": 0.16390297614524899,
+              "right_run_release": 0.5858134204536334,
+              "right_walk_jump": 0.02844295874120111,
+              "right_walk_release": 0.029993250631447064
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "97bf60eb166e5a115870e4719bb982a1f1d9b091ec5c6bd4f08817067c5052a7",
+      "screen_after_sha256": "e34ff08023ed309b0340c76c9405eaa1a23f932d622b901d1fe00c9387dede95",
+      "request_sha256": "3a29b7b71aef582b35c5763d8c445417539688cad4cdaac15ff7df380b01d099"
+    },
+    {
+      "index": 11,
+      "frame_before": 44,
+      "frame_after": 48,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "liquid/d1.1-20261027",
+        "provider": "Liquid",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.6812273850864444,
+            "probabilities": {
+              "left_run_jump": 0.001956513186141993,
+              "left_run_release": 0.009117998627880548,
+              "left_walk_jump": 0.0008369534494143722,
+              "left_walk_release": 0.0026901462960138593,
+              "released_run_jump": 0.021314795682466855,
+              "released_run_release": 0.04249288968093765,
+              "released_walk_jump": 0.005655354632151106,
+              "released_walk_release": 0.006992866808719633,
+              "right_run_jump": 0.13658123536958855,
+              "right_run_release": 0.7077917696625741,
+              "right_walk_jump": 0.03821365332555085,
+              "right_walk_release": 0.026355823278560488
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "a3234a7c67d153f83cb7a2cf6ba4b76f1d2b47867f5a953f248312453ba1fb9d",
+      "screen_after_sha256": "8b5c258e871db4b53848501aafe88a474d31800527b379a2b320da784a76aec7",
+      "request_sha256": "555b1e5e6810fff0990cc93fd800857c768ef61159e7b8d1107e3280f439c3a4"
+    },
+    {
+      "index": 12,
+      "frame_before": 48,
+      "frame_after": 52,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "liquid/d1.1-20261027",
+        "provider": "Liquid",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.4609934745122043,
+            "probabilities": {
+              "left_run_jump": 0.002507197154771885,
+              "left_run_release": 0.013700984948232207,
+              "left_walk_jump": 0.0012576314647200452,
+              "left_walk_release": 0.004998314489766311,
+              "released_run_jump": 0.03561485226034959,
+              "released_run_release": 0.10294570010085673,
+              "released_walk_jump": 0.005270750168481616,
+              "released_walk_release": 0.006180434255408396,
+              "right_run_jump": 0.22821335395789805,
+              "right_run_release": 0.5059106849695206,
+              "right_walk_jump": 0.041761655528170086,
+              "right_walk_release": 0.05163844070182447
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "c2746bc59ed4145312a5b27d37199a979387b27ea60c7c910d0f6abaab582875",
+      "screen_after_sha256": "4f89268883ca9816710e7aa7033303e289209b8a32e8ef3f8c03f38afd5e051f",
+      "request_sha256": "c3d20124238104662728c287a906a2cc3795250d49046ee3b1d7aacf6e2e91c7"
+    },
+    {
+      "index": 13,
+      "frame_before": 52,
+      "frame_after": 56,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "liquid/d1.1-20261027",
+        "provider": "Liquid",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.6224180276866131,
+            "probabilities": {
+              "left_run_jump": 0.0023567950697342306,
+              "left_run_release": 0.013581069670477142,
+              "left_walk_jump": 0.001182188496805517,
+              "left_walk_release": 0.004455619126750979,
+              "released_run_jump": 0.02076465897180276,
+              "released_run_release": 0.07037985033115779,
+              "released_walk_jump": 0.005509389442462247,
+              "released_walk_release": 0.007988135903193886,
+              "right_run_jump": 0.16452427678418358,
+              "right_run_release": 0.653883192046062,
+              "right_walk_jump": 0.021896447292016976,
+              "right_walk_release": 0.033478376865352905
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "70e8ac88208f7705a0fd1ef9216cb0b8cfb242c6813f241cbcebe15f85260948",
+      "screen_after_sha256": "12fdfc82478345c0063066625373c581f27f32a7d392a9d01db3b05f2fbb982a",
+      "request_sha256": "6405cbcd0d7e1825adf6933ee4fa3bdb4821b9f124c2727e67226516010fd0c9"
+    },
+    {
+      "index": 14,
+      "frame_before": 56,
+      "frame_after": 60,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "liquid/d1.1-20261027",
+        "provider": "Liquid",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.5977641016430816,
+            "probabilities": {
+              "left_run_jump": 0.0031285229072644783,
+              "left_run_release": 0.011791272323959509,
+              "left_walk_jump": 0.0022753395717846495,
+              "left_walk_release": 0.008575659925038915,
+              "released_run_jump": 0.029066395216326264,
+              "released_run_release": 0.11552111127195634,
+              "released_walk_jump": 0.006576930980149885,
+              "released_walk_release": 0.008575659925038915,
+              "right_run_jump": 0.12181764831854647,
+              "right_run_release": 0.6312837598394915,
+              "right_walk_jump": 0.029066395216326264,
+              "right_walk_release": 0.03232130450411684
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "cef6428b5c17621de2586c3e8f0a42f178e7c577a6864339e40cdec480cbbe7c",
+      "screen_after_sha256": "db44be6c32f5fb4e048294732ea892d56f8f02022669aee206ec7e0ee8b03351",
+      "request_sha256": "f0320ebf292019217a375078a3947d65169e81b39e4f48116df2f559239a2197"
+    },
+    {
+      "index": 15,
+      "frame_before": 60,
+      "frame_after": 64,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "liquid/d1.1-20261027",
+        "provider": "Liquid",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.582117192430477,
+            "probabilities": {
+              "left_run_jump": 0.002607423345388937,
+              "left_run_release": 0.014248687200705374,
+              "left_walk_jump": 0.0013791938472092005,
+              "left_walk_release": 0.0037805372551080107,
+              "released_run_jump": 0.033308609577737104,
+              "released_run_release": 0.05971643726366025,
+              "released_walk_jump": 0.007947626829579967,
+              "released_walk_release": 0.01584428183716544,
+              "right_run_jump": 0.13959682503874615,
+              "right_run_release": 0.6169407597279372,
+              "right_walk_jump": 0.05370270764273814,
+              "right_walk_release": 0.050926910434024336
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "29cbb95ee341bbaffd508c8c5365fdbcbc67dd80c8dd4575476a3a14d7578633",
+      "screen_after_sha256": "61cbb7489ac8e428ea0287fbb6c55887720fe4e89500e738a2a8de8d23e9b009",
+      "request_sha256": "46de6d1956cb82d3ce41a66528ddf026d34ad1c2293194358196e01cf9c88af4"
+    },
+    {
+      "index": 16,
+      "frame_before": 64,
+      "frame_after": 68,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "liquid/d1.1-20261027",
+        "provider": "Liquid",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.7274328056151863,
+            "probabilities": {
+              "left_run_jump": 0.0016769806248774141,
+              "left_run_release": 0.007815284427888753,
+              "left_walk_jump": 0.0010968246930242332,
+              "left_walk_release": 0.0037175844528750264,
+              "released_run_jump": 0.01732517326253506,
+              "released_run_release": 0.04749040634363291,
+              "released_walk_jump": 0.0031704016371,
+              "released_walk_release": 0.006320470016063639,
+              "right_run_jump": 0.10527825644778271,
+              "right_run_release": 0.7501467384805875,
+              "right_walk_jump": 0.021422640478483284,
+              "right_walk_release": 0.034539239135149426
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "4f7f457c85e76549fa7feddb90965772528c5f619c0ca48ad23d28bb445c9c2d",
+      "screen_after_sha256": "92d4ec8b7d8ac45508f03f2f61f81f9ab41acaa9eeebd4271c39ed5909e268cc",
+      "request_sha256": "9c7d23ed303e908e326d24d7bd196202f54508b2f961712722a1ae378987e6e1"
+    },
+    {
+      "index": 17,
+      "frame_before": 68,
+      "frame_after": 72,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "liquid/d1.1-20261027",
+        "provider": "Liquid",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.4861129130872808,
+            "probabilities": {
+              "left_run_jump": 0.003800672256790054,
+              "left_run_release": 0.01510534345305631,
+              "left_walk_jump": 0.0019064496017516454,
+              "left_walk_release": 0.006461732166258874,
+              "released_run_jump": 0.04140557456157154,
+              "released_run_release": 0.0353111820428321,
+              "released_walk_jump": 0.013584163430933223,
+              "released_walk_release": 0.018677812752303017,
+              "right_run_jump": 0.2145721284247317,
+              "right_run_release": 0.528936836996674,
+              "right_walk_jump": 0.05693140932046521,
+              "right_walk_release": 0.06330669499263224
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "8c8362983ec432c7648d21aa2060a083387ef7c5b72b18b59d42747f98777ee4",
+      "screen_after_sha256": "1fb880a0c4cc687522289afec86ed340d213dd84879cd2328e7cdc54302d11f5",
+      "request_sha256": "2e1366d894905784cca293e82dcbf1c3b7e95706f1487779cb212667bf49fe7a"
+    },
+    {
+      "index": 18,
+      "frame_before": 72,
+      "frame_after": 76,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "liquid/d1.1-20261027",
+        "provider": "Liquid",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.5072591920368742,
+            "probabilities": {
+              "left_run_jump": 0.0031863687676943527,
+              "left_run_release": 0.020417656782549125,
+              "left_walk_jump": 0.002317410216367243,
+              "left_walk_release": 0.00744865205887686,
+              "released_run_jump": 0.03121739968793291,
+              "released_run_release": 0.03121739968793291,
+              "released_walk_jump": 0.008282766044719201,
+              "released_walk_release": 0.010799898167177174,
+              "right_run_jump": 0.23455956475721637,
+              "right_run_release": 0.5483209260338013,
+              "right_walk_jump": 0.03660524218161845,
+              "right_walk_release": 0.06562671561411405
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "a06606b528b7eccccc38e5def3c4ab2fd39e743844f0d2f17362dcf6466b402a",
+      "screen_after_sha256": "cd855fba546b84f3b54eedb255772be48a1d628b5c85d3c0b202c6a1c8f75ebd",
+      "request_sha256": "cfdce7ada8bf1921760b089a40816bd2bce06764a34477e8f6d2c6ac63362e1e"
+    },
+    {
+      "index": 19,
+      "frame_before": 76,
+      "frame_after": 80,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "liquid/d1.1-20261027",
+        "provider": "Liquid",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.5452694694551706,
+            "probabilities": {
+              "left_run_jump": 0.0030475723288117397,
+              "left_run_release": 0.016653952612473225,
+              "left_walk_jump": 0.0013747420705876386,
+              "left_walk_release": 0.0054637573914701155,
+              "released_run_jump": 0.011486172970810503,
+              "released_run_release": 0.020592673675259264,
+              "released_walk_jump": 0.007921973394866335,
+              "released_walk_release": 0.006406752789652825,
+              "right_run_jump": 0.212746428951015,
+              "right_run_release": 0.5831636803339064,
+              "right_walk_jump": 0.07761292801136174,
+              "right_walk_release": 0.05352936546978526
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "437498b28503e442fe437dda8592f0532f454471d1b8e6e3354cf2ade8c2525b",
+      "screen_after_sha256": "d9dd130f391c840c2b2b067bb861d566645b4de0621e728d509f022f3249e034",
+      "request_sha256": "b5277f5fbe4ddda8e2daea99f3cbfd9c2b0645a2a1b7d10bbad78a3a4463c856"
+    },
+    {
+      "index": 20,
+      "frame_before": 80,
+      "frame_after": 84,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "liquid/d1.1-20261027",
+        "provider": "Liquid",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.42291144537643777,
+            "probabilities": {
+              "left_run_jump": 0.0046534249204717775,
+              "left_run_release": 0.012755600897792518,
+              "left_walk_jump": 0.0011103340912824169,
+              "left_walk_release": 0.004412897683164941,
+              "released_run_jump": 0.05944531951415291,
+              "released_run_release": 0.10657492877630706,
+              "released_walk_jump": 0.007114813771593741,
+              "released_walk_release": 0.009277005265726683,
+              "right_run_jump": 0.22404690667124272,
+              "right_run_release": 0.4710021582617346,
+              "right_walk_jump": 0.056372696936605855,
+              "right_walk_release": 0.043233913209924896
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "5147a44875d089ed3f87c352f21889e36229ebaa454c53b5a21f041c54def057",
+      "screen_after_sha256": "0d9f457b0f261ac76170a748e8b413cdb3e4a5850307947ac5445f1d27608e69",
+      "request_sha256": "e2ccece5b7e9a04e6e2739f7e85cf10ad435a86171ac63c9913ce2d194e04f57"
+    },
+    {
+      "index": 21,
+      "frame_before": 84,
+      "frame_after": 88,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "liquid/d1.1-20261027",
+        "provider": "Liquid",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.4164341808736722,
+            "probabilities": {
+              "left_run_jump": 0.00510929340332483,
+              "left_run_release": 0.031047158036001037,
+              "left_walk_jump": 0.0017675991278501022,
+              "left_walk_release": 0.007025123480667826,
+              "released_run_jump": 0.08510401772588841,
+              "released_run_release": 0.08510401772588841,
+              "released_walk_jump": 0.019256713691219278,
+              "released_walk_release": 0.023810997324693717,
+              "right_run_jump": 0.17890974984294802,
+              "right_run_release": 0.46506466580086614,
+              "right_walk_jump": 0.05278498281290572,
+              "right_walk_release": 0.04501568102774648
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "e5b79ac60dd6fc75c85ec053f2c662de3e558fddc370cdb9cffee84945521376",
+      "screen_after_sha256": "8c082c049d8e2f4d561625af394a6a5beaa73e6cd4d9e1d9a80a93d579f27a91",
+      "request_sha256": "7fd49291474ccf4d978b1ae7fa80106238f5d544b2bb81721756084b777bde20"
+    },
+    {
+      "index": 22,
+      "frame_before": 88,
+      "frame_after": 92,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "liquid/d1.1-20261027",
+        "provider": "Liquid",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.4646976941168578,
+            "probabilities": {
+              "left_run_jump": 0.00406942770102234,
+              "left_run_release": 0.022238046805975693,
+              "left_walk_jump": 0.002269843693114405,
+              "left_walk_release": 0.008554946187603966,
+              "released_run_jump": 0.03585389307168955,
+              "released_run_release": 0.030576639947744604,
+              "released_walk_jump": 0.0069186580944944325,
+              "released_walk_release": 0.009512945058648704,
+              "right_run_jump": 0.2840806116665335,
+              "right_run_release": 0.5093062196071196,
+              "right_walk_jump": 0.0398688790613159,
+              "right_walk_release": 0.04674988910473732
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "12f21d0c5b5a93cbea4391d076eada711e526340cb8df38d230d069f3d109ab3",
+      "screen_after_sha256": "1436757c4d69230121045795179b0fe7362a8bb32ed355716830c3f7f66aa374",
+      "request_sha256": "bf6215c46119e4e02d7bb5adf0caab395fc38a98e487518a7426f1697e51b5eb"
+    },
+    {
+      "index": 23,
+      "frame_before": 92,
+      "frame_after": 96,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "liquid/d1.1-20261027",
+        "provider": "Liquid",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.5471084978086735,
+            "probabilities": {
+              "left_run_jump": 0.0037792278719888414,
+              "left_run_release": 0.01424375219035315,
+              "left_walk_jump": 0.0017047876110576781,
+              "left_walk_release": 0.005196323711812321,
+              "released_run_jump": 0.016702095745161658,
+              "released_run_release": 0.045782465844619556,
+              "released_walk_jump": 0.007144787515480813,
+              "released_walk_release": 0.01502011516298653,
+              "right_run_jump": 0.18195723124270352,
+              "right_run_release": 0.5848494563246174,
+              "right_walk_jump": 0.045782465844619556,
+              "right_walk_release": 0.07783729093459898
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "4ba1a5ab15d22f48a8d2627a073bf59abb5145ff7b8c389d7c09ca07f7211f7d",
+      "screen_after_sha256": "456b72b4c5528a042579a9b96f157770447666c18e1692a62ec760d5327e4a57",
+      "request_sha256": "ef540c5bc1c486de2af37294c3a40b5ff1b274cd79fc69e467ac497bc3d178a4"
+    },
+    {
+      "index": 24,
+      "frame_before": 96,
+      "frame_after": 100,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "liquid/d1.1-20261027",
+        "provider": "Liquid",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.37020185036193,
+            "probabilities": {
+              "left_run_jump": 0.0037555104440273397,
+              "left_run_release": 0.03308810962680143,
+              "left_walk_jump": 0.0018837960515008865,
+              "left_walk_release": 0.0063849500818015685,
+              "released_run_jump": 0.026759410577321854,
+              "released_run_release": 0.022820753684980023,
+              "released_walk_jump": 0.007486935055395937,
+              "released_walk_release": 0.016597277838949123,
+              "right_run_jump": 0.30741407447762326,
+              "right_run_release": 0.4226850294984358,
+              "right_walk_jump": 0.06955941181501117,
+              "right_walk_release": 0.08156474084815159
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "8fbf9fc1f290deb66353f60eab5bcdba8a7ee5d79ffc07352ff0bee003e1c5ab",
+      "screen_after_sha256": "1b93b1cc4e8ef32633c57c07548ad795dbb7238ea4f5143a646e5e5ba5213d68",
+      "request_sha256": "fe961d9b8789526d5b4fd6a1f04fe7115e02475f8e89edfdf856b9df9db0e57d"
+    },
+    {
+      "index": 25,
+      "frame_before": 100,
+      "frame_after": 104,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "liquid/d1.1-20261027",
+        "provider": "Liquid",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.41924344422024296,
+            "probabilities": {
+              "left_run_jump": 0.005137584604732513,
+              "left_run_release": 0.020418750876236354,
+              "left_walk_jump": 0.001976421769916356,
+              "left_walk_release": 0.0074490511998401305,
+              "released_run_jump": 0.018362485422480358,
+              "released_run_release": 0.05033379490238901,
+              "released_walk_jump": 0.006698896269289637,
+              "released_walk_release": 0.006352642264939229,
+              "right_run_jump": 0.27505717491442505,
+              "right_run_release": 0.467639823868556,
+              "right_walk_jump": 0.05033379490238901,
+              "right_walk_release": 0.09023957900480636
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "f0402ef6b9e91e61fca18d00d837f44669703501ceb32212f73dcfe6cff3f9ca",
+      "screen_after_sha256": "4c34efc5d93637013ef842a0ef7f357d987f97de4d529212e5b75b4dc0cc0e3b",
+      "request_sha256": "cc0d9e3dff640a3a12b0d62e7cdaa6f313ddd6b1cd3a780ed3c26259eac554df"
+    },
+    {
+      "index": 26,
+      "frame_before": 104,
+      "frame_after": 106,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "liquid/d1.1-20261027",
+        "provider": "Liquid",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.2995912358954884,
+            "probabilities": {
+              "left_run_jump": 0.0035365732271841494,
+              "left_run_release": 0.013329196956980238,
+              "left_walk_jump": 0.0012235045550292294,
+              "left_walk_release": 0.0027123041520714882,
+              "released_run_jump": 0.1305884218876279,
+              "released_run_release": 0.0768097128379831,
+              "released_walk_jump": 0.00668603881455594,
+              "released_walk_release": 0.009694175237108076,
+              "right_run_jump": 0.28949257408835,
+              "right_run_release": 0.3579586329041977,
+              "right_walk_jump": 0.0768097128379831,
+              "right_walk_release": 0.031159152500929144
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "aa73d650acf590c30b1bc7dec3f1c18d65d3491aa32c6000773c617c795bcd1f",
+      "screen_after_sha256": "e3135e0d5c169086d0df59e595390d16c9b09d7b370473b8bd6d08374a78396f",
+      "request_sha256": "17f349d41cf93998a39a581be6bd756bb4922d57f901fbee6c0663f809bf6baf"
+    }
+  ],
+  "source_hashes": {
+    "episode_sha256": "5e85b7cefeba1bcda94cbd4c59e900c172a0447ed8ec7dc41d2a282e156172ce",
+    "observer_source_sha256": "e9a16a88c9fbffbe62d62b7ce4f17714a764e5430528014ccb39cc9e23a2529c",
+    "audit_sha256": "f5952453f0e6919dae2ee00fffdeb3c09b3f93c45d11be4836870cae836e32cf"
+  },
+  "input_audit": {
+    "native_replay_verified": true,
+    "exact_request_audit_complete": true,
+    "privileged_state_sent": true
+  }
+}
