@@ -1,0 +1,11 @@
+{
+  "exact": true,
+  "checked_decisions": 622,
+  "checked_requests": 1244,
+  "all622rng_states_draws_and_sampled_controls_matched": true,
+  "actions_different_from_native_choice": 23,
+  "strictly_nonargmax_probability_actions": 21,
+  "sampler_transformation": "AST alpha-renaming ACTIONS\u2192SAMPLER_ACTIONS and decode\u2192frozen_sample only; all622 exact original metadata verified",
+  "policy_source_sha256": "9bd4eb631cc6dc5d7af4844852193d1a0997fbd31b3558cbabc8338d800c0a94",
+  "zero_network_calls": true
+}
