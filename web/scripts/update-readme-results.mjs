@@ -39,7 +39,9 @@ export function renderResults(index) {
         : `${run.progressPct.toFixed(2)}%${/abort/.test(run.status) ? ' (aborted)' : ''}`;
       const seconds = run.completed ? run.clearSeconds.toFixed(2) : '-';
       const links = [raw.replay_href && `[replay](results/${raw.replay_href})`,
-        `[trace](results/${raw.trace_href})`, `[profile](results/${raw.profile_href})`].filter(Boolean).join(' · ');
+        `[trace](results/${raw.trace_href})`, `[profile](results/${raw.profile_href})`,
+        raw.recovery_lineage && `[original abort](results/${raw.recovery_lineage.originalTraceHref})`,
+        raw.recovery_lineage && `[proof](results/${raw.recovery_lineage.proofHref})`].filter(Boolean).join(' · ');
       lines.push(`| ${escape(run.name.toLowerCase())} | ${progress} | ${seconds} | ${formatRunCost(run) ?? '-'} | ${links} <!-- run:${run.id} --> |`);
     }
     lines.push('');
@@ -52,6 +54,7 @@ export function renderResults(index) {
     'mean cost/run requires complete billing for all 3 runs; ~ includes a byok list-price estimate',
     `[protocol and trial evidence](results/${index.common_cohort_href ?? 'index.json'})`, ''];
   if (cohort.stateOnly) benchmark.push('common image track: calibration pending. image replays and history remain development runs', '');
+  if (cohort.technicalRecovery) benchmark.push(`${cohort.technicalRecovery.resolved}/8 technical continuations independently verified under a separate registered authority; original aborts and proofs remain linked`, '');
   for (const [track, title] of [['state', 'state'], ['image', 'pixels only']]) {
     if (cohort.stateOnly && track === 'image') continue;
     const rows = cohort.rows.filter(row => row.track === track).sort((a, b) =>

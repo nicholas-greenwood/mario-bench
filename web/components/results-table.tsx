@@ -77,6 +77,7 @@ export default function ResultsTable() {
         </div>
         <p className="results-note">{view === 'benchmark' ? 'mean progress over 3 prespecified runs with the same frozen protocol. pending means the 3 prescribed results are not fully confirmed. best clear is the fastest completed run.' : view === 'observations' ? 'development runs, not a ranking. aborted runs show observed progress; incomplete runs have no score.' : 'selected runs with different settings, not a ranking.'} cost is usd; ~ includes a byok list-price estimate. missing billing is unknown.</p>
         {view === 'benchmark' && dataset.commonBenchmark?.stateOnly && <p className="results-note">common image track: calibration pending. image replays and history remain development runs.</p>}
+        {view === 'benchmark' && dataset.commonBenchmark?.technicalRecovery && <p className="results-note">{dataset.commonBenchmark.technicalRecovery.resolved}/8 technical continuations independently verified. original aborts and continuation proofs remain linked; incomplete billing stays unknown.</p>}
         {evidenceIds !== null && view === 'observations' && <p className="results-note">showing {results.length} cohort runs <button onClick={() => setEvidenceIds(null)}>show all runs</button></p>}
       </div>
       {view === 'benchmark' && dataset.commonBenchmark ? <CommonBenchmarkTable cohort={dataset.commonBenchmark} showRuns={ids => { setEvidenceIds(ids); setView('observations'); }} /> : <div className="table-scroll">
@@ -107,6 +108,7 @@ export default function ResultsTable() {
                       <span>{run.name}{loaded.length > 0 && <span className="loaded mono" aria-label={`in pane ${loaded.join(' and ')}`}>{loaded.join(' ')}</span>}</span>
                       <span className="run-id mono">{run.modelId}</span>
                     </button> : <a className="run-name" href={run.traceSrc} target="_blank" rel="noreferrer" aria-label={`inspect ${run.name}, ${trackLabel(run.track)} action trace`}><span>{run.name}</span><span className="run-id mono">{run.modelId} · trace ↗</span></a>}
+                    {run.recoveryLineage && <div className="run-id"><a href={run.recoveryLineage.originalTraceSrc} target="_blank" rel="noreferrer">original abort</a> · <a href={run.recoveryLineage.childTraceSrc} target="_blank" rel="noreferrer">continuation</a> · <a href={run.recoveryLineage.proofSrc} target="_blank" rel="noreferrer">proof</a></div>}
                   </td>
                   <td data-label="input">{trackLabel(run.track)}</td>
                   <td className="num" data-label="progress">{run.progressPct === null ? <span className="faint" aria-label="score unavailable">–</span> : formatProgress(run.progressPct)}</td>

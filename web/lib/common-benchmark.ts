@@ -1,4 +1,5 @@
 /** A separate, frozen evaluation cohort. Development examples never enter a mean. */
+import { resolveTechnicalRecovery, type RecoverySummary } from './recovery-lineage.ts';
 export type CommonTrack = 'state' | 'image';
 type Raw = Record<string, unknown>;
 type Cost = { costUsd: number | null; costEstimateUsd: number | null };
@@ -28,6 +29,7 @@ export type CommonBenchmark = {
   protocolSha256: string;
   frozenAt: string;
   stateOnly: boolean;
+  technicalRecovery: RecoverySummary | null;
   rows: CommonResult[];
   trials: Raw[];
 };
@@ -119,6 +121,7 @@ export function parseCommonBenchmark(value: unknown, legacyIds: Set<string>, rea
   const trialCounts = new Map<string, number>();
   for (const trial of trials) trialCounts.set(string(trial.id), (trialCounts.get(string(trial.id)) ?? 0) + 1);
   const byId = new Map(trials.map(trial => [string(trial.id), trial]));
+  const recovery = resolveTechnicalRecovery(cohort, trials, stateOnly, validOutcome);
   const rawRows = records(cohort.rows);
   const rows: CommonResult[] = [];
   for (const [groupKey, group] of groups) {
@@ -145,8 +148,9 @@ export function parseCommonBenchmark(value: unknown, legacyIds: Set<string>, rea
     };
     const recorded = expected.filter(id => byId.has(id));
     const nativeTrials = trials.filter(trial => key(trial) === groupKey);
-    const valid = recorded.map(id => byId.get(id)!).filter(trial => trialCounts.get(string(trial.id)) === 1
-      && nativeTrials.filter(candidate => candidate.repeat_id === trial.repeat_id).length === 1 && matching(trial) && validOutcome(trial));
+    const valid = recorded.map(id => recovery.effective.get(id) ?? byId.get(id)!).filter(trial => trialCounts.get(string(trial.id)) === 1
+      && nativeTrials.filter(candidate => candidate.repeat_id === trial.repeat_id).length === 1
+      && (recovery.effective.has(string(trial.id)) || matching(trial)) && validOutcome(trial));
     const complete = row.expected_trials === 3 && row.coverage_complete === true && row.protocol_sha256 === manifest.protocol_sha256
       && row.level === '1-1' && expected.length === 3 && new Set(expected).size === 3 && valid.length === 3
       && new Set(valid.map(trial => trial.repeat_id)).size === 3 && nativeTrials.length === 3
@@ -170,5 +174,10 @@ export function parseCommonBenchmark(value: unknown, legacyIds: Set<string>, rea
       representativeRunId: representative ? string(representative.id) : null,
     });
   }
-  return { protocolId: string(manifest.protocol_id), protocolSha256: string(manifest.protocol_sha256), frozenAt: string(manifest.frozen_at_utc), stateOnly, rows, trials };
+  const projectedTrials = trials.map(trial => {
+    const resolved = recovery.effective.get(string(trial.id));
+    return resolved && validOutcome(resolved) ? resolved : trial;
+  });
+  return { protocolId: string(manifest.protocol_id), protocolSha256: string(manifest.protocol_sha256), frozenAt: string(manifest.frozen_at_utc), stateOnly,
+    technicalRecovery: recovery.summary, rows, trials: projectedTrials };
 }

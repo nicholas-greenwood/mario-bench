@@ -26,6 +26,7 @@ export type CostProvenance = {
 export type Run = {
   id: string;
   aliasIds: string[];
+  recoveryLineage: { originalTraceSrc: string; childTraceSrc: string; proofSrc: string } | null;
   modelId: string;
   name: string;
   provider: string;
@@ -108,7 +109,12 @@ function runCost(raw: RawExample) {
 const isJsonRetest = (raw: RawExample) => raw.data_class === 'technical_serialization_diagnostic'
   && raw.verified === true && raw.experiment_config?.state_serialization === 'json_object'
   && (raw.completed === true || raw.death === true);
-const displayName = (raw: RawExample) => text(raw.display_name, text(raw.model_id)) + (isJsonRetest(raw) ? ' (json retest)' : '');
+const displayName = (raw: RawExample) => text(raw.display_name, text(raw.model_id)) + (isJsonRetest(raw) ? ' (json retest)' : raw.record_kind === 'technical_resolution' ? ' (technical continuation)' : '');
+function recoveryLineage(raw: RawExample): Run['recoveryLineage'] {
+  const lineage = raw.recovery_lineage as Record<string, unknown> | undefined;
+  return lineage && ['originalTraceHref', 'childTraceHref', 'proofHref'].every(k => typeof lineage[k] === 'string')
+    ? { originalTraceSrc: DATA_BASE + lineage.originalTraceHref, childTraceSrc: DATA_BASE + lineage.childTraceHref, proofSrc: DATA_BASE + lineage.proofHref } : null;
+}
 
 export const isApiError = (status: string) => /api|infra|error|failure/.test(status);
 export const unavailableProgress = (status: string) => isApiError(status) ? 'api error' : 'incomplete';
@@ -126,6 +132,7 @@ function toRun(raw: RawExample): Run {
   return {
     id: text(raw.id),
     aliasIds: Array.isArray(raw.alias_ids) ? raw.alias_ids.filter((id): id is string => typeof id === 'string') : [],
+    recoveryLineage: recoveryLineage(raw),
     modelId: text(raw.model_id),
     name: displayName(raw),
     provider: text(raw.provider),
@@ -156,6 +163,7 @@ function toObservation(raw: RawExample): Result {
   const replay = text(raw.replay_href);
   return {
     id: text(raw.id), aliasIds: Array.isArray(raw.alias_ids) ? raw.alias_ids.filter((id): id is string => typeof id === 'string') : [],
+    recoveryLineage: recoveryLineage(raw),
     modelId: text(raw.model_id), name: displayName(raw),
     provider: text(raw.provider), track: raw.mode, level: text(raw.level, '1-1'),
     // A failed API episode has no score, even if some movement was observed.

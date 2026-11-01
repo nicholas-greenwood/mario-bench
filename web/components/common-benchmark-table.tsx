@@ -54,7 +54,8 @@ export default function CommonBenchmarkTable({ cohort, showRuns }: { cohort: Com
                 {representative && <button onClick={() => watch(representative.id)}>watch representative demo</button>}
                 {row.recordedTrialIds.map(id => {
                   const trial = cohort.trials.find(candidate => candidate.id === id);
-                  return typeof trial?.trace_href === 'string' ? <p key={id}><a href={DATA_BASE + trial.trace_href} target="_blank" rel="noreferrer">{id}</a></p> : null;
+                  const lineage = trial?.recovery_lineage as { originalTraceHref: string; proofHref: string } | undefined;
+                  return typeof trial?.trace_href === 'string' ? <p key={id}><a href={DATA_BASE + trial.trace_href} target="_blank" rel="noreferrer">{id}{lineage ? ' (technical continuation)' : ''}</a>{lineage && <> · <a href={DATA_BASE + lineage.originalTraceHref} target="_blank" rel="noreferrer">original abort</a> · <a href={DATA_BASE + lineage.proofHref} target="_blank" rel="noreferrer">proof</a></>}</p> : null;
                 })}
               </details>
             </td>

@@ -4,6 +4,7 @@ import { chromium } from '@playwright/test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import { formatCost, formatRunCost, formatSeconds, parseDataset } from '../lib/data.ts';
+import { hydrateRecoveryProofs } from '../lib/read-results.mjs';
 
 const BASE = process.env.BASE_URL ?? 'http://127.0.0.1:3112';
 const CHROME = process.env.CHROME ?? '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
@@ -15,6 +16,11 @@ if (index.common_cohort_href) {
   const common = await (await fetch(`${BASE}/benchmark-data/${index.common_cohort_href}`)).json();
   index.common_benchmark = common.common_benchmark;
 }
+await hydrateRecoveryProofs(index, async relative => {
+  const response = await fetch(`${BASE}/benchmark-data/${relative}`);
+  if (!response.ok) throw new Error(`recovery proof ${relative}: HTTP ${response.status}`);
+  return Buffer.from(await response.arrayBuffer());
+});
 const examples = index.examples;
 const observations = index.observations;
 const parsed = parseDataset(index);
