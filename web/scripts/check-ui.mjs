@@ -3,6 +3,7 @@
 import { chromium } from '@playwright/test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
+import { parseDataset } from '../lib/data.ts';
 
 const BASE = process.env.BASE_URL ?? 'http://127.0.0.1:3112';
 const CHROME = process.env.CHROME ?? '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
@@ -12,7 +13,18 @@ await fs.mkdir(shots, { recursive: true });
 const index = await (await fetch(`${BASE}/benchmark-data/index.json`)).json();
 const examples = index.examples;
 const observations = index.observations;
-const replays = [...new Map([...examples, ...observations.filter(e => e.replay_href)].map(e => [e.id, e])).values()];
+const parsed = parseDataset(index);
+const publishedIds = new Set(parsed.observations.map(run => run.id));
+const published = [...new Map([...examples, ...observations].map(e => [e.id, e])).values()].filter(e => publishedIds.has(e.id));
+const replays = published.filter(e => e.replay_href);
+assert.equal(published.length, 42);
+assert.equal(replays.length, 41);
+const mercuryPixels = parsed.runs.filter(run => run.modelId === 'inception/mercury-decide' && run.track === 'image');
+assert.equal(mercuryPixels.length, 1, 'duplicate exports of the same source episode count once');
+assert.deepEqual(mercuryPixels[0].aliasIds, ['pixels-best-inception--mercury-decide']);
+assert.equal(mercuryPixels[0].id, 'mercury-pixels-partial', 'original replay ID retained');
+const repeated = parseDataset({ ...index, observations: [...observations, { ...examples.find(e => e.id === 'mercury-pixels-partial'), id: 'independent-repeat' }] });
+assert.equal(repeated.runs.filter(run => run.modelId === 'inception/mercury-decide' && run.track === 'image').length, 2, 'independent repeat IDs survive even when source contents match');
 assert.ok(examples.length > 0);
 const pct = v => (v >= 100 ? '100%' : `${(Math.floor(v * 10) / 10).toFixed(1)}%`);
 
@@ -38,10 +50,21 @@ assert.ok(await page.getByText(/not a ranking/).isVisible());
 
 // every recorded run, with the exact identity and numbers from the index
 const rows = page.locator('tbody tr');
-assert.equal(await rows.count(), observations.length, 'all published observations shown by default');
+assert.equal(await rows.count(), published.length, 'every published run shown by default');
+const clearIds = examples.filter(e => e.completed).map(e => e.id).sort();
+assert.equal(clearIds.length, 4, 'four verified clears remain published');
+assert.deepEqual(published.filter(e => e.completed).map(e => e.id).sort(), clearIds);
+assert.deepEqual(replays.filter(e => e.completed).map(e => e.id).sort(), clearIds);
+for (const e of replays) assert.equal(await page.locator(`tr[data-run-id="${e.id}"][data-replay="true"]`).count(), 1, `${e.id}: replay belongs to all runs`);
+for (const id of clearIds) assert.equal(await page.locator(`tr[data-run-id="${id}"] td`).nth(6).innerText(), 'cleared');
+const mercuryRuns = published.filter(e => e.model_id === 'inception/mercury-decide' && e.mode === 'state');
+assert.equal(mercuryRuns.length, 2, 'distinct state profiles for one model stay separate');
+assert.ok(mercuryRuns.some(e => e.completed) && mercuryRuns.some(e => !e.completed));
+const noActions = published.find(e => e.id === 'state-c4-jaredpalmer--kev-4b');
+assert.ok(noActions && !noActions.replay_href && noActions.progress_pct === null && noActions.native_frames === 0);
 assert.equal(observations.filter(e => e.mode === 'state').length, index.observation_counts.state);
 assert.equal(observations.filter(e => e.mode === 'image').length, index.observation_counts.image);
-for (const e of observations) {
+for (const e of published) {
   const cells = await page.locator(`tr[data-run-id="${e.id}"] td`).allInnerTexts();
   assert.ok(cells[0].includes(e.model_id), `${e.id}: exact model identity`);
   assert.equal(cells[2], e.progress_pct === null ? '–' : pct(e.progress_pct), `${e.id}: no invented score`);
@@ -54,7 +77,7 @@ for (const e of observations) {
 for (let i = 0; i < 2; i++) {
   await page.getByRole('columnheader').filter({ hasText: 'progress' }).getByRole('button').click();
   const ids = await rows.evaluateAll(els => els.map(el => el.dataset.runId));
-  assert.ok(ids.slice(-2).every(id => observations.find(e => e.id === id).progress_pct === null));
+  assert.ok(ids.slice(-2).every(id => published.find(e => e.id === id).progress_pct === null));
 }
 await page.getByRole('button', { name: `replays (${replays.length})`, exact: true }).click();
 assert.equal(await rows.count(), replays.length);
@@ -188,7 +211,7 @@ const best = await page.getByTestId('human-best').innerText();
 assert.match(best, /^best \d+\.\d% · 1 attempt$/);
 await page.reload({ waitUntil: 'networkidle' });
 assert.equal(await page.getByTestId('human-best').innerText(), best);
-assert.equal(await rows.count(), observations.length, 'human best never joins the model table');
+assert.equal(await rows.count(), published.length, 'human best never joins the model table');
 
 // theme toggle persists
 const lightBg = await page.evaluate(() => getComputedStyle(document.body).backgroundColor);
@@ -210,7 +233,7 @@ for (const [width, name] of [[1920, 'wide'], [1440, 'desktop'], [1280, 'laptop']
   assert.ok(await page.locator('.table-scroll').evaluate(el => el.scrollWidth <= el.clientWidth), `${width} table fits without scrolling`);
   assert.equal(await page.getByRole('columnheader', { name: 'cadence', exact: true }).count(), 0);
   assert.equal(await page.getByText('saved in this browser · no frame limit', { exact: true }).count(), 0);
-  assert.equal(await page.locator('tbody tr').count(), observations.length);
+  assert.equal(await page.locator('tbody tr').count(), published.length);
   assert.ok(await page.locator('h1').isVisible());
   const screens = await page.locator('.screen').evaluateAll(s => s.map(e => e.getBoundingClientRect().width));
   assert.ok(screens.every(w => w > 120 && w <= width), `${width} screens ${screens}`);
@@ -224,4 +247,4 @@ for (const [width, name] of [[1920, 'wide'], [1440, 'desktop'], [1280, 'laptop']
 
 await browser.close();
 assert.deepEqual(errors, []);
-console.log(`ui check passed: ${observations.length} observations, ${replays.length} playable runs, null scores, abort status, 7 sortable columns, no table scrolling at 6 widths, hover-only rows, matched screens, human play, themes`);
+console.log(`ui check passed: ${published.length} published runs, ${replays.length} playable runs, 4 matching clears in both views, separate profiles, zero-action run, null scores, abort status, 7 sortable columns, no table scrolling at 6 widths`);

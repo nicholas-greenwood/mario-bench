@@ -5,6 +5,7 @@ export type Track = 'state' | 'image';
 
 export type Run = {
   id: string;
+  aliasIds: string[];
   modelId: string;
   name: string;
   provider: string;
@@ -57,6 +58,7 @@ function toRun(raw: RawExample): Run {
   const completed = raw.completed === true;
   return {
     id: text(raw.id),
+    aliasIds: Array.isArray(raw.alias_ids) ? raw.alias_ids.filter((id): id is string => typeof id === 'string') : [],
     modelId: text(raw.model_id),
     name: text(raw.display_name, text(raw.model_id)),
     provider: text(raw.provider),
@@ -83,7 +85,8 @@ function toObservation(raw: RawExample): Result {
   const completed = raw.completed === true;
   const replay = text(raw.replay_href);
   return {
-    id: text(raw.id), modelId: text(raw.model_id), name: text(raw.display_name, text(raw.model_id)),
+    id: text(raw.id), aliasIds: Array.isArray(raw.alias_ids) ? raw.alias_ids.filter((id): id is string => typeof id === 'string') : [],
+    modelId: text(raw.model_id), name: text(raw.display_name, text(raw.model_id)),
     provider: text(raw.provider), track: raw.mode, level: text(raw.level, '1-1'),
     // A failed API episode has no score, even if some movement was observed.
     progressPct: num(raw.progress_pct), nativeFrames: num(raw.native_frames), decisions: num(raw.decisions),
@@ -97,12 +100,31 @@ function toObservation(raw: RawExample): Result {
 export function parseDataset(index: unknown): Dataset {
   const data = index as { examples?: RawExample[]; observations?: RawExample[]; generated_at_utc?: string; leaderboard_ready?: boolean; model_counts?: { state?: number; image?: number } };
   if (!Array.isArray(data?.examples)) throw new Error('benchmark index has no examples');
+  const byId = [...new Map([
+    ...data.examples,
+    ...(data.observations ?? []),
+  ].map(raw => [text(raw.id), raw] as const)).values()];
+  const byEpisode = new Map<string, RawExample>(byId.map(raw => [text(raw.id), { ...raw, alias_ids: [] }]));
+  // These exports refer to the same original episode, not independent repeats.
+  const episodeAliases = { 'pixels-best-inception--mercury-decide': 'mercury-pixels-partial' };
+  for (const [aliasId, canonicalId] of Object.entries(episodeAliases)) {
+    const alias = byEpisode.get(aliasId), canonical = byEpisode.get(canonicalId);
+    if (!alias || !canonical) continue;
+    const aliasSource = (alias.source_hashes ?? {}) as Record<string, unknown>;
+    const canonicalSource = (canonical.source_hashes ?? {}) as Record<string, unknown>;
+    const sameSource = ['requests_sha256', 'responses_sha256', 'private_replay_sha256']
+      .every(key => text(aliasSource[key]) && aliasSource[key] === canonicalSource[key]);
+    const sameIdentity = ['model_id', 'mode', 'level', 'native_frames', 'decisions']
+      .every(key => alias[key] === canonical[key]);
+    if (sameSource && sameIdentity) {
+      (canonical.alias_ids as string[]).push(aliasId);
+      byEpisode.delete(aliasId);
+    }
+  }
+  const published = [...byEpisode.values()];
   return {
-    runs: [...new Map([
-      ...data.examples,
-      ...(data.observations ?? []).filter(raw => text(raw.replay_href)),
-    ].map(raw => [text(raw.id), toRun(raw)] as const)).values()],
-    observations: (data.observations ?? []).map(toObservation),
+    runs: published.filter(raw => text(raw.replay_href)).map(toRun),
+    observations: published.map(toObservation),
     generatedAt: text(data.generated_at_utc),
     leaderboardReady: data.leaderboard_ready === true,
     catalogue: { state: num(data.model_counts?.state) ?? 0, image: num(data.model_counts?.image) ?? 0 },
