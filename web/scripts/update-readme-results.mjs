@@ -70,10 +70,10 @@ export function renderResults(index) {
         const trial = rawById.get(id);
         return trial?.trace_href ? `[run ${position + 1}](results/${trial.trace_href})` : null;
       }).filter(Boolean).join(' · ') || '-';
-      benchmark.push(`| ${escape(row.name.toLowerCase())} | ${row.meanProgressPct === null ? 'pending' : `${row.meanProgressPct.toFixed(2)}%`} | ${row.bestClearSeconds === null ? '-' : row.bestClearSeconds.toFixed(2)} | ${formatRunCost({ costUsd: row.meanCostUsd, costEstimateUsd: row.meanCostEstimateUsd }) ?? '-'} | ${row.validTrials}/3 | ${evidence} |`);
+      benchmark.push(`| ${escape(row.name.toLowerCase())} | ${row.meanProgressPct === null ? row.availability === 'unavailable' ? 'unavailable' : 'pending' : `${row.meanProgressPct.toFixed(2)}%`} | ${row.bestClearSeconds === null ? '-' : row.bestClearSeconds.toFixed(2)} | ${formatRunCost({ costUsd: row.meanCostUsd, costEstimateUsd: row.meanCostEstimateUsd }) ?? '-'} | ${row.validTrials}/3 | ${evidence} |`);
     }
     benchmark.push('', '<details>', '<summary>completed-run timing</summary>', '');
-    for (const row of rows) benchmark.push(`- ${escape(row.name.toLowerCase())}: ${row.coverageComplete ? `${row.nCompleted}/3 completed; mean completed time ${row.meanCompletedSeconds === null ? 'unavailable' : `${row.meanCompletedSeconds.toFixed(2)} game s`}` : 'pending'}`);
+    for (const row of rows) benchmark.push(`- ${escape(row.name.toLowerCase())}: ${row.coverageComplete ? `${row.nCompleted}/3 completed; mean completed time ${row.meanCompletedSeconds === null ? 'unavailable' : `${row.meanCompletedSeconds.toFixed(2)} game s`}` : row.availability === 'unavailable' ? 'unavailable (technical)' : 'pending'}`);
     benchmark.push('', '</details>', '');
   }
   benchmark.push('<details>', '<summary>individual runs and development history</summary>', '', ...lines.slice(1), '</details>', '', end);

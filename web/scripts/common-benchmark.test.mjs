@@ -563,3 +563,31 @@ test('validated technical resolution completes the effective three-trial cohort 
   const parsed=await prepareRecovery(f);assert.equal(parsed.commonBenchmark.rows[0].validTrials,3);assert.equal(parsed.commonBenchmark.rows[0].coverageComplete,true);assert.notEqual(parsed.commonBenchmark.rows[0].meanProgressPct,null);
   assert.equal(f.data.common_benchmark.rows[0].coverage_complete,false);
 });
+
+async function unavailableFixture(mutate=()=>{}) {
+  const f=recoveryFixture();await prepareRecovery(f);f.data.common_benchmark.technical_recovery.resolutions=[];
+  Object.assign(f.child,{status:'infra_error',rankable:false,technical_pending:true,completed:false,death:false,progress_pct:null,cost_usd:null});
+  Object.assign(f.child.attempt_proof,{request_intent_count:107,request_result_count:107,error_attempt_count:6,terminal_at_utc:'2026-01-05T00:00:00Z'});
+  Object.assign(f.proof,{recovery_attempt_count:4,joined_attempt_count:107,recovery_error_attempt_count:3,joined_error_attempt_count:6,recovery_request_result_count:4,joined_request_result_count:107});
+  const {attempt_proof,proof,proof_sha256,proof_href,proof_verified_sha256,...grade}=f.child;f.proof.result={...structuredClone(grade),frames:f.child.native_frames};
+  mutate(f);const bytes=Buffer.from(JSON.stringify(f.proof));f.child.proof_href='common/recovery/closed-infra.json';f.child.proof_sha256=createHash('sha256').update(bytes).digest('hex');
+  f.child.attempt_proof.native_audit_sha256=f.child.proof_sha256;await hydrateRecoveryProofs(f.data,()=>bytes);
+  return {f,parsed:parseDataset(f.data)};
+}
+test('audited closed technical child marks mean unavailable without adding a score or a trial',async()=>{
+  const {f,parsed}=await unavailableFixture(),row=parsed.commonBenchmark.rows[0];assert.equal(row.availability,'unavailable');assert.equal(row.meanProgressPct,null);assert.equal(row.bestClearSeconds,null);assert.equal(row.meanCostUsd,null);
+  assert.equal(parsed.commonBenchmark.trials.length,66);assert.match(renderResults(f.data),/unavailable \|/);
+});
+for(const [name,change] of [
+ ['unclosed attempt',f=>delete f.child.attempt_proof.terminal_at_utc],
+ ['unanswered request',f=>f.child.attempt_proof.unanswered_attempt_count=1],
+ ['wrong protocol',f=>f.child.protocol_sha256=hash],
+ ['unverified native proof',f=>f.proof.verified=false],
+ ['wrong native grade',f=>f.proof.result.native_frames=6000],
+ ['wrong child source',f=>f.proof.child_episode_sha256=hash],
+ ['wrong checkpoint',f=>f.proof.reconstructed_checkpoint.checkpoint_ram_sha256='b'.repeat(64)],
+ ['wrong joined error count',f=>f.proof.joined_error_attempt_count=0],
+])test(`technical availability remains pending with ${name}`,async()=>{const {parsed}=await unavailableFixture(change);assert.equal(parsed.commonBenchmark.rows[0].availability,'pending');assert.equal(parsed.commonBenchmark.rows[0].meanProgressPct,null);});
+test('missing image trials remain pending rather than becoming terminal technical outcomes',()=>{
+  const data=imageOnlyFixture();data.common_benchmark.trials=[];const cohort=parseDataset(data).commonBenchmark;assert.ok(cohort.rows.every(r=>r.availability==='pending'));
+});

@@ -110,7 +110,7 @@ if (parsed.commonBenchmark) {
     for (const row of cohort.rows) {
       const element = cohortTable.locator(`tr[data-common-model="${row.modelId}"][data-track="${row.track}"]`);
       const cells = await element.locator('td').allInnerTexts();
-      assert.equal(cells[2], row.meanProgressPct === null ? 'pending' : `${row.meanProgressPct.toFixed(2)}%`);
+      assert.equal(cells[2], row.meanProgressPct === null ? row.availability === 'unavailable' ? 'unavailable' : 'pending' : `${row.meanProgressPct.toFixed(2)}%`);
       assert.equal(cells[3], formatSeconds(row.bestClearSeconds) ?? '–');
       assert.equal(cells[4], formatRunCost({ costUsd: row.meanCostUsd, costEstimateUsd: row.meanCostEstimateUsd }) ?? '–');
       assert.equal(await element.getAttribute('data-run-id'), null, 'a mean is not a replay episode');

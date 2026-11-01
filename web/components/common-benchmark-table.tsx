@@ -43,14 +43,14 @@ export default function CommonBenchmarkTable({ cohort, showRuns }: { cohort: Com
           return <tr key={row.id} data-common-model={row.modelId} data-track={row.track}>
             <td><span className="run-name"><span>{row.name}</span><span className="run-id mono">{row.modelId}</span></span></td>
             <td data-label="input">{trackLabel(row.track)}</td>
-            <td className="num" data-label="mean progress">{row.meanProgressPct === null ? <span className="faint">pending</span> : `${row.meanProgressPct.toFixed(2)}%`}</td>
+            <td className="num" data-label="mean progress">{row.meanProgressPct === null ? <span className="faint">{row.availability === 'unavailable' ? 'unavailable' : 'pending'}</span> : `${row.meanProgressPct.toFixed(2)}%`}</td>
             <td className="num" data-label="best clear (game s)">{formatSeconds(row.bestClearSeconds) ?? '–'}</td>
             <td className="num" data-label="mean cost/run">{formatRunCost({ costUsd: row.meanCostUsd, costEstimateUsd: row.meanCostEstimateUsd }) ?? '–'}</td>
             <td className="num" data-label="valid runs">{row.validTrials}/3</td>
             <td data-label="evidence">
               <button onClick={() => showRuns(row.recordedTrialIds)} disabled={!row.recordedTrialIds.length}>{row.recordedTrialIds.length} runs</button>
               <details><summary>details</summary>
-                <p>{row.coverageComplete ? `${row.nCompleted}/3 completed; mean completed time ${formatSeconds(row.meanCompletedSeconds) ?? 'unavailable'}` : 'mean pending until all 3 prescribed results are fully confirmed'}</p>
+                <p>{row.coverageComplete ? `${row.nCompleted}/3 completed; mean completed time ${formatSeconds(row.meanCompletedSeconds) ?? 'unavailable'}` : row.availability === 'unavailable' ? 'mean unavailable: a registered technical continuation ended without a valid result; no model score is assigned' : 'mean pending until all 3 prescribed results are fully confirmed'}</p>
                 {representative && <button onClick={() => watch(representative.id)}>watch representative demo</button>}
                 {row.recordedTrialIds.map(id => {
                   const trial = cohort.trials.find(candidate => candidate.id === id);

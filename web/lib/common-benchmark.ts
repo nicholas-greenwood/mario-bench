@@ -1,5 +1,5 @@
 /** A separate, frozen evaluation cohort. Development examples never enter a mean. */
-import { resolveTechnicalRecovery, type RecoverySummary } from './recovery-lineage.ts';
+import { resolveTechnicalRecovery, closedTechnicalFailures, type RecoverySummary } from './recovery-lineage.ts';
 export type CommonTrack = 'state' | 'image';
 type Raw = Record<string, unknown>;
 type Cost = { costUsd: number | null; costEstimateUsd: number | null };
@@ -15,6 +15,7 @@ export type CommonResult = {
   validTrialIds: string[];
   validTrials: number;
   coverageComplete: boolean;
+  availability: 'complete' | 'pending' | 'unavailable';
   meanProgressPct: number | null;
   bestClearSeconds: number | null;
   meanCompletedSeconds: number | null;
@@ -167,6 +168,7 @@ export function parseCommonBenchmark(value: unknown, legacyIds: Set<string>, rea
   for (const trial of trials) trialCounts.set(string(trial.id), (trialCounts.get(string(trial.id)) ?? 0) + 1);
   const byId = new Map(trials.map(trial => [string(trial.id), trial]));
   const recovery = resolveTechnicalRecovery(cohort, trials, stateOnly, validOutcome);
+  const unavailable = closedTechnicalFailures(cohort, trials, recovery.summary !== null);
   const rawRows = records(cohort.rows);
   const rows: CommonResult[] = [];
   for (const [groupKey, group] of groups) {
@@ -212,6 +214,7 @@ export function parseCommonBenchmark(value: unknown, legacyIds: Set<string>, rea
       id: `${manifest.protocol_sha256}:${input}:${modelId}`, modelId,
       name: string(row.display_name) || modelId, track: input,
       expectedTrialIds: expected, recordedTrialIds: recorded, validTrialIds: valid.map(trial => string(trial.id)), validTrials: valid.length, coverageComplete: complete,
+      availability: complete ? 'complete' : expected.some(id => unavailable.has(id) && !valid.some(trial => trial.id === id)) ? 'unavailable' : 'pending',
       meanProgressPct: complete ? valid.reduce((sum, trial) => sum + (trial.progress_pct as number), 0) / 3 : null,
       bestClearSeconds: complete && completed.length ? (completed[0].native_frames_to_completion as number) / 60 : null,
       meanCompletedSeconds: complete && completed.length ? completed.reduce((sum, trial) => sum + (trial.native_frames_to_completion as number), 0) / completed.length / 60 : null,
