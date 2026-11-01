@@ -1,0 +1,1086 @@
+{
+  "schema_version": 1,
+  "manifest": {
+    "protocol_id": "mario-common-state-compact-v2-evaluation-v1",
+    "phase": "evaluation",
+    "evaluation_scope": "state_only",
+    "tracks": [
+      "state"
+    ],
+    "preregistered": true,
+    "frozen_at_utc": "2026-11-01T20:11:31.691317+00:00",
+    "cohort_id": "state-v2-eval-20261101T201131691317Z",
+    "repeat_schedule": [
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-baseten__elephant-1-repeat0",
+        "model_id": "baseten/elephant-1",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 0,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-baseten__elephant-1-repeat1",
+        "model_id": "baseten/elephant-1",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 1,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-baseten__elephant-1-repeat2",
+        "model_id": "baseten/elephant-1",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 2,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-baseten__joey-1-repeat0",
+        "model_id": "baseten/joey-1",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 0,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-baseten__joey-1-repeat1",
+        "model_id": "baseten/joey-1",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 1,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-baseten__joey-1-repeat2",
+        "model_id": "baseten/joey-1",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 2,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-baseten__mammoth-1-repeat0",
+        "model_id": "baseten/mammoth-1",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 0,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-baseten__mammoth-1-repeat1",
+        "model_id": "baseten/mammoth-1",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 1,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-baseten__mammoth-1-repeat2",
+        "model_id": "baseten/mammoth-1",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 2,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-cloudflare__clef-repeat0",
+        "model_id": "cloudflare/clef",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 0,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-cloudflare__clef-repeat1",
+        "model_id": "cloudflare/clef",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 1,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-cloudflare__clef-repeat2",
+        "model_id": "cloudflare/clef",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 2,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-cloudflare__clef-flash-repeat0",
+        "model_id": "cloudflare/clef-flash",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 0,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-cloudflare__clef-flash-repeat1",
+        "model_id": "cloudflare/clef-flash",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 1,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-cloudflare__clef-flash-repeat2",
+        "model_id": "cloudflare/clef-flash",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 2,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-cloudflare__clef-omni-repeat0",
+        "model_id": "cloudflare/clef-omni",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 0,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-cloudflare__clef-omni-repeat1",
+        "model_id": "cloudflare/clef-omni",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 1,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-cloudflare__clef-omni-repeat2",
+        "model_id": "cloudflare/clef-omni",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 2,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-inception__mercury-decide-repeat0",
+        "model_id": "inception/mercury-decide",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 0,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-inception__mercury-decide-repeat1",
+        "model_id": "inception/mercury-decide",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 1,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-inception__mercury-decide-repeat2",
+        "model_id": "inception/mercury-decide",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 2,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-jaredpalmer__kev-4b-repeat0",
+        "model_id": "jaredpalmer/kev-4b",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 0,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-jaredpalmer__kev-4b-repeat1",
+        "model_id": "jaredpalmer/kev-4b",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 1,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-jaredpalmer__kev-4b-repeat2",
+        "model_id": "jaredpalmer/kev-4b",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 2,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-liquid__d1-ultra-repeat0",
+        "model_id": "liquid/d1-ultra",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 0,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-liquid__d1-ultra-repeat1",
+        "model_id": "liquid/d1-ultra",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 1,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-liquid__d1-ultra-repeat2",
+        "model_id": "liquid/d1-ultra",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 2,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-liquid__d1.1-repeat0",
+        "model_id": "liquid/d1.1",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 0,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-liquid__d1.1-repeat1",
+        "model_id": "liquid/d1.1",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 1,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-liquid__d1.1-repeat2",
+        "model_id": "liquid/d1.1",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 2,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-microsoft__microsoft-decision-1-repeat0",
+        "model_id": "microsoft/microsoft-decision-1",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 0,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-microsoft__microsoft-decision-1-repeat1",
+        "model_id": "microsoft/microsoft-decision-1",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 1,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-microsoft__microsoft-decision-1-repeat2",
+        "model_id": "microsoft/microsoft-decision-1",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 2,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-nace-ai__drex-max-repeat0",
+        "model_id": "nace-ai/drex-max",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 0,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-nace-ai__drex-max-repeat1",
+        "model_id": "nace-ai/drex-max",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 1,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-nace-ai__drex-max-repeat2",
+        "model_id": "nace-ai/drex-max",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 2,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-nace-ai__drex-v1.5-repeat0",
+        "model_id": "nace-ai/drex-v1.5",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 0,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-nace-ai__drex-v1.5-repeat1",
+        "model_id": "nace-ai/drex-v1.5",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 1,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-nace-ai__drex-v1.5-repeat2",
+        "model_id": "nace-ai/drex-v1.5",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 2,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-nace-ai__drex-v2.0-repeat0",
+        "model_id": "nace-ai/drex-v2.0",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 0,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-nace-ai__drex-v2.0-repeat1",
+        "model_id": "nace-ai/drex-v2.0",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 1,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-nace-ai__drex-v2.0-repeat2",
+        "model_id": "nace-ai/drex-v2.0",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 2,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-openai__gpt-6-luna-decisions-repeat0",
+        "model_id": "openai/gpt-6-luna-decisions",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 0,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-openai__gpt-6-luna-decisions-repeat1",
+        "model_id": "openai/gpt-6-luna-decisions",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 1,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-openai__gpt-6-luna-decisions-repeat2",
+        "model_id": "openai/gpt-6-luna-decisions",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 2,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-perplexity__pplx-decider-flash-v1.2-repeat0",
+        "model_id": "perplexity/pplx-decider-flash-v1.2",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 0,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-perplexity__pplx-decider-flash-v1.2-repeat1",
+        "model_id": "perplexity/pplx-decider-flash-v1.2",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 1,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-perplexity__pplx-decider-flash-v1.2-repeat2",
+        "model_id": "perplexity/pplx-decider-flash-v1.2",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 2,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-perplexity__pplx-decider-v1.2-repeat0",
+        "model_id": "perplexity/pplx-decider-v1.2",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 0,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-perplexity__pplx-decider-v1.2-repeat1",
+        "model_id": "perplexity/pplx-decider-v1.2",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 1,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-perplexity__pplx-decider-v1.2-repeat2",
+        "model_id": "perplexity/pplx-decider-v1.2",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 2,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-respan__span-02-repeat0",
+        "model_id": "respan/span-02",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 0,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-respan__span-02-repeat1",
+        "model_id": "respan/span-02",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 1,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-respan__span-02-repeat2",
+        "model_id": "respan/span-02",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 2,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-scaledown__classify-1-repeat0",
+        "model_id": "scaledown/classify-1",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 0,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-scaledown__classify-1-repeat1",
+        "model_id": "scaledown/classify-1",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 1,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-scaledown__classify-1-repeat2",
+        "model_id": "scaledown/classify-1",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 2,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-typesafe__jev-1.13-repeat0",
+        "model_id": "typesafe/jev-1.13",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 0,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-typesafe__jev-1.13-repeat1",
+        "model_id": "typesafe/jev-1.13",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 1,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-typesafe__jev-1.13-repeat2",
+        "model_id": "typesafe/jev-1.13",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 2,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-typesafe__jev-1.14-repeat0",
+        "model_id": "typesafe/jev-1.14",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 0,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-typesafe__jev-1.14-repeat1",
+        "model_id": "typesafe/jev-1.14",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 1,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-typesafe__jev-1.14-repeat2",
+        "model_id": "typesafe/jev-1.14",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 2,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-upstage__solar-decide-flash-repeat0",
+        "model_id": "upstage/solar-decide-flash",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 0,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-upstage__solar-decide-flash-repeat1",
+        "model_id": "upstage/solar-decide-flash",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 1,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "state-v2-eval-20261101T201131691317Z-upstage__solar-decide-flash-repeat2",
+        "model_id": "upstage/solar-decide-flash",
+        "track": "state",
+        "temperature": null,
+        "repeat_id": 2,
+        "local_rng_seed": null,
+        "emulator_seed": 0
+      }
+    ],
+    "native_frame_budget": 6000,
+    "life_budget": 1,
+    "cadence_native_frames": 4,
+    "image_evaluation_status": "calibration_pending",
+    "pilot_selection_evidence": {
+      "state_gate_passed": true,
+      "state_native_clear_count": 2,
+      "state_preflight_model_count": 22,
+      "state_pilot_episode_count": 4,
+      "state_preflight_audit_complete": true,
+      "state_pilot_audit_complete": true,
+      "state_preflight_protocol_sha256": "131ab4a6a06903b503e017bf3d1e16437fac2aa476822d737ebdfc6aabf22cec",
+      "state_preflight_report_sha256": "50c4fc2d301ca18211aba53a2a4131b9ff36fb9984863ddd9123990201aab25f",
+      "state_preflight_audit_sha256": "9781d1e7dc1895d7022bd5d57bc0da9f195f77817b81b5e3e0af32b299fc6564",
+      "state_pilot_protocol_sha256": "ca14da19b545bcae5cbd9cf93a69bb6de1f5bcf4f7522e4456b2ae5cda6bd9e1",
+      "state_pilot_summary_sha256": "ae24723b08198ad911f6a9f47ecf686729bc513bfd9aa644a9a92e8d13ef0714",
+      "state_pilot_audit_sha256": "f492bb630398029632f1eafd1b7e13216b088c5717d2ab9016400dee966cc666",
+      "state_selection_sha256": "6877fdf72b83dd39ae493033b8a169d1d5e9920e84635a19dc53d170489b7c49",
+      "state_controller_sha256": "17f34b6812362a051d788fbbffb10805ff5a76ea16590070d69ab6b6d0b0e06e"
+    },
+    "observation_and_controller_hashes": {
+      "state_controller_sha256": "17f34b6812362a051d788fbbffb10805ff5a76ea16590070d69ab6b6d0b0e06e",
+      "state_engine_sources_sha256": "14f7fb6415972455177a165490d161d4eeda285e828e86f7de1b47c975245216"
+    },
+    "actual_rom_sha256": "ec299b990e8bfee8ba46e3f61d63b2e1ae5b8a2e431de84e2e4bbd692dc53586",
+    "initial_observation_sha256": "f622a8e29704d9c939aca042363f83949d1ea6f36bc1ce4f3a42f7fc404ec089",
+    "initial_screen_sha256": "86194c33cbeda37c4cab1c765cf02dfac0995ed9d66ff597fd9cbb79b35e67a0",
+    "protocol_sha256": "e1c1086b8dc2d5613deaad37cbc75003dedaf7564cf82802a17b0e81fcdb8371",
+    "level": "1-1",
+    "emulator_seed": 0,
+    "eligible_model_provider_pairs": [
+      {
+        "model_id": "baseten/elephant-1",
+        "track": "state",
+        "request_model": "baseten/elephant-1-20261021",
+        "expected_returned_model": "baseten/elephant-1-20261021",
+        "provider": {
+          "only": [
+            "baseten"
+          ],
+          "allow_fallbacks": false
+        },
+        "expected_returned_provider_names": [
+          "BaseTen"
+        ],
+        "state_serialization": "text"
+      },
+      {
+        "model_id": "baseten/joey-1",
+        "track": "state",
+        "request_model": "baseten/joey-1-20261029",
+        "expected_returned_model": "baseten/joey-1-20261029",
+        "provider": {
+          "only": [
+            "baseten"
+          ],
+          "allow_fallbacks": false
+        },
+        "expected_returned_provider_names": [
+          "BaseTen"
+        ],
+        "state_serialization": "text"
+      },
+      {
+        "model_id": "baseten/mammoth-1",
+        "track": "state",
+        "request_model": "baseten/mammoth-1-20261021",
+        "expected_returned_model": "baseten/mammoth-1-20261021",
+        "provider": {
+          "only": [
+            "baseten"
+          ],
+          "allow_fallbacks": false
+        },
+        "expected_returned_provider_names": [
+          "BaseTen"
+        ],
+        "state_serialization": "text"
+      },
+      {
+        "model_id": "cloudflare/clef",
+        "track": "state",
+        "request_model": "cloudflare/clef",
+        "expected_returned_model": "cloudflare/clef",
+        "provider": {
+          "only": [
+            "primeintellect"
+          ],
+          "allow_fallbacks": false
+        },
+        "expected_returned_provider_names": [
+          "PrimeIntellect"
+        ],
+        "state_serialization": "text"
+      },
+      {
+        "model_id": "cloudflare/clef-flash",
+        "track": "state",
+        "request_model": "cloudflare/clef-flash",
+        "expected_returned_model": "cloudflare/clef-flash",
+        "provider": {
+          "only": [
+            "primeintellect"
+          ],
+          "allow_fallbacks": false
+        },
+        "expected_returned_provider_names": [
+          "PrimeIntellect"
+        ],
+        "state_serialization": "text"
+      },
+      {
+        "model_id": "cloudflare/clef-omni",
+        "track": "state",
+        "request_model": "cloudflare/clef-omni-20261009",
+        "expected_returned_model": "cloudflare/clef-omni-20261009",
+        "provider": {
+          "only": [
+            "cloudflare"
+          ],
+          "allow_fallbacks": false
+        },
+        "expected_returned_provider_names": [
+          "Cloudflare"
+        ],
+        "state_serialization": "text"
+      },
+      {
+        "model_id": "inception/mercury-decide",
+        "track": "state",
+        "request_model": "inception/mercury-decide-20260930",
+        "expected_returned_model": "inception/mercury-decide-20260930",
+        "provider": {
+          "only": [
+            "inception"
+          ],
+          "allow_fallbacks": false
+        },
+        "expected_returned_provider_names": [
+          "Inception"
+        ],
+        "state_serialization": "text"
+      },
+      {
+        "model_id": "jaredpalmer/kev-4b",
+        "track": "state",
+        "request_model": "jaredpalmer/kev-4b-20260924",
+        "expected_returned_model": "jaredpalmer/kev-4b-20260924",
+        "provider": {
+          "only": [
+            "phala"
+          ],
+          "allow_fallbacks": false
+        },
+        "expected_returned_provider_names": [
+          "Phala"
+        ],
+        "state_serialization": "text"
+      },
+      {
+        "model_id": "liquid/d1-ultra",
+        "track": "state",
+        "request_model": "liquid/d1-ultra-20261015",
+        "expected_returned_model": "liquid/d1-ultra-20261015",
+        "provider": {
+          "only": [
+            "liquid"
+          ],
+          "allow_fallbacks": false
+        },
+        "expected_returned_provider_names": [
+          "Liquid"
+        ],
+        "state_serialization": "text"
+      },
+      {
+        "model_id": "liquid/d1.1",
+        "track": "state",
+        "request_model": "liquid/d1.1-20261027",
+        "expected_returned_model": "liquid/d1.1-20261027",
+        "provider": {
+          "only": [
+            "liquid"
+          ],
+          "allow_fallbacks": false
+        },
+        "expected_returned_provider_names": [
+          "Liquid"
+        ],
+        "state_serialization": "text"
+      },
+      {
+        "model_id": "microsoft/microsoft-decision-1",
+        "track": "state",
+        "request_model": "microsoft/microsoft-decision-1-20261009",
+        "expected_returned_model": "microsoft/microsoft-decision-1-20261009",
+        "provider": {
+          "only": [
+            "azure"
+          ],
+          "allow_fallbacks": false
+        },
+        "expected_returned_provider_names": [
+          "Azure"
+        ],
+        "state_serialization": "text"
+      },
+      {
+        "model_id": "nace-ai/drex-max",
+        "track": "state",
+        "request_model": "nace-ai/drex-max-20261016",
+        "expected_returned_model": "nace-ai/drex-max-20261016",
+        "provider": {
+          "only": [
+            "deepinfra"
+          ],
+          "allow_fallbacks": false
+        },
+        "expected_returned_provider_names": [
+          "DeepInfra"
+        ],
+        "state_serialization": "text"
+      },
+      {
+        "model_id": "nace-ai/drex-v1.5",
+        "track": "state",
+        "request_model": "nace-ai/drex-v1.5-20261009",
+        "expected_returned_model": "nace-ai/drex-v1.5-20261009",
+        "provider": {
+          "only": [
+            "deepinfra/us"
+          ],
+          "allow_fallbacks": false
+        },
+        "expected_returned_provider_names": [
+          "DeepInfra"
+        ],
+        "state_serialization": "text"
+      },
+      {
+        "model_id": "nace-ai/drex-v2.0",
+        "track": "state",
+        "request_model": "nace-ai/drex-v2.0-20261009",
+        "expected_returned_model": "nace-ai/drex-v2.0-20261009",
+        "provider": {
+          "only": [
+            "deepinfra/us"
+          ],
+          "allow_fallbacks": false
+        },
+        "expected_returned_provider_names": [
+          "DeepInfra"
+        ],
+        "state_serialization": "text"
+      },
+      {
+        "model_id": "openai/gpt-6-luna-decisions",
+        "track": "state",
+        "request_model": "openai/gpt-6-luna-decisions-20261006",
+        "expected_returned_model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": {
+          "only": [
+            "openai"
+          ],
+          "allow_fallbacks": false
+        },
+        "expected_returned_provider_names": [
+          "OpenAI"
+        ],
+        "state_serialization": "json_object"
+      },
+      {
+        "model_id": "perplexity/pplx-decider-flash-v1.2",
+        "track": "state",
+        "request_model": "perplexity/pplx-decider-flash-v1.2-20261016",
+        "expected_returned_model": "perplexity/pplx-decider-flash-v1.2-20261016",
+        "provider": {
+          "only": [
+            "perplexity"
+          ],
+          "allow_fallbacks": false
+        },
+        "expected_returned_provider_names": [
+          "Perplexity"
+        ],
+        "state_serialization": "text"
+      },
+      {
+        "model_id": "perplexity/pplx-decider-v1.2",
+        "track": "state",
+        "request_model": "perplexity/pplx-decider-v1.2-20261016",
+        "expected_returned_model": "perplexity/pplx-decider-v1.2-20261016",
+        "provider": {
+          "only": [
+            "perplexity"
+          ],
+          "allow_fallbacks": false
+        },
+        "expected_returned_provider_names": [
+          "Perplexity"
+        ],
+        "state_serialization": "text"
+      },
+      {
+        "model_id": "respan/span-02",
+        "track": "state",
+        "request_model": "respan/span-02-20261015",
+        "expected_returned_model": "respan/span-02-20261015",
+        "provider": {
+          "only": [
+            "respan"
+          ],
+          "allow_fallbacks": false
+        },
+        "expected_returned_provider_names": [
+          "Respan"
+        ],
+        "state_serialization": "text"
+      },
+      {
+        "model_id": "scaledown/classify-1",
+        "track": "state",
+        "request_model": "scaledown/classify-1-20260928",
+        "expected_returned_model": "scaledown/classify-1-20260928",
+        "provider": {
+          "only": [
+            "scaledown"
+          ],
+          "allow_fallbacks": false
+        },
+        "expected_returned_provider_names": [
+          "ScaleDown"
+        ],
+        "state_serialization": "text"
+      },
+      {
+        "model_id": "typesafe/jev-1.13",
+        "track": "state",
+        "request_model": "typesafe/jev-1.13-20260917",
+        "expected_returned_model": "typesafe/jev-1.13-20260917",
+        "provider": {
+          "only": [
+            "typesafe"
+          ],
+          "allow_fallbacks": false
+        },
+        "expected_returned_provider_names": [
+          "TypeSafe"
+        ],
+        "state_serialization": "text"
+      },
+      {
+        "model_id": "typesafe/jev-1.14",
+        "track": "state",
+        "request_model": "typesafe/jev-1.14-20261014",
+        "expected_returned_model": "typesafe/jev-1.14-20261014",
+        "provider": {
+          "only": [
+            "typesafe"
+          ],
+          "allow_fallbacks": false
+        },
+        "expected_returned_provider_names": [
+          "TypeSafe"
+        ],
+        "state_serialization": "text"
+      },
+      {
+        "model_id": "upstage/solar-decide-flash",
+        "track": "state",
+        "request_model": "upstage/solar-decide-flash-20261008",
+        "expected_returned_model": "upstage/solar-decide-flash-20261008",
+        "provider": {
+          "only": [
+            "upstage/zdr"
+          ],
+          "allow_fallbacks": false
+        },
+        "expected_returned_provider_names": [
+          "Upstage"
+        ],
+        "state_serialization": "text"
+      }
+    ],
+    "predeclared_repeat_ids": {
+      "state": [
+        0,
+        1,
+        2
+      ]
+    },
+    "provider_seed": null,
+    "calibration_only_episodes_excluded": true,
+    "scope": "State track only, World1-1, mean3fresh prescribed repeats; image calibration pending"
+  },
+  "controller_contracts": {
+    "rules": "Play Super Mario Bros. World 1-1 to the flag. Coordinates are world pixels, x increases right, y increases down. Scene is current visible information, not a future map. Each action lasts the declared interval with physics paused until your answer. A jump starts only on a fresh A press while grounded; keeping A held through landing will NOT jump again. Release A before the next fresh jump. Holding A during ascent increases height; releasing A shortens the jump. B makes running faster and jumps longer. Momentum persists on release. Mario can jump onto pipes, blocks and stairs and must clear floor gaps. Enemy side contact is dangerous, landing from above stomps ordinary walking enemies. Think ahead about visible hazards and the size of your body. All action choices are your own. Reach the flag alive, avoid waiting indefinitely or running into walls. No action or route recommendation is supplied. General jump phases: hold A while ascending when height or distance is needed; release A while descending to prepare the next fresh jump. Releasing A during ascent shortens the jump, but keeping it held through landing prevents the next jump. On the ground a fresh jump needs the A release-to-press edge. For stairs, the feet must rise above each solid step before crossing its side; landing on a raised step permits another jump. A jump begun too far before a gap can end above the gap; the current visible geometry determines takeoff timing.",
+    "action_question": {
+      "criteria": {
+        "left_run_jump": "Hold horizontal=left, B(run)=held, A(jump)=held; vertical released.",
+        "left_run_release": "Hold horizontal=left, B(run)=held, A(jump)=released; vertical released.",
+        "left_walk_jump": "Hold horizontal=left, B(run)=released, A(jump)=held; vertical released.",
+        "left_walk_release": "Hold horizontal=left, B(run)=released, A(jump)=released; vertical released.",
+        "released_run_jump": "Hold horizontal=released, B(run)=held, A(jump)=held; vertical released.",
+        "released_run_release": "Hold horizontal=released, B(run)=held, A(jump)=released; vertical released.",
+        "released_walk_jump": "Hold horizontal=released, B(run)=released, A(jump)=held; vertical released.",
+        "released_walk_release": "Hold horizontal=released, B(run)=released, A(jump)=released; vertical released.",
+        "right_run_jump": "Hold horizontal=right, B(run)=held, A(jump)=held; vertical released.",
+        "right_run_release": "Hold horizontal=right, B(run)=held, A(jump)=released; vertical released.",
+        "right_walk_jump": "Hold horizontal=right, B(run)=released, A(jump)=held; vertical released.",
+        "right_walk_release": "Hold horizontal=right, B(run)=released, A(jump)=released; vertical released."
+      },
+      "instructions": "Select the complete controller input that best advances Mario towards the flag alive. Evaluate the next interval and the resulting jump trajectory. All named buttons are held throughout the interval; choose deliberately when to press or release jump.",
+      "type": "choice"
+    },
+    "duration_question": {},
+    "state_profile": "common-state-compact-v2",
+    "image_profile": null,
+    "state_observer": "common_state_compact_v2.state_text; exact compact current-state formatter",
+    "image_stages": [],
+    "schema_failure_attribution": "technical_pending; no model score absent explicit independent behavioral proof"
+  },
+  "state_controller": {
+    "schema_version": 1,
+    "id": "common-state-compact-v2",
+    "track": "state",
+    "cadence_native_frames": 4,
+    "observer": "compact_state",
+    "rules": "Play Super Mario Bros. World 1-1 to the flag. Coordinates are world pixels, x increases right, y increases down. Scene is current visible information, not a future map. Each action lasts the declared interval with physics paused until your answer. A jump starts only on a fresh A press while grounded; keeping A held through landing will NOT jump again. Release A before the next fresh jump. Holding A during ascent increases height; releasing A shortens the jump. B makes running faster and jumps longer. Momentum persists on release. Mario can jump onto pipes, blocks and stairs and must clear floor gaps. Enemy side contact is dangerous, landing from above stomps ordinary walking enemies. Think ahead about visible hazards and the size of your body. All action choices are your own. Reach the flag alive, avoid waiting indefinitely or running into walls. No action or route recommendation is supplied. General jump phases: hold A while ascending when height or distance is needed; release A while descending to prepare the next fresh jump. Releasing A during ascent shortens the jump, but keeping it held through landing prevents the next jump. On the ground a fresh jump needs the A release-to-press edge. For stairs, the feet must rise above each solid step before crossing its side; landing on a raised step permits another jump. A jump begun too far before a gap can end above the gap; the current visible geometry determines takeoff timing.",
+    "questions": {
+      "action": {
+        "criteria": {
+          "left_run_jump": "Hold horizontal=left, B(run)=held, A(jump)=held; vertical released.",
+          "left_run_release": "Hold horizontal=left, B(run)=held, A(jump)=released; vertical released.",
+          "left_walk_jump": "Hold horizontal=left, B(run)=released, A(jump)=held; vertical released.",
+          "left_walk_release": "Hold horizontal=left, B(run)=released, A(jump)=released; vertical released.",
+          "released_run_jump": "Hold horizontal=released, B(run)=held, A(jump)=held; vertical released.",
+          "released_run_release": "Hold horizontal=released, B(run)=held, A(jump)=released; vertical released.",
+          "released_walk_jump": "Hold horizontal=released, B(run)=released, A(jump)=held; vertical released.",
+          "released_walk_release": "Hold horizontal=released, B(run)=released, A(jump)=released; vertical released.",
+          "right_run_jump": "Hold horizontal=right, B(run)=held, A(jump)=held; vertical released.",
+          "right_run_release": "Hold horizontal=right, B(run)=held, A(jump)=released; vertical released.",
+          "right_walk_jump": "Hold horizontal=right, B(run)=released, A(jump)=held; vertical released.",
+          "right_walk_release": "Hold horizontal=right, B(run)=released, A(jump)=released; vertical released."
+        },
+        "instructions": "Select the complete controller input that best advances Mario towards the flag alive. Evaluate the next interval and the resulting jump trajectory. All named buttons are held throughout the interval; choose deliberately when to press or release jump.",
+        "type": "choice"
+      }
+    },
+    "decoder": "validated_native_action_choice_direct",
+    "source_calibration_profile_sha256": "05b21e926579c535547784e784dc1608ce19cd61ecf677567eaddc3ce9c2a8ec",
+    "model_specific_controller": false
+  },
+  "software_sha256": {
+    "benchmark/common_state_run_v2.py": "09398273d816532329a24c2c9309df10935cd8b4a3a395dc39ab45fd411cbb6d",
+    "benchmark/common_state_runtime_v2.py": "b82b84c30d90d75e77a2de21dbb9a9eda9cd4f1e6ade9f4ebc6a1f7b3d8801ab",
+    "benchmark/common_state_compact_v2.py": "2d8c0cc9a4e779ce96c969a722620787315248fc7da2ddc634ff4265bd2deab3",
+    "benchmark/common_profiles/state-compact-v2.json": "17f34b6812362a051d788fbbffb10805ff5a76ea16590070d69ab6b6d0b0e06e",
+    "benchmark/common_policy.py": "4a779292f668e7c3fbecaa9b6c636e6d5545ecdc20863d380062159989ae2b40",
+    "benchmark/client.py": "71c601070c57e0920089a41d5a054157c633b38396e2c9f0637ef2d86d762d58",
+    "benchmark/costs.py": "014aed8425326468bf1a570f95126a135dfcec3f45ee4ef27490c47e123db1c7",
+    "benchmark/scoring.py": "0bb6eaf7e76e7e019b8f042fc9af10728828206928dc588b38c7132703b46423",
+    "benchmark/profiles/state_v1.py": "e239653f7b45275eac6377c7369426d536c1ad31db64b06a8e4beb805fb9ecf8",
+    "prototype/emulator.py": "d71541a6c12a1cae821fbf2cd22381a709c639fefe06f07aee4d209c218ee0d8",
+    "prototype/decisions.py": "f4b90349b98c3a79dac41cc17cc45288f61a7c72c2bc024aa759b8f955fee391",
+    "prototype/control.py": "70452cbb94e4fa4a340b2450086d6b1d9b5268a689e1bce0e35fd24a217eb634",
+    "requirements.lock.txt": "36f24452255efa14dd0088b4f82fe325c48e5f2d8c3716a4ae3538ef0a5db455",
+    "benchmark/common_state_evaluation.py": "c445b7bdabeb4492e382722d4b7931f3553263e7f88ebf807155bb9a6de91e28",
+    "benchmark/common_state_results.py": "224471f557649901344031eba229fa710002b2f8389f9665dcc690c462ed5ebe",
+    "benchmark/common_results.py": "5c9bd3dce36c1dc89f5a2c53eb31c8f642aa02e3186844e4da259a986d6dc1e7"
+  },
+  "input_scope_erratum": {
+    "state_input": "privileged current-viewport RAM terrain and motion",
+    "clarification": "Current-viewport RAM can include unrevealed tile IDs. The frozen wording visible refers to viewport scope, not rendered pixels.",
+    "scope": "All22 state models received the same frozen privileged input; no offscreen or future-buffer lookahead or rollout. Image models receive actual pixels only.",
+    "frozen_controller_and_scores_unchanged": true
+  }
+}

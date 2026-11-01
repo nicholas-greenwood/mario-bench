@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at_utc": "2026-11-01T22:09:01.289564+00:00",
+  "generated_at_utc": "2026-11-01T22:58:57.873924+00:00",
   "data_class": "development_history_and_partial_common_evaluation",
   "comparable_aggregate": null,
   "leaderboard_ready": false,
@@ -4656,13 +4656,16 @@
   "common_benchmark_status": {
     "scope": "state_only",
     "expected_models": 22,
-    "complete_model_means": 14,
-    "pending_model_means": 8,
-    "published_trials": 49,
+    "complete_model_means": 17,
+    "pending_model_means": 5,
+    "published_trials": 66,
     "prespecified_trials": 66,
-    "captured_at_utc": "2026-11-01T20:31:10.116606+00:00",
+    "captured_at_utc": "2026-11-01T22:52:23.268270+00:00",
     "image_status": "calibration_pending",
-    "protocol_sha256": "e1c1086b8dc2d5613deaad37cbc75003dedaf7564cf82802a17b0e81fcdb8371"
+    "protocol_sha256": "e1c1086b8dc2d5613deaad37cbc75003dedaf7564cf82802a17b0e81fcdb8371",
+    "valid_trials": 58,
+    "technical_trials": 8,
+    "original_all_trials_audited": true
   },
   "input_scope_erratum": {
     "state_input": "privileged current-viewport RAM terrain and motion",
