@@ -24,12 +24,9 @@ export function Masthead() {
 export function Intro() {
   return (
     <section className="intro" aria-labelledby="intro-title">
-      <p className="eyebrow mono faint">hackathon project</p>
-      <h1 id="intro-title">mario bench gives decision models the controller in super mario bros. and measures how far they get.</h1>
+      <h1 id="intro-title">a benchmark for decision models playing super mario bros.</h1>
       <div className="intro-detail">
-        <p>the game freezes while a model thinks, then plays its chosen buttons for a fixed number of native frames. api latency never touches the game clock, so clear time counts gameplay frames only.</p>
-        <p>there are 2 tracks. state models read a compact view of game memory; pixels models only see screenshots.</p>
-        <p>every published run is replayed offline from its recorded inputs and has to match frame for frame before its progress and clear time count.</p>
+        <p>models choose buttons from game state or screenshots. the game pauses during inference, so api latency doesn't affect scores.</p>
       </div>
     </section>
   );
@@ -82,12 +79,11 @@ export function ReplayPane({ side }: { side: Side }) {
         <button className={`slot${active ? ' is-active' : ''}`} aria-pressed={active} aria-label={`send table selections to pane ${side}`} onClick={() => setActiveSide(side)}>{side}</button>
         <div className="caption-body">
           <div className="caption-line">
-            <span className="caption-name">{run.name}</span>
+            <span className="caption-name" title={run.modelId}>{run.name}</span>
             <span className="caption-result mono">{outcome(run)}</span>
           </div>
           <div className="caption-meta mono faint">
-            <span className="caption-id">{run.modelId}</span>
-            <span>{trackLabel(run.track)}{run.cadence !== null ? ` · every ${run.cadence} frames` : ''}</span>
+            <span>{trackLabel(run.track)}</span>
           </div>
         </div>
       </figcaption>
@@ -112,7 +108,6 @@ export function Transport() {
           ))}
         </div>
       </div>
-      <p className="transport-note faint">native game speed, api waits cut out</p>
     </div>
   );
 }
@@ -180,24 +175,22 @@ export function HumanPane() {
               )}
             </div>
             <div className="caption-meta mono faint">
-              <span data-testid="human-best">{best.attempts ? `best ${formatProgress(best.bestPct)}${bestClear ? `, cleared in ${bestClear}` : ''} · ${best.attempts} ${best.attempts === 1 ? 'attempt' : 'attempts'}` : 'no attempts yet'}</span>
+              <span data-testid="human-best">{best.attempts ? `best ${formatProgress(best.bestPct)}${bestClear ? `, cleared in ${bestClear}` : ''} · ${best.attempts} ${best.attempts === 1 ? 'attempt' : 'attempts'}` : ''}</span>
               <span className="keys" aria-label="arrows move, up jumps, shift runs"><kbd>←</kbd><kbd>→</kbd><kbd>↑</kbd><kbd>shift</kbd></span>
             </div>
           </div>
         </figcaption>
       </figure>
       {!idle && <TouchControls />}
-      <p className="human-note faint">kept in this browser and played without a frame budget, so it sits apart from the model runs</p>
+      <p className="human-note faint">saved in this browser · no frame limit</p>
     </section>
   );
 }
 
 export function Colophon() {
-  const { dataset } = useBenchmark();
   return (
     <footer className="colophon faint">
-      <p>the model catalogue covers {dataset.catalogue.state} state and {dataset.catalogue.image} pixels-compatible model/provider pairs. {dataset.runs.length} showcases have video; development observations retain their action traces.</p>
-      <p><a href="/benchmark-data/index.json">raw data</a> · generated {dataset.generatedAt.slice(0, 10)}</p>
+      <a href="/benchmark-data/index.json">raw data</a>
     </footer>
   );
 }
