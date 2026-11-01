@@ -71,7 +71,7 @@ function runCost(raw: RawExample) {
   const complete = provenance && provenance.kind === 'recorded_response_usage' && provenance.cost_basis === 'all_in_inference'
     && provenance.coverage_complete === true
     && provenance.includes_retries === true && provenance.includes_auxiliary_calls === true
-    && Number.isInteger(provenance.request_count) && provenance.request_count >= 0
+    && Number.isInteger(provenance.request_count) && provenance.request_count > 0
     && provenance.costed_request_count === provenance.request_count;
   const nonnegative = (amount: unknown) => { const result = num(amount); return result !== null && result >= 0 ? result : null; };
   const actualComplete = complete && provenance.actual_costed_request_count === provenance.request_count;

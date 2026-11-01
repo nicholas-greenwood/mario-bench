@@ -30,6 +30,7 @@ assert.ok(examples.length > 0);
 const receipt = { kind: 'recorded_response_usage', cost_basis: 'all_in_inference', request_count: 1, costed_request_count: 1, actual_costed_request_count: 1, coverage_complete: true, includes_retries: true, includes_auxiliary_calls: true };
 const costFixture = (value, provenance) => parseDataset({ examples: [{ ...examples[0], cost_usd: value, cost_provenance: provenance }], observations: [] }).runs[0].costUsd;
 assert.equal(costFixture(0, receipt), 0, 'verified actual zero remains zero');
+assert.equal(costFixture(0, { ...receipt, request_count: 0, costed_request_count: 0, actual_costed_request_count: 0 }), null, 'an empty ledger is unknown, not a free run');
 assert.equal(costFixture(null, receipt), null, 'missing billing is unknown');
 assert.equal(costFixture(1, undefined), null, 'a number without billing provenance is unknown');
 assert.equal(costFixture(.1, { ...receipt, kind: 'catalogue_estimate' }), null, 'estimates are never displayed as actual costs');
