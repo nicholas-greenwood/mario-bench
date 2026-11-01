@@ -238,6 +238,8 @@ def backfill_replays(root, jobs=4):
                     record.pop('replay_unavailable_reason', None)
             print(json.dumps(dict(replay=href, verified_ids=ids)), flush=True)
     index_path.write_text(json.dumps(index, indent=2, allow_nan=False) + '\n')
+    if root.resolve() == (ROOT / 'results').resolve():
+        subprocess.run(['node', str(ROOT / 'web/scripts/update-readme-results.mjs')], check=True)
     print(json.dumps(dict(unique_replay_videos=len(groups),
                           playable_observations=sum(bool(e.get('replay_href')) for e in index.get('observations', [])),
                           unavailable=unavailable)))

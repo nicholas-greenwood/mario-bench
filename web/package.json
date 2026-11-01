@@ -9,7 +9,10 @@
     "typecheck": "tsc --noEmit --incremental false",
     "prebuild": "npm run prepare-assets",
     "predev": "npm run prepare-assets",
-    "prepare-assets": "node scripts/prepare-game.mjs && node scripts/prepare-data.mjs",
+    "prepare-assets": "npm run check:readme && node scripts/prepare-game.mjs && node scripts/prepare-data.mjs",
+    "update:readme": "node scripts/update-readme-results.mjs",
+    "check:readme": "node scripts/update-readme-results.mjs --check",
+    "test:readme": "node --test scripts/update-readme-results.test.mjs",
     "check:ui": "node scripts/check-ui.mjs"
   },
   "dependencies": {
