@@ -58,9 +58,9 @@ export default function ResultsTable() {
   return (
     <section className="results" aria-labelledby="results-title">
       <div className="results-head">
-        <h2 id="results-title" className="section-label">development results</h2>
-        <div className="result-views" aria-label="result datasets"><button aria-pressed={view === 'observations'} onClick={() => setView('observations')}>all observations ({dataset.observations.length})</button><button aria-pressed={view === 'replays'} onClick={() => setView('replays')}>replay showcases ({runs.length})</button></div>
-        <p className="results-note">{view === 'observations' ? `${dataset.observations.filter(run => run.track === 'state').length} state attempts under a shared input profile; ${dataset.observations.filter(run => run.track === 'image').length} selected pixels runs across different settings. aborted runs retain observed progress; incomplete API runs have no score.` : `${runs.length} selected development replays with different prompts, cadence and image history.`} a development snapshot rather than a ranking. no pixels run has reached the flag yet.</p>
+        <h2 id="results-title" className="section-label">results</h2>
+        <div className="result-views" aria-label="result datasets"><button aria-pressed={view === 'observations'} onClick={() => setView('observations')}>all runs ({dataset.observations.length})</button><button aria-pressed={view === 'replays'} onClick={() => setView('replays')}>replays ({runs.length})</button></div>
+        <p className="results-note">{view === 'observations' ? 'development runs, not a ranking. aborted runs show observed progress; incomplete runs have no score.' : 'selected runs with different settings, not a ranking.'}</p>
       </div>
       <div className="table-scroll">
         <table className="runs">
@@ -104,7 +104,6 @@ export default function ResultsTable() {
           </tbody>
         </table>
       </div>
-      <p className="results-hint faint">recorded runs play in pane {activeSide}; other model names open their action trace</p>
     </section>
   );
 }
