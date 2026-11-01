@@ -557,3 +557,9 @@ test('published loader attaches image and state cohorts independently',async()=>
     assert.equal(parsed.commonBenchmarks.length,2);assert.equal(parsed.commonBenchmarks[1].rows.length,16);
   } finally {await rm(directory,{recursive:true,force:true});}
 });
+
+test('validated technical resolution completes the effective three-trial cohort despite immutable original coverage',async()=>{
+  const f=recoveryFixture();f.data.common_benchmark.rows[0].coverage_complete=false;
+  const parsed=await prepareRecovery(f);assert.equal(parsed.commonBenchmark.rows[0].validTrials,3);assert.equal(parsed.commonBenchmark.rows[0].coverageComplete,true);assert.notEqual(parsed.commonBenchmark.rows[0].meanProgressPct,null);
+  assert.equal(f.data.common_benchmark.rows[0].coverage_complete,false);
+});

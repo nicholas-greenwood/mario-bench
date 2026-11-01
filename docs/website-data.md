@@ -29,6 +29,20 @@ as a final evaluation trial. state and image means use separate frozen protocols
 counts. do not turn pending means into zero or claim that a partial publication
 is a finished 22-model ranking
 
+## technical continuations
+
+`common-state/index.json` retains all 66 original trials and their original rows.
+the optional `technical_recovery` overlay has a separate frozen authority and
+explicit parent/child hashes, native proofs and whole-trajectory traces. a valid
+continuation resolves its original logical slot; it never creates another quality
+trial or replaces a valid death. the selector recomputes effective means from
+validated proofs. failed continuations remain technical and cannot score zero
+
+all eight prescribed state continuations have terminated: five resolve original
+technical slots and three remain unavailable. the effective denominator is still
+66, with 21 complete model means and one unavailable mean. original aborts remain
+downloadable. joined billing stays unknown where any old request lacks a receipt
+
 ## individual history
 
 `examples`, `observations` and `technical_diagnostics` preserve development

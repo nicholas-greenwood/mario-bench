@@ -1,0 +1,94 @@
+{
+  "protocol_sha256": "2a396d52a3baf0c53656ffb9a2c7c37400a977ea22b37fe382310a27e25ea1d2",
+  "whole_trajectory_includes_original_prefix": true,
+  "replays": [
+    {
+      "id": "state-v2-eval-20261101T201131691317Z-baseten__mammoth-1-repeat2--technical-recovery-v1",
+      "native_frames": 6000,
+      "replay_href": "common-state/recovery/replays/state-v2-eval-20261101T201131691317Z-baseten__mammoth-1-repeat2--technical-recovery-v1.mp4",
+      "replay_sha256": "74bde1d13c8916ce60a1c8d39a1191cb578f7b5570bd472858dc5c2b9144bdeb",
+      "source_episode_sha256": "0f6d5c810c213d79574980750964cb4c9f3664bb28e4a812678e294ea999fdbb",
+      "trace_sha256": "eb192b523611eb68e3c343fa7634de5767c5862e86b8a25a1ae3941ac7dc9bcb",
+      "silent": true,
+      "fps": 60,
+      "video_frames": 6001
+    },
+    {
+      "id": "state-v2-eval-20261101T201131691317Z-nace-ai__drex-v1.5-repeat2--technical-recovery-v1",
+      "native_frames": 6000,
+      "replay_href": "common-state/recovery/replays/state-v2-eval-20261101T201131691317Z-nace-ai__drex-v1.5-repeat2--technical-recovery-v1.mp4",
+      "replay_sha256": "624232aed1ee3d16aeb98488c4dc72ae60711b0b71fba9c6330d3cf0cc71ee00",
+      "source_episode_sha256": "0dd26fb31480ed46ed72a183c8eba073aa46407156eb8f16bf6eb838c6d3dd51",
+      "trace_sha256": "87781fc78d80f90a610b08440fed21a66151897274d1f67ba2703bcb681231df",
+      "silent": true,
+      "fps": 60,
+      "video_frames": 6001
+    },
+    {
+      "id": "state-v2-eval-20261101T201131691317Z-nace-ai__drex-v2.0-repeat0--technical-recovery-v1",
+      "native_frames": 5836,
+      "replay_href": "common-state/recovery/replays/state-v2-eval-20261101T201131691317Z-nace-ai__drex-v2.0-repeat0--technical-recovery-v1.mp4",
+      "replay_sha256": "f9ad97c335a29b3bdfcbeb02ea83986419c40177c7507bb769d0d36e24f4adac",
+      "source_episode_sha256": "d9f097413eac4204b80389dc26e6e4fab9759ee42bc1591f14ab609dc9ddee7c",
+      "trace_sha256": "f2077d97ad890ae5d98bcd3023d6afe6e7af214c7949ffc527df717129f6c5ff",
+      "silent": true,
+      "fps": 60,
+      "video_frames": 5837
+    },
+    {
+      "id": "state-v2-eval-20261101T201131691317Z-nace-ai__drex-v2.0-repeat1--technical-recovery-v1",
+      "native_frames": 1168,
+      "replay_href": "common-state/recovery/replays/state-v2-eval-20261101T201131691317Z-nace-ai__drex-v2.0-repeat1--technical-recovery-v1.mp4",
+      "replay_sha256": "2f8789422033cda2109ad1a7dfeaf93c56223019b64251353f07bf449ac48e03",
+      "source_episode_sha256": "93fcd520719008b766e5270a001e0abbe1cbbb3f6b20fe0b272fc4e659f882b8",
+      "trace_sha256": "5077e6850daf6fef789563f8cd7fabe6e2e401d549900ea7cb00f496d3f77513",
+      "silent": true,
+      "fps": 60,
+      "video_frames": 1169
+    },
+    {
+      "id": "state-v2-eval-20261101T201131691317Z-nace-ai__drex-v2.0-repeat2--technical-recovery-v1",
+      "native_frames": 0,
+      "replay_href": null,
+      "replay_sha256": null,
+      "source_episode_sha256": "dbcca3e74516af84208186a9f274971765716c4efa9c8fd101eef7bbf1a3cd81",
+      "trace_sha256": "9d0eb872577d6e0fe378562ee7231d9f87ddb7900711aa2a972c4dd9747f8ab8",
+      "silent": true,
+      "fps": 60,
+      "replay_unavailable_reason": "no native gameplay frames: technical failure before first action"
+    },
+    {
+      "id": "state-v2-eval-20261101T201131691317Z-scaledown__classify-1-repeat2--technical-recovery-v1",
+      "native_frames": 6000,
+      "replay_href": "common-state/recovery/replays/state-v2-eval-20261101T201131691317Z-scaledown__classify-1-repeat2--technical-recovery-v1.mp4",
+      "replay_sha256": "19aa337cd08ce55b46bbdddeb3ab3cabd1e09b6e6549bf484910f65a0247c519",
+      "source_episode_sha256": "aacfe65d16a6b75935fb732a11dce0553a5efda7c76a74b184aa01c9debe8423",
+      "trace_sha256": "f1f4e852a854b1e40b9aa11550916a1df81024cb4d9f4b591e792b63713ecadc",
+      "silent": true,
+      "fps": 60,
+      "video_frames": 6001
+    },
+    {
+      "id": "state-v2-eval-20261101T201131691317Z-upstage__solar-decide-flash-repeat1--technical-recovery-v1",
+      "native_frames": 6000,
+      "replay_href": "common-state/recovery/replays/state-v2-eval-20261101T201131691317Z-upstage__solar-decide-flash-repeat1--technical-recovery-v1.mp4",
+      "replay_sha256": "68d4b1210d0faae0bade85a48f20a3fd1b1bf7ba26c098f39dbb266c08ea17be",
+      "source_episode_sha256": "4691a8e186f766b803498879fb1875e17ba6c27da2cc36a69228004e00f366ac",
+      "trace_sha256": "6339a53b53d47a5a7c72806ba69c4fb8604e46a8fa9932eeb1b8461b479745e6",
+      "silent": true,
+      "fps": 60,
+      "video_frames": 6001
+    },
+    {
+      "id": "state-v2-eval-20261101T201131691317Z-upstage__solar-decide-flash-repeat2--technical-recovery-v1",
+      "native_frames": 6000,
+      "replay_href": "common-state/recovery/replays/state-v2-eval-20261101T201131691317Z-upstage__solar-decide-flash-repeat2--technical-recovery-v1.mp4",
+      "replay_sha256": "68d4b1210d0faae0bade85a48f20a3fd1b1bf7ba26c098f39dbb266c08ea17be",
+      "source_episode_sha256": "fedb3a447b28206aa48b2c27b98fb10bbc31a51ac8d623c1ba8d2254187b76c4",
+      "trace_sha256": "6a03928dc722cae433a0064ba98f2797203c73f79ed88264493fb0b5c8f6c53f",
+      "silent": true,
+      "fps": 60,
+      "video_frames": 6001
+    }
+  ]
+}

@@ -3,9 +3,13 @@
 [index.json](index.json) is the entry point. its `common_cohort_href` points to the
 fresh, preregistered state evaluation in [common-state/index.json](common-state/index.json)
 a model gets a mean only after all 3 prescribed attempts pass native replay;
-incomplete models remain pending, never zero
+incomplete models remain unavailable or pending, never zero
 
-common image calibration is pending. `examples`, `observations` and
+`common_image_cohort_href` points to the separate 16-model image progress
+baseline. its means require three fresh valid trials; failed calibration gates
+remain failed and historical mechanics evidence is not scored.
+
+`examples`, `observations` and
 `technical_diagnostics` retain the earlier development runs, including verified
 state and pixels clears. those settings differ and their selected outcomes are
 not model averages
