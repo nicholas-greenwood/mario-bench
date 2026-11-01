@@ -12,6 +12,7 @@ export function Masthead() {
     <header className="masthead">
       <a href="/" className="wordmark">mario bench</a>
       <div className="masthead-end">
+        <a href="https://github.com/nicholas-greenwood/mario-bench" target="_blank" rel="noopener noreferrer" aria-label="github repository">github</a>
         <span className="mono faint">world 1-1</span>
         <button className="icon-button" aria-label={`switch to ${theme === 'light' ? 'dark' : 'light'} theme`} onClick={toggleTheme}>
           {theme === 'light' ? <Moon size={15} /> : <Sun size={15} />}
