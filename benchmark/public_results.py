@@ -9,6 +9,7 @@ import hashlib
 import json
 from pathlib import Path
 import re
+import random
 import subprocess
 from concurrent.futures import ProcessPoolExecutor
 
@@ -125,6 +126,8 @@ def verify_episode(root, summary, render=False):
     assert trace['id'] == summary['id']
     assert digest(trace['contract']) == summary['experiment_config']['contract_sha256']
     game, encoder = MarioGame(summary['level']), None
+    sampler = trace['contract'].get('probability_sampler')
+    rng = random.Random(sampler['seed']) if sampler else None
     furthest = float(game.observe()['player']['x'])
     try:
         if render:
@@ -143,7 +146,16 @@ def verify_episode(root, summary, render=False):
             assert action['native_response']['provider'] == summary['provider']
             if action.get('question_names') is not None:
                 assert set(action['native_response']['answers']) == set(action['question_names'])
-            expected = decode_sequence(trace, action['native_response'], summary['experiment_config']['cadence'])
+            response = action['native_response']
+            if sampler:
+                from benchmark.profiles.probability_sampler_v1 import sample_choice
+                probabilities = response['answers']['action']['probabilities']
+                choice, draw, _ = sample_choice(probabilities, rng, sampler['temperature'])
+                assert action['sampling']['random_uniform'] == draw
+                assert action['sampling']['sampled_choice'] == choice
+                response = json.loads(json.dumps(response))
+                response['answers']['action']['choice'] = choice
+            expected = decode_sequence(trace, response, summary['experiment_config']['cadence'])
             # Older showcase exports shorten only their terminal held interval.
             recorded = action['sequence']
             assert len(recorded) == len(expected)

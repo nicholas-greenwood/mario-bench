@@ -1,0 +1,1368 @@
+{
+  "verified": true,
+  "model": "perplexity/pplx-decider-v1.2",
+  "returned_model": "perplexity/pplx-decider-v1.2-20261016",
+  "provider": {
+    "only": [
+      "perplexity"
+    ],
+    "allow_fallbacks": false
+  },
+  "from_reset": true,
+  "flag_get": true,
+  "death": false,
+  "native_frames": 1871,
+  "first_native_flag_frame": 1871,
+  "requests_rebuilt": 268,
+  "exact_actual_pixel_images_rebuilt": 535,
+  "probability_draws_reproduced": 268,
+  "temperature": 0.05,
+  "seed": 0,
+  "sampled_choices_differing_from_native_argmax": 9,
+  "all_native_controls_and_callback_ram_rgb_hashes_matched": true,
+  "privacy": "Every exact request rebuilt from native replay screenshots, static generic mechanics, action horizon and previous chosen buttons/durations only. No private observation passed to image_parts or body construction.",
+  "zero_network_calls": true,
+  "source_sha256": "0b74e5beb99973c59ccc42ced5332e32b735cac527d0e6f954955c056449ee88",
+  "request_hashes": [
+    {
+      "index": 0,
+      "request_sha256": "ab592f41302ba47cc25983d6edc94dd5ce1a02a04bdb527f1901b71493ed28ed",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 1,
+      "request_sha256": "d1b47136d5b8707ea0d921fd6848f612c82efc5f207e10b6c59d79b705c2f11a",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 2,
+      "request_sha256": "ff5b1f0e817540834ccc3d506aee10e586702930ffe2259dc5c803f489b537a5",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 3,
+      "request_sha256": "1acda4386a89d043079c5cd02feb0935fd5cc5f6b0bfd46d50eb33b4ab8bf35a",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 4,
+      "request_sha256": "aab23ffb3561dfdaaea6fb86238cea9887261abec587f82f3a66ed2f93c8be5f",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 5,
+      "request_sha256": "4b2d5807eee3c2e831ed11c3705ae0a738ee6b59e88dd031d67acf2ad391f40f",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 6,
+      "request_sha256": "9031da10a4fcd1a60c6f0bac326655612f4632134180b4b3c6f320840819c5e1",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 7,
+      "request_sha256": "378d65cf2155b5fc9ea868bde3f2a660673956dbc08e1c8bd5a4a4ddaf1daaf8",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 8,
+      "request_sha256": "fc13426d7c086b4f330e9531e9363aca821cea2106cc86a3ffaa86129bed67c8",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 9,
+      "request_sha256": "990f1de302ac32e6b24aae8c7313e668194542f6a3bc07333ae9da63d2b6c148",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 10,
+      "request_sha256": "14bffd17fa39fe4b8210b9367e90b7b8c67f5d801698dbe6aeaa82d37eee551c",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 11,
+      "request_sha256": "b96f5359794daf08bf78d1eb8dde96c90c62c7af696072eb3f55155269e1a846",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 12,
+      "request_sha256": "72f07e6802d153179fa4cbd15b72517bd03348d849bf72876462e5f32df0b433",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 13,
+      "request_sha256": "ba1cf9abe966db6e2b76ac09a44ea60fea58b111b1f5e0aeb302df21f1134c25",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 14,
+      "request_sha256": "e76bea85e40737f9880b3355ffa2fd86ff85f82f68ad8013b3676543fad4cb9a",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 15,
+      "request_sha256": "6fa8cef64c78de5e5d03220faaefeba80b49ac271f49248d84dd3278c613aeb2",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 16,
+      "request_sha256": "519c54929797df0a9844055b359bc788a18af280c1a80e34360e4a23a5931fa0",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 17,
+      "request_sha256": "c82b4e529481414a6b3072718a0306775c1b0582fd6461254b8deabe412c6452",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 18,
+      "request_sha256": "1c4697103e471f1d73eaa15a155bf3345ec4d92bac3dd9fca678cc1f69e53b9b",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 19,
+      "request_sha256": "c09eb924aa38d2b2e41cf9dfa668a784c1c697d2a4f828f5a439d36f28d17b33",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 20,
+      "request_sha256": "820ea12d1f87fe78fb6135c701d3c94ab683b481a84a50e48f57bfae02b2012f",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 21,
+      "request_sha256": "6747ab792482924f651a3c94b0e37215430b3e9a21819113804fd358caa096fd",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 22,
+      "request_sha256": "cd7b35c59c9f87ee7727a02b1cbb041f1631f8e87aae57509f8b226eabd0102c",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 23,
+      "request_sha256": "9cf667b1626cecc86cc1537c2ebd96532123eb2543fbfbc416444ce0d3e8e132",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 24,
+      "request_sha256": "bc6b458a2b5ac66c3bf2741e040ed57ce0cb80f6be270c1fa542a3f48f3f19ec",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 25,
+      "request_sha256": "2de68e8f0459c0634cd13b476e47f347841acda58297d60e4560d9d910dce7ac",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 26,
+      "request_sha256": "89933c4435a8570977e4eb7f24bffc7f7f29fe023fee627969302077fbc21d4a",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 27,
+      "request_sha256": "c74ad9593ea9a4b73319b01f544de5578cce28337e7764e5e199f429ca8cb1ba",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 28,
+      "request_sha256": "48fe6c3178018ac8020c548936ed2c9b0f238a68bbd2c8205e98e6c3ff7abe36",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 29,
+      "request_sha256": "9e4839a6c918f5c475d1e81de524e118767b630c9b87fff1b4f642b99fba0e55",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 30,
+      "request_sha256": "2294682b016e48046c28ca43738d6c9eb171938b76d01bcd66b12ee6ea175bb3",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 31,
+      "request_sha256": "0005ff4bc9d18e5639c32cd0f6c80f116f7a1511255e5cb568ae774bb199a917",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 32,
+      "request_sha256": "22e9f364278945e4d9c0c4bdd28fb9c8b763794adbd9b15e3b3d869648c3286b",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 33,
+      "request_sha256": "bf310a4b379b572ed2934c6d52aa540d2f54a6a545198311afbef6694eec579a",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 34,
+      "request_sha256": "92e1f688b98bf71d2d503fca8e922b15400e0349e82f76e967515dbe22bac89f",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 35,
+      "request_sha256": "39a765758f5e8648ef4ce6e75e58ead0e7fa3395f4fb5331bd00fb0ecca33649",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 36,
+      "request_sha256": "8d40ac992631ca1f8a44edd6a062ba6f51d13d83ec8242fa2906f3c40fb13090",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 37,
+      "request_sha256": "e9c821f4146dbfae48fcd7770a950e96484fb9dba52aa2a6da2855f0a7d8fbcb",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 38,
+      "request_sha256": "a88b3f95a17006aaa518dd30827dfb003d12261838eb404ca1467b992212a397",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 39,
+      "request_sha256": "522ddc4741d3d3adf8faef46baa608a22423b67cfee0521cccbd9071bd293181",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 40,
+      "request_sha256": "2908e5979b1dd923941cbd1f7794defa64a45398f474775c03343bd8f8f8d4a8",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 41,
+      "request_sha256": "151c803589dfa500821a8dbeff54d924a81cfb9a8b24a628cdeedb467a2384ca",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 42,
+      "request_sha256": "e0c590ad63dba38e26b208281172723d50e7b3340cbf49545454c474668287dd",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 43,
+      "request_sha256": "e24ea09dce0545152a7b717bca16db014b85e54fe8cc3626a5dcba38e744fc27",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 44,
+      "request_sha256": "80598642b77cce2f079613d9c5bf201da092c929715e5cf640b8d7d3c62dff15",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 45,
+      "request_sha256": "95a73c8850a9e59758f694376aecb0509dab4f0cc0e9502880e1fcea679a7fc1",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 46,
+      "request_sha256": "6b4f498c88d2599a7b226ee1256b1baa1e846ad74b9604c2da9e31adfa87c816",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 47,
+      "request_sha256": "2328b642d28dee2e31cf0ce2a194fe7fa3776718c41a8fa72f85a6e923466304",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 48,
+      "request_sha256": "4feea91f758a99df06f58bdd4669d3ec3860832ae54dbbfcc0dca1862ab88889",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 49,
+      "request_sha256": "27b27d66eff45e415a98c3a01e49f6035508bc06158da0aee6461b3b4b941df9",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 50,
+      "request_sha256": "79877b58f6073ba9b38e190dc954190cf3ec4d5021d6733636bdf5bbd158f675",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 51,
+      "request_sha256": "2c9a07689940939d33a0895636df85fa02d4b5d4d3bf166aaea59b32b1684344",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 52,
+      "request_sha256": "55f22c323792142c74c4c12f83983df3f78279346155380ab906215ed2f2d76e",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 53,
+      "request_sha256": "c493212de2dd54868fb8a26ab4697fcbc490ae09fe364a134a3ec1f36aebe505",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 54,
+      "request_sha256": "92078adca8b1cf5b6c59daf68f7a32799174ce82652ab42d3a54f9d538dff7df",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 55,
+      "request_sha256": "979486d89ab7f9fb34544ba9d8071daf16de3d52e3e86f15fed9a73596c6ebec",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 56,
+      "request_sha256": "da7f0b7cc09fa79f58ad9dd6e1f3508e25082275f6d6b0977d6f2a67092369d4",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 57,
+      "request_sha256": "f4acc11feadfe7f5cc58776acda0c588e1e83b1783720881a2cbb552a8dc59d4",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 58,
+      "request_sha256": "980d6a815677bfc8e075d16bb91c6869174ad81b536efe4b3d2b04ad3c893e63",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 59,
+      "request_sha256": "a548192e1bd3e8374b3a6af9a32b6ef81c37e8b765ca96f2861eafce4f04149c",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 60,
+      "request_sha256": "3d7a0dd2a80cf499af63c1735689d9e8e60c3ba26f28b63487fbc051a2291c3e",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 61,
+      "request_sha256": "15d9f8f11c6494445684634cd9345e1a0f90d9d42bc708ff1b3715f342425866",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 62,
+      "request_sha256": "3a5a9ba803626135c3a95717e6ac705556c7421b39c26e7f723f346acde57bd5",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 63,
+      "request_sha256": "8e2485dd63937430f44a7a003291357ddb28f65a3f26d30b6b23a00ac3361d54",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 64,
+      "request_sha256": "0b8c1cef5469ef39777bb53bc0f125e4f7513a1303ca61ee8483f61951826e00",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 65,
+      "request_sha256": "8266b96a385b07d13c3e28a7b5bbc0e635a6d85ec31648e1e0e82500f2003e35",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 66,
+      "request_sha256": "70ce25320bcc29ae72515d0433e1d1d832f0cd0df32942421d466d9e90f55bae",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 67,
+      "request_sha256": "6d17f60ce613b90fcb3536c3baa332a1d5f011764f353c46a8acc15bfeb34308",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 68,
+      "request_sha256": "aa88186e7d553b7a075905be08a5663c5f21152671fb5483c97a401d3a81122e",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 69,
+      "request_sha256": "fda81827ea443f0529eabf7a454e1dd1770a2b750df6a7a163d6f2fd67dc3524",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 70,
+      "request_sha256": "5757cb7c864852a487aee67a207bd13220b6e456258ad35abb33ce309a972009",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 71,
+      "request_sha256": "dbc7c1d4e1d3543cfe500189e9f65883ac49a28e129f6546438122acf349abed",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 72,
+      "request_sha256": "fa1b6856c8a00dc12f466115512cbe986f4433f37c3bf5574a01632292a34dd1",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 73,
+      "request_sha256": "ae17383c3d0c43058ee4bce50ce4408db86a1211f9b7f2d6ad52ece469bc7e0c",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 74,
+      "request_sha256": "102802a06baa2dbcf3e908438a82d32fc4b3ccd4f1d30e0ba11bb0b10e41e90f",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 75,
+      "request_sha256": "f1a8936353a619729ae4bb014206ace84a6a6b6d54054f64f53fc28e257108db",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 76,
+      "request_sha256": "6580ea292df2d58f93aceba213b8a9b8fd937f5d7e5e38016e7cea4c6de44316",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 77,
+      "request_sha256": "475b02a364a32f0649372594c1ec26fb71c197e11ed7f6650ea36b71f970c1a8",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 78,
+      "request_sha256": "511eee6082c9fb3a6ba995d21833aa669ee3faf2df9b9f9944a68fecc02112a9",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 79,
+      "request_sha256": "4967f0b4a4e9a8f012937e739ce04026ea96dc3877aff8cf51d3512641ea0414",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 80,
+      "request_sha256": "fd236cab9a7137e4571474500356e9bad5ba60d1243f0ea18fbea52d7de2defe",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 81,
+      "request_sha256": "277fcc9a6fa9c35b8d9822f72554b93486380af45282a8cab5aef67e5582cbc4",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 82,
+      "request_sha256": "e6b5de1f394c46f123dac3981e4bf10b549e02d8452e1062abb1802aa7246655",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 83,
+      "request_sha256": "6e4b15576b7d03418766a14175f673066a11b8ca0f0c8a6b2673f730a446ed87",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 84,
+      "request_sha256": "82f93921237ca5a7b699aed3dbe4b8c8b931fe62648dbf5e264af8b6d36d4422",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 85,
+      "request_sha256": "a58d09c4320a1c4cca205d118f00d0bf4f4d1c95fff0ec204c7a7c877744f6ab",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 86,
+      "request_sha256": "908b63f5058ec43cb7314fed14950484c7d676932a4a240f50797b810859884f",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 87,
+      "request_sha256": "ce63fbd21233628d462eb557ee1eed0d18eea0b90af02ff261f621fb63a2e789",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 88,
+      "request_sha256": "180165149c449fd98d9cac819e967df78256122cc2983bc7931543340a2e4021",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 89,
+      "request_sha256": "71d74cf874ecdf9cbbd30ad02b28aeb60421307473ad5fd965002caff92cc6bf",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 90,
+      "request_sha256": "6987a9d797701209e98ff94622517f2202c6b4ef285644b92382ae2399bd76f3",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 91,
+      "request_sha256": "9e4bb408eca4f089a8a82ebb681935054130bcd1f428a376f04176a24e4d0255",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 92,
+      "request_sha256": "c1768bac3a57f818e12d4808f17686e7354f998d78f0a513a8849a1803491cd2",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 93,
+      "request_sha256": "de754154824748893b64f7cb673730a85116e11f65db8b32bb56ae786335aa25",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 94,
+      "request_sha256": "d241ad7a3a004783ec38e845adb21652e0dd441f013004679c601bf19e29849d",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 95,
+      "request_sha256": "24ca23d02f56e0d42b818a816a7b9f0ba25d19c5474c6b8aee4267fdd602f567",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 96,
+      "request_sha256": "c51c6c2874d2ae463cfb137ce33d87dfb01563df3c69f2bdefed9de7eca4dd6c",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 97,
+      "request_sha256": "3b936364d9ec9eb6401d9eabcefd513f647f4033d23aef431247490a2b824e05",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 98,
+      "request_sha256": "c78f4c957add0fb3646efa357756bbc9f8d52716b21451873d7ddaf5f31bdaba",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 99,
+      "request_sha256": "bf2c9a208a92a136c52a1070646b2980d97af519436de98b7378b76b0b05430e",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 100,
+      "request_sha256": "e3f8e5b8c7e566a3d4739b28c7ff8ff44c12f456751789ce71b09c0680e80529",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 101,
+      "request_sha256": "a63443724041787408fa5cf3c48f1a382c0e04ef86fb0df7787e1b13cda79e32",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 102,
+      "request_sha256": "2dea4ecee34dd40ffde998bc92b6c930644b963a5f877e030d3e2fdfaa9e8b21",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 103,
+      "request_sha256": "4384dd0f4b15f658b56fed6a4baf75267680face8994cd29b18b8b900a806c59",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 104,
+      "request_sha256": "ac7372a765c2f070741a74ea1ea908b585195af89f8ee9a2592c987ad7ff0d9e",
+      "sampled_choice": "released_B_released_A_released"
+    },
+    {
+      "index": 105,
+      "request_sha256": "011955923a431fff45ba84372121004d6cb0ca740a90bdf3281afedc50228744",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 106,
+      "request_sha256": "9c4638eeef781574b70bf71667ff38de3683e3ef1955daf6a5f1b67d8924193f",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 107,
+      "request_sha256": "fb1f0eb9b11aa7743ac86a9ce9c7de2dc856291928a95cbf459ff48532f8fb97",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 108,
+      "request_sha256": "e6fb09bb8c33e4d741ea178d34eec2900e4253d7340c2b1f82f179c20026bfb0",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 109,
+      "request_sha256": "13af3a7f84de95a6cb1db4726e68097aac54bd4a84227cc4d230d729796e4c04",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 110,
+      "request_sha256": "5b38837a406a13c168145607c84686fa65f955cb3f499d53828cf52fdc0fec11",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 111,
+      "request_sha256": "586f27f3632c64de50399ccfd388e2f89107e44cf803c8eaaeb83d2f84407020",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 112,
+      "request_sha256": "eec3c1912789289be4762930440521c3227f9f82d97b584cd0f618e15e9586b1",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 113,
+      "request_sha256": "d108faf0904a2d7f0fa096053f027e156e83b0e156775f289b29b7dec94444d2",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 114,
+      "request_sha256": "dc864d40c520ac4f11532a1a30c50715b633d4470710b4146d58c3565308af06",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 115,
+      "request_sha256": "89904fced17861bf8b5a9d9c0de3f9785ce1574cfdaa404a65330f74de6fe36c",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 116,
+      "request_sha256": "1e718c8ad391c6abc77a87588958ffbc89a0f0626c66bf203368644c7f8d5b5d",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 117,
+      "request_sha256": "c7120688b55564b9825120c8f90d29fa82dc2fdebe6390dcd8cf8ab123ff5824",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 118,
+      "request_sha256": "d19dd8aaa63e13210518e6803bf05b262cce7d9c755a87e8ac2acba48ca1b573",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 119,
+      "request_sha256": "388ed4d2a9c85202ec26e855f906e304d31df16c42c71b6315edcb717602c3e2",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 120,
+      "request_sha256": "aa934c68768173cdc06543c47efd4564a923ce0e22012d61702013a1bc82b738",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 121,
+      "request_sha256": "427d3ff3151c8104f156b66556baacd318974355a76c41fe6fbfc7a8ca83c2c4",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 122,
+      "request_sha256": "3b27e442723976bb0223e3019151bb432aaa66d6e6db03467dafb0c670b57b66",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 123,
+      "request_sha256": "44010357cab2353438c8b1b12bad6d056573abc62c472f5965f3a77daa5d45b8",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 124,
+      "request_sha256": "5785d5efec96b86727fea0239cd33fd4e299bf45522e78061b7c18d3e4696ebd",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 125,
+      "request_sha256": "2b92c5b243e9f3dc3067f0aa2ce6034a6dcc87bc57c454af84538d2eb2bc2451",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 126,
+      "request_sha256": "97d0b01b5a381c5163c03121fdd5e33ecb646950c614d0dbc344aa93435d22f1",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 127,
+      "request_sha256": "11f39c470de7fedeb988c5fb7ed43b23c8eeea7d9fea65033198fd409f680243",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 128,
+      "request_sha256": "0288e52dc6b842b96b5ae43bb282971b1de82fa6801986dc2667dcec7002741d",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 129,
+      "request_sha256": "d7bb248f95fd678b796a4d78b4e49c7c4ec68801cc551610682be45de6902d8b",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 130,
+      "request_sha256": "686db80db3e59e288d4f573fc489a292e9c1a1b77155d8dedb49d5347d658c2e",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 131,
+      "request_sha256": "dc71e89d6a831886f35c626a81d34bbe2265bb1256fa1cd5bc3982dc87b86bff",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 132,
+      "request_sha256": "5929f10d9bccb9565acdc267de4e8298fbe2f727c5c545655edadd9f6eb28583",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 133,
+      "request_sha256": "fc37ad7868723e7b81f4a7e85460eb09d37a671a1730e14247d95200e129923a",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 134,
+      "request_sha256": "e5694973929bf09dcb5c9d0c25e3a5a738515aa71668ee13ba77ff4913b7101b",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 135,
+      "request_sha256": "f81f0ef63aa42fac6d62e442cde521b6a8aaf0582ad21306770f950e3d9fa465",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 136,
+      "request_sha256": "98fbfd1c8388b6d6daf42c8c1b780ba8514b20225c11bf5822929cf64ada57c9",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 137,
+      "request_sha256": "f8c39558a28d0c4a4eaf095e2cf35231cba22ac6d94a5573c9beb9f7784864ac",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 138,
+      "request_sha256": "b811f175175d6b23823937a4913ad15299f2d65e9cbd268f5606b110ad84285c",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 139,
+      "request_sha256": "c26fa6dca76ba4373be6985c4b97f5c58504b9ab660535002b45a4aa83743227",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 140,
+      "request_sha256": "21595cdc90ba7cf48fa9998d0085943cc14dfb53d79800d98f873ce3afa9a2cf",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 141,
+      "request_sha256": "45f7bcf7c7660b158fdcfa55b8ba86ec904bc0f29b12bb2e97b0e438ac3fe6cd",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 142,
+      "request_sha256": "6727f86eae53b7337be6be7c6f1d315e8059abca86362592b837c07bfc8f94f6",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 143,
+      "request_sha256": "f1806dc75a2b0d2cacc5a3553ef025a441cd88b6589232a27e37386d41dd54d4",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 144,
+      "request_sha256": "b4e7ed572ed96d4db705010fc10258cad5674fe3b9df45977aa4f6ba94a75fa9",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 145,
+      "request_sha256": "eb6b4a032fb2a0a0dbd516eb4605bac6b029874159267093ac883ea8815154f9",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 146,
+      "request_sha256": "19a49c0d00d0b28c5ffcdc27a230f31b69fa41b6ff073cad0d06158ff49d7e5b",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 147,
+      "request_sha256": "00e36086783f621fc701000bdf0952c5a7791800264ee7e390a566a264d00694",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 148,
+      "request_sha256": "12ead367217aa5484785714717528eb0921f57c643318a03bda394c550d5c649",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 149,
+      "request_sha256": "badbb3ca982d12010c8c67362f601ef67dfb91bfe55c7fad73ac173fc3193e5e",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 150,
+      "request_sha256": "96b0c3420ab2728853d47cdfacb1ac6935fda67987c2e2c4a41561a1a54ad6c4",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 151,
+      "request_sha256": "050f349e2136ce7e9b2bcd9a4db14b764201822ca2a0eecd4b60f459526298d5",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 152,
+      "request_sha256": "036476dca4309d13f3ce533338fad8dc7949232258be95300f82aadac31f5953",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 153,
+      "request_sha256": "cd1da20af6ce99722bf02956a1bd8f197f0de18753771557cda78d7bf86cfaa5",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 154,
+      "request_sha256": "5100eeec81e89851d34b9bcf5223f8746a98a75bdd69897fc458716e7394945b",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 155,
+      "request_sha256": "41ecdd921f6216d23244ec5f7ffa90669d854aa1dff834dc2e2baed2c0dbbc7c",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 156,
+      "request_sha256": "f8d03af72bc5823ab206b5950a4a9c44391db524877a3821cab3c86ed4b80d9a",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 157,
+      "request_sha256": "fcf558d68785c1fc8638b533b0ab7eac7307a3aacb000de9abccf845186efe04",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 158,
+      "request_sha256": "f4188d4bf6a4ad82ea63a991f9ee303e19383edb9cd617d2c947ea3af2156f2d",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 159,
+      "request_sha256": "358d011de58ec922bb4494f6705d239617d4e9be5f38bde241ec19a66966b5bb",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 160,
+      "request_sha256": "00be7a5af59d1d1637adffd8f3732b0f8d4d078bef7dd329ffa0775561ad6359",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 161,
+      "request_sha256": "6ff3240ec5ad26242f0cbc74c0c544d5f0212add04411d160f0671c59e126e1b",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 162,
+      "request_sha256": "ad09184c7541ba204ec56928a561400adaa66b4b7702750d5002b3727694ad7a",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 163,
+      "request_sha256": "aff99c7e8c5f86e50147917bf1b9c3db808cdb32d949dc2cfb2ea8e276e0c9d1",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 164,
+      "request_sha256": "9adad684fcbb2d8f1bcd04a261d6b5b054c88f9173332c0c531775e5b039d02d",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 165,
+      "request_sha256": "4dc39f862c80a9e38e6c68adb54613082c8e27596c750fca762872ff0748cc32",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 166,
+      "request_sha256": "077a3de1920dd260bc2bbaa859634083fcb6004aa80b86318de2df3f1903f730",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 167,
+      "request_sha256": "46224e761c188673b087c1e912d31fadd109a611875f8a266f49331320221c32",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 168,
+      "request_sha256": "fe5812369d10c0fd4294e52d37ddc2d7719df643f6d234ed5a298ea04fdc7c29",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 169,
+      "request_sha256": "06e7ec128a523873602818da786b29935de8b904aeecfa72b97ba1b1cde8d19d",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 170,
+      "request_sha256": "0ead840ed33c71a1f4e1df87c851bc5583f55378acb09cfce207474bd6e0c603",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 171,
+      "request_sha256": "b845c332be2cc2cfb856f855fdfca0ed4e573a7d6b2de3d8adfa2af1b016546e",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 172,
+      "request_sha256": "50c0636a6c922d75db6e0613aa019f189b89b315c2d149b8bc5781e60c435ba5",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 173,
+      "request_sha256": "1ac67b4bfcda6e1e83bf79de648cec66b0f086544233a3ce6950098fa3747ffc",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 174,
+      "request_sha256": "15957112f62a025630434cce97ad9bef4ea0db9048a55032ba332e5a01502c5d",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 175,
+      "request_sha256": "0661a51edd40215c0f7fde959069c4811ec70e02c8e111fd1d6e3fec1aa72bf0",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 176,
+      "request_sha256": "56829d9b9550c410af48eece2494dab0b8a668f4d29c0c81c81e029c652ba344",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 177,
+      "request_sha256": "1db72af55c4b7c1aa1ae33e339a91ad54d9edd4e55f77871cbf23c159112f23e",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 178,
+      "request_sha256": "330cf50fb348dabcfb39ffeb3cc1f6b66583990a812f57e31dae8acd94e9d7c6",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 179,
+      "request_sha256": "efbd5644fab4d145a5e11b8b000b3b9918f1bd4a100e6a4d8b6b6d4e1a1c1c8c",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 180,
+      "request_sha256": "883e783ecb7a198871360ee7d041be763c1bd1d001e3ef1b8ef65cb08637f616",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 181,
+      "request_sha256": "af07e9c69654f909aea3e13261229827d6267d697a06298e4d78ebac5227e605",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 182,
+      "request_sha256": "a1146e614798d030c21b59288cb715d50d153b5a67f1a7ff6768ddc04ec92d5a",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 183,
+      "request_sha256": "82837e7c4cc3774ae615d51612f04324620103835acbf348656b737db79982b7",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 184,
+      "request_sha256": "41e4bd8817d50a84c1e365972ca8ebb2fd690530a1b3c4366964ee3bc698805f",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 185,
+      "request_sha256": "24c9b96db1f452c24a31020666c776bf8348cb6b65c5bb6852deb53f3257f3d9",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 186,
+      "request_sha256": "6653c89426ec573c315db27537596b345782e2df45d3d6131b90c7ca679498d7",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 187,
+      "request_sha256": "df7f3f43688d0a06f54d56948ab16c3591e75a55f9eaa226516019b3a33c9f4d",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 188,
+      "request_sha256": "1445c5965142b44549b22cf3c9c98ffe8ac95294912a972b9c64e4e97cc94cb4",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 189,
+      "request_sha256": "073ad842afb620181205757a4731c36ddbbaad18b1516b37df1a7d2bb180186b",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 190,
+      "request_sha256": "eba017872d0221b9bb3ad4f6c476a7edb48fa17c9bcc679080739ae8ed708135",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 191,
+      "request_sha256": "919700a75db219725e65f83db782a650bc2384601e03428d905adc096c00a23e",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 192,
+      "request_sha256": "400c0338178a3c7e0b993fe76411660daa0bf5035bc05211dd2ea94f005ff363",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 193,
+      "request_sha256": "947433c8f5371a00375f52ab3d50458e20f1ce0728221be7bbbcce7e9234bb83",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 194,
+      "request_sha256": "bfb28059b042d51ad54dee4caf4720225b133bfe694a400b4a01cc5dad9c567f",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 195,
+      "request_sha256": "7e17b0ecb1f74457f15f368d54bac6b54bcc7b4ac9c50e2c0c761f2c4c930ca8",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 196,
+      "request_sha256": "f677dbb99bd09e1fb1c08254ae354d0c24f884406e274680613fa92e89e65e3d",
+      "sampled_choice": "released_B_released_A_released"
+    },
+    {
+      "index": 197,
+      "request_sha256": "42a4823b7affe5e64971523baea717519cf7c59a4fa00551927eda05dc4ab451",
+      "sampled_choice": "released_B_released_A_released"
+    },
+    {
+      "index": 198,
+      "request_sha256": "3f64a88f3b4aeae85309fa54354e0c733822c6c07076cd84bf894882dccd3623",
+      "sampled_choice": "released_B_released_A_released"
+    },
+    {
+      "index": 199,
+      "request_sha256": "756d2bab90578448bdfd06fa4e5323749448bfe90ff0669911fa19e962e8309a",
+      "sampled_choice": "left_B_released_A_released"
+    },
+    {
+      "index": 200,
+      "request_sha256": "253f2cfdefbd15c802f0cdc61b8cfb7419a0d007cd84f665ad10355008643e56",
+      "sampled_choice": "released_B_released_A_released"
+    },
+    {
+      "index": 201,
+      "request_sha256": "72200744ab27e1f24b11099cc386151af3d4cae1eb11aebc2a271f7899ef2082",
+      "sampled_choice": "left_B_released_A_released"
+    },
+    {
+      "index": 202,
+      "request_sha256": "d2bd324e76de9cfe3e7d866cbf8ee744d13da2437509317e2230874efc08ccf2",
+      "sampled_choice": "released_B_released_A_released"
+    },
+    {
+      "index": 203,
+      "request_sha256": "5d0054efbd26ca9d0718f65933cc3a1a66ea980494990cdd772ec990c22d89b4",
+      "sampled_choice": "released_B_released_A_released"
+    },
+    {
+      "index": 204,
+      "request_sha256": "a7f719468df3f614f570150236983a17ad8884fe139a72aceb8e99c08aba8b75",
+      "sampled_choice": "released_B_released_A_released"
+    },
+    {
+      "index": 205,
+      "request_sha256": "29c81fc7243beb75fb75728127a87e393c40e54ab72399972bc9f21c34d02a65",
+      "sampled_choice": "released_B_released_A_released"
+    },
+    {
+      "index": 206,
+      "request_sha256": "59802fcf79880c131f7e52bda68344820ad1fd7c08fd46a90e1253ed9cc27a4f",
+      "sampled_choice": "released_B_released_A_released"
+    },
+    {
+      "index": 207,
+      "request_sha256": "c58751341b778c61b792abc4cc0ae107f7d9663cff663d9529a3cf877acb3aa5",
+      "sampled_choice": "released_B_released_A_released"
+    },
+    {
+      "index": 208,
+      "request_sha256": "0dc9116a739d92f0c3f872545f7ce50f18aa4af845b8102fb1f1e37be77e1312",
+      "sampled_choice": "released_B_released_A_released"
+    },
+    {
+      "index": 209,
+      "request_sha256": "ce312b96bd0ebe3827e7e5d7e8b2f0ef510b516bd181e435e5ce3cd9b781f021",
+      "sampled_choice": "released_B_released_A_released"
+    },
+    {
+      "index": 210,
+      "request_sha256": "216a07aff1254ad490788772bc1c6dfc7b2efc831fcb8803eefe26ccf735ad21",
+      "sampled_choice": "released_B_released_A_released"
+    },
+    {
+      "index": 211,
+      "request_sha256": "11a2477424bdfe7fb7f048cc26b8a28e4e3f4be1fd356be56c25b193b3b708da",
+      "sampled_choice": "released_B_released_A_released"
+    },
+    {
+      "index": 212,
+      "request_sha256": "296d63815230f2576cc1d5553f2e1b3d856b387924996e5ac84490ebec61e1d1",
+      "sampled_choice": "released_B_released_A_released"
+    },
+    {
+      "index": 213,
+      "request_sha256": "c40f22befe6891f8a6a380c9a0070d01601ba616c9138ef9c87919c37860fd96",
+      "sampled_choice": "released_B_released_A_released"
+    },
+    {
+      "index": 214,
+      "request_sha256": "c03a5419a0fc527940399b6db5f4cba1edb4962d5db65955a43f4b36d6d663f7",
+      "sampled_choice": "released_B_released_A_released"
+    },
+    {
+      "index": 215,
+      "request_sha256": "267a16173a35aa288d951ae7085d0654bcd5c00f3dca7db26697117bb6c65e4d",
+      "sampled_choice": "released_B_released_A_released"
+    },
+    {
+      "index": 216,
+      "request_sha256": "eb8424fecbe58de0bce30729a63d9f10c6a76a9051844d78dadeda5dfb22b041",
+      "sampled_choice": "released_B_released_A_released"
+    },
+    {
+      "index": 217,
+      "request_sha256": "563855aaa54707fc9d2d6e8ccf43fa1ed3780a4cd5f051c2989e8c67f5444530",
+      "sampled_choice": "released_B_released_A_released"
+    },
+    {
+      "index": 218,
+      "request_sha256": "05f7512dbaeb727db5700b6905073877d73909818f6d76e001f0f636b15e924b",
+      "sampled_choice": "released_B_released_A_released"
+    },
+    {
+      "index": 219,
+      "request_sha256": "573b4cb8d36a43e24c8d3fbb6a2cc9f6c886a51efbd28da330b6f3c295b1293d",
+      "sampled_choice": "released_B_released_A_released"
+    },
+    {
+      "index": 220,
+      "request_sha256": "c60b2cec5f71df234fcaf765845857d04a6ff4a6b0840dad5767f6adf00bbceb",
+      "sampled_choice": "released_B_released_A_released"
+    },
+    {
+      "index": 221,
+      "request_sha256": "a4198b4c1023b182f669e709f14a46a03041865d54a3fa7ea5060ee65ced813e",
+      "sampled_choice": "released_B_released_A_released"
+    },
+    {
+      "index": 222,
+      "request_sha256": "9284d588ac93beb91385e9fdf96fda626a6a0600662c9f9ed9015b60338e991e",
+      "sampled_choice": "released_B_released_A_released"
+    },
+    {
+      "index": 223,
+      "request_sha256": "aeb52edca0010f1d54c52210fe15d20b8a2a3e911e575f14280daf34d0d7566e",
+      "sampled_choice": "released_B_released_A_released"
+    },
+    {
+      "index": 224,
+      "request_sha256": "0be4f31def59fd0252da9b3ba9df46070eddd165f480c2558a471e1b73ba17c2",
+      "sampled_choice": "released_B_released_A_released"
+    },
+    {
+      "index": 225,
+      "request_sha256": "fe98ac48c22fcdfcf9c9859becb255b52c23ccd5a9a1482fbd1d0eb08c75ef7b",
+      "sampled_choice": "released_B_released_A_released"
+    },
+    {
+      "index": 226,
+      "request_sha256": "0c59a5bcef5ac2e2f2cd7ab8382a248b1f23826bc9da752ad6c3c565920a36ad",
+      "sampled_choice": "released_B_released_A_released"
+    },
+    {
+      "index": 227,
+      "request_sha256": "662cc1ddcdf11f0bcf077ce5147b9423b10878653bfb4581c4f86c86f56cc27d",
+      "sampled_choice": "released_B_released_A_released"
+    },
+    {
+      "index": 228,
+      "request_sha256": "3b7f8aa9ad8d22f2c4b1fe13d79b7bd4d485aeefaf2ff6719c2d630c316536f5",
+      "sampled_choice": "released_B_released_A_released"
+    },
+    {
+      "index": 229,
+      "request_sha256": "91ccdd4e0dc1c4f9581b10c555eef8f4ca61974e93be28cc38b12cf2d49b1498",
+      "sampled_choice": "released_B_released_A_released"
+    },
+    {
+      "index": 230,
+      "request_sha256": "7df457e0fe583d85d9d4285f1644848d010779cac2b3d76c71c3cf963dd6abdf",
+      "sampled_choice": "released_B_released_A_released"
+    },
+    {
+      "index": 231,
+      "request_sha256": "3781e9dc0485e54f660e3aa023bec216a6d74f3add94aefc01d45e82ce54d63f",
+      "sampled_choice": "released_B_released_A_released"
+    },
+    {
+      "index": 232,
+      "request_sha256": "3cd34070a6f969cf7c6e428e867d741c9677b13ead94cb7077a704b3ff6f9ec9",
+      "sampled_choice": "released_B_released_A_released"
+    },
+    {
+      "index": 233,
+      "request_sha256": "4421a51d58855510c0a4c6d7342db3821957519b469796f67ff56a5c7f41e966",
+      "sampled_choice": "released_B_released_A_released"
+    },
+    {
+      "index": 234,
+      "request_sha256": "27c32c86a9a0ba6d3ad04cb0f79c90b2f03f112f0d917a61fa53d925e23bd56a",
+      "sampled_choice": "released_B_released_A_released"
+    },
+    {
+      "index": 235,
+      "request_sha256": "c45a61d3519ade35247dfd7b89bb950210d47cffd88196c852a463a6d54dd1f2",
+      "sampled_choice": "released_B_released_A_released"
+    },
+    {
+      "index": 236,
+      "request_sha256": "bca4f2028f03f927c8995329adb1f9f8604f4a1886fa5e69de539a3a16dea979",
+      "sampled_choice": "released_B_released_A_released"
+    },
+    {
+      "index": 237,
+      "request_sha256": "a3c717b9438b1ce14f5a02e6488df29eda45fd9c973e7804c966657a1f6d01c7",
+      "sampled_choice": "released_B_released_A_released"
+    },
+    {
+      "index": 238,
+      "request_sha256": "9a038d051bdc642fcce4b288fba47cb8b434ffa637018c1e79755a9e3b334d29",
+      "sampled_choice": "released_B_released_A_released"
+    },
+    {
+      "index": 239,
+      "request_sha256": "1673dc7f1559c376b07d6c1fdf47f1a5ce00d9b98b21e2ee12bbc0636802a71b",
+      "sampled_choice": "released_B_released_A_released"
+    },
+    {
+      "index": 240,
+      "request_sha256": "1bf92622c690ac786c6f9f8c75e0bc083e73ba004d62a3695f8d2ae7ec7355ac",
+      "sampled_choice": "released_B_released_A_released"
+    },
+    {
+      "index": 241,
+      "request_sha256": "b9ffc153d507babb59bade9727e83d7af28c07ba72666e88f08bfc0c4bb260e6",
+      "sampled_choice": "released_B_released_A_released"
+    },
+    {
+      "index": 242,
+      "request_sha256": "2dc19b85a4254ba8416be57f6ead7428580f0787e502f1beecd4aab2f221f7af",
+      "sampled_choice": "left_B_held_A_held"
+    },
+    {
+      "index": 243,
+      "request_sha256": "7e3f7b750b772d6aa51ad48734c68a0c8cc470e2b70c2d39a5a73ccc6280af95",
+      "sampled_choice": "left_B_held_A_held"
+    },
+    {
+      "index": 244,
+      "request_sha256": "761fe8bf03a741259185c54a01375abc59ccedfa13ca53dc124537734b3ebb77",
+      "sampled_choice": "left_B_held_A_released"
+    },
+    {
+      "index": 245,
+      "request_sha256": "7ccf60733cc365cd84d73217b7429aa3de6702bc59076d0c503db5e3ec8d1d69",
+      "sampled_choice": "left_B_held_A_released"
+    },
+    {
+      "index": 246,
+      "request_sha256": "2bf6a7f89ee8a1bde588e1c1900a2d1c6c537fab86623370392ca099d309ef6d",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 247,
+      "request_sha256": "d142584b6dd04bc6bac2f000e9854803634ce7059e9ddceaa70280b28e9fe4fd",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 248,
+      "request_sha256": "a57a1c1428caa930a46507872a2dc797d699bc048fd794403111f8cb570b7199",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 249,
+      "request_sha256": "6759cf19c3ced91bb1b18ddc5bec61352a2771be31a04cc0fa24ceca378a9536",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 250,
+      "request_sha256": "9d1fc940370c6404466c96abc33ec1f980605f186cdffdf575f927b1205cfd30",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 251,
+      "request_sha256": "cd40a14927254a75fe0578617e95840384f8a6acab45e0476642be035867465e",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 252,
+      "request_sha256": "12378ea085fd802acc8898b2b6dfda3b890ee45fcf0ece3eb459fa87224ba907",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 253,
+      "request_sha256": "a6625566b1200146a214323bd63f939e2fec56f5280aec6e45bbb7af687e9015",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 254,
+      "request_sha256": "cd013e132394c47c94e5798715d044ae892f61e25db18f5b8cb0df29aa640b04",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 255,
+      "request_sha256": "54840755297423a6add653c995820bb9be9ac86227021ab82a183eccd3095c4e",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 256,
+      "request_sha256": "648aeda6fd7c45d083f896608971b8cc4c975c9003c030019ab07f991578fc82",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 257,
+      "request_sha256": "7ea778c768d12e9a4815ffd054b79dab320b44329b998a47444fb841093b81b9",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 258,
+      "request_sha256": "b47b8e8099e29fd62aee810a8eef09cb1c7fd8db939c1bec3f4977f8616c2a1a",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 259,
+      "request_sha256": "f8b9b8b68d8a50270f173870adfbc2625ecf7a519dbf04090f94f0325db57db1",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 260,
+      "request_sha256": "ef9805ba2baf5f11450bae2fff255e234f62a92ce441a37a6be635c330da57e5",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 261,
+      "request_sha256": "344dfc22366500014a8d88cb3a0f7d509418ae6cd7b998fcef9adc38e26007e8",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 262,
+      "request_sha256": "f447fc7f395111ace87ec8b9cd58e77b245383cf61a0da54099879a32097dd35",
+      "sampled_choice": "right_B_held_A_held"
+    },
+    {
+      "index": 263,
+      "request_sha256": "e51b125cc84863dc0a59edc2b3fea0c48d656cd712c330842ce57de109bb37ef",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 264,
+      "request_sha256": "c9fe7088703d2228e5cc96a0654712d0513a7d03ad85d3dda3bc13243037bdef",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 265,
+      "request_sha256": "6b23a8dfe9bc53ad6454dc4c5fa9147d4ed7305ff2ddd38bcd6ecf9503535b78",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 266,
+      "request_sha256": "2a116ef452f6196564236dc04dca1c49cc8bb323760b7103f3026bf0a4924247",
+      "sampled_choice": "right_B_held_A_released"
+    },
+    {
+      "index": 267,
+      "request_sha256": "5f915ec33c4aa49d377b4ffdaae53b9a02ec3a3b39f8ea024ba2264200adf5b7",
+      "sampled_choice": "right_B_held_A_released"
+    }
+  ]
+}
