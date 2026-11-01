@@ -573,7 +573,8 @@
       "eligibility_note": "Technical transport eligibility only; not a game score or proof pixels influenced decisions",
       "published_observation_ids": [
         "pplx-state-clear",
-        "pplx-pixels-partial"
+        "pplx-pixels-partial",
+        "pplx-pixels-sampled-clear-t005-seed0"
       ],
       "published_image_observation_available": true
     },

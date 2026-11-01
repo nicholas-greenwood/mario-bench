@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at_utc": "2026-11-01T17:38:52.550720+00:00",
+  "generated_at_utc": "2026-11-01T17:57:59.828039+00:00",
   "data_class": "selected_development_examples",
   "comparable_aggregate": null,
   "leaderboard_ready": false,
@@ -19,7 +19,7 @@
     {
       "id": "image",
       "input": "pixels plus declared controls and timing only; no RAM",
-      "verified_clear_models": 1
+      "verified_clear_models": 2
     }
   ],
   "metrics": {
@@ -706,6 +706,77 @@
         "adapter": "native simultaneous buttons plus conditional native duration head",
         "trace_href": "traces/mammoth-pixels-first-clear.json"
       }
+    },
+    {
+      "id": "pplx-pixels-sampled-clear-t005-seed0",
+      "data_class": "selected_development_examples",
+      "model_id": "perplexity/pplx-decider-v1.2",
+      "display_name": "Perplexity: Decider V1.2",
+      "returned_model": "perplexity/pplx-decider-v1.2-20261016",
+      "provider": "Perplexity",
+      "mode": "image",
+      "level": "1-1",
+      "status": "completed",
+      "completed": true,
+      "death": false,
+      "verified": true,
+      "start_x": 40,
+      "goal_x": 3161,
+      "furthest_valid_x": 3156.0,
+      "progress_pct": 100.0,
+      "native_frames": 1871,
+      "decisions": 268,
+      "speedrun_score_native_frames": 1871,
+      "nominal_game_seconds_to_completion": 31.183333333333334,
+      "experiment_config": {
+        "profile": "canonical-edges-sampled-t005-seed0",
+        "adapter": "explicit_ab_joint12",
+        "cadence": 7,
+        "previous_screens": 1,
+        "observation": "current full screen plus 1 past full screen; no RAM",
+        "contract_sha256": "d7e26f8d18176c32369fce2f094fa7e7c8182cd0a65031bfe85448cda30e5374",
+        "rom_sha256": "ec299b990e8bfee8ba46e3f61d63b2e1ae5b8a2e431de84e2e4bbd692dc53586",
+        "seed": 0,
+        "life_budget": 1,
+        "selected_attempt": true,
+        "matched_cohort": false,
+        "profile_id": "pplx-pixels-partial",
+        "probability_sampler": {
+          "kind": "seeded_tempered_model_probabilities",
+          "temperature": 0.05,
+          "seed": 0,
+          "rng": "python_random_MT19937",
+          "candidate_order": "alphabetical native choice keys",
+          "formula": "p**(1/T), normalise over all12 native choices; one uniform draw; no masks or oracle"
+        }
+      },
+      "input_audit": {
+        "privileged_state_sent": false,
+        "requests_audited": 268,
+        "actual_pixel_images_audited": 535,
+        "probability_draws_reproduced": 268,
+        "native_replay_verified": true,
+        "independent_audit_pass": true
+      },
+      "trace_href": "traces/pplx-pixels-sampled-clear-t005-seed0.json",
+      "trace_sha256": "30392705e81db66ea234bfd71ac64e9cab2cca3dc1577829a620d3ff8f48432d",
+      "replay_href": "replays/pplx-pixels-sampled-clear-t005-seed0.mp4",
+      "replay_sha256": "42856351ca4bc96d473e3733ac3ee791045127067b31e6cb4a655188104f879d",
+      "source_hashes": {
+        "requests_sha256": "6bbc926f70457988034ea176562a17625a21d83e71102dfd3fe32cb6873edf7f",
+        "responses_sha256": "e0dead6d450d16b92e292d9f48950b201a2898b09dadd41f72de5916afef3171",
+        "private_replay_sha256": "7d86594d89202653949a4a4222d1c049f99f32214c4e1816b4a34f02d4667b40",
+        "sampling_sha256": "3eb82eb139ea5845a473ae39813ea71fab22692747da139b555c0dc8261b2344",
+        "input_audit_sha256": "f1f7b1ffed635dbce4668a1a20aae41617528602790d3d4499d0ea81686694cb"
+      },
+      "controls": {
+        "adapter": "seeded temperature-scaled model-native probabilities, all12choices",
+        "trace_href": "traces/pplx-pixels-sampled-clear-t005-seed0.json"
+      },
+      "profile_href": "profiles/pplx-pixels-sampled-clear-t005-seed0.json",
+      "profile_sha256": "5976126826555c1beab8eb6235f02556c08c2e1479e121640c8ab32c5e4a141c",
+      "observed_progress_pct": 100.0,
+      "proof_href": "proofs/pplx-pixels-sampled-clear-t005-seed0.json"
     }
   ],
   "protocol_sha256": "b50db77febc7519e1b7e5373d54bf69cf002c36a28e3b3bd297cb6191e7c0a54",
@@ -2734,12 +2805,83 @@
         "adapter": "native simultaneous buttons plus conditional native duration head",
         "trace_href": "traces/mammoth-pixels-first-clear.json"
       }
+    },
+    {
+      "id": "pplx-pixels-sampled-clear-t005-seed0",
+      "data_class": "selected_development_examples",
+      "model_id": "perplexity/pplx-decider-v1.2",
+      "display_name": "Perplexity: Decider V1.2",
+      "returned_model": "perplexity/pplx-decider-v1.2-20261016",
+      "provider": "Perplexity",
+      "mode": "image",
+      "level": "1-1",
+      "status": "completed",
+      "completed": true,
+      "death": false,
+      "verified": true,
+      "start_x": 40,
+      "goal_x": 3161,
+      "furthest_valid_x": 3156.0,
+      "progress_pct": 100.0,
+      "native_frames": 1871,
+      "decisions": 268,
+      "speedrun_score_native_frames": 1871,
+      "nominal_game_seconds_to_completion": 31.183333333333334,
+      "experiment_config": {
+        "profile": "canonical-edges-sampled-t005-seed0",
+        "adapter": "explicit_ab_joint12",
+        "cadence": 7,
+        "previous_screens": 1,
+        "observation": "current full screen plus 1 past full screen; no RAM",
+        "contract_sha256": "d7e26f8d18176c32369fce2f094fa7e7c8182cd0a65031bfe85448cda30e5374",
+        "rom_sha256": "ec299b990e8bfee8ba46e3f61d63b2e1ae5b8a2e431de84e2e4bbd692dc53586",
+        "seed": 0,
+        "life_budget": 1,
+        "selected_attempt": true,
+        "matched_cohort": false,
+        "profile_id": "pplx-pixels-partial",
+        "probability_sampler": {
+          "kind": "seeded_tempered_model_probabilities",
+          "temperature": 0.05,
+          "seed": 0,
+          "rng": "python_random_MT19937",
+          "candidate_order": "alphabetical native choice keys",
+          "formula": "p**(1/T), normalise over all12 native choices; one uniform draw; no masks or oracle"
+        }
+      },
+      "input_audit": {
+        "privileged_state_sent": false,
+        "requests_audited": 268,
+        "actual_pixel_images_audited": 535,
+        "probability_draws_reproduced": 268,
+        "native_replay_verified": true,
+        "independent_audit_pass": true
+      },
+      "trace_href": "traces/pplx-pixels-sampled-clear-t005-seed0.json",
+      "trace_sha256": "30392705e81db66ea234bfd71ac64e9cab2cca3dc1577829a620d3ff8f48432d",
+      "replay_href": "replays/pplx-pixels-sampled-clear-t005-seed0.mp4",
+      "replay_sha256": "42856351ca4bc96d473e3733ac3ee791045127067b31e6cb4a655188104f879d",
+      "source_hashes": {
+        "requests_sha256": "6bbc926f70457988034ea176562a17625a21d83e71102dfd3fe32cb6873edf7f",
+        "responses_sha256": "e0dead6d450d16b92e292d9f48950b201a2898b09dadd41f72de5916afef3171",
+        "private_replay_sha256": "7d86594d89202653949a4a4222d1c049f99f32214c4e1816b4a34f02d4667b40",
+        "sampling_sha256": "3eb82eb139ea5845a473ae39813ea71fab22692747da139b555c0dc8261b2344",
+        "input_audit_sha256": "f1f7b1ffed635dbce4668a1a20aae41617528602790d3d4499d0ea81686694cb"
+      },
+      "controls": {
+        "adapter": "seeded temperature-scaled model-native probabilities, all12choices",
+        "trace_href": "traces/pplx-pixels-sampled-clear-t005-seed0.json"
+      },
+      "profile_href": "profiles/pplx-pixels-sampled-clear-t005-seed0.json",
+      "profile_sha256": "5976126826555c1beab8eb6235f02556c08c2e1479e121640c8ab32c5e4a141c",
+      "observed_progress_pct": 100.0,
+      "proof_href": "proofs/pplx-pixels-sampled-clear-t005-seed0.json"
     }
   ],
   "observation_selection": "Common-profile state attempts, earlier selected pixel partials and newly verified distinct development episodes. Different settings; historical runs retained; no comparable aggregate or model mean.",
   "observation_counts": {
     "state": 22,
-    "image": 17
+    "image": 18
   },
   "technical_diagnostics": [
     {

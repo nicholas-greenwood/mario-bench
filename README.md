@@ -9,7 +9,7 @@ or game state and choose controller inputs
 
 <!-- BEGIN GENERATED RESULTS -->
 
-43 published runs, matching the website's all runs view, on world 1-1
+44 published runs, matching the website's all runs view, on world 1-1
 individual development runs use different settings; these are not model averages or a ranking
 
 [serialization diagnostics](results/diagnostics/openai-state-serialization.json) are separate from these runs
@@ -48,6 +48,7 @@ individual development runs use different settings; these are not model averages
 
 | model | observed progress | clear time (game s) | evidence |
 | --- | ---: | ---: | --- |
+| perplexity: decider v1.2 | 100.00% | 31.18 | [replay](results/replays/pplx-pixels-sampled-clear-t005-seed0.mp4) · [trace](results/traces/pplx-pixels-sampled-clear-t005-seed0.json) · [profile](results/profiles/pplx-pixels-sampled-clear-t005-seed0.json) <!-- run:pplx-pixels-sampled-clear-t005-seed0 --> |
 | baseten: mammoth 1 | 100.00% | 31.93 | [replay](results/replays/mammoth-pixels-first-clear.mp4) · [trace](results/traces/mammoth-pixels-first-clear.json) · [profile](results/profiles/mammoth-pixels-first-clear.json) <!-- run:mammoth-pixels-first-clear --> |
 | baseten: mammoth 1 | 81.83% (aborted) | - | [replay](results/replays/pixels-best-baseten--mammoth-1.mp4) · [trace](results/traces/pixels-best-baseten--mammoth-1.json) · [profile](results/profiles/pixels-best-baseten--mammoth-1.json) <!-- run:pixels-best-baseten--mammoth-1 --> |
 | openai: gpt-6 luna decisions | 77.86% | - | [replay](results/replays/pixels-best-openai--gpt-6-luna-decisions.mp4) · [trace](results/traces/pixels-best-openai--gpt-6-luna-decisions.json) · [profile](results/profiles/pixels-best-openai--gpt-6-luna-decisions.json) <!-- run:pixels-best-openai--gpt-6-luna-decisions --> |
