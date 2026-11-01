@@ -15,7 +15,7 @@ const examples = index.examples;
 const observations = index.observations;
 const parsed = parseDataset(index);
 const publishedIds = new Set(parsed.observations.map(run => run.id));
-const published = [...new Map([...examples, ...observations].map(e => [e.id, e])).values()].filter(e => publishedIds.has(e.id));
+const published = [...new Map([...examples, ...observations, ...(index.technical_diagnostics ?? [])].map(e => [e.id, e])).values()].filter(e => publishedIds.has(e.id));
 const replays = published.filter(e => e.replay_href);
 assert.equal(published.length, parsed.observations.length);
 assert.equal(replays.length, parsed.runs.length);
@@ -77,7 +77,7 @@ for (const e of published) {
   assert.ok(cells[0].includes(e.model_id), `${e.id}: exact model identity`);
   assert.equal(cells[2], e.progress_pct === null ? '–' : pct(e.progress_pct), `${e.id}: no invented score`);
   assert.equal(Number(cells[4].replaceAll(',', '')), e.native_frames);
-  if (e.status === 'api_abort') assert.equal(cells[6], 'incomplete');
+  if (e.status === 'api_abort') assert.equal(cells[6], 'api error');
   else if (/abort/.test(e.status)) assert.equal(cells[6], 'aborted');
   if (!e.replay_href) assert.ok((await page.locator(`tr[data-run-id="${e.id}"] a`).getAttribute('href')).endsWith(e.trace_href));
 }
@@ -155,7 +155,7 @@ await page.waitForFunction(href => {
   const video = document.querySelector('[data-side="b"] video');
   return video.currentSrc.endsWith(href) && video.readyState >= 2;
 }, prefix.replay_href);
-assert.equal(await page.locator('[data-side="b"] .caption-result').innerText(), 'incomplete');
+assert.equal(await page.locator('[data-side="b"] .caption-result').innerText(), 'api error');
 await page.locator(`tr[data-run-id="${pick.id}"]`).hover();
 const hovered = await page.locator(`tr[data-run-id="${pick.id}"]`).evaluate(r => getComputedStyle(r).backgroundColor);
 assert.notEqual(hovered, 'rgba(0, 0, 0, 0)', 'hover tints the row');

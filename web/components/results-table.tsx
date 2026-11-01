@@ -2,12 +2,12 @@
 
 import { useMemo, useState } from 'react';
 import { useBenchmark } from './benchmark-provider';
-import { formatProgress, formatSeconds, trackLabel, type Result } from '../lib/data';
+import { formatProgress, formatSeconds, isApiError, trackLabel, type Result } from '../lib/data';
 
 type Value = string | number | null;
 type Column = { key: string; label: string; title?: string; numeric?: boolean; first: 'ascending' | 'descending'; value: (run: Result) => Value };
 
-const statusLabel = (run: Result) => run.completed ? 'cleared' : run.status === 'api_abort' ? 'incomplete' : /abort/.test(run.status) ? 'aborted' : /death|game_over/.test(run.status) ? 'not cleared' : run.status.replaceAll('_', ' ');
+const statusLabel = (run: Result) => run.completed ? 'cleared' : isApiError(run.status) ? 'api error' : /abort/.test(run.status) ? 'aborted' : /death|game_over/.test(run.status) ? 'not cleared' : run.status.replaceAll('_', ' ');
 
 const COLUMNS: Column[] = [
   { key: 'model', label: 'model', first: 'ascending', value: run => run.name.toLowerCase() },

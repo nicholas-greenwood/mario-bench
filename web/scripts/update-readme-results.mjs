@@ -1,7 +1,7 @@
 // Node 24 reads the same TypeScript selector used by the website.
 import { readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
-import { parseDataset } from '../lib/data.ts';
+import { parseDataset, unavailableProgress } from '../lib/data.ts';
 
 const begin = '<!-- BEGIN GENERATED RESULTS -->';
 const end = '<!-- END GENERATED RESULTS -->';
@@ -11,11 +11,12 @@ const escape = value => String(value).replaceAll('|', '\\|').replaceAll('\n', ' 
 export function renderResults(index) {
   const published = parseDataset(index).observations;
   if (published.some(run => run.level !== '1-1')) throw new Error('README tables currently cover world 1-1 only');
-  const rawById = new Map([...index.examples, ...(index.observations ?? [])].map(run => [run.id, run]));
+  const rawById = new Map([...index.examples, ...(index.observations ?? []), ...(index.technical_diagnostics ?? [])].map(run => [run.id, run]));
   const lines = [begin, '',
     `${published.length} published runs, matching the website's all runs view, on world 1-1`,
     'individual development runs use different settings; these are not model averages or a ranking', '',
-    '[serialization diagnostics](results/diagnostics/openai-state-serialization.json) are separate from these runs', ''];
+    'the json retest is a separate retrospective run; its overlapping prefix is evidence only',
+    '[serialization diagnostics and prefix](results/diagnostics/openai-state-serialization.json)', ''];
   for (const [track, title] of [['state', 'state'], ['image', 'pixels only']]) {
     const runs = published.filter(run => run.track === track).sort((a, b) =>
       (b.progressPct ?? -1) - (a.progressPct ?? -1)
@@ -30,7 +31,7 @@ export function renderResults(index) {
         throw new Error(`${run.id}: completion requires verified 100% and a clear time`);
       }
       if (!run.completed && run.progressPct === 100) throw new Error(`${run.id}: failed run cannot score 100%`);
-      const progress = run.progressPct === null ? 'incomplete'
+      const progress = run.progressPct === null ? unavailableProgress(run.status)
         : `${run.progressPct.toFixed(2)}%${/abort/.test(run.status) ? ' (aborted)' : ''}`;
       const seconds = run.completed ? run.clearSeconds.toFixed(2) : '-';
       const links = [raw.replay_href && `[replay](results/${raw.replay_href})`,
