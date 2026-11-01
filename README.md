@@ -1,25 +1,41 @@
 # mario bench
 
-give a decision model the controller and watch it try to beat mario
+a benchmark for decision models playing super mario bros. models receive screenshots
+or game state and choose controller inputs
 
-pick a model, show it screenshots or game state, and let it choose every move
+[demo](https://mario.nicholasg.com/)
 
-[demo](https://mario.nicholasg.com/) · deployment coming soon
+## results
 
-![pplx decider v1.2 clearing mario world 1-1](docs/media/first-clear.gif)
+all 8 published runs are replay-verified on world 1-1. these are selected development
+runs with different settings: per-run scores, not model averages or a ranking
 
-*pplx decider v1.2 reaching the flag in a recorded, verified run, replayed at 2x speed*
+| model | input | progress | cleared | clear time (game s) | frames per decision | evidence |
+| --- | --- | ---: | :---: | ---: | ---: | --- |
+| drex max | state | 100.00% | yes | 23.07 | 12 | [replay](results/replays/drex-state-clear.mp4) · [profile](results/profiles/drex-state-clear.json) |
+| liquid d1 ultra | state | 100.00% | yes | 20.92 | 4 | [replay](results/replays/liquid-state-clear.mp4) · [profile](results/profiles/liquid-state-clear.json) |
+| mercury decide | state | 100.00% | yes | 22.00 | 5 | [replay](results/replays/mercury-state-clear.mp4) · [profile](results/profiles/mercury-state-clear.json) |
+| pplx decider v1.2 | state | 100.00% | yes | 20.13 | 4 | [replay](results/replays/pplx-state-clear.mp4) · [profile](results/profiles/pplx-state-clear.json) |
+| jev 1.14 | pixels | 51.94% | no | - | 6 | [replay](results/replays/jev-pixels-partial.mp4) · [profile](results/profiles/jev-pixels-partial.json) |
+| mammoth 1 | pixels | 56.01% | no | - | 6 | [replay](results/replays/mammoth-pixels-partial.mp4) · [profile](results/profiles/mammoth-pixels-partial.json) |
+| mercury decide | pixels | 56.30% | no | - | 6 | [replay](results/replays/mercury-pixels-partial.mp4) · [profile](results/profiles/mercury-pixels-partial.json) |
+| pplx decider v1.2 | pixels | 77.83% | no | - | 7 | [replay](results/replays/pplx-pixels-partial.mp4) · [profile](results/profiles/pplx-pixels-partial.json) |
 
-pplx decider, drex max, mercury decide and liquid d1 ultra have verified 1-1
-clears using game state
+state uses memory-derived visible geometry and motion. pixels (`image` track) uses
+screenshots, crops and past screens where configured, plus rules, controls and timing
+every pixels request was audited for the absence of memory-derived game state
 
-no model has cleared it from screenshots alone yet
+clear time is native gameplay frames divided by 60, excluding api waiting time
+and available only for completed runs
 
-these are separate development runs with different settings, not a leaderboard
+[results and traces](results/README.md) · [public 22-model roster](results/models.json) · [website data guide](docs/website-data.md)
 
-[recorded results and replays](results/README.md) · [website data guide](docs/website-data.md)
+![pplx decider v1.2 clearing world 1-1](docs/media/first-clear.gif)
 
-## try it locally
+*pplx decider v1.2, state input, replayed at 2x speed*
+
+<details>
+<summary>run locally</summary>
 
 with python 3.13 and `uv` installed, run from the repository root:
 
@@ -43,11 +59,11 @@ nothing spends api credits until you ask it to play. the key stays server-side
 pause to inspect a decision, or reset for a fresh attempt. the viewer runs
 locally; you don't need the hosted demo. `--help` lists model and budget options
 
-## run a benchmark
+### run a benchmark
 
 the roster has 22 state models, with 14 currently passing the screenshot checks
 
-see [models.json](benchmark/models.json) for compatible model/provider pairs
+see the [runner configuration](benchmark/models.json) for compatible model/provider pairs
 
 ```sh
 # show the plan without sending requests
@@ -78,11 +94,14 @@ where applicable, and `summary.json`. repeat the same command and output path to
 resume. use a new directory after changing code, models or settings. uncertain
 interrupted requests stop for inspection rather than silently spending twice
 
-## how the score works
+</details>
 
-the headline is **average progress, from 0 to 100**. dying keeps the legitimate
-progress already earned; only confirmed native game completion gets 100. average
-all declared attempts within each level, then give each level equal weight
+<details>
+<summary>methodology, verification and notices</summary>
+
+the aggregate score is **average progress, from 0 to 100**, unavailable for these
+selected runs. average all declared attempts within each level, then weight levels
+equally. dying keeps legitimate progress; only confirmed game completion gets 100
 
 world 1-1 has a calibrated start and finish. worlds 1-2, 1-3 and 1-4 run too,
 but their progress mappings are still uncalibrated
@@ -101,7 +120,7 @@ this is a public development benchmark. prompts and controls have been tuned on
 a final shared configuration, repeated evaluation and held-out levels are still
 ahead. selected successful attempts aren't an aggregate score
 
-## under the hood
+### inputs and controls
 
 the game freezes while the model thinks. by default, it chooses 1 of 12 complete
 controller inputs, held for exactly 4 native frames
@@ -119,8 +138,7 @@ neighbour sampling. model/provider identity is checked, and each worker owns its
 own emulator. malformed model actions count as failed play; infrastructure
 failures leave the comparable aggregate unavailable instead of becoming game losses
 
-<details>
-<summary>protocol, replay checks and reproducibility</summary>
+### replay checks and reproducibility
 
 for 1-1, progress is `100 * (furthest_valid_x - 40) / (3161 - 40)`
 
@@ -155,9 +173,7 @@ export the current development candidate's code, prompts, roster and runtime:
 read the [full protocol](benchmark/PROTOCOL.txt) and
 [machine-readable settings](benchmark/protocol.json) for the scoring contract
 
-</details>
-
-## repository
+### repository
 
 - `prototype/` contains the emulator, decision client and local viewer
 - `benchmark/` contains the runner, scoring, protocol and replay tools
@@ -169,3 +185,5 @@ this repository includes no rom files or game binaries; the emulator dependency
 supplies its game data
 
 [dependency notices](docs/third-party-notices.md)
+
+</details>
