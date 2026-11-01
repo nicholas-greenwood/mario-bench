@@ -674,8 +674,8 @@
       "trace_sha256": "5a49c8c74e8b2b6460455feaa863f6eb5f90b08adcf6c71f099eab3a94ec5c5c",
       "profile_href": "profiles/state-c4-cloudflare--clef.json",
       "profile_sha256": "a6254712c15640da7c58d2d47f0256b5dbc0d4eff73932bc63fb40eee303244e",
-      "replay_href": null,
-      "replay_sha256": null,
+      "replay_href": "replays/state-c4-cloudflare--clef.mp4",
+      "replay_sha256": "0feda2bcc78e2760a1a947951f7875ba22482c07cf86a2f19334a6db55f453dd",
       "source_hashes": {
         "episode_sha256": "44417f19e9e77b0fcc72e29e6e512e6d04e65fc7d2b7f5ea67b8ecbdaf0c0e17",
         "observer_source_sha256": "e9a16a88c9fbffbe62d62b7ce4f17714a764e5430528014ccb39cc9e23a2529c",
@@ -723,8 +723,8 @@
       "trace_sha256": "1b05df1ca03979e2eaeee932f9175ef8bf25bba0265fe1050db284ff61215241",
       "profile_href": "profiles/state-c4-cloudflare--clef-flash.json",
       "profile_sha256": "052b6941ee8e7c41acc52cf7878315264bec4bdaaaed7ac4f74dcfdb61643ad7",
-      "replay_href": null,
-      "replay_sha256": null,
+      "replay_href": "replays/state-c4-cloudflare--clef-flash.mp4",
+      "replay_sha256": "182575c46405e5ea9ab2832759f514cbd57f84896ca606337cd12a949520c174",
       "source_hashes": {
         "episode_sha256": "3c47e092d1c30284fa967198cfd6e6a9ce8ac85adb35dac490fccbeb061275c9",
         "observer_source_sha256": "e9a16a88c9fbffbe62d62b7ce4f17714a764e5430528014ccb39cc9e23a2529c",
@@ -772,8 +772,8 @@
       "trace_sha256": "79fdedeb3e85119d7c89b531b1901d3183b5c3b19f9bed241e4c95defc3962eb",
       "profile_href": "profiles/state-c4-cloudflare--clef-omni.json",
       "profile_sha256": "9da53e1879243e8a36e69f740eff90576c3faa73fe7b4bc6cb95240e15d972d9",
-      "replay_href": null,
-      "replay_sha256": null,
+      "replay_href": "replays/state-c4-cloudflare--clef-omni.mp4",
+      "replay_sha256": "7529b6361c57d60699d7cfabe81e803e8c3b903fa622e09bfa072d357a37d34f",
       "source_hashes": {
         "episode_sha256": "a95b8b618f37b2f5bfb28fa485b35d9034e05e5df03d2bc6854f934c80ae5d8c",
         "observer_source_sha256": "e9a16a88c9fbffbe62d62b7ce4f17714a764e5430528014ccb39cc9e23a2529c",
@@ -821,8 +821,8 @@
       "trace_sha256": "f9da99e068fe1a20c93c8ff7041aa6cda2d802c7a1f49c490621ce26810bb9bb",
       "profile_href": "profiles/state-c4-inception--mercury-decide.json",
       "profile_sha256": "37ff4f654409eeaa40f9540ffee999607a6a4b12edea0ff098a745ac04b94a83",
-      "replay_href": null,
-      "replay_sha256": null,
+      "replay_href": "replays/state-c4-inception--mercury-decide.mp4",
+      "replay_sha256": "f292aec244ef1c3cdee4e1aaadd42c842aa8cbc582b7bb85ed0debd8e57cbcb5",
       "source_hashes": {
         "episode_sha256": "6124e20c0f4485a5035efd4f19d66d935adf46a7574098680b2dd36966a6af4f",
         "observer_source_sha256": "e9a16a88c9fbffbe62d62b7ce4f17714a764e5430528014ccb39cc9e23a2529c",
@@ -876,7 +876,8 @@
         "episode_sha256": "8dccf56d4344c2a41aac46b9a34d5d53a99b70abd14d9121a2b02386afcbd9c7",
         "observer_source_sha256": "e9a16a88c9fbffbe62d62b7ce4f17714a764e5430528014ccb39cc9e23a2529c",
         "audit_sha256": "192dc870b0fc217a3c9521b2d0d896c68d3b6759765aef0286d67084af7042e2"
-      }
+      },
+      "replay_unavailable_reason": "no native gameplay frames: the api attempt ended before any action"
     },
     {
       "id": "state-c4-microsoft--microsoft-decision-1",
@@ -919,8 +920,8 @@
       "trace_sha256": "ca9e679bc4bdf0aaf9fa413598768eadaa265e2d24e5d5bbb3a4a83a522cb317",
       "profile_href": "profiles/state-c4-microsoft--microsoft-decision-1.json",
       "profile_sha256": "0af912cc8596bff46c924be4ccc627d3fa4e61fb79d58b5e8e28d693e4cc6994",
-      "replay_href": null,
-      "replay_sha256": null,
+      "replay_href": "replays/state-c4-microsoft--microsoft-decision-1.mp4",
+      "replay_sha256": "dd791bef04d6cbf19183c7b31ec40b829b6867e8c82b43c1eba4935590a57847",
       "source_hashes": {
         "episode_sha256": "feaa110e53327baef1b1e09393d066387d83d9d1c64b7c70cef8d0cef0a442ca",
         "observer_source_sha256": "e9a16a88c9fbffbe62d62b7ce4f17714a764e5430528014ccb39cc9e23a2529c",
@@ -968,8 +969,8 @@
       "trace_sha256": "1856a7c0ca2c21f4fd3e3ce9c0ae765217ee61138705379e5af0b4b6dd383b29",
       "profile_href": "profiles/state-c4-nace-ai--drex-v1-5.json",
       "profile_sha256": "2764143a2334246de9a969856fd85b49e2d7dd8ebfaec8cfd7a60113850165a2",
-      "replay_href": null,
-      "replay_sha256": null,
+      "replay_href": "replays/state-c4-nace-ai--drex-v1-5.mp4",
+      "replay_sha256": "7b647a8b5b246021dd7aa2c8b6038fe1cb684fd470b9bfcc64b6fd49c0a82796",
       "source_hashes": {
         "episode_sha256": "51af315a2f1295db170543d9b18efab63a9838b564ea2c7b19464c70319c5a67",
         "observer_source_sha256": "e9a16a88c9fbffbe62d62b7ce4f17714a764e5430528014ccb39cc9e23a2529c",
@@ -1017,8 +1018,8 @@
       "trace_sha256": "e4f3e0e866fc09adb6b83ec33fb54786d7935a834b12a047b3f1d5c68c7f7ae4",
       "profile_href": "profiles/state-c4-nace-ai--drex-v2-0.json",
       "profile_sha256": "0c7caf7cbaeafc9397f72607fd21f674138b8d3b3fd88669b4a2fce1308e3a55",
-      "replay_href": null,
-      "replay_sha256": null,
+      "replay_href": "replays/state-c4-nace-ai--drex-v2-0.mp4",
+      "replay_sha256": "7102dda237bed2052ed730bf61567599687dbc27a7e2f6c69374abfa3ebcd2fa",
       "source_hashes": {
         "episode_sha256": "b72c05484d921ff7bb76c7606b2485ad917a9fcbfdf998b2e1305e6eb6d10086",
         "observer_source_sha256": "e9a16a88c9fbffbe62d62b7ce4f17714a764e5430528014ccb39cc9e23a2529c",
@@ -1066,8 +1067,8 @@
       "trace_sha256": "30ebc59f6d37348046620bd59c293e94076a7d6e0c09ea4fe576c3f8c788260c",
       "profile_href": "profiles/state-c4-perplexity--pplx-decider-flash-v1-2.json",
       "profile_sha256": "0035cc6eace31e6edc9875ed49142f48c859338384f386a019028f02d8bd7084",
-      "replay_href": null,
-      "replay_sha256": null,
+      "replay_href": "replays/state-c4-perplexity--pplx-decider-flash-v1-2.mp4",
+      "replay_sha256": "6fed06d0f41e468fcf9adbd855517291e8f97de869d07754cad4e6965e1a395e",
       "source_hashes": {
         "episode_sha256": "1097eca1d98ee816bc523cdb5d80e2118e576f258ee688244c787ba4e880f05d",
         "observer_source_sha256": "e9a16a88c9fbffbe62d62b7ce4f17714a764e5430528014ccb39cc9e23a2529c",
@@ -1115,8 +1116,8 @@
       "trace_sha256": "1da3204711b9fa613c8b97e87659e2cd2736f19d78bf7baa7e715d294d1a2917",
       "profile_href": "profiles/state-c4-respan--span-02.json",
       "profile_sha256": "0a221aa5e696d593aebd67a2446b5c72d7f85c7fef6993b560ce51ceed65adf0",
-      "replay_href": null,
-      "replay_sha256": null,
+      "replay_href": "replays/state-c4-respan--span-02.mp4",
+      "replay_sha256": "b19a9ee4150a6e4ac6bc37376ffada49079f9586ede4819c407bf1c184f21182",
       "source_hashes": {
         "episode_sha256": "10939a887b76060ca88eb927e1d70ca7546b79cdb13fc4f69a2d4488c2f00c07",
         "observer_source_sha256": "e9a16a88c9fbffbe62d62b7ce4f17714a764e5430528014ccb39cc9e23a2529c",
@@ -1164,8 +1165,8 @@
       "trace_sha256": "38635d43931cf2e926c51e89ffd15814738830bbb58be69ddc5947d351375a0f",
       "profile_href": "profiles/state-c4-scaledown--classify-1.json",
       "profile_sha256": "23ae0ce182266b81847a041add76bfce2d4a54c9d81422a97b584828839b1d16",
-      "replay_href": null,
-      "replay_sha256": null,
+      "replay_href": "replays/state-c4-scaledown--classify-1.mp4",
+      "replay_sha256": "62c55f027d19e2eb1d6aa3ff5e7eb80e053d55eced33ae05510d4ed54dcb84cc",
       "source_hashes": {
         "episode_sha256": "f706a76dcb4ae1784f4651d346c05449a48928037c67fc96a5e521a28c8ef01e",
         "observer_source_sha256": "e9a16a88c9fbffbe62d62b7ce4f17714a764e5430528014ccb39cc9e23a2529c",
@@ -1213,8 +1214,8 @@
       "trace_sha256": "1c2f2f228d20a25223239a1647c99f39117c8e4d666f5f7c1bee765c4b5bc500",
       "profile_href": "profiles/state-c4-typesafe--jev-1-13.json",
       "profile_sha256": "b7cc8102297007adc52f1f5a3ed0f5f58670f0bde3452f1debaa915292fb3d6d",
-      "replay_href": null,
-      "replay_sha256": null,
+      "replay_href": "replays/state-c4-typesafe--jev-1-13.mp4",
+      "replay_sha256": "27e03c0b05f5a9e31bc21a15f23dd1225c42127ae79942adda76b1fd132991b2",
       "source_hashes": {
         "episode_sha256": "dc708992ce95cdb09a5a31c85f2f2732842bb0205f72020ebd3ec5edb99fad19",
         "observer_source_sha256": "e9a16a88c9fbffbe62d62b7ce4f17714a764e5430528014ccb39cc9e23a2529c",
@@ -1262,8 +1263,8 @@
       "trace_sha256": "42720bb8886597ffba25d5c9cb4f9712ae4e4497ebe4a359591ea8dd99b7e2d7",
       "profile_href": "profiles/state-c4-typesafe--jev-1-14.json",
       "profile_sha256": "d35b723ba847fdf0de774cb3890cb455c2ce37ce29bfa1959c08f44d5ed1f5cf",
-      "replay_href": null,
-      "replay_sha256": null,
+      "replay_href": "replays/state-c4-typesafe--jev-1-14.mp4",
+      "replay_sha256": "9ea3c9b2c888ad4faebccfebdc2bf20e4cc16d4bbc913cc96d805401a3bf7a1d",
       "source_hashes": {
         "episode_sha256": "9f0a5dddc3e2c164e6d736642f3a6158a433632145a4be5b95072dfbe200a742",
         "observer_source_sha256": "e9a16a88c9fbffbe62d62b7ce4f17714a764e5430528014ccb39cc9e23a2529c",
@@ -1311,8 +1312,8 @@
       "trace_sha256": "2dfd75afda7a584d3deba3044b2eee4050cee5f21db076e4c487b8f27bd01db2",
       "profile_href": "profiles/state-c4-upstage--solar-decide-flash.json",
       "profile_sha256": "5cb688968a5589a308c84614d5e996a33b8cedbf4e1e7cdcf9dc7a85a4efc3b0",
-      "replay_href": null,
-      "replay_sha256": null,
+      "replay_href": "replays/state-c4-upstage--solar-decide-flash.mp4",
+      "replay_sha256": "2f5d68227911f7ba902ebd50af98eb18c8fec58897027e51e056e5eaca287e70",
       "source_hashes": {
         "episode_sha256": "b8f44a4108ab05cf7d98907e206b394483659dcf132405885bf08a74046bf692",
         "observer_source_sha256": "e9a16a88c9fbffbe62d62b7ce4f17714a764e5430528014ccb39cc9e23a2529c",
@@ -1360,8 +1361,8 @@
       "trace_sha256": "0464ade2ebe92f293b843559c7107f80f31e9a20118987a26ea712f5bd1515c4",
       "profile_href": "profiles/state-c4-baseten--elephant-1.json",
       "profile_sha256": "6cdc423a9e72eb783114c4ab656813d21ceb4ab640c5d90fba208da9f56ca0eb",
-      "replay_href": null,
-      "replay_sha256": null,
+      "replay_href": "replays/state-c4-baseten--elephant-1.mp4",
+      "replay_sha256": "8f057bd61c2bd51a13f0959586ff54f152caada39ff9c2b0910fa2080578cf08",
       "source_hashes": {
         "episode_sha256": "84bea44c52d753959b282d78c33451a7b7a18521d0f6d6537801598eb65895c0",
         "observer_source_sha256": "e9a16a88c9fbffbe62d62b7ce4f17714a764e5430528014ccb39cc9e23a2529c",
@@ -1409,8 +1410,8 @@
       "trace_sha256": "a1544f4fc9101f0d9426e3b15f8bd8f21da57646f07f898c988c6aeb466be0c4",
       "profile_href": "profiles/state-c4-baseten--joey-1.json",
       "profile_sha256": "1087de48eaa3ce3c9407438475598fcf3f9dcfb3d31d0495c5895cce151c6b89",
-      "replay_href": null,
-      "replay_sha256": null,
+      "replay_href": "replays/state-c4-perplexity--pplx-decider-flash-v1-2.mp4",
+      "replay_sha256": "6fed06d0f41e468fcf9adbd855517291e8f97de869d07754cad4e6965e1a395e",
       "source_hashes": {
         "episode_sha256": "c346b0523909da5ffd7b131038f04d2f9607c1cef25e87a0b634187f2a8898ef",
         "observer_source_sha256": "e9a16a88c9fbffbe62d62b7ce4f17714a764e5430528014ccb39cc9e23a2529c",
@@ -1458,8 +1459,8 @@
       "trace_sha256": "738a78e9b01466c9eede0202872be6443e123eb48ee0a433f6ae5b1b24df0efb",
       "profile_href": "profiles/state-c4-baseten--mammoth-1.json",
       "profile_sha256": "c3b217d0884fed1c0e90592249ff82053af51051d1acf8f2a3a48a7f334d1ae3",
-      "replay_href": null,
-      "replay_sha256": null,
+      "replay_href": "replays/state-c4-baseten--mammoth-1.mp4",
+      "replay_sha256": "4b63e16cf32179e879a84ad9350e28eb87cb171f9f51241f95f5c2f3fc5d99b8",
       "source_hashes": {
         "episode_sha256": "ad1f40f7002a2dc2c37edad647a442c22719431ba91c7a310538862c86f34621",
         "observer_source_sha256": "e9a16a88c9fbffbe62d62b7ce4f17714a764e5430528014ccb39cc9e23a2529c",
@@ -1507,8 +1508,8 @@
       "trace_sha256": "bb648446fada8825c7595c66e665904e8aa966edb50dcfa3af4dee201aa32ce3",
       "profile_href": "profiles/state-c4-liquid--d1-ultra.json",
       "profile_sha256": "446d9d62b14bc7ef0a1fbb98f299dc11b81319eda57b73a59c6613d9bd856e48",
-      "replay_href": null,
-      "replay_sha256": null,
+      "replay_href": "replays/state-c4-liquid--d1-ultra.mp4",
+      "replay_sha256": "a93c20ad0dbfe030de2be347f5c65cd0767eac80370ff69032d1baf455fb39a0",
       "source_hashes": {
         "episode_sha256": "23099283b5794a7d0ec1e588f6ddbda8b4de94746542f49f55ac39783e5f8b5e",
         "observer_source_sha256": "e9a16a88c9fbffbe62d62b7ce4f17714a764e5430528014ccb39cc9e23a2529c",
@@ -1556,8 +1557,8 @@
       "trace_sha256": "58fb00c2c336ebd746834acbbe335d42f2e41cfc079405e03134c6347cf88bdc",
       "profile_href": "profiles/state-c4-liquid--d1-1.json",
       "profile_sha256": "365413c0ba191c93aeb1d3b5a77ce8d69fc6544c01ecbf61d4603bcd75caa6d7",
-      "replay_href": null,
-      "replay_sha256": null,
+      "replay_href": "replays/state-c4-perplexity--pplx-decider-flash-v1-2.mp4",
+      "replay_sha256": "6fed06d0f41e468fcf9adbd855517291e8f97de869d07754cad4e6965e1a395e",
       "source_hashes": {
         "episode_sha256": "5e85b7cefeba1bcda94cbd4c59e900c172a0447ed8ec7dc41d2a282e156172ce",
         "observer_source_sha256": "e9a16a88c9fbffbe62d62b7ce4f17714a764e5430528014ccb39cc9e23a2529c",
@@ -1605,8 +1606,8 @@
       "trace_sha256": "726037d8ef935db5f2c5a85b8cfbb91f0ee238af6693af9f9d5a32e5a9133700",
       "profile_href": "profiles/state-c4-nace-ai--drex-max.json",
       "profile_sha256": "31d640acf95eee4d2aad0c9bf6dc65f2e49f31f36a3eb004f1b9c51a54dd3eed",
-      "replay_href": null,
-      "replay_sha256": null,
+      "replay_href": "replays/state-c4-nace-ai--drex-max.mp4",
+      "replay_sha256": "7051f6fd0daea9a82e00dd4c07719d641a60d6611a529e386e043e83617b25b8",
       "source_hashes": {
         "episode_sha256": "18616e77a0397cbd09a0289d78ed354bfdbe159c33592e7df138869a65695971",
         "observer_source_sha256": "e9a16a88c9fbffbe62d62b7ce4f17714a764e5430528014ccb39cc9e23a2529c",
@@ -1654,8 +1655,8 @@
       "trace_sha256": "726b84b3758b7c7455a6d70d8b2c7f3b2ad5762add7ef0f0d7156166d4ca8be0",
       "profile_href": "profiles/state-c4-openai--gpt-6-luna-decisions.json",
       "profile_sha256": "56a9fc9e24a609f36d382835fba94b9afd118035f302e150f6f9e57cdd88d51e",
-      "replay_href": null,
-      "replay_sha256": null,
+      "replay_href": "replays/state-c4-openai--gpt-6-luna-decisions.mp4",
+      "replay_sha256": "3d521a5044438bdf92d4f6306ad3aec2a5350c3adc3aa83ea0908f2363683031",
       "source_hashes": {
         "episode_sha256": "388987085e2a74c3e58684f28392c63b712d3e6132e7a4be3400d3198a41260b",
         "observer_source_sha256": "e9a16a88c9fbffbe62d62b7ce4f17714a764e5430528014ccb39cc9e23a2529c",
@@ -1766,8 +1767,8 @@
       "trace_sha256": "e631fd8a9be1289c0275cfe7d02cb3ae1134f923e57855c3915e386ace6bf167",
       "profile_href": "profiles/pixels-best-baseten--elephant-1.json",
       "profile_sha256": "5f2ad5f14325ad9d80766db5a339b35e667ae4522a361df7b3dc81d51dcd8684",
-      "replay_href": null,
-      "replay_sha256": null,
+      "replay_href": "replays/pixels-best-baseten--elephant-1.mp4",
+      "replay_sha256": "8926249fd1f65a7d5fe1b847e4bf6beecbda0a946fb91520820a9f85fb1f67ad",
       "source_hashes": {
         "requests_sha256": "51e2a06c0562cc15c005a941e3face4bfa274b3f9a90e37f1aeefbcacaab7f19",
         "responses_sha256": "f875111769d7b234c944b1e617a3e7289bd4dff929b09f33c10098e1d5b72389",
@@ -1817,8 +1818,8 @@
       "trace_sha256": "f61cbd01a486871fcec7490b5d3fbf9dd3cf6ed1980ccb8989b1722f0d43feb0",
       "profile_href": "profiles/pixels-best-baseten--joey-1.json",
       "profile_sha256": "6ab07db093ac3519db99a49a50387244e710b59296f82653e76190610eed26ea",
-      "replay_href": null,
-      "replay_sha256": null,
+      "replay_href": "replays/pixels-best-baseten--joey-1.mp4",
+      "replay_sha256": "a798984c720b4e4b5f7b8389edc6f45b15c4a6d928a26a980bf1355e79194ee1",
       "source_hashes": {
         "requests_sha256": "1785598002d428b6622ecd1d7d92e8084a3874b74c71a9354a5034cb1b7299f3",
         "responses_sha256": "9a70e44c43260cabddee2624475be0cc4aa852a453c5dfca0992655dbcfd35e3",
@@ -1868,8 +1869,8 @@
       "trace_sha256": "1cb87de44c1b80dc143949e7ed814920ebde3c5137a6cacaca3b40d0935cc140",
       "profile_href": "profiles/pixels-best-baseten--mammoth-1.json",
       "profile_sha256": "d295311acc09af5aa8fab5f33d73d8a43083988e33a18e246a83b9884c645ed8",
-      "replay_href": null,
-      "replay_sha256": null,
+      "replay_href": "replays/pixels-best-baseten--mammoth-1.mp4",
+      "replay_sha256": "d231a80b938dbd8c2e202e103306d21a69941282a54120eb6c8c7e42893b2137",
       "source_hashes": {
         "requests_sha256": "4d4a744ea4fea04d46b2603067397897e230b04046167386973ddc13c01f5d09",
         "responses_sha256": "a65941302218764a47f95c47cfb0926a6eb05f6ec649884184a6ea0571bdff52",
@@ -1919,8 +1920,8 @@
       "trace_sha256": "605b198ce395653f286359d07c468e30630388b883074347237986e1273dfa48",
       "profile_href": "profiles/pixels-best-cloudflare--clef.json",
       "profile_sha256": "ddb1bb4112fccab4d4f5ffc820255fe51ef6377a58336197faba6e9023c02603",
-      "replay_href": null,
-      "replay_sha256": null,
+      "replay_href": "replays/pixels-best-cloudflare--clef.mp4",
+      "replay_sha256": "d7c0ff99057f77d004dfd62c21c4a68dd03f2d104aa560748c75a4f0d0ac094e",
       "source_hashes": {
         "requests_sha256": "5f6506d3f325625483ac328ddac266849054db1a94f66ee93621f0fd665b5fb8",
         "responses_sha256": "7e0f4988c99db984ed164154583167c8d32994f9c0fc6862a4d6d390eeb4a12d",
@@ -1970,8 +1971,8 @@
       "trace_sha256": "de851a72a001d1b19d115d371372cf9501bde13ca58fc796597b6d2b31352d80",
       "profile_href": "profiles/pixels-best-cloudflare--clef-flash.json",
       "profile_sha256": "69f90b0bf48577324bf0c4f1482df6b58a747ac2187d154df0efda20738e0de9",
-      "replay_href": null,
-      "replay_sha256": null,
+      "replay_href": "replays/pixels-best-cloudflare--clef-flash.mp4",
+      "replay_sha256": "3059f337550eff2c0189e9bb1ca8c1b5ee6cc1515321a7eff05415177b9ddfb9",
       "source_hashes": {
         "requests_sha256": "365d56cd3229ea227d1af67de517ac820e02534152b726bde84f55ee1a11250e",
         "responses_sha256": "8e544a3b2597773027081fb8f0f23820105c4f1a80ab447ef98119699c78855c",
@@ -2021,8 +2022,8 @@
       "trace_sha256": "cb02b68730cc2189fdbde410933168aa855c7a49ce34a6393343462d154c69aa",
       "profile_href": "profiles/pixels-best-cloudflare--clef-omni.json",
       "profile_sha256": "0fd3e44ecbf22b3962ee92a0e84acfbfb4165203b887aeee74381da9ccd9c54e",
-      "replay_href": null,
-      "replay_sha256": null,
+      "replay_href": "replays/pixels-best-cloudflare--clef-omni.mp4",
+      "replay_sha256": "c22f1a04ae9f03b0d111248a6ffedafea7deb5cc34bd65b41f20668e101480da",
       "source_hashes": {
         "requests_sha256": "8d9a0027548c100edbca255fe514d8130de59d132258b9fe0e9a8df1d592ec5a",
         "responses_sha256": "c1050a030bb2d8f2a6bd52a360d4b3a21b7724e4172d6cb05195af9bf7180231",
@@ -2072,8 +2073,8 @@
       "trace_sha256": "412a1ee41665c36aa79c9a6c75049583be2f96b3ba1ba82be795fc6c07feb8f2",
       "profile_href": "profiles/pixels-best-inception--mercury-decide.json",
       "profile_sha256": "16fc4455b6e3d170e8645d6367fc6810cac505652edd6fbd8ffbecabce141665",
-      "replay_href": null,
-      "replay_sha256": null,
+      "replay_href": "replays/mercury-pixels-partial.mp4",
+      "replay_sha256": "600ddef3f4f11b1c6db825642e9ca97c9ec71de87fec0ac3e4810b1f90d986c8",
       "source_hashes": {
         "requests_sha256": "d5c91fc570f58ad0db9c01b468a7bbbc92749aaff3091a19a2a7d6c1d9b3eb2e",
         "responses_sha256": "0407d3b7001e1ac51c05b00f861b481e5b08251cc600629be11b4357a57d6501",
@@ -2123,8 +2124,8 @@
       "trace_sha256": "e1611488ecac60151773776650d3501bc5cec45527d92ad0854d7ce554d52ce3",
       "profile_href": "profiles/pixels-best-liquid--d1-ultra.json",
       "profile_sha256": "e92ba40b34d2c579b5cc2df8997fe6f8331501b05b7f1deb6d949ef760cbc1a9",
-      "replay_href": null,
-      "replay_sha256": null,
+      "replay_href": "replays/pixels-best-liquid--d1-ultra.mp4",
+      "replay_sha256": "fc64b00564a40d10b83737cadbe1c8a3226475665ce011aa42382a7811607a67",
       "source_hashes": {
         "requests_sha256": "a07a29d224bf8cdb40bf88f9e771cbef6caf5c6c51d13b69436a2fd80527723a",
         "responses_sha256": "76fa5a34a8393f0038a90303ab0e6e4013c95366a29f2bb80416346b7356d71b",
@@ -2174,8 +2175,8 @@
       "trace_sha256": "82e4a33ee2d5bd9f6efe9a8b14c283791895f84246a6b375d783a128a7d8d4df",
       "profile_href": "profiles/pixels-best-liquid--d1-1.json",
       "profile_sha256": "385ebdb7344332c7332034e4e0f49bbab7ed459b7321cbe895376692c85ad440",
-      "replay_href": null,
-      "replay_sha256": null,
+      "replay_href": "replays/pixels-best-liquid--d1-1.mp4",
+      "replay_sha256": "205d23f4cf6af49b143e43f0a12a4a5e88153feebdb28db1af2ba902015261b2",
       "source_hashes": {
         "requests_sha256": "b11287caa1992a6d767ca42dda86dd7516292d5a03f7caddd3c97d13200d8ca0",
         "responses_sha256": "078ca5f719723b3831715c826bc822329586c5f7ec420e3300228e3c5e2435ab",
@@ -2225,8 +2226,8 @@
       "trace_sha256": "7c7ef309235f4808c72bf4973abf9ac94110f86bed57998b92cc4e78b39d9505",
       "profile_href": "profiles/pixels-best-nace-ai--drex-max.json",
       "profile_sha256": "91d4976db65a00d6bb879759d94123c30a6cd39068c87c4a08b1dcefabea6be0",
-      "replay_href": null,
-      "replay_sha256": null,
+      "replay_href": "replays/pixels-best-nace-ai--drex-max.mp4",
+      "replay_sha256": "c820bd50f25e8c67ce853bcf3caf8615b3d31b6cb6c0cfea4965a0347eba6dd9",
       "source_hashes": {
         "requests_sha256": "eabf714b89be008b427b6f22c28c75621f6689040c75ae3c98217e945bd6e80e",
         "responses_sha256": "b442f541758b79cd8beb6e2e2f538aafd3ec492f8509d991b89b0923517a5c07",
@@ -2276,8 +2277,8 @@
       "trace_sha256": "d3f95a2b605f25a0b8c01754bef80d6c57b40dff2a14745006ec1755ab8e54b2",
       "profile_href": "profiles/pixels-best-respan--span-02.json",
       "profile_sha256": "384fc874066806671b2a115b91e0204c55449c87c007bdc19696a0dbe09c7af3",
-      "replay_href": null,
-      "replay_sha256": null,
+      "replay_href": "replays/pixels-best-respan--span-02.mp4",
+      "replay_sha256": "444b0457a58d8be1cae1b325c1b93f1eb176d4ee60cf669b6744b91da5f884ae",
       "source_hashes": {
         "requests_sha256": "c6b546421a38614b7d81561b22f740fdc0049c11eca995b87d28d53441055388",
         "responses_sha256": "3346ba52bec520efd180dcebe9311505797ad0d488bc71eb59e628d8c30968e6",
@@ -2328,8 +2329,8 @@
       "trace_sha256": "1f1dc9b01eabc06739c21c8ead665f4bc2f32e0a376399ea1e1c02b074e2ff35",
       "profile_href": "profiles/pixels-best-openai--gpt-6-luna-decisions.json",
       "profile_sha256": "7d638cde291f98ca7441181d6bd97f242b637adae3a7a12190593f448ab92b56",
-      "replay_href": null,
-      "replay_sha256": null,
+      "replay_href": "replays/pixels-best-openai--gpt-6-luna-decisions.mp4",
+      "replay_sha256": "81b2b88da97c7a3a4781bf0d75fe91cc802cb667dc3609444eda8b65af139403",
       "source_hashes": {
         "requests_sha256": "5a8d58ca37210bff43b938bac01163df5900b34b765e6b0fe13cda8a81e49265",
         "responses_sha256": "41897fbb9deabee1e1b23561d9821f79c7fd15cbedf186e77683aa4ba2273016",
@@ -2380,8 +2381,8 @@
       "trace_sha256": "17eea4204b318481a9f4285cfcb5764ae627a3ac206a116bc6a0ad288c0fd203",
       "profile_href": "profiles/pixels-best-perplexity--pplx-decider-flash-v1-2.json",
       "profile_sha256": "e6728e805cc52cc088acb61a81c9ca8b11dbee1b2ba8aeb6b35bdffbb53d66ca",
-      "replay_href": null,
-      "replay_sha256": null,
+      "replay_href": "replays/pixels-best-perplexity--pplx-decider-flash-v1-2.mp4",
+      "replay_sha256": "ab227d03d91d867102080bec51ed6aeaeb9699b00ce09c6560f01fe41b977ba4",
       "source_hashes": {
         "requests_sha256": "8565073c49eda438eeb6cff0e7b4d1c7e0ffd264230ba5e568b0f5c8d3363018",
         "responses_sha256": "1d777ead42bb6e93102042b702d9f89240552d26af12c06760c0857a43f00a18",
@@ -2432,8 +2433,8 @@
       "trace_sha256": "300f8ba1f34eca93e6f19c6a989a8a979a68ec5dc54b31e44dc0191bd6ff46d6",
       "profile_href": "profiles/pixels-best-typesafe--jev-1-13.json",
       "profile_sha256": "2eec936330f5ecda343a8df0ea1064cda29d3708c9b5e6ecc2330424eb65b004",
-      "replay_href": null,
-      "replay_sha256": null,
+      "replay_href": "replays/pixels-best-typesafe--jev-1-13.mp4",
+      "replay_sha256": "d70244279a61a9e1ea30d54e37e463ba9eec2d1279b930b5d99a6102b62be234",
       "source_hashes": {
         "requests_sha256": "2ea6fe27373c3836c629f8ed28a9f87bd48e20f011d9031b79dab260af92fe3c",
         "responses_sha256": "414e08ff9a07294e0bb4792f4f77e538cda0606ea215c4fd130a1076967d50e2",
@@ -2619,7 +2620,7 @@
       "trace_sha256": "36d97cda5205a4a1e938c013d1dd9d2a6d15ee57e8a66ae71e98665c2447a924",
       "profile_href": "profiles/openai-state-json-object-cohort-prefix.json",
       "profile_sha256": "4d553480467d088c21a4a6d70319c21a4c000896e89228448633ee20e1dff692",
-      "replay_href": null,
+      "replay_href": "replays/openai-state-json-object-cohort-prefix.mp4",
       "source_hashes": {
         "source_episode_sha256": "b398e376aef9949c2faf35d2930804c90b00f130311f630643d9662b57a174c7",
         "frozen_manifest_sha256": "8f9b42264d0a8524b9240f954994f1427192ebbe21fcf7e0a2617342da2a220a",
@@ -2633,7 +2634,8 @@
         "matched_cohort": false,
         "retrospective": true,
         "contract_sha256": "bb26221092a91e20c2eee867122e9d821234aba7879ef0244031c76dc500810d"
-      }
+      },
+      "replay_sha256": "6ed1848b8bbfcd6c80ecd1acf7ea9b255cbdcb26e0eb8be000cccdbbec78ea2f"
     },
     {
       "id": "openai-state-json-object-full-diagnostic",
@@ -2667,7 +2669,7 @@
       "trace_sha256": "e289ceb2d5b7f8ed9501a5bc109d646fa7206e5ea0e8f060ffa41f5a2c5f99bc",
       "profile_href": "profiles/openai-state-json-object-full-diagnostic.json",
       "profile_sha256": "6970eb6e9110ac69502a236c831de8aac16c95688c6c45d4e0d8487461f889a6",
-      "replay_href": null,
+      "replay_href": "replays/openai-state-json-object-full-diagnostic.mp4",
       "source_hashes": {
         "source_episode_sha256": "b398e376aef9949c2faf35d2930804c90b00f130311f630643d9662b57a174c7",
         "frozen_manifest_sha256": "8f9b42264d0a8524b9240f954994f1427192ebbe21fcf7e0a2617342da2a220a",
@@ -2681,7 +2683,8 @@
         "matched_cohort": false,
         "retrospective": true,
         "contract_sha256": "bb26221092a91e20c2eee867122e9d821234aba7879ef0244031c76dc500810d"
-      }
+      },
+      "replay_sha256": "0a050e54724b0a912605464b9adf04d6c5a2e87e7b0efc90b751346f7862a85d"
     }
   ],
   "technical_diagnostic_report_href": "diagnostics/openai-state-serialization.json"
