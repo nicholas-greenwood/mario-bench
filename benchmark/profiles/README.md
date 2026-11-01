@@ -34,13 +34,14 @@ factored native-choice composition
 
 ## executable profiles
 
-`benchmark.run --profile` supports these 3 selected controllers:
+`benchmark.run --profile` supports these 4 selected controllers:
 
 | profile | input and controller | model/provider |
 | --- | --- | --- |
 | `pplx-state-clear` | compact state, joint 12-choice controller, cadence 4 | dated pplx v1.2 / perplexity |
 | `mammoth-pixels-first-clear` | `memoryfinish240-v1`, current screen/crops and 1 past screen; initial cadence 6, then model-selected 2/4/6/8 | dated mammoth 1 / baseten |
 | `pplx-pixels-sampled-clear-t005-seed0` | `pixels-edge-pplx-c7-v1`, current and 1 past screen; cadence 7; native probability sampling at temperature 0.05, seed 0 | dated pplx v1.2 / perplexity |
+| `mercury-pixels-planner-sampled-clear-t02-seed0` | fixed lower-gameplay crop only, current and 2 past views; native planner duration then full12 motor sampling at temperature 0.2, seed 0 | dated mercury / inception |
 
 each pins world 1-1, its original serialization, exact request model and provider
 with fallbacks disabled. `--track`, `--cadence`, `--models` and custom rosters
@@ -51,6 +52,7 @@ historical evidence snapshots, without a runnable cli adapter
 python -m benchmark.run --profile pplx-state-clear
 python -m benchmark.run --profile mammoth-pixels-first-clear
 python -m benchmark.run --profile pplx-pixels-sampled-clear-t005-seed0
+python -m benchmark.run --profile mercury-pixels-planner-sampled-clear-t02-seed0
 ```
 
 these print a plan. add `--execute` to make paid requests with
@@ -63,7 +65,14 @@ model input has lasted at least 120 native frames. the generic finish rule appea
 after such a sequence reaches 240 frames. these gates use the full declared
 control history, without positions, contact sensors, progress or future state
 
-the sampled profile validates all 12 native probabilities before any draw or
+mercury makes 2 native calls per action: a qualitative landing plan, then motor
+inputs. its duration question becomes available after 2 own A-held-to-released
+cycles; the planner then chooses 2/4/6/12 frames before the motor call. all 3
+chronological images use the same fixed lower-gameplay crop, native y80:240,
+enlarged 3x. the omitted upper viewport remains unknown. no game memory enters
+either request. its 1 failed HTTP attempt leaves the historical total cost unknown
+
+the sampled profiles validate all 12 native probabilities before any draw or
 native step. it preserves the original response and samples the frozen
 `p**(1/T)` distribution in alphabetical choice order with python's seeded rng.
 no actions are masked. request retries consume no draws. replay reconstructs
@@ -83,7 +92,7 @@ differ: mammoth's was 18,000 frames and 1,600 decisions. the new derived cap for
 native choices through its 1,916-frame clear, without claiming identical whole
 experiment settings or guaranteed repeat success
 
-the 3 controllers are selected development profiles, not one matched benchmark
+the 4 controllers are selected development profiles, not one matched benchmark
 configuration. continue a run only with the identical source, profile and
 envelope. extending a budget or changing any setting requires a new output
 directory. an interrupted request without a committed result is marked
@@ -98,7 +107,7 @@ python -m benchmark.audit benchmark/runs/profile-offline
 ```
 
 the verification uses only public traces and the local emulator. it checks all
-302 state, 467 mammoth and 268 sampled pplx request hashes, native choices,
+302 state, 467 mammoth, 268 sampled pplx and 1,244 mercury stage request hashes, native choices,
 sampler draws, every action's state/screen hashes and actual flag completion.
 it also checks malformed distributions, bounded holds and safe resume at
 response/action/checkpoint boundaries. it makes no paid or network requests

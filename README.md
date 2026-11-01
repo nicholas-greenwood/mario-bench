@@ -164,19 +164,20 @@ interrupted requests stop for inspection rather than silently spending twice
 
 ### rerun a frozen development controller
 
-these explicit profiles run the controllers used by 3 published clears:
+these explicit profiles run the controllers used by 4 published clears:
 
 ```sh
 # plans only; each profile pins its own model, provider, inputs and controller
 .venv/bin/python -m benchmark.run --profile pplx-state-clear
 .venv/bin/python -m benchmark.run --profile mammoth-pixels-first-clear
 .venv/bin/python -m benchmark.run --profile pplx-pixels-sampled-clear-t005-seed0
+.venv/bin/python -m benchmark.run --profile mercury-pixels-planner-sampled-clear-t02-seed0
 
 # add --execute for a new paid attempt, or use --policy fake for an offline check
 .venv/bin/python -m benchmark.run --profile mammoth-pixels-first-clear --policy fake --max-native-frames 24 --output benchmark/runs/profile-offline --execute
 .venv/bin/python -m benchmark.audit benchmark/runs/profile-offline
 
-# verify all 3 historical request bodies and native clears from public traces
+# verify all 4 historical profiles and native clears from public traces
 .venv/bin/python -m benchmark.verify_profiles
 ```
 
@@ -186,6 +187,10 @@ profile uses pixels at cadence 7 and all 12 native probabilities with temperatur
 0.05 and seed 0. the provider's original choice stays in the log alongside the
 sampled choice, draw and weights
 
+mercury uses 2 calls per action: a native landing plan and duration, then sampled
+motor inputs at temperature 0.2 and seed 0. it sees 3 matching lower-gameplay
+crops, including the current view; areas outside that crop are unknown
+
 fresh runs have a strict 6,000-native-frame cap; `--max-native-frames` changes it
 before starting. the decision cap is derived from the shortest allowed hold.
 the last hold stops at the remaining frame budget, death or native completion;
@@ -193,7 +198,7 @@ logs distinguish its requested and actual duration
 
 the frozen controller and the fresh run envelope have separate hashes. historical
 research budgets differed, so these commands do not recreate an identical whole
-experiment or guarantee another clear. the 3 profiles also differ from each other
+experiment or guarantee another clear. the 4 profiles also differ from each other
 and from the common runner. changing a profile, source or envelope requires a new
 output directory; resume cannot extend the budget
 
