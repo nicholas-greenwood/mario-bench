@@ -76,6 +76,7 @@ export default function ResultsTable() {
           <button aria-pressed={view === 'replays'} onClick={() => { setView('replays'); setEvidenceIds(null); }}>replays ({runs.length})</button>
         </div>
         <p className="results-note">{view === 'benchmark' ? 'mean progress over 3 prespecified runs with the same frozen protocol. pending means the 3 prescribed results are not fully confirmed. best clear is the fastest completed run.' : view === 'observations' ? 'development runs, not a ranking. aborted runs show observed progress; incomplete runs have no score.' : 'selected runs with different settings, not a ranking.'} cost is usd; ~ includes a byok list-price estimate. missing billing is unknown.</p>
+        {view === 'benchmark' && dataset.commonBenchmark?.stateOnly && <p className="results-note">common image track: calibration pending. image replays and history remain development runs.</p>}
         {evidenceIds !== null && view === 'observations' && <p className="results-note">showing {results.length} cohort runs <button onClick={() => setEvidenceIds(null)}>show all runs</button></p>}
       </div>
       {view === 'benchmark' && dataset.commonBenchmark ? <CommonBenchmarkTable cohort={dataset.commonBenchmark} showRuns={ids => { setEvidenceIds(ids); setView('observations'); }} /> : <div className="table-scroll">

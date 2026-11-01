@@ -27,6 +27,7 @@ export type CommonBenchmark = {
   protocolId: string;
   protocolSha256: string;
   frozenAt: string;
+  stateOnly: boolean;
   rows: CommonResult[];
   trials: Raw[];
 };
@@ -41,6 +42,23 @@ const track = (value: unknown): value is CommonTrack => value === 'state' || val
 const key = (row: Raw) => `${string(row.model_id)}\u0000${string(row.track)}`;
 const sameIds = (a: string[], b: string[]) => a.length === b.length && new Set(a).size === a.length && a.every(id => b.includes(id));
 const safeHref = (value: unknown) => typeof value === 'string' && value.length > 0 && !value.startsWith('/') && !value.includes(':') && !value.split('/').includes('..');
+
+function stateOnlyGate(manifest: Raw, pilot: Raw) {
+  const tracks = strings(manifest.tracks), hashes = object(manifest.observation_and_controller_hashes);
+  const clears = integer(pilot.state_native_clear_count);
+  return tracks.length === 1 && tracks[0] === 'state'
+    && manifest.protocol_id === 'mario-common-state-compact-v2-evaluation-v1'
+    && manifest.image_evaluation_status === 'calibration_pending'
+    && manifest.native_frame_budget === 6000 && manifest.life_budget === 1 && manifest.cadence_native_frames === 4
+    && pilot.state_gate_passed === true && clears !== null && clears >= 1 && clears <= 4
+    && pilot.state_preflight_model_count === 22 && pilot.state_pilot_episode_count === 4
+    && pilot.state_preflight_audit_complete === true && pilot.state_pilot_audit_complete === true
+    && ['selected_image_temperature_gate_passed', 'selected_temperature', 'image_clear', 'image_gate_passed'].every(field => !(field in pilot))
+    && ['state_preflight_protocol_sha256', 'state_preflight_report_sha256', 'state_preflight_audit_sha256',
+      'state_pilot_protocol_sha256', 'state_pilot_summary_sha256', 'state_pilot_audit_sha256',
+      'state_selection_sha256', 'state_controller_sha256'].every(field => /^[a-f0-9]{64}$/.test(string(pilot[field])))
+    && hashes?.state_controller_sha256 === pilot.state_controller_sha256;
+}
 
 function validOutcome(trial: Raw) {
   const frames = integer(trial.native_frames), progress = number(trial.progress_pct);
@@ -65,11 +83,18 @@ export function parseCommonBenchmark(value: unknown, legacyIds: Set<string>, rea
     || !string(manifest.protocol_id) || !/^[a-f0-9]{64}$/.test(string(manifest.protocol_sha256))
     || !Number.isFinite(Date.parse(string(manifest.frozen_at_utc)))) return null;
   const pilot = object(manifest.pilot_selection_evidence);
-  if (!pilot || pilot.state_gate_passed !== true || pilot.selected_image_temperature_gate_passed !== true
+  if (!pilot) return null;
+  const stateOnly = manifest.evaluation_scope === 'state_only';
+  if (stateOnly) {
+    if (!stateOnlyGate(manifest, pilot)) return null;
+  } else if (pilot.state_gate_passed !== true || pilot.selected_image_temperature_gate_passed !== true
     || ![.05, .2].includes(number(pilot.selected_temperature) ?? -1) || !safeHref(pilot.selection_href)
     || ['pilot_protocol_sha256', 'pilot_summary_sha256', 'pilot_audit_sha256'].some(field => !/^[a-f0-9]{64}$/.test(string(pilot[field])))) return null;
   const schedule = records(manifest.repeat_schedule), pairs = records(manifest.eligible_model_provider_pairs);
   if (!schedule.length || !pairs.length || !object(manifest.observation_and_controller_hashes)) return null;
+  if (stateOnly && (schedule.length !== 66 || pairs.length !== 22
+    || [...schedule, ...pairs, ...records(cohort.trials), ...records(cohort.rows)].some(entry => entry.track !== 'state')
+    || schedule.some(entry => entry.temperature !== null))) return null;
   const groups = new Map<string, Raw[]>();
   const scheduledIds = new Set<string>();
   for (const entry of schedule) {
@@ -82,6 +107,7 @@ export function parseCommonBenchmark(value: unknown, legacyIds: Set<string>, rea
     groups.set(key(entry), group);
   }
   if (pairs.length !== groups.size || new Set(pairs.map(key)).size !== pairs.length || pairs.some(pair => !groups.has(key(pair)))) return null;
+  if (stateOnly && groups.size !== 22) return null;
   for (const group of groups.values()) {
     if (group.length !== 3 || new Set(group.map(entry => entry.repeat_id)).size !== 3) return null;
     if (group[0].track === 'state' && group.some(entry => entry.local_rng_seed !== null)) return null;
@@ -89,7 +115,7 @@ export function parseCommonBenchmark(value: unknown, legacyIds: Set<string>, rea
       || new Set(group.map(entry => entry.local_rng_seed)).size !== 3)) return null;
   }
   const trials = records(cohort.trials).filter(trial => string(trial.id) && !legacyIds.has(string(trial.id)) && trial.phase === 'evaluation');
-  if (!trials.length) return null;
+  if (!trials.length && !stateOnly) return null;
   const trialCounts = new Map<string, number>();
   for (const trial of trials) trialCounts.set(string(trial.id), (trialCounts.get(string(trial.id)) ?? 0) + 1);
   const byId = new Map(trials.map(trial => [string(trial.id), trial]));
@@ -144,5 +170,5 @@ export function parseCommonBenchmark(value: unknown, legacyIds: Set<string>, rea
       representativeRunId: representative ? string(representative.id) : null,
     });
   }
-  return { protocolId: string(manifest.protocol_id), protocolSha256: string(manifest.protocol_sha256), frozenAt: string(manifest.frozen_at_utc), rows, trials };
+  return { protocolId: string(manifest.protocol_id), protocolSha256: string(manifest.protocol_sha256), frozenAt: string(manifest.frozen_at_utc), stateOnly, rows, trials };
 }

@@ -93,6 +93,10 @@ const { context, page } = await open(1440, 1000);
 if (parsed.commonBenchmark) {
   const table = page.locator('[data-common-benchmark]');
   assert.ok(await table.isVisible(), 'a valid evaluation cohort is the primary view');
+  if (parsed.commonBenchmark.stateOnly) {
+    assert.ok(await page.getByText('common image track: calibration pending. image replays and history remain development runs.', { exact: true }).isVisible());
+    assert.equal(await table.locator('tr[data-track="image"]').count(), 0);
+  }
   assert.equal(await table.locator('tbody tr').count(), parsed.commonBenchmark.rows.length);
   for (const row of parsed.commonBenchmark.rows) {
     const element = table.locator(`tr[data-common-model="${row.modelId}"][data-track="${row.track}"]`);
@@ -223,6 +227,10 @@ await page.waitForFunction(href => {
 }, prefix.replay_href);
 assert.equal(await page.locator('[data-side="b"] .caption-result').innerText(), 'api error');
 await page.locator(`tr[data-run-id="${pick.id}"]`).hover();
+await page.waitForFunction(id => {
+  const row = document.querySelector(`tr[data-run-id="${id}"]`);
+  return row && getComputedStyle(row).backgroundColor !== 'rgba(0, 0, 0, 0)';
+}, pick.id);
 const hovered = await page.locator(`tr[data-run-id="${pick.id}"]`).evaluate(r => getComputedStyle(r).backgroundColor);
 assert.notEqual(hovered, 'rgba(0, 0, 0, 0)', 'hover tints the row');
 await page.mouse.move(2, 2);
