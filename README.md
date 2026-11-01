@@ -10,16 +10,16 @@ or game state and choose controller inputs
 all 8 published runs are replay-verified on world 1-1. these are selected development
 runs with different settings: per-run scores, not model averages or a ranking
 
-| model | input | progress | cleared | clear time (game s) | frames per decision | evidence |
-| --- | --- | ---: | :---: | ---: | ---: | --- |
-| drex max | state | 100.00% | yes | 23.07 | 12 | [replay](results/replays/drex-state-clear.mp4) · [profile](results/profiles/drex-state-clear.json) |
-| liquid d1 ultra | state | 100.00% | yes | 20.92 | 4 | [replay](results/replays/liquid-state-clear.mp4) · [profile](results/profiles/liquid-state-clear.json) |
-| mercury decide | state | 100.00% | yes | 22.00 | 5 | [replay](results/replays/mercury-state-clear.mp4) · [profile](results/profiles/mercury-state-clear.json) |
-| pplx decider v1.2 | state | 100.00% | yes | 20.13 | 4 | [replay](results/replays/pplx-state-clear.mp4) · [profile](results/profiles/pplx-state-clear.json) |
-| jev 1.14 | pixels | 51.94% | no | - | 6 | [replay](results/replays/jev-pixels-partial.mp4) · [profile](results/profiles/jev-pixels-partial.json) |
-| mammoth 1 | pixels | 56.01% | no | - | 6 | [replay](results/replays/mammoth-pixels-partial.mp4) · [profile](results/profiles/mammoth-pixels-partial.json) |
-| mercury decide | pixels | 56.30% | no | - | 6 | [replay](results/replays/mercury-pixels-partial.mp4) · [profile](results/profiles/mercury-pixels-partial.json) |
-| pplx decider v1.2 | pixels | 77.83% | no | - | 7 | [replay](results/replays/pplx-pixels-partial.mp4) · [profile](results/profiles/pplx-pixels-partial.json) |
+| model | input | progress | clear time (game s) | evidence |
+| --- | --- | ---: | ---: | --- |
+| pplx decider v1.2 | state | 100.00% | 20.13 | [replay](results/replays/pplx-state-clear.mp4) · [profile](results/profiles/pplx-state-clear.json) |
+| liquid d1 ultra | state | 100.00% | 20.92 | [replay](results/replays/liquid-state-clear.mp4) · [profile](results/profiles/liquid-state-clear.json) |
+| mercury decide | state | 100.00% | 22.00 | [replay](results/replays/mercury-state-clear.mp4) · [profile](results/profiles/mercury-state-clear.json) |
+| drex max | state | 100.00% | 23.07 | [replay](results/replays/drex-state-clear.mp4) · [profile](results/profiles/drex-state-clear.json) |
+| pplx decider v1.2 | pixels | 77.83% | - | [replay](results/replays/pplx-pixels-partial.mp4) · [profile](results/profiles/pplx-pixels-partial.json) |
+| mercury decide | pixels | 56.30% | - | [replay](results/replays/mercury-pixels-partial.mp4) · [profile](results/profiles/mercury-pixels-partial.json) |
+| mammoth 1 | pixels | 56.01% | - | [replay](results/replays/mammoth-pixels-partial.mp4) · [profile](results/profiles/mammoth-pixels-partial.json) |
+| jev 1.14 | pixels | 51.94% | - | [replay](results/replays/jev-pixels-partial.mp4) · [profile](results/profiles/jev-pixels-partial.json) |
 
 state uses memory-derived visible geometry and motion. pixels (`image` track) uses
 screenshots, crops and past screens where configured, plus rules, controls and timing
