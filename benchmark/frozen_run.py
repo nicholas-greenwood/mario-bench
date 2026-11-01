@@ -252,7 +252,9 @@ def run_profile(args, parser):
         load_key()
     results = [execute_episode(output, config, trial) for trial in range(args.trials)]
     expected = [f'1-1:seed0:trial{trial:03d}' for trial in range(args.trials)]
-    summary = dict(profile=args.profile, results=results, aggregate=aggregate_results(results, expected),
+    from benchmark.costs import costs_from_events
+    billing = costs_from_events(read_events(output / (safe_name(session.model['id']) + '.jsonl')))
+    summary = dict(profile=args.profile, results=results, **billing, aggregate=aggregate_results(results, expected),
                    development_only=True, common_benchmark_default=False)
     write_json(output / 'summary.json', summary)
     print(json.dumps(summary, indent=2), flush=True)

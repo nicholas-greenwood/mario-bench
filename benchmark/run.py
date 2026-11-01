@@ -180,7 +180,9 @@ def worker(job):
         if game:
             game.close()
         client.close()
-    return dict(model=model['id'], results=results, aggregate=aggregate_results(results, [f"{spec['level']}:seed0:trial{trial:03d}" for spec in config.get('level_specs', [config['level_spec']]) for trial in range(config['trials'])]))
+    from benchmark.costs import costs_from_events
+    billing = costs_from_events(read_events(path))
+    return dict(model=model['id'], results=results, **billing, aggregate=aggregate_results(results, [f"{spec['level']}:seed0:trial{trial:03d}" for spec in config.get('level_specs', [config['level_spec']]) for trial in range(config['trials'])]))
 
 
 def load_key():
@@ -260,7 +262,7 @@ def main():
     # A request can spend account credits. The key's account cap is the user's chosen financial limit.
     manifest = dict(schema_version=2, config=config, models=models, protocol=protocol,
                     roster_sha256=digest(roster), questions=QUESTIONS, rules=RULES,
-                    software_sha256={str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest() for p in [Path(__file__), HERE / 'client.py', HERE / 'scoring.py', HERE.parent / 'prototype/emulator.py', HERE.parent / 'prototype/decisions.py', HERE.parent / 'prototype/control.py', HERE.parent / 'prototype/image_observation.py']},
+                    software_sha256={str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest() for p in [Path(__file__), HERE / 'client.py', HERE / 'scoring.py', HERE / 'costs.py', HERE.parent / 'prototype/emulator.py', HERE.parent / 'prototype/decisions.py', HERE.parent / 'prototype/control.py', HERE.parent / 'prototype/image_observation.py']},
                     conditions='Explicit selected levels, seed0, one life per trial; public development only; shared cadence4 default; controller chosen during public 1-1 development',
                     concurrency=min(args.concurrency, len(models)), max_inflight_per_model=1)
     print(json.dumps(dict(output=str(output), models=len(models), track=args.track, frames=args.frames,

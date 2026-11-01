@@ -274,8 +274,59 @@ def backfill_replays(root, jobs=4):
                           unavailable=unavailable)))
 
 
+def public_native_response(response):
+    """Keep receipt evidence in new portable traces, without private request IDs."""
+    output = {key: response[key] for key in ('model', 'provider', 'answers') if key in response}
+    usage = response.get('usage')
+    if isinstance(usage, dict):
+        output['usage'] = {key: usage[key] for key in (
+            'cost', 'input_tokens', 'output_tokens', 'prompt_tokens', 'completion_tokens', 'total_tokens', 'cost_details', 'is_byok',
+        ) if key in usage}
+    return output
+
+
+def apply_cost_report(root, report_path):
+    """Join certified receipt aggregates by explicit public ID; never infer sources."""
+    from benchmark.costs import merge_public_cost, validate_public_cost
+    report = json.loads(Path(report_path).read_text())
+    if report.get('schema_version') != 1:
+        raise ValueError('Unsupported cost report schema')
+    runs = report.get('runs')
+    if isinstance(runs, list):
+        if len({row['id'] for row in runs}) != len(runs):
+            raise ValueError('Duplicate public run ID in cost report')
+        runs = {row['id']: row for row in runs}
+    if not isinstance(runs, dict):
+        raise ValueError('Cost report must explicitly map public run IDs')
+    for evidence in runs.values():
+        validate_public_cost(evidence)
+    destination = root / 'index.json'
+    index = json.loads(destination.read_text())
+    sections = ('examples', 'observations', 'technical_diagnostics')
+    public_ids = {row['id'] for section in sections for row in index.get(section, [])}
+    if set(runs) - public_ids:
+        raise ValueError('Cost report contains an unknown public run ID')
+    for section in sections:
+        for row in index.get(section, []):
+            evidence = runs.get(row['id'])
+            if evidence and (evidence.get('cost_usd') is not None or evidence.get('cost_estimate_usd') is not None):
+                if evidence['cost_provenance']['request_count'] < row.get('decisions', 0):
+                    raise ValueError('Billing coverage cannot omit a published model decision')
+        index[section] = [merge_public_cost(row, runs[row['id']]) if row['id'] in runs else row
+                          for row in index.get(section, [])]
+    destination.write_text(json.dumps(index, indent=2, ensure_ascii=False, allow_nan=False) + '\n')
+    return dict(public_run_ids_updated=len(runs), source='certified receipt aggregates',
+                exact_costs=sum(row.get('cost_usd') is not None for row in runs.values()),
+                complete_estimates=sum(row.get('cost_usd') is None and row.get('cost_estimate_usd') is not None
+                                       for row in runs.values()))
+
+
 def verify_dataset(root, render=False):
     index = json.loads((root / 'index.json').read_text())
+    from benchmark.costs import validate_public_cost
+    for section in ('examples', 'observations', 'technical_diagnostics'):
+        for row in index.get(section, []):
+            validate_public_cost(row)
     assert index['data_class'] == 'selected_development_examples'
     assert index['comparable_aggregate'] is None
     assert {e['mode'] for e in index['examples']} == {'state', 'image'}
@@ -307,10 +358,15 @@ def verify_dataset(root, render=False):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('dataset', type=Path, nargs='?', default=ROOT / 'results')
+    parser.add_argument('--cost-report', type=Path, help='Attach audited per-public-run receipt aggregates; no replay or API calls')
     parser.add_argument('--render', action='store_true', help='Recreate silent MP4s from the recorded model choices')
     parser.add_argument('--backfill', action='store_true', help='Verify every public trace, render missing videos and update their links')
     parser.add_argument('--jobs', type=int, default=4, choices=range(1, 9), help='Parallel offline replay workers (default: 4)')
     args = parser.parse_args()
+    if args.cost_report:
+        print(json.dumps(apply_cost_report(args.dataset.resolve(), args.cost_report)))
+        if not args.backfill and not args.render:
+            return
     if args.backfill:
         backfill_replays(args.dataset.resolve(), args.jobs)
     else:
