@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from 'react';
 import { useBenchmark } from './benchmark-provider';
-import { formatProgress, formatSeconds, isApiError, trackLabel, type Result } from '../lib/data';
+import { formatRunCost, formatProgress, formatSeconds, isApiError, trackLabel, type Result } from '../lib/data';
 
 type Value = string | number | null;
 type Column = { key: string; label: string; title?: string; numeric?: boolean; first: 'ascending' | 'descending'; value: (run: Result) => Value };
@@ -14,7 +14,7 @@ const COLUMNS: Column[] = [
   { key: 'track', label: 'input', first: 'ascending', value: run => trackLabel(run.track) },
   { key: 'progress', label: 'progress', numeric: true, first: 'descending', value: run => run.progressPct },
   { key: 'clear', label: 'clear time', title: 'native frames to the flag / 60, excluding api waits', numeric: true, first: 'ascending', value: run => run.clearSeconds },
-  { key: 'frames', label: 'frames', title: 'native frames played', numeric: true, first: 'ascending', value: run => run.nativeFrames },
+  { key: 'cost', label: 'cost', title: 'inference spend for this run in usd; ~ marks a complete byok list-price estimate', numeric: true, first: 'ascending', value: run => run.costUsd ?? run.costEstimateUsd },
   { key: 'decisions', label: 'decisions', numeric: true, first: 'ascending', value: run => run.decisions },
   { key: 'status', label: 'status', first: 'ascending', value: statusLabel },
 ];
@@ -30,6 +30,16 @@ const natural = (a: Result, b: Result) =>
   || (a.clearSeconds ?? Infinity) - (b.clearSeconds ?? Infinity)
   || a.name.localeCompare(b.name)
   || a.track.localeCompare(b.track);
+
+function costTitle(run: Result) {
+  const details = [run.costUsd !== null ? `recorded inference spend: $${run.costUsd} usd`
+    : run.costEstimateUsd !== null ? `estimated inference spend: $${run.costEstimateUsd} usd; byok uses openrouter activity list prices`
+    : 'complete run billing unavailable'];
+  if (run.openrouterCostUsd !== null) details.push(`openrouter credits: $${run.openrouterCostUsd} usd`);
+  if (run.upstreamCostUsd !== null) details.push(`direct byok provider spend: $${run.upstreamCostUsd} usd`);
+  if (run.upstreamCostEstimateUsd !== null) details.push(`estimated direct byok provider spend: $${run.upstreamCostEstimateUsd} usd`);
+  return details.join('; ');
+}
 
 export default function ResultsTable() {
   const { runs, dataset, watch, slots, activeSide } = useBenchmark();
@@ -59,7 +69,7 @@ export default function ResultsTable() {
       <div className="results-head">
         <h2 id="results-title" className="section-label">results</h2>
         <div className="result-views" aria-label="result datasets"><button aria-pressed={view === 'observations'} onClick={() => setView('observations')}>all runs ({dataset.observations.length})</button><button aria-pressed={view === 'replays'} onClick={() => setView('replays')}>replays ({runs.length})</button></div>
-        <p className="results-note">{view === 'observations' ? 'development runs, not a ranking. aborted runs show observed progress; incomplete runs have no score.' : 'selected runs with different settings, not a ranking.'}</p>
+        <p className="results-note">{view === 'observations' ? 'development runs, not a ranking. aborted runs show observed progress; incomplete runs have no score.' : 'selected runs with different settings, not a ranking.'} cost is usd; ~ includes a byok list-price estimate. missing billing is unknown.</p>
       </div>
       <div className="table-scroll">
         <table className="runs">
@@ -93,7 +103,9 @@ export default function ResultsTable() {
                   <td data-label="input">{trackLabel(run.track)}</td>
                   <td className="num" data-label="progress">{run.progressPct === null ? <span className="faint" aria-label="score unavailable">–</span> : formatProgress(run.progressPct)}</td>
                   <td className="num" data-label="clear time">{formatSeconds(run.clearSeconds) ?? <span className="faint" aria-label="not cleared">–</span>}</td>
-                  <td className="num" data-label="frames">{run.nativeFrames?.toLocaleString('en-GB') ?? '–'}</td>
+                  <td className="num" data-label="cost" title={costTitle(run)}>
+                    {formatRunCost(run) ?? <span className="faint" aria-label="cost unknown">–</span>}
+                  </td>
                   <td className="num" data-label="decisions">{run.decisions ?? '–'}</td>
                   <td data-label="status">{statusLabel(run)}</td>
                 </tr>
