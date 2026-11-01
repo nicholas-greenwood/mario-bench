@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "generated_at_utc": "2026-11-01T18:45:00.667841+00:00",
-  "data_class": "selected_development_examples",
+  "generated_at_utc": "2026-11-01T22:09:01.289564+00:00",
+  "data_class": "development_history_and_partial_common_evaluation",
   "comparable_aggregate": null,
   "leaderboard_ready": false,
-  "selection": "One verified clear per distinct state model and selected verified pixels-only partial runs. Different development prompts, cadence and history. No best-of result is a model average.",
+  "selection": "Legacy development records retain their original settings and are not model averages. The separate common state cohort contains fresh preregistered attempts and only complete three-run means.",
   "models_href": "models.json",
   "model_counts": {
     "state": 22,
@@ -13,7 +13,7 @@
   "tracks": [
     {
       "id": "state",
-      "input": "current visible memory-derived state",
+      "input": "privileged current-viewport RAM terrain and motion; can include unrevealed tile IDs",
       "verified_clear_models": 4
     },
     {
@@ -37,7 +37,7 @@
       "direction": "lower_is_better",
       "completed_only": true,
       "nominal_seconds": "native_frames/60",
-      "aggregation": "completed-only median per level with attempt/completion counts; unavailable for these selected examples",
+      "aggregation": "common state cohort: best completed native time among3; completion counts and mean completed time separate; development examples are individual runs",
       "failed_episode_value": null
     }
   },
@@ -4651,5 +4651,23 @@
       }
     }
   ],
-  "technical_diagnostic_report_href": "diagnostics/openai-state-serialization.json"
+  "technical_diagnostic_report_href": "diagnostics/openai-state-serialization.json",
+  "common_cohort_href": "common-state/index.json",
+  "common_benchmark_status": {
+    "scope": "state_only",
+    "expected_models": 22,
+    "complete_model_means": 14,
+    "pending_model_means": 8,
+    "published_trials": 49,
+    "prespecified_trials": 66,
+    "captured_at_utc": "2026-11-01T20:31:10.116606+00:00",
+    "image_status": "calibration_pending",
+    "protocol_sha256": "e1c1086b8dc2d5613deaad37cbc75003dedaf7564cf82802a17b0e81fcdb8371"
+  },
+  "input_scope_erratum": {
+    "state_input": "privileged current-viewport RAM terrain and motion",
+    "clarification": "Current-viewport RAM can include unrevealed tile IDs. The frozen wording visible refers to viewport scope, not rendered pixels.",
+    "scope": "All22 state models received the same frozen privileged input; no offscreen or future-buffer lookahead or rollout. Image models receive actual pixels only.",
+    "frozen_controller_and_scores_unchanged": true
+  }
 }

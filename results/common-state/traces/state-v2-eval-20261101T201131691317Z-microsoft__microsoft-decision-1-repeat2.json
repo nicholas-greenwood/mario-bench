@@ -1,0 +1,2536 @@
+{
+  "schema_version": 1,
+  "id": "state-v2-eval-20261101T201131691317Z-microsoft__microsoft-decision-1-repeat2",
+  "phase": "evaluation",
+  "protocol_sha256": "e1c1086b8dc2d5613deaad37cbc75003dedaf7564cf82802a17b0e81fcdb8371",
+  "model_id": "microsoft/microsoft-decision-1",
+  "track": "state",
+  "mode": "state",
+  "level": "1-1",
+  "actions": [
+    {
+      "index": 0,
+      "frame_before": 0,
+      "frame_after": 4,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "requested_frames": 4,
+      "actual_frames": 4,
+      "request_sha256": "d125c76d01753f26eaf3df47d89fea00eb64d692af03e75f2bc9b945c367d9ea",
+      "native_response": {
+        "model": "microsoft/microsoft-decision-1-20261009",
+        "provider": "Azure",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.45673315003553705,
+            "probabilities": {
+              "left_run_jump": 0.003382128838032867,
+              "left_run_release": 0.0043428673218319815,
+              "left_walk_jump": 0.007160639096238696,
+              "left_walk_release": 0.013377665787915884,
+              "released_run_jump": 0.019462882403222363,
+              "released_run_release": 0.05291239343442877,
+              "released_walk_jump": 0.03209531927365918,
+              "released_walk_release": 0.0412264995848853,
+              "right_run_jump": 0.16297066265798335,
+              "right_run_release": 0.5020053875325756,
+              "right_walk_jump": 0.017180427997899664,
+              "right_walk_release": 0.14388312607132625
+            },
+            "type": "choice"
+          }
+        },
+        "usage": {
+          "cost": 3.5322e-05,
+          "input_tokens": 841,
+          "output_tokens": 1
+        }
+      },
+      "after_observation_sha256": "ffe24436cdd5013a6381fde9a17a1318ec5bc22a6ca0556130a67407c681fbee",
+      "screen_after_sha256": "ec8e137fb518c7d627e1933e90bcc3f4461520ce09b83c4e89a5ecb986b8e171",
+      "native_frame_hashes": [
+        {
+          "frame": 1,
+          "ram_sha256": "c720c86e7004133212c7870ad4a6f6077ed41d7e0d99f462e28826114cf654df",
+          "screen_sha256": "86194c33cbeda37c4cab1c765cf02dfac0995ed9d66ff597fd9cbb79b35e67a0"
+        },
+        {
+          "frame": 2,
+          "ram_sha256": "bbea771a5e5e8766a22975af375cf2e7c8d3262a4b3062a7bba24d8edba47460",
+          "screen_sha256": "86194c33cbeda37c4cab1c765cf02dfac0995ed9d66ff597fd9cbb79b35e67a0"
+        },
+        {
+          "frame": 3,
+          "ram_sha256": "4dbfd74bfe4dad3af01cfb886f3057f12daa0652e8e7d601d0b13e7f1074cd1a",
+          "screen_sha256": "c3e1c50b87a704eb2589f674b4a23e51f855ff59e35948a0a43c7f58676aea6f"
+        },
+        {
+          "frame": 4,
+          "ram_sha256": "336ef8c5d06113fd14ca583847b68801c9a4238b93252d63b6cf8c98891fe9a2",
+          "screen_sha256": "ec8e137fb518c7d627e1933e90bcc3f4461520ce09b83c4e89a5ecb986b8e171"
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "frame_before": 4,
+      "frame_after": 8,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "requested_frames": 4,
+      "actual_frames": 4,
+      "request_sha256": "86d99e8c12778fcd675906a0e65e146cdbd912be5564d41ed4d203b8177c8bca",
+      "native_response": {
+        "model": "microsoft/microsoft-decision-1-20261009",
+        "provider": "Azure",
+        "answers": {
+          "action": {
+            "choice": "right_run_jump",
+            "confidence": 0.7078842501794775,
+            "probabilities": {
+              "left_run_jump": 0.0026407709417390333,
+              "left_run_release": 0.0012475681384135596,
+              "left_walk_jump": 0.0008575370788342239,
+              "left_walk_release": 0.0009716785832290239,
+              "released_run_jump": 0.011835314529137844,
+              "released_run_release": 0.0063378262790628,
+              "released_walk_jump": 0.0007571837959425764,
+              "released_walk_release": 0.001604589926388375,
+              "right_run_jump": 0.7322272293311878,
+              "right_run_release": 0.23774882016695512,
+              "right_walk_jump": 0.0007570808376645351,
+              "right_walk_release": 0.003014400391445071
+            },
+            "type": "choice"
+          }
+        },
+        "usage": {
+          "cost": 3.591e-05,
+          "input_tokens": 855,
+          "output_tokens": 1
+        }
+      },
+      "after_observation_sha256": "2c644487cf5bd2e94bdf6386f4aae9d2129bb6780fecf9bdfca214708ff9199a",
+      "screen_after_sha256": "ca61de884fe50d1872f0a452fc4c93a2b63366a04e82dc3cbb97201049f6c900",
+      "native_frame_hashes": [
+        {
+          "frame": 5,
+          "ram_sha256": "48048567c8cbd07a3e8d615206e4f1be4495c84477f06efb1145b3dba0f56a63",
+          "screen_sha256": "ec8e137fb518c7d627e1933e90bcc3f4461520ce09b83c4e89a5ecb986b8e171"
+        },
+        {
+          "frame": 6,
+          "ram_sha256": "2df68500c52648370dfcceb873a8e510439fa07f9481ec9ffa75454b245c4375",
+          "screen_sha256": "edc220f8282b5f0d71af10bdfbaa2d7e7784b53d63ca572e749915f8a6864f45"
+        },
+        {
+          "frame": 7,
+          "ram_sha256": "2b793e680e58b5e00cccbfbc43daea1a3860dfcc999f495836cab64d525794d6",
+          "screen_sha256": "02c84e884e0f52dee86fd4c330986026b671b372c2c8d139f48ea832f3b94af2"
+        },
+        {
+          "frame": 8,
+          "ram_sha256": "2435b86c0987eff5f0d3307ba9c0e56405cd80de020ec06bceee4fddb3309db4",
+          "screen_sha256": "ca61de884fe50d1872f0a452fc4c93a2b63366a04e82dc3cbb97201049f6c900"
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "frame_before": 8,
+      "frame_after": 12,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "requested_frames": 4,
+      "actual_frames": 4,
+      "request_sha256": "62bd1b5569a73deab79fd57782115f4362ae038864714e3208ab89afa93cce81",
+      "native_response": {
+        "model": "microsoft/microsoft-decision-1-20261009",
+        "provider": "Azure",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.2596004854029375,
+            "probabilities": {
+              "left_run_jump": 0.006667316286823197,
+              "left_run_release": 0.008561808595638468,
+              "left_walk_jump": 0.003569250407014949,
+              "left_walk_release": 0.010994172372641444,
+              "released_run_jump": 0.026369763350234197,
+              "released_run_release": 0.1517630451687142,
+              "released_walk_jump": 0.00458382965171736,
+              "released_walk_release": 0.10434849081225447,
+              "right_run_jump": 0.32125666410100984,
+              "right_run_release": 0.3213004449526927,
+              "right_walk_jump": 0.0021654704271566265,
+              "right_walk_release": 0.03841974387410252
+            },
+            "type": "choice"
+          }
+        },
+        "usage": {
+          "cost": 3.696e-05,
+          "input_tokens": 880,
+          "output_tokens": 1
+        }
+      },
+      "after_observation_sha256": "cfb6833ef5d219a28f7ec7f6f7d8e25604287b1043242065ae6cc58ce23ced57",
+      "screen_after_sha256": "6b9181a62b2277de01af8b2c8c85c3dcbbac374b811e60638195ad4a0d0a34b0",
+      "native_frame_hashes": [
+        {
+          "frame": 9,
+          "ram_sha256": "c49b7084532950cd64108bd64909b3d3f86d231071483e1dd4984946bfc15790",
+          "screen_sha256": "875b601e9a798241b07d7b6c516444fa5482b5ac12edc8f4c017e8da038e4e0b"
+        },
+        {
+          "frame": 10,
+          "ram_sha256": "8cb77e87e9470f4830a02301102988c1d1a08a8bd0a13b4a3c250a5f789b5941",
+          "screen_sha256": "5e8d34a2f7e86f45691da11b8c34f51f6421bb57e3f319339c9b6bdf42539444"
+        },
+        {
+          "frame": 11,
+          "ram_sha256": "6c43a8151f5bf002706a90bdd88c9d5f31beed682dda76ac6499e2e4fd2ff8cc",
+          "screen_sha256": "af7717d27829c1e6253b0e5b250f8b83310606da8c0d28744cca9a0ec8e9013a"
+        },
+        {
+          "frame": 12,
+          "ram_sha256": "b9f013506f846de0ef08b41ccde9b38b9d6fc502ca620f3488f597f9da0084b1",
+          "screen_sha256": "6b9181a62b2277de01af8b2c8c85c3dcbbac374b811e60638195ad4a0d0a34b0"
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "frame_before": 12,
+      "frame_after": 16,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "requested_frames": 4,
+      "actual_frames": 4,
+      "request_sha256": "994029dd8b6ce16562603f959a9e9bcdbcba52ef796eb3aabdcdc8ae4fc4fd98",
+      "native_response": {
+        "model": "microsoft/microsoft-decision-1-20261009",
+        "provider": "Azure",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.4067466457074831,
+            "probabilities": {
+              "left_run_jump": 0.0050673755486657125,
+              "left_run_release": 0.0057424494589978095,
+              "left_walk_jump": 0.0039469642568984685,
+              "left_walk_release": 0.005068045712210228,
+              "released_run_jump": 0.020041891556123948,
+              "released_run_release": 0.31352285163581567,
+              "released_walk_jump": 0.0044731957298521745,
+              "released_walk_release": 0.04245303575371247,
+              "right_run_jump": 0.11533999727833213,
+              "right_run_release": 0.4561844252318595,
+              "right_walk_jump": 0.0023945981365927956,
+              "right_walk_release": 0.025765169700939037
+            },
+            "type": "choice"
+          }
+        },
+        "usage": {
+          "cost": 3.7002e-05,
+          "input_tokens": 881,
+          "output_tokens": 1
+        }
+      },
+      "after_observation_sha256": "6921b96cc51e57514ff112be014b454c27711317509928e1f6b9248e3263b72b",
+      "screen_after_sha256": "04148fbb0df4f84db0b4382e93b0860ffebbb19945a0656c60e044488ed21966",
+      "native_frame_hashes": [
+        {
+          "frame": 13,
+          "ram_sha256": "0341592dcdee04eb904430155d679fe764b0e73610ca7f35faabb0042b767113",
+          "screen_sha256": "695c86e78da641cf3c15f7bd6c641a7c598984e1c2678419bc0e31b4d666c751"
+        },
+        {
+          "frame": 14,
+          "ram_sha256": "29e40015cf75e6cac0921a2ff30ea8b11d6c2bee2cf47d4331c63b49c744856f",
+          "screen_sha256": "de6366c7994d1efd22b238f7d38d3c95b954ca8c8e0cdaa3547222c7b77fbdec"
+        },
+        {
+          "frame": 15,
+          "ram_sha256": "25479b1cc9f4f6efd0b9b3ff66cc25a17008d6b245747b35dcd87ef0cdfa89f4",
+          "screen_sha256": "2901e617f1cecf2aa78f00e9511d804f59a49f8e63080e7af471625e8aced969"
+        },
+        {
+          "frame": 16,
+          "ram_sha256": "4b3a1be274a9b2c795d2a869f9e1a009ac534f1aeaa54e324fc1c711d5e002be",
+          "screen_sha256": "04148fbb0df4f84db0b4382e93b0860ffebbb19945a0656c60e044488ed21966"
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "frame_before": 16,
+      "frame_after": 20,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "requested_frames": 4,
+      "actual_frames": 4,
+      "request_sha256": "801d7f484af9f81a7b871008e7bb38f74458b834dac4b60cf3040d80d2d96a33",
+      "native_response": {
+        "model": "microsoft/microsoft-decision-1-20261009",
+        "provider": "Azure",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.5507181737993129,
+            "probabilities": {
+              "left_run_jump": 0.0044903135889093945,
+              "left_run_release": 0.010772231845372399,
+              "left_walk_jump": 0.00508875805279904,
+              "left_walk_release": 0.01383269756334325,
+              "released_run_jump": 0.010771784278003653,
+              "released_run_release": 0.21636950059783955,
+              "released_walk_jump": 0.00396380204937544,
+              "released_walk_release": 0.04830157279467158,
+              "right_run_jump": 0.04828108529730496,
+              "right_run_release": 0.5881583259827035,
+              "right_walk_jump": 0.0016525691639582031,
+              "right_walk_release": 0.0483173587857191
+            },
+            "type": "choice"
+          }
+        },
+        "usage": {
+          "cost": 3.7002e-05,
+          "input_tokens": 881,
+          "output_tokens": 1
+        }
+      },
+      "after_observation_sha256": "33c0527deeb653e8d7f3f089595758272f4dbc7d3cec9ba4208a9ae2fe9fa5c6",
+      "screen_after_sha256": "2205d5fcd10b29414d2c90cf21c813205f1cca255ab1d7cbabd22989e9a2e40a",
+      "native_frame_hashes": [
+        {
+          "frame": 17,
+          "ram_sha256": "7645d894091378765568dc4af0980b10361e926a9c57d7cfe6758302b451a780",
+          "screen_sha256": "abf446e2b625899280c450e198cd14ec42769424c93ed2b033b15ed203bbd2e2"
+        },
+        {
+          "frame": 18,
+          "ram_sha256": "3db23c643c03a0100961826b5f9957f8f1bcbd68a824355fa73f293320d58c5e",
+          "screen_sha256": "e10f110b4e8991bfee6fb62a8455e08088d6e3568a9e2ac2c8cadecdcef53ceb"
+        },
+        {
+          "frame": 19,
+          "ram_sha256": "f20ef8836a0a73e746b2b0ed37c5a06955604ea3ada2dc86d420540285bfbac7",
+          "screen_sha256": "de054c4df662c0b48a073beb95bc20ab473a55cefd727910b6509511501a73e9"
+        },
+        {
+          "frame": 20,
+          "ram_sha256": "3baf63bea19ac322559d77894deb310b30b8bc88a770fe8653f8458e50ca4a13",
+          "screen_sha256": "2205d5fcd10b29414d2c90cf21c813205f1cca255ab1d7cbabd22989e9a2e40a"
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "frame_before": 20,
+      "frame_after": 24,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "requested_frames": 4,
+      "actual_frames": 4,
+      "request_sha256": "cdeadf60259b3e4900c4e4aeee67b3ddfb7509cf1f99f6bc133e5122ca4c2247",
+      "native_response": {
+        "model": "microsoft/microsoft-decision-1-20261009",
+        "provider": "Azure",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.5682564004131057,
+            "probabilities": {
+              "left_run_jump": 0.004613027469932638,
+              "left_run_release": 0.005923723678436679,
+              "left_walk_jump": 0.0046136880507569155,
+              "left_walk_release": 0.009767140985268591,
+              "released_run_jump": 0.01253963856023861,
+              "released_run_release": 0.15277496382416364,
+              "released_walk_jump": 0.004072293464677236,
+              "released_walk_release": 0.03410973879963373,
+              "right_run_jump": 0.0721674825615942,
+              "right_run_release": 0.6042350337120135,
+              "right_walk_jump": 0.002470205893202678,
+              "right_walk_release": 0.09271306300008164
+            },
+            "type": "choice"
+          }
+        },
+        "usage": {
+          "cost": 3.7002e-05,
+          "input_tokens": 881,
+          "output_tokens": 1
+        }
+      },
+      "after_observation_sha256": "bbf4848c3a37a1cf7f6817b455c5d13cc1dd484b5ba8acd10a329656b6be125e",
+      "screen_after_sha256": "b25fef83082b670d1155c8398c8ed5be4b9579dcc2af02cbc42ab1dabd706256",
+      "native_frame_hashes": [
+        {
+          "frame": 21,
+          "ram_sha256": "134e52e7b3b563fc9a9f5018fdbfaed60f60dc48b8e381b3a1d990047541a6a4",
+          "screen_sha256": "3c322e8e11c2615bc0cd66099dabc460ac3b7216aa97827e216b376451e206ad"
+        },
+        {
+          "frame": 22,
+          "ram_sha256": "0cdded8b73d1d3609b9d93e007b5cc4aac83f4926c442a5ac9dea83ada675089",
+          "screen_sha256": "2ff3e5acd207ac308f57b4d31315707ed9cfbf9be700548d3a92c29859737bf5"
+        },
+        {
+          "frame": 23,
+          "ram_sha256": "2420cf91536c86370eb7b2d5cd08b24c56546981e5fbda0e3cacd50038f501cc",
+          "screen_sha256": "30a551a01fb673b5860313e166e340b97f7675af4900a9fe72099f620d8688cf"
+        },
+        {
+          "frame": 24,
+          "ram_sha256": "1679d620b593be828bcb3971b0ac73a5efdb0dd6674d50c19cada6d001cde16e",
+          "screen_sha256": "b25fef83082b670d1155c8398c8ed5be4b9579dcc2af02cbc42ab1dabd706256"
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "frame_before": 24,
+      "frame_after": 28,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "requested_frames": 4,
+      "actual_frames": 4,
+      "request_sha256": "e7ea0bcc69bec1854522630b7db0f49ae9a30bbfcffd0878ba115bab421795b6",
+      "native_response": {
+        "model": "microsoft/microsoft-decision-1-20261009",
+        "provider": "Azure",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.6514631308199096,
+            "probabilities": {
+              "left_run_jump": 0.004046223531303377,
+              "left_run_release": 0.003571073269869946,
+              "left_walk_jump": 0.004046755608643857,
+              "left_walk_release": 0.0040467596723186205,
+              "released_run_jump": 0.014122833631418244,
+              "released_run_release": 0.104362799076502,
+              "released_walk_jump": 0.003571863236104082,
+              "released_walk_release": 0.026400795547062383,
+              "right_run_jump": 0.1182561208445165,
+              "right_run_release": 0.6805078699182504,
+              "right_walk_jump": 0.0031524218605278732,
+              "right_walk_release": 0.03391448380348271
+            },
+            "type": "choice"
+          }
+        },
+        "usage": {
+          "cost": 3.7002e-05,
+          "input_tokens": 881,
+          "output_tokens": 1
+        }
+      },
+      "after_observation_sha256": "c3ebf183ecae38e1d9ec9bfdc0105d999f2bb5869ae3c824d10a82701cd88f69",
+      "screen_after_sha256": "54d0d01a1467afc673e6fcacc8dd445ec803978073bc35ab01b551765f09427f",
+      "native_frame_hashes": [
+        {
+          "frame": 25,
+          "ram_sha256": "226dbde35094e385b1a04dc70d415b3ffb4210ecc1af227ce08fb4187751fc03",
+          "screen_sha256": "a5aaa4d409e2c4dba57b2059a87f8644406f8e7c1327665d66dcbcd6b8bfdc6d"
+        },
+        {
+          "frame": 26,
+          "ram_sha256": "eba2cb777f512decd2968525b6e195d6f778850f8a18d43d5b5409e5114f16af",
+          "screen_sha256": "49e372bc153e62b699c5a779410e35fbf0b4e704eafb45392d805201ab61228e"
+        },
+        {
+          "frame": 27,
+          "ram_sha256": "4811a91aaf21fe43b5cad8076d770172d34a5ab260ea815f57d4c93d37b7ee55",
+          "screen_sha256": "d3e2ed005fae58f0c6c19bd3ea35ac9f76d165bd9898243a3e101495bda5b96c"
+        },
+        {
+          "frame": 28,
+          "ram_sha256": "aa8b0829a08d8b7b70cff3e3def4a4fb140e0d2f09df99d7d38cb5898127a2ec",
+          "screen_sha256": "54d0d01a1467afc673e6fcacc8dd445ec803978073bc35ab01b551765f09427f"
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "frame_before": 28,
+      "frame_after": 32,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "requested_frames": 4,
+      "actual_frames": 4,
+      "request_sha256": "bd02f4fa0cc021786161fd8d613efbd6a2cecea3dc0298055dbb62adf7f4acc8",
+      "native_response": {
+        "model": "microsoft/microsoft-decision-1-20261009",
+        "provider": "Azure",
+        "answers": {
+          "action": {
+            "choice": "right_run_jump",
+            "confidence": 0.5271446894805462,
+            "probabilities": {
+              "left_run_jump": 0.0023153141540938993,
+              "left_run_release": 0.0020434983562566773,
+              "left_walk_jump": 0.0018035557120460468,
+              "left_walk_release": 0.001803543033849907,
+              "released_run_jump": 0.010376602536361346,
+              "released_run_release": 0.011762281259279484,
+              "released_walk_jump": 0.0012401521942840591,
+              "released_walk_release": 0.002977958688990287,
+              "right_run_jump": 0.5665492986905006,
+              "right_run_release": 0.3894182418709423,
+              "right_walk_jump": 0.001592253968961476,
+              "right_walk_release": 0.008117299534433887
+            },
+            "type": "choice"
+          }
+        },
+        "usage": {
+          "cost": 3.696e-05,
+          "input_tokens": 880,
+          "output_tokens": 1
+        }
+      },
+      "after_observation_sha256": "f24a5ca27ae571a13fd92a5726b1ec4865af3a231c19afd27003d88360073064",
+      "screen_after_sha256": "31f82a5bf85077802d23c9f33174df830bbf8006a06bc3c09e0054f846a8d373",
+      "native_frame_hashes": [
+        {
+          "frame": 29,
+          "ram_sha256": "355f4de66f5596abc35ecf3bab899f1ac9ace29fe6742f1fc438ad3ecd9a3635",
+          "screen_sha256": "17b625f8f93d8cc64acdb77cf6a0ddc64e5784b38f0757238329428f0ab23898"
+        },
+        {
+          "frame": 30,
+          "ram_sha256": "b9a7206bb8c3fbc03091d7f218c0d6ca6d7b961cb05283db2dd3dba30fa67eba",
+          "screen_sha256": "aa3b40574eff63868b644632db544b5c67547673d70e0e5b614b924ddaf6da95"
+        },
+        {
+          "frame": 31,
+          "ram_sha256": "6a62be7e10db6924a256d1a18c7e88ea9be4ef956af86cab9b6d6e4e49d46c07",
+          "screen_sha256": "a72139ca9de8e52c4a40ac68b9757c5ecc979b2386af5663ec401ba316481598"
+        },
+        {
+          "frame": 32,
+          "ram_sha256": "87a84c4fcd213a2b4104a690726359b0bca842764cc732ef4e3857cba63d2b86",
+          "screen_sha256": "31f82a5bf85077802d23c9f33174df830bbf8006a06bc3c09e0054f846a8d373"
+        }
+      ]
+    },
+    {
+      "index": 8,
+      "frame_before": 32,
+      "frame_after": 36,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "requested_frames": 4,
+      "actual_frames": 4,
+      "request_sha256": "b6422625dc603befaaa8e98879c9b8052f6e6951ff5b20f4c6ae35d2ab8b9a9e",
+      "native_response": {
+        "model": "microsoft/microsoft-decision-1-20261009",
+        "provider": "Azure",
+        "answers": {
+          "action": {
+            "choice": "right_run_jump",
+            "confidence": 0.4869578214503126,
+            "probabilities": {
+              "left_run_jump": 0.005884540532694593,
+              "left_run_release": 0.004583334232651367,
+              "left_walk_jump": 0.0031502469963218195,
+              "left_walk_release": 0.007556942099374833,
+              "released_run_jump": 0.023273873529372324,
+              "released_run_release": 0.07169961338167981,
+              "released_walk_jump": 0.0035703770177245658,
+              "released_walk_release": 0.07173229749172338,
+              "right_run_jump": 0.5297113363294532,
+              "right_run_release": 0.2502499057983487,
+              "right_walk_jump": 0.0021657413691382045,
+              "right_walk_release": 0.026421791221517176
+            },
+            "type": "choice"
+          }
+        },
+        "usage": {
+          "cost": 3.759e-05,
+          "input_tokens": 895,
+          "output_tokens": 1
+        }
+      },
+      "after_observation_sha256": "7479297ab4fdd87387b25c2033ed54770dcd9f8696b3661700eeec4773fb2fa6",
+      "screen_after_sha256": "b6983adeece1c0732bc042e8d4d4ce6b16cfe2f366e43f606c38da38bb22f422",
+      "native_frame_hashes": [
+        {
+          "frame": 33,
+          "ram_sha256": "2ca8dcc496bcdff22c443bbe7e9fc8c48880338c627c4ba95450624825d78caa",
+          "screen_sha256": "a0b1b90d1ac9f6fc4b626fd15d12275adeb7d61b545e35382f6f7f1e2a4b0f83"
+        },
+        {
+          "frame": 34,
+          "ram_sha256": "4b6145beda5defffc310ff95804d1bab30955c82f056e764aa9298652d5ea7db",
+          "screen_sha256": "fc3a24d50b05b208caeed1c49f41cba86caab40985765d4502a294e80ba45c37"
+        },
+        {
+          "frame": 35,
+          "ram_sha256": "fcda6a78a9719bb36e13fa80fa8de85f248725b5a6a9f7f28049889999d12625",
+          "screen_sha256": "24932baea547d5e38aa1db5e8c4fabf687dbab131a7b3ee4e15cf97e5772f15e"
+        },
+        {
+          "frame": 36,
+          "ram_sha256": "2973f70d3f78074f3a4cc89624c8426ac9e92e92897d7acbb9551a7cd363d8f8",
+          "screen_sha256": "b6983adeece1c0732bc042e8d4d4ce6b16cfe2f366e43f606c38da38bb22f422"
+        }
+      ]
+    },
+    {
+      "index": 9,
+      "frame_before": 36,
+      "frame_after": 40,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "requested_frames": 4,
+      "actual_frames": 4,
+      "request_sha256": "703f74fdd3027d5e4de8aa75a8ed86dcdfa6efc50cd6d8800078e073294fc276",
+      "native_response": {
+        "model": "microsoft/microsoft-decision-1-20261009",
+        "provider": "Azure",
+        "answers": {
+          "action": {
+            "choice": "right_run_jump",
+            "confidence": 0.5193042595983293,
+            "probabilities": {
+              "left_run_jump": 0.005483738971872855,
+              "left_run_release": 0.004271155947856641,
+              "left_walk_jump": 0.0033265226797802305,
+              "left_walk_release": 0.005484628717147789,
+              "released_run_jump": 0.02457642920391789,
+              "released_run_release": 0.0757116648405749,
+              "released_walk_jump": 0.0029362344416586383,
+              "released_walk_release": 0.05899387836202476,
+              "right_run_jump": 0.5593622379651352,
+              "right_run_release": 0.23320714020992842,
+              "right_walk_jump": 0.0020182811370628396,
+              "right_walk_release": 0.02462808752303986
+            },
+            "type": "choice"
+          }
+        },
+        "usage": {
+          "cost": 3.7716e-05,
+          "input_tokens": 898,
+          "output_tokens": 1
+        }
+      },
+      "after_observation_sha256": "3e7c83281f75c42707b2363aa1eae425780add3c5a9c9e6b147d733ef1ee4059",
+      "screen_after_sha256": "3aebd3162ac7d7a3ceda40c8f88119ccbbd788f228444bd3b663a10f0874bc46",
+      "native_frame_hashes": [
+        {
+          "frame": 37,
+          "ram_sha256": "f7217f088ebd0bc0d16ffb59f4c5fcda6d99599ac774d8da15cf87d237d34f4f",
+          "screen_sha256": "2457c40d8c5738a21ded949711e6f7bd12397cfb02c60a82dc5853ec6ebeec89"
+        },
+        {
+          "frame": 38,
+          "ram_sha256": "40ceb20097a7f09ddeb2f6b5de680bd2d9a6e8d884346a08085f187613307cce",
+          "screen_sha256": "c2cf61529ed7e3c882a80468cd1b42922c301140ee622ed9e3b9839dc2cfa6db"
+        },
+        {
+          "frame": 39,
+          "ram_sha256": "3d19f5a3a529e179501786cce7ed6e9b0946ed15ab3e66c982f796c31f19f554",
+          "screen_sha256": "46354ed7d4a58ef651b78f0b2a8b67d050284e1a7ba5970e94672b8f4ede0809"
+        },
+        {
+          "frame": 40,
+          "ram_sha256": "f9831b37731be47d59174ac1a2f444697c567139eb7083bb37755d32c20012a9",
+          "screen_sha256": "3aebd3162ac7d7a3ceda40c8f88119ccbbd788f228444bd3b663a10f0874bc46"
+        }
+      ]
+    },
+    {
+      "index": 10,
+      "frame_before": 40,
+      "frame_after": 44,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "requested_frames": 4,
+      "actual_frames": 4,
+      "request_sha256": "2b1742a6f839ed26616bb599f8dc473d37b406dc43853088ab9efa697017262d",
+      "native_response": {
+        "model": "microsoft/microsoft-decision-1-20261009",
+        "provider": "Azure",
+        "answers": {
+          "action": {
+            "choice": "right_run_jump",
+            "confidence": 0.373643697317706,
+            "probabilities": {
+              "left_run_jump": 0.006882958457605012,
+              "left_run_release": 0.006883609319873362,
+              "left_walk_jump": 0.004175278818412977,
+              "left_walk_release": 0.010015955577748616,
+              "released_run_jump": 0.030847197407030187,
+              "released_run_release": 0.10768006466144507,
+              "released_walk_jump": 0.003685362489181861,
+              "released_walk_release": 0.0740412961739943,
+              "right_run_jump": 0.42584005587456386,
+              "right_run_release": 0.29270750220905195,
+              "right_walk_jump": 0.0022355614006137163,
+              "right_walk_release": 0.03500515761047916
+            },
+            "type": "choice"
+          }
+        },
+        "usage": {
+          "cost": 3.78e-05,
+          "input_tokens": 900,
+          "output_tokens": 1
+        }
+      },
+      "after_observation_sha256": "5ff6b9ad5245e29c8c398f2814998445a74fd9de33d971c9b698a04ccbae9944",
+      "screen_after_sha256": "776cfad495344285e26108f73733d4ff046ad6a10cf98a36778138759d6bcb3f",
+      "native_frame_hashes": [
+        {
+          "frame": 41,
+          "ram_sha256": "c265e3662200ef6189394a3ca415a94ffc54ee67f3ef71f5238439f0cef30626",
+          "screen_sha256": "e4beaec36f65e0ab8b1fc89d5fc45bdfc1fc2a41d0bfe9c59aff313b9ab33723"
+        },
+        {
+          "frame": 42,
+          "ram_sha256": "1569b8738a7ef3c2f6e1564b2d1728ff2943f112bdf151e91ffbda0c0b5907a6",
+          "screen_sha256": "7e604ab38ad012d4be325f2a47ece3af178eabe0fba5358f1cbdf69b8cceb490"
+        },
+        {
+          "frame": 43,
+          "ram_sha256": "74b5ea8d1ad0dff56d4f7111557366a08b41877d3e4f2d0d516a10692fed7aeb",
+          "screen_sha256": "7d65e4237890b9b21131e7dced23e763973a865980fd1ba0d224dec6d1c34e18"
+        },
+        {
+          "frame": 44,
+          "ram_sha256": "780550f43a38757712a2f87c0b5b552d1c1b39a7af90043852cfbf95eeb1fd2c",
+          "screen_sha256": "776cfad495344285e26108f73733d4ff046ad6a10cf98a36778138759d6bcb3f"
+        }
+      ]
+    },
+    {
+      "index": 11,
+      "frame_before": 44,
+      "frame_after": 48,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "requested_frames": 4,
+      "actual_frames": 4,
+      "request_sha256": "a7bc662fc9d1444e83a2a996c8ffc83eb79165467c5f1d4da97b9a79fae8e1e9",
+      "native_response": {
+        "model": "microsoft/microsoft-decision-1-20261009",
+        "provider": "Azure",
+        "answers": {
+          "action": {
+            "choice": "right_run_jump",
+            "confidence": 0.49842635500308463,
+            "probabilities": {
+              "left_run_jump": 0.007705773959958146,
+              "left_run_release": 0.005296591130475758,
+              "left_walk_jump": 0.0032127854625848364,
+              "left_walk_release": 0.006801364684192641,
+              "released_run_jump": 0.026895884731423098,
+              "released_run_release": 0.08285902960882792,
+              "released_walk_jump": 0.0032134257947974477,
+              "released_walk_release": 0.05027852518979095,
+              "right_run_jump": 0.5402241587528276,
+              "right_run_release": 0.2552155232126718,
+              "right_walk_jump": 0.001949228456947504,
+              "right_walk_release": 0.016347709015502327
+            },
+            "type": "choice"
+          }
+        },
+        "usage": {
+          "cost": 3.9732e-05,
+          "input_tokens": 946,
+          "output_tokens": 1
+        }
+      },
+      "after_observation_sha256": "348de5c32f3e2ca7a03ed459e5a0f323422b4ffc35c0755651787cb1ff5ae822",
+      "screen_after_sha256": "9b474e548101e77e37ab9b68cbbb0b708f1f538b4acb9400edceab02a54a3449",
+      "native_frame_hashes": [
+        {
+          "frame": 45,
+          "ram_sha256": "54f65fc29f69e618a96356b064ad0f689d454db64dda379032ec503ee4b8f299",
+          "screen_sha256": "0e1d9c8a9c6d3b401a3ee3b08b1d43ae0d70c05dd8d6028dda2de53b9f0feb97"
+        },
+        {
+          "frame": 46,
+          "ram_sha256": "2ec646bcd6bdd8e55c285971efc1bf43534c31ba58001df1360be9e612da35d6",
+          "screen_sha256": "6de357a1f6380d2792ad70c592d2f304ef1972107c9fed8815b09e6457b5f9e4"
+        },
+        {
+          "frame": 47,
+          "ram_sha256": "2b0efde7b8042b9d7ad26359dc7e09bf1d472e3e1fae1d754e824bf84d5fc058",
+          "screen_sha256": "60f4a44e10f160c19cd9236d06b8e78c0a4d0b1dc3f7ab94172e39f5482bb7fe"
+        },
+        {
+          "frame": 48,
+          "ram_sha256": "0295d0a8b48f192a30b3c377cc637347e33738eafd396ab5ebb84f0a9fd0bf24",
+          "screen_sha256": "9b474e548101e77e37ab9b68cbbb0b708f1f538b4acb9400edceab02a54a3449"
+        }
+      ]
+    },
+    {
+      "index": 12,
+      "frame_before": 48,
+      "frame_after": 52,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "requested_frames": 4,
+      "actual_frames": 4,
+      "request_sha256": "d8f182aca21839e08e7fcee8f2fee2c5710339018dd75cfb4c3d57faeebd0e0a",
+      "native_response": {
+        "model": "microsoft/microsoft-decision-1-20261009",
+        "provider": "Azure",
+        "answers": {
+          "action": {
+            "choice": "right_run_jump",
+            "confidence": 0.5921474748234669,
+            "probabilities": {
+              "left_run_jump": 0.007881780189183386,
+              "left_run_release": 0.006139053933730131,
+              "left_walk_jump": 0.0037237985682263453,
+              "left_walk_release": 0.006957043948422798,
+              "released_run_jump": 0.02142498615810139,
+              "released_run_release": 0.08475363347601006,
+              "released_walk_jump": 0.0025599754934720258,
+              "released_walk_release": 0.04005825213291965,
+              "right_run_jump": 0.6261351852548446,
+              "right_run_release": 0.17941989675307973,
+              "right_walk_jump": 0.001993791954296855,
+              "right_walk_release": 0.018952602137713083
+            },
+            "type": "choice"
+          }
+        },
+        "usage": {
+          "cost": 3.9774e-05,
+          "input_tokens": 947,
+          "output_tokens": 1
+        }
+      },
+      "after_observation_sha256": "d1004ffc6fdbc6615242c3cd7732c4e19025712cfcfa3bb98753e24d6b20b59d",
+      "screen_after_sha256": "e1c2cc78051b8912ec9e0b613df5208c2213748cc3982f4bbf04f4686814e6d0",
+      "native_frame_hashes": [
+        {
+          "frame": 49,
+          "ram_sha256": "01d24d5936bd03ff7eecc898e39428129ed9d462f39886f3c28924cff9a0c301",
+          "screen_sha256": "048999c503c53a0ef14e1fbb2560f25b07691da16bd917aa91fd53bb827082e1"
+        },
+        {
+          "frame": 50,
+          "ram_sha256": "a2b65334126f6cf3b57a332da2283305884250ac762fd376afa7f46f1a674a81",
+          "screen_sha256": "eb3198d175e59f67ec45e0be9e23de64b87086680897e0210e1d2d982af6a65b"
+        },
+        {
+          "frame": 51,
+          "ram_sha256": "7aed74848a7672c18f58b7799be48565ad994e87994498205f4ffb7e62cf8ae6",
+          "screen_sha256": "8971298a1134512bc8440234b1dd08c8bb3bbe60287c1809b8a68ed7d7893ad5"
+        },
+        {
+          "frame": 52,
+          "ram_sha256": "9540e285c4602d11e86afd1ab88f43611622c5a59e84aa0cfbf62095706ba2f1",
+          "screen_sha256": "e1c2cc78051b8912ec9e0b613df5208c2213748cc3982f4bbf04f4686814e6d0"
+        }
+      ]
+    },
+    {
+      "index": 13,
+      "frame_before": 52,
+      "frame_after": 56,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "requested_frames": 4,
+      "actual_frames": 4,
+      "request_sha256": "d83ec562923391d9d8e336bebe7b81378cb328f2ef6f1b5185d8c746bbcee3c4",
+      "native_response": {
+        "model": "microsoft/microsoft-decision-1-20261009",
+        "provider": "Azure",
+        "answers": {
+          "action": {
+            "choice": "right_run_jump",
+            "confidence": 0.5804418685673102,
+            "probabilities": {
+              "left_run_jump": 0.0068364341770271635,
+              "left_run_release": 0.006033684804373827,
+              "left_walk_jump": 0.0036598945212060166,
+              "left_walk_release": 0.006034136109802905,
+              "released_run_jump": 0.030638702791549472,
+              "released_run_release": 0.09438877263520297,
+              "released_walk_jump": 0.0028509655023018768,
+              "released_walk_release": 0.034743974519595724,
+              "right_run_jump": 0.615405046186701,
+              "right_run_release": 0.17634648589407487,
+              "right_walk_jump": 0.0019596438705947287,
+              "right_walk_release": 0.021102258987569435
+            },
+            "type": "choice"
+          }
+        },
+        "usage": {
+          "cost": 3.9774e-05,
+          "input_tokens": 947,
+          "output_tokens": 1
+        }
+      },
+      "after_observation_sha256": "942e85b8a8fb4c4b3fe893a3c4965577cff26f020307eb5ac4a86fd435d55453",
+      "screen_after_sha256": "fb9e470a677ba155cc2cf2480ba769086637ce3eb3f8abe958e7f715fdc294bb",
+      "native_frame_hashes": [
+        {
+          "frame": 53,
+          "ram_sha256": "c7191feeed391433ed9ced7cdc602680a25eee7b01c987ca924640ea42106edc",
+          "screen_sha256": "1b3c37d06a77afbf489ed9afd43720be77584b4eaba654b2048b1b4fe368c0b6"
+        },
+        {
+          "frame": 54,
+          "ram_sha256": "9ae89534dc30db8642a8c78858adf824e8842a0c32ad1c7fe873353738218cc7",
+          "screen_sha256": "186da653a33e9adb598aa36ef9a232b66bfa75353a6e25e699097f8e492e3eb7"
+        },
+        {
+          "frame": 55,
+          "ram_sha256": "eb903f1ec6ef517f8e233ac67df409f5b0ab74e71acfb5659e4d1e0ecda7291b",
+          "screen_sha256": "9b7f2aef58c6a8b0e31d0c95049b162641438f2e831d7a42f2f268eec8061c24"
+        },
+        {
+          "frame": 56,
+          "ram_sha256": "6f97421bbe312995a37823a3fdfb0c023c9f874fa1afcdc9995d37cb43fd9613",
+          "screen_sha256": "fb9e470a677ba155cc2cf2480ba769086637ce3eb3f8abe958e7f715fdc294bb"
+        }
+      ]
+    },
+    {
+      "index": 14,
+      "frame_before": 56,
+      "frame_after": 60,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "requested_frames": 4,
+      "actual_frames": 4,
+      "request_sha256": "846da666b375eb35ac93c9b78e66226966b77b8ef44a5f20344c0b877c360f74",
+      "native_response": {
+        "model": "microsoft/microsoft-decision-1-20261009",
+        "provider": "Azure",
+        "answers": {
+          "action": {
+            "choice": "right_run_jump",
+            "confidence": 0.5611818743654905,
+            "probabilities": {
+              "left_run_jump": 0.007524465587935694,
+              "left_run_release": 0.005860634758765109,
+              "left_walk_jump": 0.004028215998777954,
+              "left_walk_release": 0.007525686399263387,
+              "released_run_jump": 0.02975986281754664,
+              "released_run_release": 0.08090937163956785,
+              "released_walk_jump": 0.003555681516021923,
+              "released_walk_release": 0.043331849066652016,
+              "right_run_jump": 0.5977500515016997,
+              "right_run_release": 0.1940901908926698,
+              "right_walk_jump": 0.002443945349561868,
+              "right_walk_release": 0.023220044471538078
+            },
+            "type": "choice"
+          }
+        },
+        "usage": {
+          "cost": 3.9816e-05,
+          "input_tokens": 948,
+          "output_tokens": 1
+        }
+      },
+      "after_observation_sha256": "6fc017deb3e6901e3723d6d87a42beb7aa4b9364ac637ff20c486167f16a8358",
+      "screen_after_sha256": "640a146674d37a894329770f3854a05fa1b9e8eb7270523e843ef9a332ad80d1",
+      "native_frame_hashes": [
+        {
+          "frame": 57,
+          "ram_sha256": "9c01141a19efa568db8dc278655325a36c099de5b15e5a76559e21b0d69834d3",
+          "screen_sha256": "0ccc27e4c43f518645a993c805c0d4cd7b7e7b9c3b686b6a6e8d50d529ba800e"
+        },
+        {
+          "frame": 58,
+          "ram_sha256": "0c0a2868ebfb2256adc5aa0ad7aef65a43566a1fd5e94caec6ff6fbe17f990d5",
+          "screen_sha256": "ba93fe24fb64023d6e83da5a63b3571f68ac78bfd5a5c60ee01c853001a44a92"
+        },
+        {
+          "frame": 59,
+          "ram_sha256": "ee82b9486073b336a0c3947a6a88696187aabff20e80b33f2c3ec798da4e45de",
+          "screen_sha256": "aaa1c1cf26f959aab23ae22d9153c728389853a4bed6a4d2508aefa2adabfd6f"
+        },
+        {
+          "frame": 60,
+          "ram_sha256": "0dc4ead1759f6f7f305ba65794c96f4b6503c3f40f73701410254e25369a1091",
+          "screen_sha256": "640a146674d37a894329770f3854a05fa1b9e8eb7270523e843ef9a332ad80d1"
+        }
+      ]
+    },
+    {
+      "index": 15,
+      "frame_before": 60,
+      "frame_after": 64,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "requested_frames": 4,
+      "actual_frames": 4,
+      "request_sha256": "8166f96ecdd0243f52b906f49e816e1c865304072488210a09e891e4954dbef5",
+      "native_response": {
+        "model": "microsoft/microsoft-decision-1-20261009",
+        "provider": "Azure",
+        "answers": {
+          "action": {
+            "choice": "right_run_jump",
+            "confidence": 0.5609597420199144,
+            "probabilities": {
+              "left_run_jump": 0.0075219333513668685,
+              "left_run_release": 0.006638734373591645,
+              "left_walk_jump": 0.0031361623994362784,
+              "left_walk_release": 0.008524947892216325,
+              "released_run_jump": 0.018044225306586146,
+              "released_run_release": 0.1038530415650596,
+              "released_walk_jump": 0.0027683141209602514,
+              "released_walk_release": 0.05561870084106039,
+              "right_run_jump": 0.5975464301849215,
+              "right_run_release": 0.17122945123617792,
+              "right_walk_jump": 0.0019027874284103918,
+              "right_walk_release": 0.02321527130021274
+            },
+            "type": "choice"
+          }
+        },
+        "usage": {
+          "cost": 3.9816e-05,
+          "input_tokens": 948,
+          "output_tokens": 1
+        }
+      },
+      "after_observation_sha256": "4c8c132eba008af33640cf3eba1189483e8256804dc85d161ddea7ddca4be737",
+      "screen_after_sha256": "ea77418b384a2d279fcb92ddfa6fc3a3ad013dd56d7e59789f64ef79b1e23865",
+      "native_frame_hashes": [
+        {
+          "frame": 61,
+          "ram_sha256": "48a94d080937b244af9d45e2df7f38b0372f03b423b72609f98e6ed8b4025f9a",
+          "screen_sha256": "b855855f286594c9755c603d5c2e6a7b7415234c9d658c65477aded7b64ab213"
+        },
+        {
+          "frame": 62,
+          "ram_sha256": "3fec32ec6105f6ad47b5589db2b0df10c4abf50791037907055022d5ced43745",
+          "screen_sha256": "0a898c732940e4396de0cf9d0f95858ecbbda7d7c6784ed34f5f93cc4f92457b"
+        },
+        {
+          "frame": 63,
+          "ram_sha256": "9647da287cbdb1ba988223b62310fc76657d7768ecb7676c244ae90b36ce2364",
+          "screen_sha256": "89d331b7b53dcddb9be3e7a581d02be3780b114d64a3b05b4d67ba07952de221"
+        },
+        {
+          "frame": 64,
+          "ram_sha256": "c88269fb140e3cda1482117d522dfd3b731bf871500a305d54e4446f97f9d892",
+          "screen_sha256": "ea77418b384a2d279fcb92ddfa6fc3a3ad013dd56d7e59789f64ef79b1e23865"
+        }
+      ]
+    },
+    {
+      "index": 16,
+      "frame_before": 64,
+      "frame_after": 68,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "requested_frames": 4,
+      "actual_frames": 4,
+      "request_sha256": "049b5d0812be54d3809f6e621279e0d38063bdeafd78db9162c1540b9601ca20",
+      "native_response": {
+        "model": "microsoft/microsoft-decision-1-20261009",
+        "provider": "Azure",
+        "answers": {
+          "action": {
+            "choice": "right_run_jump",
+            "confidence": 0.514630087681859,
+            "probabilities": {
+              "left_run_jump": 0.006987266994602534,
+              "left_run_release": 0.004802766649639749,
+              "left_walk_jump": 0.0037406453015607862,
+              "left_walk_release": 0.006167266658359223,
+              "released_run_jump": 0.024388059761471313,
+              "released_run_release": 0.09647071845276321,
+              "released_walk_jump": 0.0037414827889640572,
+              "released_walk_release": 0.04559446108085936,
+              "right_run_jump": 0.5550775803750375,
+              "right_run_release": 0.2314218981005314,
+              "right_walk_jump": 0.0025716625320425755,
+              "right_walk_release": 0.01903619130416834
+            },
+            "type": "choice"
+          }
+        },
+        "usage": {
+          "cost": 3.9816e-05,
+          "input_tokens": 948,
+          "output_tokens": 1
+        }
+      },
+      "after_observation_sha256": "6f4a410ebbb55ab29bf15cb5d9a0fbaa7035a53fcdcb2c243ebf3c75a5f4b317",
+      "screen_after_sha256": "7f24afbf3cb30cc7cb493dcf10f165e10fc6eb0cf05154e517f548ccae4729ab",
+      "native_frame_hashes": [
+        {
+          "frame": 65,
+          "ram_sha256": "83ca3ce30e096ea4c7087ac486759cb6b35e6b3ea5706ad3550eef4f1e0ee9d9",
+          "screen_sha256": "b37184154627b75977fa62d66a54b363ad1ded40d782368d5c9ab3f212171fd2"
+        },
+        {
+          "frame": 66,
+          "ram_sha256": "1f1c0b46afb352a808e78ec010acd71d8bf598343084ce7b29665186b2fe3fbd",
+          "screen_sha256": "5d73390463f2612a0ecfb38bca81e381d2e555c30b054b9687ba6f7dec266b44"
+        },
+        {
+          "frame": 67,
+          "ram_sha256": "cdfbaf813c2fbb9bdfe11602261fc12b36e2b721c18e0d2dd1692c86ec44620e",
+          "screen_sha256": "2fcd3e9e362e6a2554a21f4db613cdecd46cff1e7234151e881b77f5c05f985a"
+        },
+        {
+          "frame": 68,
+          "ram_sha256": "ed4269c23af1d894339db9e25ab7653e5a116083d6059590ddaf112c0e37929a",
+          "screen_sha256": "7f24afbf3cb30cc7cb493dcf10f165e10fc6eb0cf05154e517f548ccae4729ab"
+        }
+      ]
+    },
+    {
+      "index": 17,
+      "frame_before": 68,
+      "frame_after": 72,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "requested_frames": 4,
+      "actual_frames": 4,
+      "request_sha256": "d07b283ad4fe6a6a09abb1f31990197daced287078a487b6225e51ea473e867d",
+      "native_response": {
+        "model": "microsoft/microsoft-decision-1-20261009",
+        "provider": "Azure",
+        "answers": {
+          "action": {
+            "choice": "right_run_jump",
+            "confidence": 0.6007772300019192,
+            "probabilities": {
+              "left_run_jump": 0.007043569949159751,
+              "left_run_release": 0.004841560318053357,
+              "left_walk_jump": 0.0033278832834965784,
+              "left_walk_release": 0.006217176285030163,
+              "released_run_jump": 0.035770017792199287,
+              "released_run_release": 0.06684118193100398,
+              "released_walk_jump": 0.002937498319772906,
+              "released_walk_release": 0.035800409774434015,
+              "right_run_jump": 0.634045794168426,
+              "right_run_release": 0.18169149680285104,
+              "right_walk_jump": 0.0022879237985735466,
+              "right_walk_release": 0.019195487576999345
+            },
+            "type": "choice"
+          }
+        },
+        "usage": {
+          "cost": 3.9816e-05,
+          "input_tokens": 948,
+          "output_tokens": 1
+        }
+      },
+      "after_observation_sha256": "a562ef88df86c4757282c6d5c629f1259da377a4c2930daeba58ce4bcf48d890",
+      "screen_after_sha256": "4cd2a35a2b197526a13fa6a73313475ea1d58be4672e267e26f44b34c46823b4",
+      "native_frame_hashes": [
+        {
+          "frame": 69,
+          "ram_sha256": "6f7bb1b783dab579f53f659222df33865d39d0ff292299520740e6c6de47dcc0",
+          "screen_sha256": "b462f29b7112ba38a8bf01124fba0fc66536c39069733da6333460d81c7a9176"
+        },
+        {
+          "frame": 70,
+          "ram_sha256": "5c7e5278f3fb095467d638e6e8bf616e3f5ea7e9dcc20bbe584811afa4797735",
+          "screen_sha256": "741099160a74bc61dd1e681eed7227e8b0621d33cd3ec9312cbd895561a2dbc0"
+        },
+        {
+          "frame": 71,
+          "ram_sha256": "a0eee5908f1e5364b01c183055ad43c89779d743211e3175a97f89a4f6aad1be",
+          "screen_sha256": "104b77c5cb6db0a821f1e539ecb7fc9c977ac26808b51fe9ee5fc35a11e0bf5d"
+        },
+        {
+          "frame": 72,
+          "ram_sha256": "fef0a1ec14f1b6ddb6d5693efda8d25f52280df2ec81ad19881c987df65d7524",
+          "screen_sha256": "4cd2a35a2b197526a13fa6a73313475ea1d58be4672e267e26f44b34c46823b4"
+        }
+      ]
+    },
+    {
+      "index": 18,
+      "frame_before": 72,
+      "frame_after": 76,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "requested_frames": 4,
+      "actual_frames": 4,
+      "request_sha256": "d21a131a719fac193643103e48265bf040376b4beed2e168899b5653aee8ad85",
+      "native_response": {
+        "model": "microsoft/microsoft-decision-1-20261009",
+        "provider": "Azure",
+        "answers": {
+          "action": {
+            "choice": "right_run_jump",
+            "confidence": 0.5040675814167952,
+            "probabilities": {
+              "left_run_jump": 0.006865426219145855,
+              "left_run_release": 0.004718995369316313,
+              "left_walk_jump": 0.003675469896251743,
+              "left_walk_release": 0.006059721812276393,
+              "released_run_jump": 0.03486549668842944,
+              "released_run_release": 0.07382258676138091,
+              "released_walk_jump": 0.0036761496218660045,
+              "released_walk_release": 0.03953552260974633,
+              "right_run_jump": 0.5453952829653956,
+              "right_run_release": 0.25766362154548844,
+              "right_walk_jump": 0.002526823882055324,
+              "right_walk_release": 0.02119490262864752
+            },
+            "type": "choice"
+          }
+        },
+        "usage": {
+          "cost": 4.1748e-05,
+          "input_tokens": 994,
+          "output_tokens": 1
+        }
+      },
+      "after_observation_sha256": "a827f727cbd7d09331ac7848c0d0715192790a97c8a2c9bf5f116dc852124038",
+      "screen_after_sha256": "0ad5e3bcea6ad95f69da363d22b7cef01401e32a16d94c165e1c0410365250e6",
+      "native_frame_hashes": [
+        {
+          "frame": 73,
+          "ram_sha256": "485c7335f706fa9c819c23f037eab4c4fe93bf5b7d8fcca932a705a702d62670",
+          "screen_sha256": "7cf5e7f7da55d8eecac3339d95f30016132032e7cfec040bd5763d615f6172f8"
+        },
+        {
+          "frame": 74,
+          "ram_sha256": "c12b739ef904fd5a29b2e461b1fb0f02fb86a26b6ef945bcea1b40ed3c16bd40",
+          "screen_sha256": "ff30b12ded5bfce99ec39ef5c6edc060ad320363f961aadc04fc9c7ed9436538"
+        },
+        {
+          "frame": 75,
+          "ram_sha256": "6bf49d0a6a1b08c893ad4039833736eec77cc8853558a13076395f2f0ac68dc7",
+          "screen_sha256": "e99e8d598a2b33cdf11042d37683ca383893a9be287ea9cb58452221433a1d76"
+        },
+        {
+          "frame": 76,
+          "ram_sha256": "b25074cb18e0453b9fa5615e527e2009173b394796641fcf2a6c685c366afb99",
+          "screen_sha256": "0ad5e3bcea6ad95f69da363d22b7cef01401e32a16d94c165e1c0410365250e6"
+        }
+      ]
+    },
+    {
+      "index": 19,
+      "frame_before": 76,
+      "frame_after": 80,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "requested_frames": 4,
+      "actual_frames": 4,
+      "request_sha256": "379c3482b936836959210235ac1e0e25d0ec99837e81f0084c149934aaf5f84d",
+      "native_response": {
+        "model": "microsoft/microsoft-decision-1-20261009",
+        "provider": "Azure",
+        "answers": {
+          "action": {
+            "choice": "right_run_jump",
+            "confidence": 0.48225446284209217,
+            "probabilities": {
+              "left_run_jump": 0.005836580911926509,
+              "left_run_release": 0.0031244644379697013,
+              "left_walk_jump": 0.002757572310132788,
+              "left_walk_release": 0.00454639464710794,
+              "released_run_jump": 0.02308425622661085,
+              "released_run_release": 0.05538683717986666,
+              "released_walk_jump": 0.0031255024622080093,
+              "released_walk_release": 0.02966707710845839,
+              "right_run_jump": 0.5253999242719178,
+              "right_run_release": 0.3187100801628341,
+              "right_walk_jump": 0.0021482888660096003,
+              "right_walk_release": 0.026213021414957613
+            },
+            "type": "choice"
+          }
+        },
+        "usage": {
+          "cost": 4.5402e-05,
+          "input_tokens": 1081,
+          "output_tokens": 1
+        }
+      },
+      "after_observation_sha256": "ee6838c176f1617fe0f0c39a950db466b3c283dc5422ec7d0903eae0a5b4751e",
+      "screen_after_sha256": "8931f74c48730d9bdf8650efb8414ac92dc756feb513f8c2fe39061850323acc",
+      "native_frame_hashes": [
+        {
+          "frame": 77,
+          "ram_sha256": "f9a180f5d80e4f71eccb3fcfb5008c9b468452764ff150682e772cdb3df75fab",
+          "screen_sha256": "e0a0f22f9af1c2c27fcbf404c8f7b9ffafcb56da76945781b61deed7f17bb777"
+        },
+        {
+          "frame": 78,
+          "ram_sha256": "d1e93d9b9e2eedeee67b8354ea796b662d3dcf96c67a7bd5e78cac1ffee86f66",
+          "screen_sha256": "389a0ed34d443b1e4e6a501e3f3d01a484a0f4a2110968f4212c9704e5fab94f"
+        },
+        {
+          "frame": 79,
+          "ram_sha256": "8f1b7690de520a3b027ab8ee0a3adaabdfb1aa6e9d7936957879e1b371861707",
+          "screen_sha256": "cef17e38fbb91e1b68ff95e0af5dde8d39f9b1d4c1beedd05fc8fb6b2dcc0de8"
+        },
+        {
+          "frame": 80,
+          "ram_sha256": "f1b1c79f7ee690b30ffdea98aa3423e7bf5ec281999d7dba8577a4ea9512caed",
+          "screen_sha256": "8931f74c48730d9bdf8650efb8414ac92dc756feb513f8c2fe39061850323acc"
+        }
+      ]
+    },
+    {
+      "index": 20,
+      "frame_before": 80,
+      "frame_after": 84,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "requested_frames": 4,
+      "actual_frames": 4,
+      "request_sha256": "71ca2923af1f5369a88e78b9c88fcb320d58aaa00d9ed0bb588ef5d583012be8",
+      "native_response": {
+        "model": "microsoft/microsoft-decision-1-20261009",
+        "provider": "Azure",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.866489749049116,
+            "probabilities": {
+              "left_run_jump": 0.002175242667652806,
+              "left_run_release": 0.002793332539586719,
+              "left_walk_jump": 0.0016943576640762498,
+              "left_walk_release": 0.0021755870059020346,
+              "released_run_jump": 0.005218279987954211,
+              "released_run_release": 0.030034000999793746,
+              "released_walk_jump": 0.0016947109849945556,
+              "released_walk_release": 0.004611169652639703,
+              "right_run_jump": 0.06357644979635656,
+              "right_run_release": 0.877615603295023,
+              "right_walk_jump": 0.0008006440530021732,
+              "right_walk_release": 0.007610621353018252
+            },
+            "type": "choice"
+          }
+        },
+        "usage": {
+          "cost": 4.5486e-05,
+          "input_tokens": 1083,
+          "output_tokens": 1
+        }
+      },
+      "after_observation_sha256": "6deefba52c9135263f89a0b8509b110bd461ef934fc8a3ae7b1ac0cd5da2af05",
+      "screen_after_sha256": "1cd28f7ad331f5acc5adafdfb4b3e1bf7e91ca13ddfc663ee030534333074e03",
+      "native_frame_hashes": [
+        {
+          "frame": 81,
+          "ram_sha256": "d77f57c425064185d73b532e07badbb76cfbc5041b50da7ffa32be563a91c84b",
+          "screen_sha256": "515b5b48378e6700be4ccbb903f3f033aaa411db75e6e756c5dcfe29b63036c8"
+        },
+        {
+          "frame": 82,
+          "ram_sha256": "1c0e3c73c602c09c3ba0d95e8b3e3d8599066f7aa15206c1128f4ede1dfede0b",
+          "screen_sha256": "78abdcf4696790bfb26672cd18b4cad79390d78f14dae8f188a297e6e07deb4f"
+        },
+        {
+          "frame": 83,
+          "ram_sha256": "ec7125703ff947df4bdc904872792c55db209f8fea62f14cdd09b40bdaf0e3b0",
+          "screen_sha256": "fbeb1a39a421dee6dc71474ee66c11d9d3f66d3e7fb7f8ca7897fce0269464be"
+        },
+        {
+          "frame": 84,
+          "ram_sha256": "f5ca23988f30f583b196adced84c8b1dfc61e225c367770d693c7a925a902a36",
+          "screen_sha256": "1cd28f7ad331f5acc5adafdfb4b3e1bf7e91ca13ddfc663ee030534333074e03"
+        }
+      ]
+    },
+    {
+      "index": 21,
+      "frame_before": 84,
+      "frame_after": 88,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "requested_frames": 4,
+      "actual_frames": 4,
+      "request_sha256": "b10915fcbf49f4e85dc6fdeba2c60d7051f42b9ead6c9e69a084ff452f01a9cc",
+      "native_response": {
+        "model": "microsoft/microsoft-decision-1-20261009",
+        "provider": "Azure",
+        "answers": {
+          "action": {
+            "choice": "right_run_jump",
+            "confidence": 0.46623831026594414,
+            "probabilities": {
+              "left_run_jump": 0.0018418652726261882,
+              "left_run_release": 0.000986037217824613,
+              "left_walk_jump": 0.001266310343022656,
+              "left_walk_release": 0.0011174122272460836,
+              "released_run_jump": 0.00825482057905478,
+              "released_run_release": 0.010603835324588041,
+              "released_walk_jump": 0.0011180363633298501,
+              "released_walk_release": 0.003446885230723157,
+              "right_run_jump": 0.5107184510771154,
+              "right_run_release": 0.450741964230664,
+              "right_walk_jump": 0.0034430234150007923,
+              "right_walk_release": 0.006461358718804445
+            },
+            "type": "choice"
+          }
+        },
+        "usage": {
+          "cost": 4.8888e-05,
+          "input_tokens": 1164,
+          "output_tokens": 1
+        }
+      },
+      "after_observation_sha256": "d33ced189b5020a59b6134f8f250464dddee3429ca2dfe0f1fe588c0845351d4",
+      "screen_after_sha256": "f59b84e203978aa8ee26f93dde8d9012dcd7dfab42989bb77a91db23eb72b10d",
+      "native_frame_hashes": [
+        {
+          "frame": 85,
+          "ram_sha256": "8263915bf5449900263e36d48c08b0040862bf2d0b109263fb9f123751bc590a",
+          "screen_sha256": "06490531be3838460c22b23d22107d8a837e67bdf8f6970aa58ca5b557c37d0f"
+        },
+        {
+          "frame": 86,
+          "ram_sha256": "678aa856b14e39394bc43f815a65c4d540148b206061fe9bd963c8e8158c0fea",
+          "screen_sha256": "928c8d75e4978761261c2104571ca5bd19d56ebbc3cccf22f5dba60d112148d7"
+        },
+        {
+          "frame": 87,
+          "ram_sha256": "da3263f77f6461e1e11e568dc9f43b63be7723cd8bc3482e5755180e2eeb5ea1",
+          "screen_sha256": "72317db34a39f87bbfae520b077b16b82f2a72281580b7400d5f7e9a71adbe06"
+        },
+        {
+          "frame": 88,
+          "ram_sha256": "29fa2969b2e38cb033e523532c55ac18fc5529c1ef0b5686e5457e032eea634a",
+          "screen_sha256": "f59b84e203978aa8ee26f93dde8d9012dcd7dfab42989bb77a91db23eb72b10d"
+        }
+      ]
+    },
+    {
+      "index": 22,
+      "frame_before": 88,
+      "frame_after": 92,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "requested_frames": 4,
+      "actual_frames": 4,
+      "request_sha256": "b4fcdf97c16480fe0f91bc88e342b7009a9a77788988f76eb92bb30121e4aa35",
+      "native_response": {
+        "model": "microsoft/microsoft-decision-1-20261009",
+        "provider": "Azure",
+        "answers": {
+          "action": {
+            "choice": "right_run_jump",
+            "confidence": 0.3909270165127177,
+            "probabilities": {
+              "left_run_jump": 0.005559865554960815,
+              "left_run_release": 0.002976289921006635,
+              "left_walk_jump": 0.0029764501675713863,
+              "left_walk_release": 0.003372750817635286,
+              "released_run_jump": 0.015113404331669163,
+              "released_run_release": 0.06774254058786955,
+              "released_walk_jump": 0.0026272678443774117,
+              "released_walk_release": 0.04111235933549145,
+              "right_run_jump": 0.44168309846999126,
+              "right_run_release": 0.38982558245472637,
+              "right_walk_jump": 0.002046320338805994,
+              "right_walk_release": 0.02496407017589468
+            },
+            "type": "choice"
+          }
+        },
+        "usage": {
+          "cost": 5.1324e-05,
+          "input_tokens": 1222,
+          "output_tokens": 1
+        }
+      },
+      "after_observation_sha256": "ecd901c72a9b3766e40568c4d1b7b288440ba5817b4ff0208bc28c05f8a2a08f",
+      "screen_after_sha256": "be451278cc2fac1ee441928362582bc8888928e4fb534f7abfb9d5d0e468a042",
+      "native_frame_hashes": [
+        {
+          "frame": 89,
+          "ram_sha256": "98282b3eeef968987dcb114d2ac5cd2ed3f2036010bc90c65a5aa39e8bac123b",
+          "screen_sha256": "e3e3f3a496a64645686c0079b69d53f254ce0dacdba9a6c02c9b988a1bbc883c"
+        },
+        {
+          "frame": 90,
+          "ram_sha256": "bf4a5f05038ec837138514f4b28d0d58da9590f668a99d25742c3e523474acfd",
+          "screen_sha256": "062fce6e40abd52bdabea7c23de67cb74ef215d63fb21b448d72281eaa5418c3"
+        },
+        {
+          "frame": 91,
+          "ram_sha256": "04a104f10b53d1f15484ef12ca33c9c632177b36326ea0d01494ffb1e8e1846f",
+          "screen_sha256": "1e723d46471971b703d52c183b51645ab323e065eab0436e0ed1ebb34aa00b19"
+        },
+        {
+          "frame": 92,
+          "ram_sha256": "e062803fd5051e0d6f15af7bc554ed0b1c9ee106adcd78eb0fae19c2bbaaf086",
+          "screen_sha256": "be451278cc2fac1ee441928362582bc8888928e4fb534f7abfb9d5d0e468a042"
+        }
+      ]
+    },
+    {
+      "index": 23,
+      "frame_before": 92,
+      "frame_after": 96,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "requested_frames": 4,
+      "actual_frames": 4,
+      "request_sha256": "800d50f891e3313058c3b4b9027a0b8a76dee4102bc3f3a110464b409f95ea78",
+      "native_response": {
+        "model": "microsoft/microsoft-decision-1-20261009",
+        "provider": "Azure",
+        "answers": {
+          "action": {
+            "choice": "right_run_jump",
+            "confidence": 0.4385769372952493,
+            "probabilities": {
+              "left_run_jump": 0.004199141274250903,
+              "left_run_release": 0.001983768890743722,
+              "left_walk_jump": 0.001983869792334094,
+              "left_walk_release": 0.0025473667156479442,
+              "released_run_jump": 0.01007334236738245,
+              "released_run_release": 0.057978263117537676,
+              "released_walk_jump": 0.0022485816710200333,
+              "released_walk_release": 0.03518330590292806,
+              "right_run_jump": 0.48536219252064516,
+              "right_run_release": 0.3780356837355037,
+              "right_walk_jump": 0.0015454880834365986,
+              "right_walk_release": 0.01885899592856973
+            },
+            "type": "choice"
+          }
+        },
+        "usage": {
+          "cost": 5.313e-05,
+          "input_tokens": 1265,
+          "output_tokens": 1
+        }
+      },
+      "after_observation_sha256": "cc0911a24add4818c87908f615163ed1dc31cf3c6eaa80178afa667fcb8dd7a7",
+      "screen_after_sha256": "d5883555729a28613a4fed6d765473ef7e657c42ecee82cf1ff36e579d743ecc",
+      "native_frame_hashes": [
+        {
+          "frame": 93,
+          "ram_sha256": "3ef5c0c2a563fafc339d80af040c660e0f11a77cb4eb779b48dff07d85337a40",
+          "screen_sha256": "ee259f4ed6251af077165b47aee808e80cf180b097f2e1a8b0e97a9054048bad"
+        },
+        {
+          "frame": 94,
+          "ram_sha256": "61f2cb62d03c4d837539f829e6cf58f6a06fb3438d7c74954d981d3e0881b5c4",
+          "screen_sha256": "54599a271c05794ca5b04b6cea41d445a7a19b8dd19ffb7dd8e8c97dcdb45d7e"
+        },
+        {
+          "frame": 95,
+          "ram_sha256": "e5131b495648aa0767c58ab9a1675b43e58bdd50470d88e47bc0646101b7ed2d",
+          "screen_sha256": "d835b56b22b694aa3079769c7889df72dcbb8fe5337d2718c8644d0135aea309"
+        },
+        {
+          "frame": 96,
+          "ram_sha256": "b8ed4dd838eb5130f3fe2973ec7e0b13fbeb3c9a23774fb5412946f02dbd97c2",
+          "screen_sha256": "d5883555729a28613a4fed6d765473ef7e657c42ecee82cf1ff36e579d743ecc"
+        }
+      ]
+    },
+    {
+      "index": 24,
+      "frame_before": 96,
+      "frame_after": 100,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "requested_frames": 4,
+      "actual_frames": 4,
+      "request_sha256": "9e51ebb163ed9bbb780edd95d9f0620f793efde9bba8fd76651c3f5ad5154ac9",
+      "native_response": {
+        "model": "microsoft/microsoft-decision-1-20261009",
+        "provider": "Azure",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.35784842325950356,
+            "probabilities": {
+              "left_run_jump": 0.005867116027848473,
+              "left_run_release": 0.004032817943621877,
+              "left_walk_jump": 0.0031409746580749365,
+              "left_walk_release": 0.004570073963343002,
+              "released_run_jump": 0.014074597265354954,
+              "released_run_release": 0.07148825882665553,
+              "released_walk_jump": 0.003559989832245738,
+              "released_walk_release": 0.03828691538163701,
+              "right_run_jump": 0.4113264879011761,
+              "right_run_release": 0.41136105465454487,
+              "right_walk_jump": 0.002446979007260965,
+              "right_walk_release": 0.029844734538236536
+            },
+            "type": "choice"
+          }
+        },
+        "usage": {
+          "cost": 5.3172e-05,
+          "input_tokens": 1266,
+          "output_tokens": 1
+        }
+      },
+      "after_observation_sha256": "2d6638fca62d7ecb631879924f299d6e2accaa245d375e88ac25f94ff8736544",
+      "screen_after_sha256": "795191c6d7b192cb0205fc502ab4b6d4d3484ddfa77e4370207fc9705442d4e0",
+      "native_frame_hashes": [
+        {
+          "frame": 97,
+          "ram_sha256": "8026e0c905a0c24b3f82c6b1c50da79e6e987e749b5ff57952ec0467ed2c4917",
+          "screen_sha256": "a2efbb167dc4cb6e416771e64528b361f54bf171ed6e3c90d57e70764dedba7b"
+        },
+        {
+          "frame": 98,
+          "ram_sha256": "32e2664479befce1103c650f6cb8e0b6a0c172abd72ce1734a0fb38785f677b8",
+          "screen_sha256": "ab494f27b44b87b5737f8ea06d26fb049fff3e98c5c8eb330a55182de90a2d05"
+        },
+        {
+          "frame": 99,
+          "ram_sha256": "812b0aa5cf803a9a61c6183522cf9c13dc28e9fc5136ab9011649bfff9bc0833",
+          "screen_sha256": "449057f893b971698ef7885d6d9d73ca6d314d1d8ad3a7c2018db90ca776ce8f"
+        },
+        {
+          "frame": 100,
+          "ram_sha256": "e177828125f9a0497b4dbb1dd7e1aa97f7c5dbc78479f7d72a7eeeada2907eea",
+          "screen_sha256": "795191c6d7b192cb0205fc502ab4b6d4d3484ddfa77e4370207fc9705442d4e0"
+        }
+      ]
+    },
+    {
+      "index": 25,
+      "frame_before": 100,
+      "frame_after": 104,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "requested_frames": 4,
+      "actual_frames": 4,
+      "request_sha256": "11758faed7ff20f90958d832b844b55ff2174c8355233e8370c6fa463249e898",
+      "native_response": {
+        "model": "microsoft/microsoft-decision-1-20261009",
+        "provider": "Azure",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.6634733963219465,
+            "probabilities": {
+              "left_run_jump": 0.002200769661637987,
+              "left_run_release": 0.0019423526102732615,
+              "left_walk_jump": 0.0022012469197234224,
+              "left_walk_release": 0.0019425336590696584,
+              "released_run_jump": 0.009863321663886692,
+              "released_run_release": 0.06432565368188073,
+              "released_walk_jump": 0.0024949108746693278,
+              "released_walk_release": 0.009872961475897835,
+              "right_run_jump": 0.19811698625799462,
+              "right_run_release": 0.6915172799617842,
+              "right_walk_jump": 0.002827136093327209,
+              "right_walk_release": 0.012694847139854968
+            },
+            "type": "choice"
+          }
+        },
+        "usage": {
+          "cost": 5.2626e-05,
+          "input_tokens": 1253,
+          "output_tokens": 1
+        }
+      },
+      "after_observation_sha256": "b820dee33978948616d0a6b77df82114d7dc32c8d2e4776d871445ac19a6f298",
+      "screen_after_sha256": "3da50a2eba7d1e4d6424d1eec891dd847f4f949e7c99a55e8cd1f40f8599303b",
+      "native_frame_hashes": [
+        {
+          "frame": 101,
+          "ram_sha256": "3e76889bfd0f428cf7ba6df1bc9ac87eeb139eaaff6ba1f5cb8496ae24758252",
+          "screen_sha256": "344d7eb3f08e5843cdfe8c36e065477988aa83e99cf80983a60cb362fb3271d1"
+        },
+        {
+          "frame": 102,
+          "ram_sha256": "e975899db6b1d1e2c95cdc993ff1963076ad64d433c7da69f1a8157ae1692b7f",
+          "screen_sha256": "94fa1e6831a3960c65d8bb3e872df9c76a571c2ceefb95da8a221d27aac6d762"
+        },
+        {
+          "frame": 103,
+          "ram_sha256": "9c41dbcc357bdde62ff6b98ac47a0baf5107e4e3e50cb92e02a871fb3f5b5e91",
+          "screen_sha256": "8596aff70433d9b9c7a5361a311a368cde015d40b778105da8d1cb9b9a25916d"
+        },
+        {
+          "frame": 104,
+          "ram_sha256": "7ce78522fa98a76d49fb6f6616b544b6f8e3c3a17c1671586299a75552f46b49",
+          "screen_sha256": "3da50a2eba7d1e4d6424d1eec891dd847f4f949e7c99a55e8cd1f40f8599303b"
+        }
+      ]
+    },
+    {
+      "index": 26,
+      "frame_before": 104,
+      "frame_after": 108,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "requested_frames": 4,
+      "actual_frames": 4,
+      "request_sha256": "7e4a1e1f1890d0212a47d0f508f68689f25d3ddc2164f7e80c9b5634e4c799aa",
+      "native_response": {
+        "model": "microsoft/microsoft-decision-1-20261009",
+        "provider": "Azure",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.423311381053543,
+            "probabilities": {
+              "left_run_jump": 0.0028024400771805755,
+              "left_run_release": 0.0019263722341016367,
+              "left_walk_jump": 0.002183249686935346,
+              "left_walk_release": 0.0021831085106726812,
+              "released_run_jump": 0.01423215214529096,
+              "released_run_release": 0.01423777923933601,
+              "released_walk_jump": 0.001501304987858483,
+              "released_walk_release": 0.005244629792894521,
+              "right_run_jump": 0.4713197357974236,
+              "right_run_release": 0.4713687659657477,
+              "right_walk_jump": 0.003177789303810132,
+              "right_walk_release": 0.009822672258748312
+            },
+            "type": "choice"
+          }
+        },
+        "usage": {
+          "cost": 5.2542e-05,
+          "input_tokens": 1251,
+          "output_tokens": 1
+        }
+      },
+      "after_observation_sha256": "c90a13e69af2f2b23c0ea85acbf4162645d70f2416ddbd62fb60175e4465ed91",
+      "screen_after_sha256": "c600278fab488f16cadea59e9c1ba8ae071b12c71bcc45888e11a5bc8181284b",
+      "native_frame_hashes": [
+        {
+          "frame": 105,
+          "ram_sha256": "822809e02b02fa33d6c301891e7c76eacc9f9654fa2c0015585216beb8166fe5",
+          "screen_sha256": "d86d6df2c0ef9eba89ed2dee6bd83b17d569675e52d1db0ab0ec4424421791bd"
+        },
+        {
+          "frame": 106,
+          "ram_sha256": "e21d7a7f989e4981c175f4d561efe860570f0aa411c37eefe79ab1d46c3c3f48",
+          "screen_sha256": "860677acab58cf8ea6d551134596777f1b3115aac2c5ac1b8935efa317af8d5b"
+        },
+        {
+          "frame": 107,
+          "ram_sha256": "8ffb8f1e6b25173c0d0f3cd9f832f2a4f55e7d13abf52c9b0597e80c747c6367",
+          "screen_sha256": "49cc3e7c14f3785baf884fe025689bb982ff25f0ce029c373b53840845ed74c4"
+        },
+        {
+          "frame": 108,
+          "ram_sha256": "1decdffdcc7837c69ab2c6fd6610f61f703275cf8815be59e37346c73fa6c6e7",
+          "screen_sha256": "c600278fab488f16cadea59e9c1ba8ae071b12c71bcc45888e11a5bc8181284b"
+        }
+      ]
+    },
+    {
+      "index": 27,
+      "frame_before": 108,
+      "frame_after": 110,
+      "sequence": [
+        [
+          2,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "requested_frames": 4,
+      "actual_frames": 2,
+      "request_sha256": "819edc42e3fc0c45c0e7f579062b95ef969c5fa7af2baba0d4ec84cd654a1ef6",
+      "native_response": {
+        "model": "microsoft/microsoft-decision-1-20261009",
+        "provider": "Azure",
+        "answers": {
+          "action": {
+            "choice": "right_run_jump",
+            "confidence": 0.5080728793689762,
+            "probabilities": {
+              "left_run_jump": 0.0036994464236030917,
+              "left_run_release": 0.002542963389645341,
+              "left_walk_jump": 0.003700382086873165,
+              "left_walk_release": 0.00288189781075961,
+              "released_run_jump": 0.014631882351414752,
+              "released_run_release": 0.01879454166768818,
+              "released_walk_jump": 0.001981852237831575,
+              "released_walk_release": 0.006921449150301469,
+              "right_run_jump": 0.5490668060882281,
+              "right_run_release": 0.37742010913301544,
+              "right_walk_jump": 0.006915466595404154,
+              "right_walk_release": 0.01144320306523515
+            },
+            "type": "choice"
+          }
+        },
+        "usage": {
+          "cost": 5.2416e-05,
+          "input_tokens": 1248,
+          "output_tokens": 1
+        }
+      },
+      "after_observation_sha256": "411e8e48ca01e3fe888e868e2a36d833cc7a3aca00f2aa64e8ab185f5d23331c",
+      "screen_after_sha256": "47351424f269f1eac332385a72c5c9c842dc80e804508ebe2072652d4d3243ba",
+      "native_frame_hashes": [
+        {
+          "frame": 109,
+          "ram_sha256": "59fcdc947c3aa7130f392aab636bfe9420a26b56b3883b11baa8276632362c59",
+          "screen_sha256": "e05d3b0096b80662410f0a5a9828975145b79b141880e202d5e18f047da4b035"
+        },
+        {
+          "frame": 110,
+          "ram_sha256": "04536378716d791f671c63711458528acc6a180420399b0763427d998b7938d0",
+          "screen_sha256": "47351424f269f1eac332385a72c5c9c842dc80e804508ebe2072652d4d3243ba"
+        }
+      ]
+    }
+  ],
+  "request_attempts": [
+    {
+      "decision_index": 0,
+      "stage": "motor",
+      "attempt": 0,
+      "request_sha256": "d125c76d01753f26eaf3df47d89fea00eb64d692af03e75f2bc9b945c367d9ea",
+      "http_status": 200,
+      "valid": true,
+      "response_recorded": true,
+      "failure_class": null,
+      "raw_response_sha256": "20edd66f392d9193b7cd80f64b9a04f178db106113cb0785c4d7279e80e2bd16",
+      "response_id_sha256": "120c836054094be167a08b107e3961f1240a73b9f02fb2502420845ce8e72108",
+      "usage": {
+        "cost": 3.5322e-05,
+        "input_tokens": 841,
+        "output_tokens": 1
+      }
+    },
+    {
+      "decision_index": 1,
+      "stage": "motor",
+      "attempt": 0,
+      "request_sha256": "86d99e8c12778fcd675906a0e65e146cdbd912be5564d41ed4d203b8177c8bca",
+      "http_status": 200,
+      "valid": true,
+      "response_recorded": true,
+      "failure_class": null,
+      "raw_response_sha256": "476a8365eb188ad469552e4253805cc7c76bd10f0e128475532907387f637913",
+      "response_id_sha256": "c0478a7fff0caabbeef979b19a2b5711f190a9ecf8b391509e31556382eea975",
+      "usage": {
+        "cost": 3.591e-05,
+        "input_tokens": 855,
+        "output_tokens": 1
+      }
+    },
+    {
+      "decision_index": 2,
+      "stage": "motor",
+      "attempt": 0,
+      "request_sha256": "62bd1b5569a73deab79fd57782115f4362ae038864714e3208ab89afa93cce81",
+      "http_status": 200,
+      "valid": true,
+      "response_recorded": true,
+      "failure_class": null,
+      "raw_response_sha256": "91f80030d8fab88f5c3600bee460a82db2149eb14ed430aee30a9ef37f0c020d",
+      "response_id_sha256": "54464aeb8a1733ca7482116d0781ba2b4109396b298b87f38cba9dcbe40f33ef",
+      "usage": {
+        "cost": 3.696e-05,
+        "input_tokens": 880,
+        "output_tokens": 1
+      }
+    },
+    {
+      "decision_index": 3,
+      "stage": "motor",
+      "attempt": 0,
+      "request_sha256": "994029dd8b6ce16562603f959a9e9bcdbcba52ef796eb3aabdcdc8ae4fc4fd98",
+      "http_status": 200,
+      "valid": true,
+      "response_recorded": true,
+      "failure_class": null,
+      "raw_response_sha256": "cc831dd5e0637d3afd62934d61163a6f6d2eecf789e0599763f84c9252080e07",
+      "response_id_sha256": "67d8c11ce38856f8bb9b522067d1af812aa1f0f95adaa088f67e462c178499a7",
+      "usage": {
+        "cost": 3.7002e-05,
+        "input_tokens": 881,
+        "output_tokens": 1
+      }
+    },
+    {
+      "decision_index": 4,
+      "stage": "motor",
+      "attempt": 0,
+      "request_sha256": "801d7f484af9f81a7b871008e7bb38f74458b834dac4b60cf3040d80d2d96a33",
+      "http_status": 200,
+      "valid": true,
+      "response_recorded": true,
+      "failure_class": null,
+      "raw_response_sha256": "c7619348742ffc1a2bc9fa516484d44ae7eb59074c00a24b1157318934c5da3c",
+      "response_id_sha256": "126cdd4ce6032d2ca1a09ef565cd0cd9662d2bc41784ed19661b1e186c266562",
+      "usage": {
+        "cost": 3.7002e-05,
+        "input_tokens": 881,
+        "output_tokens": 1
+      }
+    },
+    {
+      "decision_index": 5,
+      "stage": "motor",
+      "attempt": 0,
+      "request_sha256": "cdeadf60259b3e4900c4e4aeee67b3ddfb7509cf1f99f6bc133e5122ca4c2247",
+      "http_status": 200,
+      "valid": true,
+      "response_recorded": true,
+      "failure_class": null,
+      "raw_response_sha256": "052c5e90e6a9d8c7b169ee0187969a587d0def4b89186402f3543aebc3643967",
+      "response_id_sha256": "d9d252a3f0ee67cbbca54cd68e0dc937be0764a12a8fefc5ca0f63653035e1f7",
+      "usage": {
+        "cost": 3.7002e-05,
+        "input_tokens": 881,
+        "output_tokens": 1
+      }
+    },
+    {
+      "decision_index": 6,
+      "stage": "motor",
+      "attempt": 0,
+      "request_sha256": "e7ea0bcc69bec1854522630b7db0f49ae9a30bbfcffd0878ba115bab421795b6",
+      "http_status": 200,
+      "valid": true,
+      "response_recorded": true,
+      "failure_class": null,
+      "raw_response_sha256": "22b3e622a1cee3f7e31751fc634c1d22f7ab30804b6bd39d34e989aa25e6d2b6",
+      "response_id_sha256": "9605d4ae52ebc3fb7bbfeaa11e204f5c35e653cbb6395f8f8b45e8884920f88c",
+      "usage": {
+        "cost": 3.7002e-05,
+        "input_tokens": 881,
+        "output_tokens": 1
+      }
+    },
+    {
+      "decision_index": 7,
+      "stage": "motor",
+      "attempt": 0,
+      "request_sha256": "bd02f4fa0cc021786161fd8d613efbd6a2cecea3dc0298055dbb62adf7f4acc8",
+      "http_status": 200,
+      "valid": true,
+      "response_recorded": true,
+      "failure_class": null,
+      "raw_response_sha256": "6796816d670928b905472bc5b54ae0eaed2558f7a17f2853921621ee8e77354d",
+      "response_id_sha256": "453f157db54a4e6e9d0aea62f7b5780fe06b74e0c96e9480496ccb88a17e1f2d",
+      "usage": {
+        "cost": 3.696e-05,
+        "input_tokens": 880,
+        "output_tokens": 1
+      }
+    },
+    {
+      "decision_index": 8,
+      "stage": "motor",
+      "attempt": 0,
+      "request_sha256": "b6422625dc603befaaa8e98879c9b8052f6e6951ff5b20f4c6ae35d2ab8b9a9e",
+      "http_status": 200,
+      "valid": true,
+      "response_recorded": true,
+      "failure_class": null,
+      "raw_response_sha256": "68dedc60ac378e9064cd1958a507d2cb63535e85f929a07059bc745c212d4a68",
+      "response_id_sha256": "4b115c9b374d7c5d23da49575cbc9dff5b10532b8b8af2cf7b592993ce408be5",
+      "usage": {
+        "cost": 3.759e-05,
+        "input_tokens": 895,
+        "output_tokens": 1
+      }
+    },
+    {
+      "decision_index": 9,
+      "stage": "motor",
+      "attempt": 0,
+      "request_sha256": "703f74fdd3027d5e4de8aa75a8ed86dcdfa6efc50cd6d8800078e073294fc276",
+      "http_status": 200,
+      "valid": true,
+      "response_recorded": true,
+      "failure_class": null,
+      "raw_response_sha256": "585ca8f55e1fe22b6abae5ae4f7b4571e89abc3e392a84474996ee503d808826",
+      "response_id_sha256": "32c5020a859040ab30e848a88a35e993f51f0f933cdeaea65bd9c58d29532c2b",
+      "usage": {
+        "cost": 3.7716e-05,
+        "input_tokens": 898,
+        "output_tokens": 1
+      }
+    },
+    {
+      "decision_index": 10,
+      "stage": "motor",
+      "attempt": 0,
+      "request_sha256": "2b1742a6f839ed26616bb599f8dc473d37b406dc43853088ab9efa697017262d",
+      "http_status": 200,
+      "valid": true,
+      "response_recorded": true,
+      "failure_class": null,
+      "raw_response_sha256": "e10fb8afbc3978db48d7c73ef9845a7ffab1b7b5e78a98a675cd6d2c107b2c6b",
+      "response_id_sha256": "3f85836794f5b4014b55a07e69c47183cd2bb971a897cf68b343f23d147ce800",
+      "usage": {
+        "cost": 3.78e-05,
+        "input_tokens": 900,
+        "output_tokens": 1
+      }
+    },
+    {
+      "decision_index": 11,
+      "stage": "motor",
+      "attempt": 0,
+      "request_sha256": "a7bc662fc9d1444e83a2a996c8ffc83eb79165467c5f1d4da97b9a79fae8e1e9",
+      "http_status": 200,
+      "valid": true,
+      "response_recorded": true,
+      "failure_class": null,
+      "raw_response_sha256": "0f29d4dda2b9e269f0749fb8c7e97f0ee8446c3b2a070daa1ece032ebdd9c840",
+      "response_id_sha256": "99b52d1972d8e3f0d4a9b92ce4b89c85c51070cd848ec2247a839c5b96c075f3",
+      "usage": {
+        "cost": 3.9732e-05,
+        "input_tokens": 946,
+        "output_tokens": 1
+      }
+    },
+    {
+      "decision_index": 12,
+      "stage": "motor",
+      "attempt": 0,
+      "request_sha256": "d8f182aca21839e08e7fcee8f2fee2c5710339018dd75cfb4c3d57faeebd0e0a",
+      "http_status": 200,
+      "valid": true,
+      "response_recorded": true,
+      "failure_class": null,
+      "raw_response_sha256": "d23c13e902b26a8bf1b5cc34834bab07e5a2ab786b992c1e9ae404796378bba1",
+      "response_id_sha256": "b541e0b993f14b0f7cf5abde79802e37b67319273b5f4df740fffd56eebb5971",
+      "usage": {
+        "cost": 3.9774e-05,
+        "input_tokens": 947,
+        "output_tokens": 1
+      }
+    },
+    {
+      "decision_index": 13,
+      "stage": "motor",
+      "attempt": 0,
+      "request_sha256": "d83ec562923391d9d8e336bebe7b81378cb328f2ef6f1b5185d8c746bbcee3c4",
+      "http_status": 200,
+      "valid": true,
+      "response_recorded": true,
+      "failure_class": null,
+      "raw_response_sha256": "f79263c60c1375dcdb152367cfd1c66237749219a0284c2bceebea01723d2bfd",
+      "response_id_sha256": "07ef3ba820e21ed1aef329b70d006599b812defd48c0f566b966bf9453eeeb9b",
+      "usage": {
+        "cost": 3.9774e-05,
+        "input_tokens": 947,
+        "output_tokens": 1
+      }
+    },
+    {
+      "decision_index": 14,
+      "stage": "motor",
+      "attempt": 0,
+      "request_sha256": "846da666b375eb35ac93c9b78e66226966b77b8ef44a5f20344c0b877c360f74",
+      "http_status": 200,
+      "valid": true,
+      "response_recorded": true,
+      "failure_class": null,
+      "raw_response_sha256": "0eb2565c827867b0f897cb8490ad469566d933849969a565bca47c7e624a8e2d",
+      "response_id_sha256": "3e503a49715c45b9e1517764869a9b2cdf6ca99e60dbaea3c190926752b7772c",
+      "usage": {
+        "cost": 3.9816e-05,
+        "input_tokens": 948,
+        "output_tokens": 1
+      }
+    },
+    {
+      "decision_index": 15,
+      "stage": "motor",
+      "attempt": 0,
+      "request_sha256": "8166f96ecdd0243f52b906f49e816e1c865304072488210a09e891e4954dbef5",
+      "http_status": 200,
+      "valid": true,
+      "response_recorded": true,
+      "failure_class": null,
+      "raw_response_sha256": "9af832ec9688e206c8690ff44acf31126e9982f08d468b91e83162d793e31345",
+      "response_id_sha256": "9f83cda39e203ccb255f215603167c825fa4f6ea6b9ad8f0153d4043e466b272",
+      "usage": {
+        "cost": 3.9816e-05,
+        "input_tokens": 948,
+        "output_tokens": 1
+      }
+    },
+    {
+      "decision_index": 16,
+      "stage": "motor",
+      "attempt": 0,
+      "request_sha256": "049b5d0812be54d3809f6e621279e0d38063bdeafd78db9162c1540b9601ca20",
+      "http_status": 200,
+      "valid": true,
+      "response_recorded": true,
+      "failure_class": null,
+      "raw_response_sha256": "5eeb2eadbfe5ff460347fb887dfbd87ed7bbf2722057dab05c0b2fc2f00a2201",
+      "response_id_sha256": "ef5f031f8c8fca5be717d98ce61a12ccd9a9d48b7512e259f97862e27c0aa024",
+      "usage": {
+        "cost": 3.9816e-05,
+        "input_tokens": 948,
+        "output_tokens": 1
+      }
+    },
+    {
+      "decision_index": 17,
+      "stage": "motor",
+      "attempt": 0,
+      "request_sha256": "d07b283ad4fe6a6a09abb1f31990197daced287078a487b6225e51ea473e867d",
+      "http_status": 200,
+      "valid": true,
+      "response_recorded": true,
+      "failure_class": null,
+      "raw_response_sha256": "2cf7d4beb0979ec4dffa455256edb974848ab39ea6a76a792bf6a30e17040190",
+      "response_id_sha256": "71271c9daedef7ce783885b591a5e5904518ae7fb600be92b007b34808b584fa",
+      "usage": {
+        "cost": 3.9816e-05,
+        "input_tokens": 948,
+        "output_tokens": 1
+      }
+    },
+    {
+      "decision_index": 18,
+      "stage": "motor",
+      "attempt": 0,
+      "request_sha256": "d21a131a719fac193643103e48265bf040376b4beed2e168899b5653aee8ad85",
+      "http_status": 200,
+      "valid": true,
+      "response_recorded": true,
+      "failure_class": null,
+      "raw_response_sha256": "7a3ecff68a6406c8ff758f29bba9463612c4a179cc71a9bff48693274b8195b5",
+      "response_id_sha256": "521e150a632cc8994a9382a9be4f55d81057af269d80515e4657a6ec3ffd9c8f",
+      "usage": {
+        "cost": 4.1748e-05,
+        "input_tokens": 994,
+        "output_tokens": 1
+      }
+    },
+    {
+      "decision_index": 19,
+      "stage": "motor",
+      "attempt": 0,
+      "request_sha256": "379c3482b936836959210235ac1e0e25d0ec99837e81f0084c149934aaf5f84d",
+      "http_status": 200,
+      "valid": true,
+      "response_recorded": true,
+      "failure_class": null,
+      "raw_response_sha256": "476acdb33c0e1b12b9155717cb7601497a137f5b927bf160c986ea11fa4854d6",
+      "response_id_sha256": "b1867eb4a33b99fd28bf81960aefcb768cb6788fd15987e72cd30b01aef3ebd6",
+      "usage": {
+        "cost": 4.5402e-05,
+        "input_tokens": 1081,
+        "output_tokens": 1
+      }
+    },
+    {
+      "decision_index": 20,
+      "stage": "motor",
+      "attempt": 0,
+      "request_sha256": "71ca2923af1f5369a88e78b9c88fcb320d58aaa00d9ed0bb588ef5d583012be8",
+      "http_status": 200,
+      "valid": true,
+      "response_recorded": true,
+      "failure_class": null,
+      "raw_response_sha256": "1010708191108efb236f85994df96d643122f558576fa78403593f4e432b26e7",
+      "response_id_sha256": "a77a9c0ed47eacfcfdba14deaec6c3b15c44b328a3bb2563c5e8cb9bf9584872",
+      "usage": {
+        "cost": 4.5486e-05,
+        "input_tokens": 1083,
+        "output_tokens": 1
+      }
+    },
+    {
+      "decision_index": 21,
+      "stage": "motor",
+      "attempt": 0,
+      "request_sha256": "b10915fcbf49f4e85dc6fdeba2c60d7051f42b9ead6c9e69a084ff452f01a9cc",
+      "http_status": 200,
+      "valid": true,
+      "response_recorded": true,
+      "failure_class": null,
+      "raw_response_sha256": "999fc686da8486ec1493107c1eeac8b18243d66d70065a3d1f4f7edca25c866c",
+      "response_id_sha256": "d9b71bc3a2c8ed7b504c47f095c6621fc13990e1e5cf23fc817df12c437d5a7b",
+      "usage": {
+        "cost": 4.8888e-05,
+        "input_tokens": 1164,
+        "output_tokens": 1
+      }
+    },
+    {
+      "decision_index": 22,
+      "stage": "motor",
+      "attempt": 0,
+      "request_sha256": "b4fcdf97c16480fe0f91bc88e342b7009a9a77788988f76eb92bb30121e4aa35",
+      "http_status": 200,
+      "valid": true,
+      "response_recorded": true,
+      "failure_class": null,
+      "raw_response_sha256": "61532d250d477d23a6ca0d596fa0a77fa8e033682ba196617e3e205dee61c546",
+      "response_id_sha256": "f5b6a7794ee533baae4b97ad18cf20fb7b4d8e57e01dd1226f92501d41f06dd3",
+      "usage": {
+        "cost": 5.1324e-05,
+        "input_tokens": 1222,
+        "output_tokens": 1
+      }
+    },
+    {
+      "decision_index": 23,
+      "stage": "motor",
+      "attempt": 0,
+      "request_sha256": "800d50f891e3313058c3b4b9027a0b8a76dee4102bc3f3a110464b409f95ea78",
+      "http_status": 200,
+      "valid": true,
+      "response_recorded": true,
+      "failure_class": null,
+      "raw_response_sha256": "a1d75d18f92c340d742e10bebc35cc5fbe79c5d842ea5329a2d20645976ea8af",
+      "response_id_sha256": "cdc7d1179fab4b81b0bdc207e53a79b654738b49ef12e8e47bcb2f326686e3c5",
+      "usage": {
+        "cost": 5.313e-05,
+        "input_tokens": 1265,
+        "output_tokens": 1
+      }
+    },
+    {
+      "decision_index": 24,
+      "stage": "motor",
+      "attempt": 0,
+      "request_sha256": "9e51ebb163ed9bbb780edd95d9f0620f793efde9bba8fd76651c3f5ad5154ac9",
+      "http_status": 200,
+      "valid": true,
+      "response_recorded": true,
+      "failure_class": null,
+      "raw_response_sha256": "e935b4b69e061874fb5e74acd1f99776e768d23d151afb61c8be8811b3e300e2",
+      "response_id_sha256": "f54aef0dc6eb7073f39df73952650227442b524b1c8b2692111a93a1b1f75404",
+      "usage": {
+        "cost": 5.3172e-05,
+        "input_tokens": 1266,
+        "output_tokens": 1
+      }
+    },
+    {
+      "decision_index": 25,
+      "stage": "motor",
+      "attempt": 0,
+      "request_sha256": "11758faed7ff20f90958d832b844b55ff2174c8355233e8370c6fa463249e898",
+      "http_status": 200,
+      "valid": true,
+      "response_recorded": true,
+      "failure_class": null,
+      "raw_response_sha256": "624f90ed9727b678816b099046252da99e4bd44f1fdf2c21175fa3a3376b3680",
+      "response_id_sha256": "98cccedac17e7ea9ce1f4444b55243c28884cd4e645cf9a85ab7efe0851c3937",
+      "usage": {
+        "cost": 5.2626e-05,
+        "input_tokens": 1253,
+        "output_tokens": 1
+      }
+    },
+    {
+      "decision_index": 26,
+      "stage": "motor",
+      "attempt": 0,
+      "request_sha256": "7e4a1e1f1890d0212a47d0f508f68689f25d3ddc2164f7e80c9b5634e4c799aa",
+      "http_status": 200,
+      "valid": true,
+      "response_recorded": true,
+      "failure_class": null,
+      "raw_response_sha256": "9b25267dc791d071e7a2df795c9701c6208511ca856fe39e2620ad7cfae55542",
+      "response_id_sha256": "0516d5802aabd4563bec01d871ec9226983ad9a70abb6b68b0fbe4b89a2db24a",
+      "usage": {
+        "cost": 5.2542e-05,
+        "input_tokens": 1251,
+        "output_tokens": 1
+      }
+    },
+    {
+      "decision_index": 27,
+      "stage": "motor",
+      "attempt": 0,
+      "request_sha256": "819edc42e3fc0c45c0e7f579062b95ef969c5fa7af2baba0d4ec84cd654a1ef6",
+      "http_status": 200,
+      "valid": true,
+      "response_recorded": true,
+      "failure_class": null,
+      "raw_response_sha256": "32d1c2350136ab6fa2028ae1d7cb7d67133ba5e57e66f7f13e28408950e2d044",
+      "response_id_sha256": "d1632a578fa463782b188f1defca49678cb9017db77e27893931b7e1253e864b",
+      "usage": {
+        "cost": 5.2416e-05,
+        "input_tokens": 1248,
+        "output_tokens": 1
+      }
+    }
+  ],
+  "attempt_proof": {
+    "request_intent_count": 28,
+    "request_result_count": 28,
+    "error_attempt_count": 0,
+    "unanswered_attempt_count": 0,
+    "source_episode_sha256": "771d9c459a84c2b72e065b2c48e85d55e2a9a45b40b38546821ce1dd8e0d6d16",
+    "native_audit_sha256": "709d7a09a28e0be57cd4142fb1e22d9f66b77020f6dfb7ba25e8c0ec4aa6ec08",
+    "started_at_utc": "2026-11-01T20:20:20.365157+00:00",
+    "terminal_at_utc": "2026-11-01T20:20:31.957213+00:00"
+  },
+  "source_episode_sha256": "771d9c459a84c2b72e065b2c48e85d55e2a9a45b40b38546821ce1dd8e0d6d16",
+  "native_replay_verified": true
+}
