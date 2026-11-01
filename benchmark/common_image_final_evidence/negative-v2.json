@@ -1,0 +1,79 @@
+{
+  "verdict": "PASS independent complete image-v2 calibration; all6 genuine native deaths, zero native flags",
+  "protocol_sha256": "4f489c937469d7d68379fe83bc8d457faae83e67e0b00bdb39bc4ecddc105194",
+  "episodes": [
+    {
+      "model_id": "baseten/mammoth-1",
+      "temperature": 0.05,
+      "seed": 9001,
+      "frames": 723,
+      "actions": 104,
+      "attempts": 104,
+      "native_flag": false,
+      "death": true,
+      "progress_pct": 43.96026914450496,
+      "source_sha256": "04bc9e98c4b158313823e0808a442013f2994633ebf70b62c6baf44cefd90ffd"
+    },
+    {
+      "model_id": "baseten/mammoth-1",
+      "temperature": 0.2,
+      "seed": 9001,
+      "frames": 306,
+      "actions": 44,
+      "attempts": 44,
+      "native_flag": false,
+      "death": true,
+      "progress_pct": 21.884011534764497,
+      "source_sha256": "2028a185efe1faad733b9330ed276f0d11d27bfaef93a29c27d86aff04cbd0ee"
+    },
+    {
+      "model_id": "inception/mercury-decide",
+      "temperature": 0.05,
+      "seed": 9001,
+      "frames": 106,
+      "actions": 16,
+      "attempts": 16,
+      "native_flag": false,
+      "death": true,
+      "progress_pct": 8.715155398910605,
+      "source_sha256": "74ce9720cf7e739c7611a18ba82f27a65195c7c142a5e2a8d2de6d6a2feca8bc"
+    },
+    {
+      "model_id": "inception/mercury-decide",
+      "temperature": 0.2,
+      "seed": 9001,
+      "frames": 106,
+      "actions": 16,
+      "attempts": 16,
+      "native_flag": false,
+      "death": true,
+      "progress_pct": 8.715155398910605,
+      "source_sha256": "7e97dd990916d069e27294077d5084dfc4854901c6cf4492d9412a2ac964f8ce"
+    },
+    {
+      "model_id": "perplexity/pplx-decider-v1.2",
+      "temperature": 0.05,
+      "seed": 9001,
+      "frames": 612,
+      "actions": 88,
+      "attempts": 88,
+      "native_flag": false,
+      "death": true,
+      "progress_pct": 44.28067926946491,
+      "source_sha256": "184aea5481206be622a598859d9fc236d12de91b26605a577b7f5e4e43dba813"
+    },
+    {
+      "model_id": "perplexity/pplx-decider-v1.2",
+      "temperature": 0.2,
+      "seed": 9001,
+      "frames": 518,
+      "actions": 74,
+      "attempts": 74,
+      "native_flag": false,
+      "death": true,
+      "progress_pct": 26.049343159243833,
+      "source_sha256": "07ac9811ce51896e2164f7c8046f31d89ae2e4f0effb28308dd2edb0a56a836e"
+    }
+  ],
+  "scope": "Confirms preregistered common image-v2 selected-T native-clear feasibility gate failed. No final48image trials or new seed/policy pools authorised; preserve as negative calibration, excluded from final ranking."
+}

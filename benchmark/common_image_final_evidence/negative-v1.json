@@ -1,0 +1,79 @@
+{
+  "verdict": "PASS independent complete v1 image calibration; all6 valid native outcomes, zero genuine flags",
+  "protocol_sha256": "66cd3ae7b068fc57add4b783328dceb5f7992ca55a8737a14ea2eef02ad9dd62",
+  "episodes": [
+    {
+      "model_id": "baseten/mammoth-1",
+      "temperature": 0.05,
+      "seed": 9001,
+      "frames": 819,
+      "actions": 131,
+      "attempts": 262,
+      "native_flag": false,
+      "death": true,
+      "progress_pct": 43.96026914450496,
+      "source_sha256": "e238c6ce693d2ddd71cfe6cf6b99811ddfa9a73e78576a1af44065a465d1980b"
+    },
+    {
+      "model_id": "baseten/mammoth-1",
+      "temperature": 0.2,
+      "seed": 9001,
+      "frames": 1078,
+      "actions": 302,
+      "attempts": 604,
+      "native_flag": false,
+      "death": true,
+      "progress_pct": 63.37712271707786,
+      "source_sha256": "17eaaefcbdb13c760ecdc410af556764fe328ee2395e2c4d74d389cd337f7e44"
+    },
+    {
+      "model_id": "inception/mercury-decide",
+      "temperature": 0.05,
+      "seed": 9001,
+      "frames": 3000,
+      "actions": 1284,
+      "attempts": 2569,
+      "native_flag": false,
+      "death": false,
+      "progress_pct": 21.884011534764497,
+      "source_sha256": "047527ce637290752d1c365955c21918eaf9b04b21e5117784b5d8883b9b348f"
+    },
+    {
+      "model_id": "inception/mercury-decide",
+      "temperature": 0.2,
+      "seed": 9001,
+      "frames": 1798,
+      "actions": 744,
+      "attempts": 1489,
+      "native_flag": false,
+      "death": true,
+      "progress_pct": 27.523229734059598,
+      "source_sha256": "aa5a57d0c675662bc7d55db505e7805e01304c8639140ce4915493449e21de24"
+    },
+    {
+      "model_id": "perplexity/pplx-decider-v1.2",
+      "temperature": 0.05,
+      "seed": 9001,
+      "frames": 784,
+      "actions": 126,
+      "attempts": 252,
+      "native_flag": false,
+      "death": true,
+      "progress_pct": 56.10381288048703,
+      "source_sha256": "7b0fa07dd6985dc5417b1aa7121b55f05a121c234710b2614dd6d6cc0c5c6164"
+    },
+    {
+      "model_id": "perplexity/pplx-decider-v1.2",
+      "temperature": 0.2,
+      "seed": 9001,
+      "frames": 266,
+      "actions": 39,
+      "attempts": 78,
+      "native_flag": false,
+      "death": true,
+      "progress_pct": 20.24991989746876,
+      "source_sha256": "423c57432c9979d84c410add15ec4c9d7d75f758dacff08e178924a26558fb59"
+    }
+  ],
+  "scope": "Confirms preregistered v1 image calibration failed feasibility; root-authorised lean global image-v2 may now be frozen and preflighted under new exact registration, not scored yet"
+}

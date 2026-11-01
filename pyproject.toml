@@ -27,5 +27,5 @@ include-package-data = false
 
 [tool.setuptools.package-data]
 prototype = ["static/*"]
-benchmark = ["models.json", "protocol.json", "PROTOCOL.txt", "common_profiles/*.json"]
+benchmark = ["models.json", "protocol.json", "PROTOCOL.txt", "common_profiles/*.json", "common_image_final_spec.json", "common_image_final_evidence/*.json"]
 "benchmark.profiles" = ["*.json"]

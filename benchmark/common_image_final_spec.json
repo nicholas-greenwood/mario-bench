@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "protocol_id": "mario-common-image-h7-progress-baseline-v1",
+  "root_decision": "Publish a model-neutral progress benchmark; a fresh native clear is an outcome, not an enrolment requirement. Freeze this rationale before all final calls. No fourth calibration pool.",
+  "acceptance": {
+    "mode": "explicit_progress_baseline_v1",
+    "positive_pilot_required": false,
+    "native_clear_is_outcome": true,
+    "mandatory": [
+      "Exact historical268body/1871nativeflag mechanics proof",
+      "Actual16model wholecontract nativeHTTP/provider/schema preflight and source/RGB/RNG audit",
+      "Immutable ROM/reset/controller/roster/source/registration envelope",
+      "Three fresh prescribed valid native-audited trials permodel beforemean"
+    ],
+    "old_v1_v2_v3_positive_clear_gates": "FAILED and retained unchanged; do not relabel passed or reuse pilot scores",
+    "rationale": "The exact H7 controller has a verified native clear and the shared transport/input/decoder/replay mechanisms are verified. Negative fresh calibration is evidence of limited robustness, not an invalid score. Do not optimise until a sample wins; measure fresh normalised progress under one shared minimal protocol."
+  },
+  "historical_mechanics": {
+    "trace_sha256": "30392705e81db66ea234bfd71ac64e9cab2cca3dc1577829a620d3ff8f48432d",
+    "exact_native_requests": 268,
+    "native_flag_frame": 1871,
+    "development_seed": 0,
+    "development_temperature": 0.05,
+    "not_a_scored_final_trial": true,
+    "pure_policy_sha256": "19cdd3382f9919d4b474691b2fc78cb676e1382d94b1fd43b21280e6039483da",
+    "runtime_sha256": "0a7fc35cd2654b20d386814c9376d905b57bde927ab3d0c4e0dfc66664dae95b"
+  },
+  "negative_calibrations": [
+    {
+      "protocol_sha256": "66cd3ae7b068fc57add4b783328dceb5f7992ca55a8737a14ea2eef02ad9dd62",
+      "certificate_sha256": "983ea565f48b385490f7b018b5119faad816b0ca3468310b56e6be74bdf61f31",
+      "native_image_clears": 0
+    },
+    {
+      "protocol_sha256": "4f489c937469d7d68379fe83bc8d457faae83e67e0b00bdb39bc4ecddc105194",
+      "certificate_sha256": "a505e41e1847a576904feea5d63f21d716a47ec12c79f2fa02835454f554026b",
+      "native_image_clears": 0
+    },
+    {
+      "protocol_sha256": "3f6b8108c02a5a60bc91c841a868d9ff3724bb2de92d17b53ac5c431b4812675",
+      "certificate_sha256": "38f081ab2fc0d3ca22ca90790585adc4ba7cafde15e27f8431636caad95ba8a0",
+      "native_image_clears": 0
+    }
+  ],
+  "controller": {
+    "shared_all_16": true,
+    "mode": "image",
+    "media": "Actual FULLCURRENT512x480 nearest first, one FULLPAST; no crops",
+    "history": "Last2 actual own controls +currentlyheld buttons/A-edge note",
+    "rules_and_joint12_question": "Byte-identical H7 baseline, no new heads/plans/macros/route/modelbranches",
+    "requested_native_hold": 7,
+    "probability_decoder": "Validate finite complete12 nativevector, normalize p**(1/.05) over alphabetical nativekeys; one uniform Python Random(seed) draw/committedaction; preserve rawresponse/providerchoice",
+    "ram_coordinates_terrain_or_external_state_in_input": false
+  },
+  "evaluation": {
+    "level": "1-1",
+    "life_budget": 1,
+    "emulator_seed": 0,
+    "provider_seed": null,
+    "eligible_image_pairs": 16,
+    "per_model_repeats": 3,
+    "local_sampler_seeds": [
+      101,
+      102,
+      103
+    ],
+    "forbidden_final_seeds": [
+      0,
+      9001
+    ],
+    "prespecified_fresh_episodes": 48,
+    "native_frame_budget": 6000,
+    "maximum_successful_actions": 858,
+    "last_budget_hold": "Requested7,actual1 at5999\u21926000; no extraautoaction",
+    "no_stall_abort": true,
+    "first_native_flag_or_death_stops": true,
+    "timeout_seconds": 60,
+    "retries_after_initial": 2,
+    "concurrency": 8,
+    "max_active_image_cases_per_model": 1,
+    "minimum_request_spacing_seconds": 0.5
+  },
+  "preflight": {
+    "fresh_real_pairs": 16,
+    "concurrency": 4,
+    "fixture": "Actual neutral7+7 at0/7/14, CURRENT14+PAST7, own2neutral controls",
+    "media_count": 2,
+    "gameplay_actions": 0,
+    "rng_draws": 0,
+    "requires_actual16native_audit_before_evaluation": true
+  },
+  "scoring": {
+    "primary": "Per-model mean normalised furthestvalid progress over exactly3 prescribed nativevalid trials; missing/technical=NULL, never0/partialmean",
+    "native_flag_only_100": true,
+    "uncompleted_max_progress_pct": 99.9,
+    "secondary": "Best completed nativeclear frames/60 among3, NULLifnone; retainmeancompletedtime/ncompleted",
+    "cost": "Actual/estimatedBYOK/unknown perrun; meanonlyall3completebilling; no billed/invoice guesses",
+    "latency_metric": false,
+    "separate_from_state_track": true
+  },
+  "provenance": {
+    "new_authority_distinct_from_old_promotion_gated_engine": true,
+    "no_changes_to_old_sources_gates_pilots": true,
+    "no_per_model_profile_selection": true,
+    "no_native_choice_discard_or_resampling": true,
+    "recorded_valid_reply_reused_on_resume": true,
+    "unmatched_intent_never_resent": true,
+    "all_attempts_including_retries_costed_or_unknown": true
+  },
+  "ui_contract": "Explicit image-only progress-baseline branch with acceptance.mode and48freshslots; never fabricate a passed positive-clear gate or combine state/image scores. Display NULLcleartime when no flags. Keep independent state protocol/recovery lineage and all legacy history."
+}
