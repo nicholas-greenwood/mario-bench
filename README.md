@@ -5,6 +5,10 @@ or game state and choose controller inputs
 
 [demo](https://mario.nicholasg.com/)
 
+<img src="docs/media/first-clear.gif" alt="pplx decider v1.2 clearing world 1-1" width="256" height="240">
+
+*pplx decider v1.2, state input, replayed at 1x speed*
+
 ## results
 
 <!-- BEGIN GENERATED RESULTS -->
@@ -79,10 +83,6 @@ clear time is native gameplay frames divided by 60, excluding api waiting time
 and available only for completed runs
 
 [results and traces](results/README.md) · [public 22-model roster](results/models.json) · [website data guide](docs/website-data.md)
-
-![pplx decider v1.2 clearing world 1-1](docs/media/first-clear.gif)
-
-*pplx decider v1.2, state input, replayed at 2x speed*
 
 <details>
 <summary>run locally</summary>
