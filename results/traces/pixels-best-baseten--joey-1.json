@@ -1,0 +1,681 @@
+{
+  "schema_version": 1,
+  "evidence_kind": "compact_native_action_trace",
+  "id": "pixels-best-baseten--joey-1",
+  "mode": "image",
+  "level": "1-1",
+  "contract": {
+    "questions": {
+      "action": {
+        "criteria": {
+          "coast_release_jump_4": "Execute exactly: 4 native frames holding {'horizontal': 'released', 'vertical': 'released', 'jump': 'released', 'run': 'released'}.",
+          "fresh_running_jump_24": "Execute exactly: 1 native frames holding {'horizontal': 'right', 'vertical': 'released', 'jump': 'released', 'run': 'held'} then 24 native frames holding {'horizontal': 'right', 'vertical': 'released', 'jump': 'held', 'run': 'held'}. One fresh A press after a1-frame release. Can initiate a jump only from a solid surface; never resets A on later landing. Hold duration is fixed, even after a ceiling bump or landing, and can carry Mario forward until the entire sequence ends.",
+          "fresh_walking_jump_24": "Execute exactly: 1 native frames holding {'horizontal': 'right', 'vertical': 'released', 'jump': 'released', 'run': 'released'} then 24 native frames holding {'horizontal': 'right', 'vertical': 'released', 'jump': 'held', 'run': 'released'}. One fresh A press after a1-frame release. Can initiate a jump only from a solid surface; never resets A on later landing. Hold duration is fixed, even after a ceiling bump or landing, and can carry Mario forward until the entire sequence ends.",
+          "run_forward_4": "Execute exactly: 4 native frames holding {'horizontal': 'right', 'vertical': 'released', 'jump': 'released', 'run': 'held'}.",
+          "run_forward_8": "Execute exactly: 8 native frames holding {'horizontal': 'right', 'vertical': 'released', 'jump': 'released', 'run': 'held'}.",
+          "run_left_8": "Execute exactly: 8 native frames holding {'horizontal': 'left', 'vertical': 'released', 'jump': 'released', 'run': 'held'}.",
+          "sustain_running_jump_8": "Execute exactly: 8 native frames holding {'horizontal': 'right', 'vertical': 'released', 'jump': 'held', 'run': 'held'}.",
+          "walk_forward_4": "Execute exactly: 4 native frames holding {'horizontal': 'right', 'vertical': 'released', 'jump': 'released', 'run': 'released'}."
+        },
+        "instructions": "Choose one fixed declared controller sequence for safe forward progress. Use pixels to plan travel during the entire sequence, including any landing and continued movement before the next observation. Choose takeoff near a visible gap edge so the jump lasts until safe far ground. All choices are yours; no sensor-based correction or automatic jump exists.",
+        "type": "choice"
+      }
+    },
+    "initial_provider_text": [
+      "{\"game\":\"Super Mario Bros 1-1\",\"instructions\":\"Play Mario1-1 alive to the flag at the right, using actual screenshots only. CURRENT image is FIRST; PAST image if present is motion context. Physics is paused while deciding. Right moves, B runs faster/farther, A starts a jump only from a solid surface on a new press. Hold A through ascent for height and airtime; releasing too early makes a low short hop. Holding A through landing cannot start another jump. Enemy side contact hurts and landing atop stomps. Solid blocks/ceilings can interrupt ascent; solid pipes/stairs support Mario, background hills/clouds do not. Plan landing on visible ground, take off for gaps near their edge, avoid unnecessary hopping on clear flat ground. Your chosen fixed sequence executes exactly, even if landing happens before the sequence ends. No actions check contact, detect hazards, or correct your choice.\",\"next_control_interval_native_frames\":\"Chosen fixed sequence duration, see action choices.\",\"previous_controls\":[]}",
+      "CURRENT paused screenshot; use this for your next action. Screenshot taken before decision 0"
+    ],
+    "cadence": 8
+  },
+  "actions": [
+    {
+      "index": 0,
+      "frame_before": 0,
+      "frame_after": 25,
+      "sequence": [
+        [
+          1,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ],
+        [
+          24,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "baseten/joey-1-20261029",
+        "provider": "BaseTen",
+        "answers": {
+          "action": {
+            "choice": "fresh_running_jump_24",
+            "confidence": 0.5265657446905907,
+            "probabilities": {
+              "coast_release_jump_4": 0.01626789003023508,
+              "fresh_running_jump_24": 0.5857450266042669,
+              "fresh_walking_jump_24": 0.09855902822636556,
+              "run_forward_4": 0.03919240018680396,
+              "run_forward_8": 0.11059770222665945,
+              "run_left_8": 0.008738612175010128,
+              "sustain_running_jump_8": 0.12512704303074457,
+              "walk_forward_4": 0.015772297519914387
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "0b837f5a937047284d7df20597231fc0e8d5104d940e07daa8bf4420172e72b0",
+      "screen_after_sha256": "d5a477db8957a4edee9409824226ed63bead8a4e80918a94a882efd0aec8326d",
+      "request_sha256": "efd014002a9842f1d6af4b5e7c7f4ed91306a0fadd5cd10f0c0b5e39e370938b"
+    },
+    {
+      "index": 1,
+      "frame_before": 25,
+      "frame_after": 50,
+      "sequence": [
+        [
+          1,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ],
+        [
+          24,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "baseten/joey-1-20261029",
+        "provider": "BaseTen",
+        "answers": {
+          "action": {
+            "choice": "fresh_running_jump_24",
+            "confidence": 0.546643953782383,
+            "probabilities": {
+              "coast_release_jump_4": 0.01269712992433755,
+              "fresh_running_jump_24": 0.603313459559585,
+              "fresh_walking_jump_24": 0.14164781370683072,
+              "run_forward_4": 0.025504800002792326,
+              "run_forward_8": 0.08790701423377531,
+              "run_left_8": 0.00609399444682803,
+              "sustain_running_jump_8": 0.11030726857493413,
+              "walk_forward_4": 0.01252851955091702
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "61e527bb1221a324567e2d9cd79ee8dbff2af4bfa4147c16f048219c615434d8",
+      "screen_after_sha256": "0aad69ca72a3eec7d2afee1bbf5cdc7eb95f472ae67c5adc46218f93e89755ae",
+      "request_sha256": "75f506d6a392cdcb79bacbca731c97ce79b8916f650fed0bdf96817693584b82"
+    },
+    {
+      "index": 2,
+      "frame_before": 50,
+      "frame_after": 75,
+      "sequence": [
+        [
+          1,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ],
+        [
+          24,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "baseten/joey-1-20261029",
+        "provider": "BaseTen",
+        "answers": {
+          "action": {
+            "choice": "fresh_running_jump_24",
+            "confidence": 0.5502821034999573,
+            "probabilities": {
+              "coast_release_jump_4": 0.01342893791359366,
+              "fresh_running_jump_24": 0.6064968405624627,
+              "fresh_walking_jump_24": 0.1451936552875573,
+              "run_forward_4": 0.02967920749306438,
+              "run_forward_8": 0.08571972806130126,
+              "run_left_8": 0.0068518578235699625,
+              "sustain_running_jump_8": 0.09728848541127612,
+              "walk_forward_4": 0.015341287447174659
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "ab1b53024d8a42de17b7f2e40eff878595a996b0727af7463250e3194702f276",
+      "screen_after_sha256": "9aed373f15591ddfa2e7b0eb0074f427b20e67f5d5e7dc72d8bead17944d72d6",
+      "request_sha256": "00c631c0a2ce31b85d1c8df0fdd6447786a115fa71f53661277c18ed0a1be3c2"
+    },
+    {
+      "index": 3,
+      "frame_before": 75,
+      "frame_after": 100,
+      "sequence": [
+        [
+          1,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ],
+        [
+          24,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "baseten/joey-1-20261029",
+        "provider": "BaseTen",
+        "answers": {
+          "action": {
+            "choice": "fresh_running_jump_24",
+            "confidence": 0.5818559474039603,
+            "probabilities": {
+              "coast_release_jump_4": 0.012446541046382702,
+              "fresh_running_jump_24": 0.6341239539784652,
+              "fresh_walking_jump_24": 0.1363161663443896,
+              "run_forward_4": 0.023631675304701363,
+              "run_forward_8": 0.07315897627994478,
+              "run_left_8": 0.00591636773362889,
+              "sustain_running_jump_8": 0.10295227463416613,
+              "walk_forward_4": 0.0114540446783212
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "dc18eadbd2be95c5cd2b7fe2b366cbb08995900d4954eea70eafd11d37905dff",
+      "screen_after_sha256": "8227502199ef733200fc476fd8349355d98c143464f3e2da9ff2647f514a3261",
+      "request_sha256": "21424d4d4be70cc068ddded73aac4337bb55b356fd814e85a1641f4fc901b394"
+    },
+    {
+      "index": 4,
+      "frame_before": 100,
+      "frame_after": 125,
+      "sequence": [
+        [
+          1,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ],
+        [
+          24,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "baseten/joey-1-20261029",
+        "provider": "BaseTen",
+        "answers": {
+          "action": {
+            "choice": "fresh_running_jump_24",
+            "confidence": 0.5517232405416426,
+            "probabilities": {
+              "coast_release_jump_4": 0.014672083119061442,
+              "fresh_running_jump_24": 0.6077578354739372,
+              "fresh_walking_jump_24": 0.12222417038295108,
+              "run_forward_4": 0.02918228873972746,
+              "run_forward_8": 0.0893302311744106,
+              "run_left_8": 0.007322067729596878,
+              "sustain_running_jump_8": 0.11613940730664285,
+              "walk_forward_4": 0.013371916073672475
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "23b62e660ca4cc1df33c69d5eb5ff435d25818cf098e212808414540b5e462d2",
+      "screen_after_sha256": "db47b6d979b9187ec47a3de21837de0fe2e3546d407f1430c2ee265bca49ff9b",
+      "request_sha256": "4116909dcaae8b84d96f3e5d05e9cbc5cdbe16ff7422f5944c6dd61dbbe7b8ba"
+    },
+    {
+      "index": 5,
+      "frame_before": 125,
+      "frame_after": 150,
+      "sequence": [
+        [
+          1,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ],
+        [
+          24,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "baseten/joey-1-20261029",
+        "provider": "BaseTen",
+        "answers": {
+          "action": {
+            "choice": "fresh_running_jump_24",
+            "confidence": 0.574739102533691,
+            "probabilities": {
+              "coast_release_jump_4": 0.011882614242104772,
+              "fresh_running_jump_24": 0.6278967147169796,
+              "fresh_walking_jump_24": 0.12983937446777297,
+              "run_forward_4": 0.02484613435038615,
+              "run_forward_8": 0.08300379502050015,
+              "run_left_8": 0.005912797481081913,
+              "sustain_running_jump_8": 0.10541670360841683,
+              "walk_forward_4": 0.01120186611275753
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "425ecad9abf7dab1059b52d785031c7758b4180260506a0ff3eed13432a5005a",
+      "screen_after_sha256": "ae8ff01e5d44e97ac220dde0c07a7ef760ea892e51ffff08ea87c09f8e4501f2",
+      "request_sha256": "7c5f014a6946aad5437fe5f1e8cbe3d5e16efd11b03fb87d8378a3ad4e74e7ab"
+    },
+    {
+      "index": 6,
+      "frame_before": 150,
+      "frame_after": 175,
+      "sequence": [
+        [
+          1,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ],
+        [
+          24,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "baseten/joey-1-20261029",
+        "provider": "BaseTen",
+        "answers": {
+          "action": {
+            "choice": "fresh_running_jump_24",
+            "confidence": 0.5826124997425215,
+            "probabilities": {
+              "coast_release_jump_4": 0.011999977341749814,
+              "fresh_running_jump_24": 0.6347859372747063,
+              "fresh_walking_jump_24": 0.1260057209004746,
+              "run_forward_4": 0.023269042036423715,
+              "run_forward_8": 0.0802937478070714,
+              "run_left_8": 0.005640955242189394,
+              "sustain_running_jump_8": 0.1058454265782945,
+              "walk_forward_4": 0.012159192819090345
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "f89ed61bb4e9bd206df1b33047dff6e722275566c69d42531a9e9f9aed5b8737",
+      "screen_after_sha256": "0cda1b638866846bd6a3cce6a52565b544afe79ad7343a5ad663955e4cd65001",
+      "request_sha256": "116d1855f02ceab4f25ec6c16ec746706c3e4c3c3282cb992e41fc796ce406b6"
+    },
+    {
+      "index": 7,
+      "frame_before": 175,
+      "frame_after": 200,
+      "sequence": [
+        [
+          1,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ],
+        [
+          24,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "baseten/joey-1-20261029",
+        "provider": "BaseTen",
+        "answers": {
+          "action": {
+            "choice": "fresh_running_jump_24",
+            "confidence": 0.5736955016630072,
+            "probabilities": {
+              "coast_release_jump_4": 0.011552105075238973,
+              "fresh_running_jump_24": 0.6269835639551313,
+              "fresh_walking_jump_24": 0.13480408670249508,
+              "run_forward_4": 0.025618126647138282,
+              "run_forward_8": 0.08074354348419985,
+              "run_left_8": 0.0056684553783222435,
+              "sustain_running_jump_8": 0.10196948869918764,
+              "walk_forward_4": 0.012660630058286456
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "137ff1623c8138c79367d2d37859c53bbc7bd30f01b9f145833acf09d1d6e679",
+      "screen_after_sha256": "fef98b95c740c816b9d58d4adde2461b8f7390bfbbaf51fb003ef047da41f8b9",
+      "request_sha256": "52d9815550cdf46f319ca50fcb9c152f70870d5743856bd5e33e1fe4aaa02914"
+    },
+    {
+      "index": 8,
+      "frame_before": 200,
+      "frame_after": 225,
+      "sequence": [
+        [
+          1,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ],
+        [
+          24,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "baseten/joey-1-20261029",
+        "provider": "BaseTen",
+        "answers": {
+          "action": {
+            "choice": "fresh_running_jump_24",
+            "confidence": 0.5374325725477739,
+            "probabilities": {
+              "coast_release_jump_4": 0.013792714328155195,
+              "fresh_running_jump_24": 0.5952535009793022,
+              "fresh_walking_jump_24": 0.12459950065027471,
+              "run_forward_4": 0.026079017210318967,
+              "run_forward_8": 0.10638296055681885,
+              "run_left_8": 0.006377709094804591,
+              "sustain_running_jump_8": 0.11404327620173917,
+              "walk_forward_4": 0.013471320978586405
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "765c63d7130c61e46d7e1b4fb0662c845932a38b823a8aa6f7c6d30d0dafce14",
+      "screen_after_sha256": "04111fab557b929ed7740c1da9d94a9ff7b8f47e6e7da803a236d54c030dbafb",
+      "request_sha256": "214bbd970811bdd57bdbad81cebb10a21c86d670d7a67a44f4479f118cd95c6c"
+    },
+    {
+      "index": 9,
+      "frame_before": 225,
+      "frame_after": 250,
+      "sequence": [
+        [
+          1,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ],
+        [
+          24,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "baseten/joey-1-20261029",
+        "provider": "BaseTen",
+        "answers": {
+          "action": {
+            "choice": "fresh_running_jump_24",
+            "confidence": 0.5741936221823659,
+            "probabilities": {
+              "coast_release_jump_4": 0.01315756981206792,
+              "fresh_running_jump_24": 0.6274194194095701,
+              "fresh_walking_jump_24": 0.13805813347957643,
+              "run_forward_4": 0.025093587739860874,
+              "run_forward_8": 0.08566708019446047,
+              "run_left_8": 0.006212532156480766,
+              "sustain_running_jump_8": 0.08920807204179886,
+              "walk_forward_4": 0.015183605166184385
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "4219e73f015cc3dbc253ba31b4a908a11177ed48f2363c228a6e7b2448fed730",
+      "screen_after_sha256": "528a6f1f4f239e21aa183fb0749acb99ac17564d5b456de0c635c7025e98ff5f",
+      "request_sha256": "a37efa8ad172b2878dcc012aa9bfa382c8d0b333721186e745aa591591cf3ae8"
+    },
+    {
+      "index": 10,
+      "frame_before": 250,
+      "frame_after": 275,
+      "sequence": [
+        [
+          1,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ],
+        [
+          24,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "baseten/joey-1-20261029",
+        "provider": "BaseTen",
+        "answers": {
+          "action": {
+            "choice": "fresh_running_jump_24",
+            "confidence": 0.5465941571848438,
+            "probabilities": {
+              "coast_release_jump_4": 0.013301763035696624,
+              "fresh_running_jump_24": 0.6032698875367384,
+              "fresh_walking_jump_24": 0.1363661060355471,
+              "run_forward_4": 0.02849379613923792,
+              "run_forward_8": 0.0809550993891678,
+              "run_left_8": 0.007180892119719934,
+              "sustain_running_jump_8": 0.115385442816497,
+              "walk_forward_4": 0.015047012927395362
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "d5b20ba31d31f3a1ffed638478d06d9ecd9bef84a099a23d2eea5ab122fd80c4",
+      "screen_after_sha256": "e2942e519bdf7653f19ad698541e1f6283ec929c5965440df9b9c8a77c31a057",
+      "request_sha256": "c762b85b632549bc71cbe23896ea15ffea911a478b99c7aead25aa65fad78f19"
+    },
+    {
+      "index": 11,
+      "frame_before": 275,
+      "frame_after": 300,
+      "sequence": [
+        [
+          1,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ],
+        [
+          24,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "baseten/joey-1-20261029",
+        "provider": "BaseTen",
+        "answers": {
+          "action": {
+            "choice": "fresh_running_jump_24",
+            "confidence": 0.5898099560946762,
+            "probabilities": {
+              "coast_release_jump_4": 0.012216799755259454,
+              "fresh_running_jump_24": 0.6410837115828417,
+              "fresh_walking_jump_24": 0.11727986526914734,
+              "run_forward_4": 0.024894423976688684,
+              "run_forward_8": 0.07637135211899404,
+              "run_left_8": 0.005699436435858039,
+              "sustain_running_jump_8": 0.1111367377010878,
+              "walk_forward_4": 0.011317673160122896
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "588e816ad9cdcac73d409ba7cd05683460b35b57249a55247a1cacd643e9afe2",
+      "screen_after_sha256": "b58e418e2762f5ab547194568c9c41e957f4f11d0000501926542283d4dd13b5",
+      "request_sha256": "355cf98b6c143a0535d9c15e20c193b3c27882c52fe9683da66a747ee4ab4981"
+    },
+    {
+      "index": 12,
+      "frame_before": 300,
+      "frame_after": 312,
+      "sequence": [
+        [
+          1,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ],
+        [
+          11,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "baseten/joey-1-20261029",
+        "provider": "BaseTen",
+        "answers": {
+          "action": {
+            "choice": "fresh_running_jump_24",
+            "confidence": 0.5482107157530943,
+            "probabilities": {
+              "coast_release_jump_4": 0.013135901646540705,
+              "fresh_running_jump_24": 0.6046843762839575,
+              "fresh_walking_jump_24": 0.1362355064510857,
+              "run_forward_4": 0.026052728679562615,
+              "run_forward_8": 0.07828060864709355,
+              "run_left_8": 0.0064651822956577525,
+              "sustain_running_jump_8": 0.12282771026138546,
+              "walk_forward_4": 0.012317985734716748
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "453bed5a9ec397a41d9aacd1745d65869e705e029ccb632f7bf5a0fab7b026c5",
+      "screen_after_sha256": "0d0d9a120d79f7981b6ff7db172bfcb247f80fe0b81ebd4529c5ac38daba92f2",
+      "request_sha256": "740fa11e58fb2f6601157f0aab2f05f44f4e289f763047eab88951e8566ed4a7"
+    }
+  ],
+  "source_hashes": {
+    "requests_sha256": "1785598002d428b6622ecd1d7d92e8084a3874b74c71a9354a5034cb1b7299f3",
+    "responses_sha256": "9a70e44c43260cabddee2624475be0cc4aa852a453c5dfca0992655dbcfd35e3",
+    "private_replay_sha256": "70694c913b704e4627178f07c8d07c315bfcd4ac5d83852f7ba5d17d9bfd1bfd",
+    "audit_sha256": "d476d00ed52ff6fbfec16d4fc5648db5583f984598c4858fb726953c1020311f"
+  },
+  "input_audit": {
+    "native_replay_verified": true,
+    "privileged_state_sent": false,
+    "actual_native_pixels_verified": true,
+    "requests_audited": 13
+  }
+}

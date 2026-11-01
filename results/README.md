@@ -3,6 +3,9 @@
 4 verified state-based clears and 4 verified pixels-only partial runs, with
 silent replays and exact native model actions
 
+`observations` now adds 22 state attempts and 16 best-observed pixels-only runs
+with compact traces. api failures remain incomplete; these are not model means
+
 start with [index.json](index.json), [models.json](models.json) and the
 [website data guide](../docs/website-data.md)
 

@@ -9,6 +9,15 @@ from many experiments with different prompts, controls, cadence and image histor
 `data_class` is `selected_development_examples`, `matched_cohort` is false, and
 `comparable_aggregate` is null. show those limits with the results
 
+## expanded observations
+
+`observations` contains 22 common-profile state attempts and 16 best-observed
+pixels-only development runs. `examples` preserves the original 8 replay showcases
+and their stable ids. use `observations` for expanded tables; new records have
+compact traces and profiles, with null replay links where no video was exported
+api-aborted state attempts have null scores and separate observed progress
+stagnation stops are explicitly aborted. no comparable aggregate is supplied
+
 ## files
 
 - `results/index.json`: website cards, per-run progress, completion, speedrun,

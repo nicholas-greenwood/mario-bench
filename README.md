@@ -7,19 +7,66 @@ or game state and choose controller inputs
 
 ## results
 
-all 8 published runs are replay-verified on world 1-1. these are selected development
-runs with different settings: per-run scores, not model averages or a ranking
+22 models have recorded state attempts. the tables show individual development
+runs, not model averages or a ranking. earlier verified clears and all 8 replay
+showcases remain in [the recorded examples](results/README.md)
 
-| model | input | progress | clear time (game s) | evidence |
-| --- | --- | ---: | ---: | --- |
-| pplx decider v1.2 | state | 100.00% | 20.13 | [replay](results/replays/pplx-state-clear.mp4) · [profile](results/profiles/pplx-state-clear.json) |
-| liquid d1 ultra | state | 100.00% | 20.92 | [replay](results/replays/liquid-state-clear.mp4) · [profile](results/profiles/liquid-state-clear.json) |
-| mercury decide | state | 100.00% | 22.00 | [replay](results/replays/mercury-state-clear.mp4) · [profile](results/profiles/mercury-state-clear.json) |
-| drex max | state | 100.00% | 23.07 | [replay](results/replays/drex-state-clear.mp4) · [profile](results/profiles/drex-state-clear.json) |
-| pplx decider v1.2 | pixels | 77.83% | - | [replay](results/replays/pplx-pixels-partial.mp4) · [profile](results/profiles/pplx-pixels-partial.json) |
-| mercury decide | pixels | 56.30% | - | [replay](results/replays/mercury-pixels-partial.mp4) · [profile](results/profiles/mercury-pixels-partial.json) |
-| mammoth 1 | pixels | 56.01% | - | [replay](results/replays/mammoth-pixels-partial.mp4) · [profile](results/profiles/mammoth-pixels-partial.json) |
-| jev 1.14 | pixels | 51.94% | - | [replay](results/replays/jev-pixels-partial.mp4) · [profile](results/profiles/jev-pixels-partial.json) |
+### state: common input profile
+
+these runs use the same prompt, observer and 4-frame cadence. the cohort was
+assembled after development, with a stagnation stop. incomplete api calls have no
+score. pplx's earlier clear finished within the common budget, but its original
+configured cap was larger. no comparable aggregate is claimed
+
+| model | observed progress | clear time (game s) | evidence |
+| --- | ---: | ---: | --- |
+| decider v1.2 | 100.00% | 20.13 | [trace](results/traces/pplx-state-clear.json) · [profile](results/profiles/pplx-state-clear.json) |
+| mercury decide | 63.41% | - | [trace](results/traces/state-c4-inception--mercury-decide.json) · [profile](results/profiles/state-c4-inception--mercury-decide.json) |
+| span-02 | 55.94% | - | [trace](results/traces/state-c4-respan--span-02.json) · [profile](results/profiles/state-c4-respan--span-02.json) |
+| clef | 47.48% | - | [trace](results/traces/state-c4-cloudflare--clef.json) · [profile](results/profiles/state-c4-cloudflare--clef.json) |
+| microsoft-decision-1 | 44.25% | - | [trace](results/traces/state-c4-microsoft--microsoft-decision-1.json) · [profile](results/profiles/state-c4-microsoft--microsoft-decision-1.json) |
+| jev 1.13 | 21.88% (aborted) | - | [trace](results/traces/state-c4-typesafe--jev-1-13.json) · [profile](results/profiles/state-c4-typesafe--jev-1-13.json) |
+| d1-ultra | 20.47% | - | [trace](results/traces/state-c4-liquid--d1-ultra.json) · [profile](results/profiles/state-c4-liquid--d1-ultra.json) |
+| drex max | 20.19% | - | [trace](results/traces/state-c4-nace-ai--drex-max.json) · [profile](results/profiles/state-c4-nace-ai--drex-max.json) |
+| drex v1.5 | 17.81% (aborted) | - | [trace](results/traces/state-c4-nace-ai--drex-v1-5.json) · [profile](results/profiles/state-c4-nace-ai--drex-v1-5.json) |
+| jev 1.14 | 17.81% (aborted) | - | [trace](results/traces/state-c4-typesafe--jev-1-14.json) · [profile](results/profiles/state-c4-typesafe--jev-1-14.json) |
+| mammoth 1 | 17.81% (aborted) | - | [trace](results/traces/state-c4-baseten--mammoth-1.json) · [profile](results/profiles/state-c4-baseten--mammoth-1.json) |
+| drex v2.0 | 17.75% (aborted) | - | [trace](results/traces/state-c4-nace-ai--drex-v2-0.json) · [profile](results/profiles/state-c4-nace-ai--drex-v2-0.json) |
+| clef omni | 13.17% (aborted) | - | [trace](results/traces/state-c4-cloudflare--clef-omni.json) · [profile](results/profiles/state-c4-cloudflare--clef-omni.json) |
+| elephant 1 | 8.75% | - | [trace](results/traces/state-c4-baseten--elephant-1.json) · [profile](results/profiles/state-c4-baseten--elephant-1.json) |
+| decider flash v1.2 | 8.72% | - | [trace](results/traces/state-c4-perplexity--pplx-decider-flash-v1-2.json) · [profile](results/profiles/state-c4-perplexity--pplx-decider-flash-v1-2.json) |
+| joey 1 | 8.72% | - | [trace](results/traces/state-c4-baseten--joey-1.json) · [profile](results/profiles/state-c4-baseten--joey-1.json) |
+| d1.1 | 8.72% | - | [trace](results/traces/state-c4-liquid--d1-1.json) · [profile](results/profiles/state-c4-liquid--d1-1.json) |
+| clef flash | 8.55% | - | [trace](results/traces/state-c4-cloudflare--clef-flash.json) · [profile](results/profiles/state-c4-cloudflare--clef-flash.json) |
+| classify-1 | 0.00% (aborted) | - | [trace](results/traces/state-c4-scaledown--classify-1.json) · [profile](results/profiles/state-c4-scaledown--classify-1.json) |
+| solar decide flash | 0.00% (aborted) | - | [trace](results/traces/state-c4-upstage--solar-decide-flash.json) · [profile](results/profiles/state-c4-upstage--solar-decide-flash.json) |
+| kev 4b | incomplete | - | [trace](results/traces/state-c4-jaredpalmer--kev-4b.json) · [profile](results/profiles/state-c4-jaredpalmer--kev-4b.json) |
+| gpt-6 luna decisions | incomplete | - | [trace](results/traces/state-c4-openai--gpt-6-luna-decisions.json) · [profile](results/profiles/state-c4-openai--gpt-6-luna-decisions.json) |
+
+### pixels only: best observed development runs
+
+these are selected runs with different prompts, controls, crops and history
+aborted runs retain observed progress, not a completed benchmark score. a missing
+model here means unsupported or not yet measured, never zero
+
+| model | observed progress | clear time (game s) | evidence |
+| --- | ---: | ---: | --- |
+| mammoth 1 | 81.83% (aborted) | - | [trace](results/traces/pixels-best-baseten--mammoth-1.json) · [profile](results/profiles/pixels-best-baseten--mammoth-1.json) |
+| gpt-6 luna decisions | 77.86% | - | [trace](results/traces/pixels-best-openai--gpt-6-luna-decisions.json) · [profile](results/profiles/pixels-best-openai--gpt-6-luna-decisions.json) |
+| decider v1.2 | 77.83% | - | [trace](results/traces/pplx-pixels-partial.json) · [profile](results/profiles/pplx-pixels-partial.json) |
+| elephant 1 | 61.39% | - | [trace](results/traces/pixels-best-baseten--elephant-1.json) · [profile](results/profiles/pixels-best-baseten--elephant-1.json) |
+| mercury decide | 56.30% | - | [trace](results/traces/pixels-best-inception--mercury-decide.json) · [profile](results/profiles/pixels-best-inception--mercury-decide.json) |
+| drex max | 56.30% | - | [trace](results/traces/pixels-best-nace-ai--drex-max.json) · [profile](results/profiles/pixels-best-nace-ai--drex-max.json) |
+| jev 1.14 | 51.94% | - | [trace](results/traces/jev-pixels-partial.json) · [profile](results/profiles/jev-pixels-partial.json) |
+| decider flash v1.2 | 44.31% | - | [trace](results/traces/pixels-best-perplexity--pplx-decider-flash-v1-2.json) · [profile](results/profiles/pixels-best-perplexity--pplx-decider-flash-v1-2.json) |
+| jev 1.13 | 34.80% | - | [trace](results/traces/pixels-best-typesafe--jev-1-13.json) · [profile](results/profiles/pixels-best-typesafe--jev-1-13.json) |
+| clef | 34.76% | - | [trace](results/traces/pixels-best-cloudflare--clef.json) · [profile](results/profiles/pixels-best-cloudflare--clef.json) |
+| clef flash | 34.76% | - | [trace](results/traces/pixels-best-cloudflare--clef-flash.json) · [profile](results/profiles/pixels-best-cloudflare--clef-flash.json) |
+| d1-ultra | 27.49% | - | [trace](results/traces/pixels-best-liquid--d1-ultra.json) · [profile](results/profiles/pixels-best-liquid--d1-ultra.json) |
+| joey 1 | 20.92% | - | [trace](results/traces/pixels-best-baseten--joey-1.json) · [profile](results/profiles/pixels-best-baseten--joey-1.json) |
+| span-02 | 20.38% | - | [trace](results/traces/pixels-best-respan--span-02.json) · [profile](results/profiles/pixels-best-respan--span-02.json) |
+| clef omni | 20.25% | - | [trace](results/traces/pixels-best-cloudflare--clef-omni.json) · [profile](results/profiles/pixels-best-cloudflare--clef-omni.json) |
+| d1.1 | 12.66% (aborted) | - | [trace](results/traces/pixels-best-liquid--d1-1.json) · [profile](results/profiles/pixels-best-liquid--d1-1.json) |
 
 state uses memory-derived visible geometry and motion. pixels (`image` track) uses
 screenshots, crops and past screens where configured, plus rules, controls and timing

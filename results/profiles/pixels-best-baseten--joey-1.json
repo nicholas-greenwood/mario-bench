@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "id": "pixels-best-baseten--joey-1",
+  "mode": "image",
+  "cadence": 8,
+  "history": 2,
+  "contract": {
+    "questions": {
+      "action": {
+        "criteria": {
+          "coast_release_jump_4": "Execute exactly: 4 native frames holding {'horizontal': 'released', 'vertical': 'released', 'jump': 'released', 'run': 'released'}.",
+          "fresh_running_jump_24": "Execute exactly: 1 native frames holding {'horizontal': 'right', 'vertical': 'released', 'jump': 'released', 'run': 'held'} then 24 native frames holding {'horizontal': 'right', 'vertical': 'released', 'jump': 'held', 'run': 'held'}. One fresh A press after a1-frame release. Can initiate a jump only from a solid surface; never resets A on later landing. Hold duration is fixed, even after a ceiling bump or landing, and can carry Mario forward until the entire sequence ends.",
+          "fresh_walking_jump_24": "Execute exactly: 1 native frames holding {'horizontal': 'right', 'vertical': 'released', 'jump': 'released', 'run': 'released'} then 24 native frames holding {'horizontal': 'right', 'vertical': 'released', 'jump': 'held', 'run': 'released'}. One fresh A press after a1-frame release. Can initiate a jump only from a solid surface; never resets A on later landing. Hold duration is fixed, even after a ceiling bump or landing, and can carry Mario forward until the entire sequence ends.",
+          "run_forward_4": "Execute exactly: 4 native frames holding {'horizontal': 'right', 'vertical': 'released', 'jump': 'released', 'run': 'held'}.",
+          "run_forward_8": "Execute exactly: 8 native frames holding {'horizontal': 'right', 'vertical': 'released', 'jump': 'released', 'run': 'held'}.",
+          "run_left_8": "Execute exactly: 8 native frames holding {'horizontal': 'left', 'vertical': 'released', 'jump': 'released', 'run': 'held'}.",
+          "sustain_running_jump_8": "Execute exactly: 8 native frames holding {'horizontal': 'right', 'vertical': 'released', 'jump': 'held', 'run': 'held'}.",
+          "walk_forward_4": "Execute exactly: 4 native frames holding {'horizontal': 'right', 'vertical': 'released', 'jump': 'released', 'run': 'released'}."
+        },
+        "instructions": "Choose one fixed declared controller sequence for safe forward progress. Use pixels to plan travel during the entire sequence, including any landing and continued movement before the next observation. Choose takeoff near a visible gap edge so the jump lasts until safe far ground. All choices are yours; no sensor-based correction or automatic jump exists.",
+        "type": "choice"
+      }
+    },
+    "initial_provider_text": [
+      "{\"game\":\"Super Mario Bros 1-1\",\"instructions\":\"Play Mario1-1 alive to the flag at the right, using actual screenshots only. CURRENT image is FIRST; PAST image if present is motion context. Physics is paused while deciding. Right moves, B runs faster/farther, A starts a jump only from a solid surface on a new press. Hold A through ascent for height and airtime; releasing too early makes a low short hop. Holding A through landing cannot start another jump. Enemy side contact hurts and landing atop stomps. Solid blocks/ceilings can interrupt ascent; solid pipes/stairs support Mario, background hills/clouds do not. Plan landing on visible ground, take off for gaps near their edge, avoid unnecessary hopping on clear flat ground. Your chosen fixed sequence executes exactly, even if landing happens before the sequence ends. No actions check contact, detect hazards, or correct your choice.\",\"next_control_interval_native_frames\":\"Chosen fixed sequence duration, see action choices.\",\"previous_controls\":[]}",
+      "CURRENT paused screenshot; use this for your next action. Screenshot taken before decision 0"
+    ],
+    "cadence": 8
+  },
+  "source_hashes": {
+    "requests_sha256": "1785598002d428b6622ecd1d7d92e8084a3874b74c71a9354a5034cb1b7299f3",
+    "responses_sha256": "9a70e44c43260cabddee2624475be0cc4aa852a453c5dfca0992655dbcfd35e3",
+    "private_replay_sha256": "70694c913b704e4627178f07c8d07c315bfcd4ac5d83852f7ba5d17d9bfd1bfd",
+    "audit_sha256": "d476d00ed52ff6fbfec16d4fc5648db5583f984598c4858fb726953c1020311f"
+  },
+  "common_benchmark_default": false,
+  "data_class": "development_observation"
+}

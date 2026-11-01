@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "id": "pixels-best-openai--gpt-6-luna-decisions",
+  "mode": "image",
+  "cadence": 5,
+  "history": 1,
+  "contract": {
+    "questions": {
+      "action": {
+        "criteria": {
+          "left_B_held_A_held": "Horizontal left; B held; A held; vertical released.",
+          "left_B_held_A_released": "Horizontal left; B held; A released; vertical released.",
+          "left_B_released_A_held": "Horizontal left; B released; A held; vertical released.",
+          "left_B_released_A_released": "Horizontal left; B released; A released; vertical released.",
+          "released_B_held_A_held": "Horizontal released; B held; A held; vertical released.",
+          "released_B_held_A_released": "Horizontal released; B held; A released; vertical released.",
+          "released_B_released_A_held": "Horizontal released; B released; A held; vertical released.",
+          "released_B_released_A_released": "Horizontal released; B released; A released; vertical released.",
+          "right_B_held_A_held": "Horizontal right; B held; A held; vertical released.",
+          "right_B_held_A_released": "Horizontal right; B held; A released; vertical released.",
+          "right_B_released_A_held": "Horizontal right; B released; A held; vertical released.",
+          "right_B_released_A_released": "Horizontal right; B released; A released; vertical released."
+        },
+        "instructions": "Choose one complete simultaneous BUTTON STATE for the interval, not an abstract jump request. If A is already held, choosing A_held continues that same press and cannot start a fresh jump after landing. Holding A remains useful during ascent. Infer surfaces and motion from the current/past images.",
+        "type": "choice"
+      }
+    },
+    "initial_provider_text": [
+      "{\"a_button_note\":\"A is currently RELEASED. Selecting A_held creates a fresh press, which can start a jump only if Mario is on a surface.\",\"control_interval_frames\":5,\"currently_held_buttons\":{\"horizontal\":\"released\",\"jump\":\"released\",\"run\":\"released\",\"vertical\":\"released\"},\"game\":\"Super Mario Bros., world 1-1\",\"native_frame\":0,\"observation_interface\":\"image_only\",\"previous_model_controls\":[],\"rules_and_button_semantics\":\"Play Super Mario Bros 1-1 alive to the flag toward the right. Use the actual screenshots to infer Mario, enemies, surfaces and motion. Game physics pauses while you decide. The selected complete button state is held for the whole declared interval. A starts a jump only on a NEW press while on a surface. Holding A during ascent increases height and airtime; releasing during ascent makes a shorter jump. Once descending, release A to prepare the next fresh press. Holding A through landing cannot start another jump. B runs faster and farther; momentum persists on release. Jump onto solid pipes/blocks/stairs or over gaps; time takeoff from the visible ground. Enemies hurt on side contact and can be stomped from above. Background hills/clouds are decorative. You choose all controls; no automatic correction exists.\",\"screenshot_format\":\"CURRENT fullpaused screenshot FIRST; remaining images are PAST motion context, oldest-to-newest. All screens are native256x240 enlarged2x nearest.\"}",
+      "CURRENT paused screenshot, native frame 0.",
+      "Static visual game rules: Mario is the red/orange humanoid. Brown mushroom faces and green turtles are dangerous walking enemies. Brick-pattern ground, blocks and green pipes are solid; background hills and clouds are decorative. The following image is a fixed crop of the bottom two thirds of the same CURRENT paused screenshot, enlarged3x nearest-neighbour for sprite detail; it contains only actual pixels, no annotations."
+    ],
+    "cadence": 5
+  },
+  "source_hashes": {
+    "requests_sha256": "5a8d58ca37210bff43b938bac01163df5900b34b765e6b0fe13cda8a81e49265",
+    "responses_sha256": "41897fbb9deabee1e1b23561d9821f79c7fd15cbedf186e77683aa4ba2273016",
+    "private_replay_sha256": "d79cc5f67a153273e9cc1e28c50b19695da74b22c8f1fbfcb8ccb6729cc9a2ff",
+    "audit_sha256": "baca3c1665db57a51040e834aa573b1e84046a20e0df83cc3893f1b8eeb4c806"
+  },
+  "common_benchmark_default": false,
+  "data_class": "development_observation"
+}

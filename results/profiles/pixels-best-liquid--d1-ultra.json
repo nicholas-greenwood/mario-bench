@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "id": "pixels-best-liquid--d1-ultra",
+  "mode": "image",
+  "cadence": 4,
+  "history": 2,
+  "contract": {
+    "questions": {
+      "jump": {
+        "criteria": {
+          "held": "Hold A for all4 frames. Start a jump if eligible or sustain an ongoing jump.",
+          "released": "Release A for all4 frames. Shorten current ascent and prepare a future fresh jump."
+        },
+        "instructions": "Choose A for the next4 native frames. A fresh press while grounded starts a jump; A held during ascent sustains height; releasing A during descent prepares the next fresh jump. Keeping A held through a landing does not initiate another jump. Choose from current geometry, current phase, and current button state.",
+        "type": "choice"
+      },
+      "movement": {
+        "criteria": {
+          "brake_left": "Hold left+B to brake rightward momentum, then move left.",
+          "coast": "Release horizontal directions and B; existing momentum may continue.",
+          "run_right": "Hold right+B for running forward progress.",
+          "walk_right": "Hold right, release B for walking forward; existing running momentum does not stop immediately."
+        },
+        "instructions": "Choose horizontal movement for the next4 native frames. Advance to the flag alive. Consider the current exposed top surfaces and momentum when positioning for a landing. This question controls only horizontal and run buttons; jumping is decided by the jump question.",
+        "type": "choice"
+      }
+    },
+    "initial_provider_text": [
+      "{\"game\":\"Super Mario Bros 1-1\",\"instructions\":\"You control Mario in Super Mario Bros. World1-1. Reach the flag alive. Choose all simultaneous held buttons using only the screenshot and declared previous controls. Right moves forward; B runs faster and extends jumps. Grounded plus a new A press starts a jump. Holding A throughout ascent makes a higher, longer jump. Releasing A early during ascent makes a low, short hop. Pressing A while airborne does not start another jump on later landing. Release A during descent so it is ready for the next grounded takeoff. Holding A through landing does not automatically jump again. Enemy side contact kills small Mario; descending onto enemies stomps them. Jump early enough to rise before enemy side contact. Gaps require takeoff near the visible edge so the jump lasts until the far side. Pipes and stairs support Mario: feet must rise above their top before the body crosses the side. A ceiling stops ascent. Momentum persists when controls are released. Avoid unnecessary hopping on open flat ground; it can waste the next jump near a hazard. Background hills are decorative. Game pauses while deciding. All choices are yours. CURRENT full screenshot is FIRST. Any PAST screenshot is labelled and appears last. Mario is the red/brown person; brown mushroom-shaped enemies are different characters. A near landing is still airborne: feet must actually touch a solid surface before a NEW jump can begin. Infer contact and ascent/descent from the pixels, including the labelled past image. A_held means continue the exact same A press if already held, not a new jump.\",\"next_control_interval_native_frames\":4,\"previous_controls\":[]}",
+      "CURRENT paused screenshot; use this for your next action. Screenshot taken before decision 0"
+    ],
+    "cadence": 4
+  },
+  "source_hashes": {
+    "requests_sha256": "a07a29d224bf8cdb40bf88f9e771cbef6caf5c6c51d13b69436a2fd80527723a",
+    "responses_sha256": "76fa5a34a8393f0038a90303ab0e6e4013c95366a29f2bb80416346b7356d71b",
+    "private_replay_sha256": "8adb22f024e91b71d583818be5e0cfaf83a6ece490b735d02519fdcdab7d9dad",
+    "audit_sha256": "ce4b61547bc09f347d2adf2e69d148b658098b85cbe346ae22f2aeabaee5c433"
+  },
+  "common_benchmark_default": false,
+  "data_class": "development_observation"
+}

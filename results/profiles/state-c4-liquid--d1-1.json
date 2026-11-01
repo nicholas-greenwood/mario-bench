@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "id": "state-c4-liquid--d1-1",
+  "mode": "state",
+  "cadence": 4,
+  "history": 0,
+  "contract": {
+    "questions": {
+      "action": {
+        "criteria": {
+          "left_run_jump": "Hold horizontal=left, B(run)=held, A(jump)=held; vertical released.",
+          "left_run_release": "Hold horizontal=left, B(run)=held, A(jump)=released; vertical released.",
+          "left_walk_jump": "Hold horizontal=left, B(run)=released, A(jump)=held; vertical released.",
+          "left_walk_release": "Hold horizontal=left, B(run)=released, A(jump)=released; vertical released.",
+          "released_run_jump": "Hold horizontal=released, B(run)=held, A(jump)=held; vertical released.",
+          "released_run_release": "Hold horizontal=released, B(run)=held, A(jump)=released; vertical released.",
+          "released_walk_jump": "Hold horizontal=released, B(run)=released, A(jump)=held; vertical released.",
+          "released_walk_release": "Hold horizontal=released, B(run)=released, A(jump)=released; vertical released.",
+          "right_run_jump": "Hold horizontal=right, B(run)=held, A(jump)=held; vertical released.",
+          "right_run_release": "Hold horizontal=right, B(run)=held, A(jump)=released; vertical released.",
+          "right_walk_jump": "Hold horizontal=right, B(run)=released, A(jump)=held; vertical released.",
+          "right_walk_release": "Hold horizontal=right, B(run)=released, A(jump)=released; vertical released."
+        },
+        "instructions": "Select the complete controller input that best advances Mario towards the flag alive. Evaluate the next interval and the resulting jump trajectory. All named buttons are held throughout the interval; choose deliberately when to press or release jump.",
+        "type": "choice"
+      }
+    },
+    "rules": "Play Super Mario Bros. World 1-1 to the flag. Coordinates are world pixels, x increases right, y increases down. Scene is current visible information, not a future map. Each action lasts the declared interval with physics paused until your answer. A jump starts only on a fresh A press while grounded; keeping A held through landing will NOT jump again. Release A before the next fresh jump. Holding A during ascent increases height; releasing A shortens the jump. B makes running faster and jumps longer. Momentum persists on release. Mario can jump onto pipes, blocks and stairs and must clear floor gaps. Enemy side contact is dangerous, landing from above stomps ordinary walking enemies. Think ahead about visible hazards and the size of your body. All action choices are your own. Reach the flag alive, avoid waiting indefinitely or running into walls. No action or route recommendation is supplied. General jump phases: hold A while ascending when height or distance is needed; release A while descending to prepare the next fresh jump. Releasing A during ascent shortens the jump, but keeping it held through landing prevents the next jump. On the ground a fresh jump needs the A release-to-press edge. For stairs, the feet must rise above each solid step before crossing its side; landing on a raised step permits another jump. A jump begun too far before a gap can end above the gap; the current visible geometry determines takeoff timing.",
+    "cadence": 4
+  },
+  "source_hashes": {
+    "episode_sha256": "5e85b7cefeba1bcda94cbd4c59e900c172a0447ed8ec7dc41d2a282e156172ce",
+    "observer_source_sha256": "e9a16a88c9fbffbe62d62b7ce4f17714a764e5430528014ccb39cc9e23a2529c",
+    "audit_sha256": "f5952453f0e6919dae2ee00fffdeb3c09b3f93c45d11be4836870cae836e32cf"
+  },
+  "common_benchmark_default": false,
+  "data_class": "development_observation"
+}

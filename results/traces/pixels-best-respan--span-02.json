@@ -1,0 +1,894 @@
+{
+  "schema_version": 1,
+  "evidence_kind": "compact_native_action_trace",
+  "id": "pixels-best-respan--span-02",
+  "mode": "image",
+  "level": "1-1",
+  "contract": {
+    "questions": {
+      "action": {
+        "criteria": {
+          "coast_release_jump_4": "Release all directions and A+B for 4 frames. Momentum may continue.",
+          "fresh_left_jump_24": "Hold left+B throughout: release A for 1 frame then hold A for 24 frames (25 total).",
+          "fresh_running_jump_24": "Hold right+B throughout: release A for 1 frame, then hold A for 24 frames (25 total). Starts a fresh medium running jump if grounded and sustains it.",
+          "fresh_running_jump_40": "Hold right+B throughout: release A for 1 frame, then hold A for 40 frames (41 total). Starts a fresh full-height running jump if grounded and sustains it.",
+          "fresh_walking_jump_24": "Hold right, release B throughout: release A for 1 frame, then hold A for 24 frames (25 total). Starts a fresh medium walking jump if grounded and sustains it.",
+          "fresh_walking_jump_40": "Hold right, release B throughout: release A for 1 frame, then hold A for 40 frames (41 total). Starts a fresh full-height walking jump if grounded and sustains it.",
+          "run_forward_16": "Hold right+B, A released, 16 frames.",
+          "run_forward_8": "Hold right+B, A released, 8 frames.",
+          "run_left_8": "Hold left+B, release A for 8 frames.",
+          "sustain_running_jump_8": "Hold right+B+A for 8 frames. Maintains an ongoing jump; does not reset A.",
+          "sustain_walking_jump_8": "Hold right+A, release B for 8 frames. Maintains an ongoing jump; does not reset A.",
+          "walk_forward_8": "Hold right, A+B released, 8 frames."
+        },
+        "instructions": "Choose the fixed controller sequence that best progresses to the flag alive. Your chosen sequence executes exactly, without obstacle detection, correction, autojump, or early stopping except terminal game state. Choose the jump duration and horizontal direction based on the current visible geometry and current trajectory.",
+        "type": "choice"
+      }
+    },
+    "initial_provider_text": [
+      "{\"game\":\"Super Mario Bros 1-1\",\"instructions\":\"Play Super Mario Bros world 1-1 to reach the flag alive by moving right. All evidence about the game comes from the screenshots; infer Mario, enemies, surfaces, and motion visually. The game is paused while you decide. You choose all four simultaneous button states, held for the stated number of native 60Hz frames. Right/left moves, A jumps, B runs, down crouches or enters pipes. Holding A sustains a jump; release A before a fresh jump after landing. Holding A through landing does not start another jump. Side contact with enemies and falling into gaps are dangerous; landing on an enemy can defeat it. Aim jumps using visible obstacles and motion, and release A when appropriate to prepare another jump. Images are native 256x240, nearest-neighbour enlarged to 512x480; chronological oldest first, current last. No automatic action correction or controller assists exist. Fresh jump choices explicitly release A for 1 frame before holding it for the chosen duration. A full jump needs sustained A; repeatedly ending the hold too soon makes low hops. A macro never checks for hazards or grounded state. Do not rely on a fresh jump command issued in midair to start a new jump on landing.\",\"next_control_interval_native_frames\":\"You choose a fixed temporal input sequence and duration from the available actions.\",\"previous_controls\":[]}",
+      "CURRENT paused screenshot; use this for your next action. Screenshot taken before decision 0"
+    ],
+    "cadence": 8
+  },
+  "actions": [
+    {
+      "index": 0,
+      "frame_before": 0,
+      "frame_after": 25,
+      "sequence": [
+        [
+          1,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ],
+        [
+          24,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "respan/span-02-20261015",
+        "provider": "Respan",
+        "answers": {
+          "action": {
+            "choice": "fresh_running_jump_24",
+            "confidence": 0.6207851,
+            "probabilities": {
+              "coast_release_jump_4": 0.019091913,
+              "fresh_left_jump_24": 0.0076122647,
+              "fresh_running_jump_24": 0.65238637,
+              "fresh_running_jump_40": 0.18178384,
+              "fresh_walking_jump_24": 0.04663024,
+              "fresh_walking_jump_40": 0.029379722,
+              "run_forward_16": 0.014373121,
+              "run_forward_8": 0.031190317,
+              "run_left_8": 0.0038294178,
+              "sustain_running_jump_8": 0.006391466,
+              "sustain_walking_jump_8": 0.000681876,
+              "walk_forward_8": 0.006649459
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "0b837f5a937047284d7df20597231fc0e8d5104d940e07daa8bf4420172e72b0",
+      "screen_after_sha256": "d5a477db8957a4edee9409824226ed63bead8a4e80918a94a882efd0aec8326d",
+      "request_sha256": "4b193e2c0a76bd368d77f387a9e80aca968e6fbe585ba1f6c26f19ba1e777dc7"
+    },
+    {
+      "index": 1,
+      "frame_before": 25,
+      "frame_after": 33,
+      "sequence": [
+        [
+          8,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "respan/span-02-20261015",
+        "provider": "Respan",
+        "answers": {
+          "action": {
+            "choice": "sustain_running_jump_8",
+            "confidence": 0.2433805,
+            "probabilities": {
+              "coast_release_jump_4": 0.06475174,
+              "fresh_left_jump_24": 0.028537061,
+              "fresh_running_jump_24": 0.30520195,
+              "fresh_running_jump_40": 0.100777656,
+              "fresh_walking_jump_24": 0.033605065,
+              "fresh_walking_jump_40": 0.01384642,
+              "run_forward_16": 0.028501486,
+              "run_forward_8": 0.035678573,
+              "run_left_8": 0.011510656,
+              "sustain_running_jump_8": 0.30643213,
+              "sustain_walking_jump_8": 0.0051382314,
+              "walk_forward_8": 0.06601903
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "a5a47b935fbd8ea66e5c145344810aad0d6b89e3b716039fbf6da15816bf24d9",
+      "screen_after_sha256": "c95b5374281ef36029248237934887a7a34fb2d9a6e2150739c46d03592e8bce",
+      "request_sha256": "37ccf7be71fc43439fed4cba75d07445621be32d3c51d7d3f0659346ecd0cb18"
+    },
+    {
+      "index": 2,
+      "frame_before": 33,
+      "frame_after": 41,
+      "sequence": [
+        [
+          8,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "respan/span-02-20261015",
+        "provider": "Respan",
+        "answers": {
+          "action": {
+            "choice": "sustain_running_jump_8",
+            "confidence": 0.37347826,
+            "probabilities": {
+              "coast_release_jump_4": 0.053879302,
+              "fresh_left_jump_24": 0.022117125,
+              "fresh_running_jump_24": 0.181324,
+              "fresh_running_jump_40": 0.051193096,
+              "fresh_walking_jump_24": 0.046696734,
+              "fresh_walking_jump_40": 0.01738866,
+              "run_forward_16": 0.035998236,
+              "run_forward_8": 0.07879943,
+              "run_left_8": 0.011844835,
+              "sustain_running_jump_8": 0.42568842,
+              "sustain_walking_jump_8": 0.012806564,
+              "walk_forward_8": 0.06226359
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "e1fa71a00fd428d46fc3ee8d973a17bd8881ebb192cfc77bf81de8f031f4c3c8",
+      "screen_after_sha256": "ca48253cf376556f8fdb59affe8fd03b24c6f5a98e3d7e12b937e851fb3cdb96",
+      "request_sha256": "554eea3c41a151cba3005ad7d5bfccdae687d242bc51ceb979e43d9969df97d7"
+    },
+    {
+      "index": 3,
+      "frame_before": 41,
+      "frame_after": 49,
+      "sequence": [
+        [
+          8,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "respan/span-02-20261015",
+        "provider": "Respan",
+        "answers": {
+          "action": {
+            "choice": "sustain_running_jump_8",
+            "confidence": 0.342311,
+            "probabilities": {
+              "coast_release_jump_4": 0.030653339,
+              "fresh_left_jump_24": 0.015259224,
+              "fresh_running_jump_24": 0.27861637,
+              "fresh_running_jump_40": 0.12995698,
+              "fresh_walking_jump_24": 0.02696627,
+              "fresh_walking_jump_40": 0.012109019,
+              "run_forward_16": 0.032602005,
+              "run_forward_8": 0.040275227,
+              "run_left_8": 0.010237858,
+              "sustain_running_jump_8": 0.39711842,
+              "sustain_walking_jump_8": 0.004213076,
+              "walk_forward_8": 0.021992233
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "e3c8c2ef1a36efbec0b61868bffd0897ae80aecd899c8a0f7b325d3be4dca0f4",
+      "screen_after_sha256": "2e7689131ed99ca589dcf599d87b0f94edd500cd6c7258466f7ba07dbd3bc566",
+      "request_sha256": "728579c5f17dc3bf582b04dd45fed70bb3dc997fa6708a14eeb562ab3c45dc94"
+    },
+    {
+      "index": 4,
+      "frame_before": 49,
+      "frame_after": 74,
+      "sequence": [
+        [
+          1,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ],
+        [
+          24,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "respan/span-02-20261015",
+        "provider": "Respan",
+        "answers": {
+          "action": {
+            "choice": "fresh_running_jump_24",
+            "confidence": 0.28479418,
+            "probabilities": {
+              "coast_release_jump_4": 0.038967364,
+              "fresh_left_jump_24": 0.018419312,
+              "fresh_running_jump_24": 0.34439465,
+              "fresh_running_jump_40": 0.12561053,
+              "fresh_walking_jump_24": 0.05069223,
+              "fresh_walking_jump_40": 0.019386033,
+              "run_forward_16": 0.029740121,
+              "run_forward_8": 0.09788232,
+              "run_left_8": 0.015306158,
+              "sustain_running_jump_8": 0.20026273,
+              "sustain_walking_jump_8": 0.00893238,
+              "walk_forward_8": 0.050406165
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "1d900dd4cbb5c09f2a7ec7da193b5c6ce1e096ce6739da4d3077e0c91f439911",
+      "screen_after_sha256": "18cbb33b95d40ab69c914a48fc128e15622787ce5db190ffd019d6ddf79fcd94",
+      "request_sha256": "401003624815314814287529ed1805c23aa634bf3f70ecb1633aab2d8fc90f4c"
+    },
+    {
+      "index": 5,
+      "frame_before": 74,
+      "frame_after": 82,
+      "sequence": [
+        [
+          8,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "respan/span-02-20261015",
+        "provider": "Respan",
+        "answers": {
+          "action": {
+            "choice": "sustain_running_jump_8",
+            "confidence": 0.256601,
+            "probabilities": {
+              "coast_release_jump_4": 0.1126959,
+              "fresh_left_jump_24": 0.036178965,
+              "fresh_running_jump_24": 0.21811053,
+              "fresh_running_jump_40": 0.078913376,
+              "fresh_walking_jump_24": 0.038100235,
+              "fresh_walking_jump_40": 0.015793245,
+              "run_forward_16": 0.04385118,
+              "run_forward_8": 0.06555864,
+              "run_left_8": 0.016789263,
+              "sustain_running_jump_8": 0.3185509,
+              "sustain_walking_jump_8": 0.0073345876,
+              "walk_forward_8": 0.048123173
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "197449feaaef96e9127411bd192e07b48598f2fc7c2875dfeba08f1500c9fec2",
+      "screen_after_sha256": "389af6fc2057a2f3a60c296b8f034ce902871f33de4d9a990597f081b1bc63bf",
+      "request_sha256": "0b4239b0bd5de4a6d0e451e6d55417478c880d10d72183441551278954e8372d"
+    },
+    {
+      "index": 6,
+      "frame_before": 82,
+      "frame_after": 90,
+      "sequence": [
+        [
+          8,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "respan/span-02-20261015",
+        "provider": "Respan",
+        "answers": {
+          "action": {
+            "choice": "sustain_running_jump_8",
+            "confidence": 0.41822338,
+            "probabilities": {
+              "coast_release_jump_4": 0.04012171,
+              "fresh_left_jump_24": 0.015857484,
+              "fresh_running_jump_24": 0.2368571,
+              "fresh_running_jump_40": 0.06099747,
+              "fresh_walking_jump_24": 0.031074759,
+              "fresh_walking_jump_40": 0.011391259,
+              "run_forward_16": 0.034700267,
+              "run_forward_8": 0.044780266,
+              "run_left_8": 0.008148966,
+              "sustain_running_jump_8": 0.46670476,
+              "sustain_walking_jump_8": 0.0056522083,
+              "walk_forward_8": 0.04371374
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "7d57c5158afb8bd81fbdf877cf9635cac2dc1936112b59d83c084a0dc8dff658",
+      "screen_after_sha256": "1ae995451d228e4a10e358bc90e33acf98ea139626c1da3c213adcd99d7d6ce1",
+      "request_sha256": "944c50e157697fc276d1c2e6205198cd31b747fe756fdcba38b88bd58eccb9de"
+    },
+    {
+      "index": 7,
+      "frame_before": 90,
+      "frame_after": 98,
+      "sequence": [
+        [
+          8,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "respan/span-02-20261015",
+        "provider": "Respan",
+        "answers": {
+          "action": {
+            "choice": "sustain_running_jump_8",
+            "confidence": 0.25759146,
+            "probabilities": {
+              "coast_release_jump_4": 0.03760799,
+              "fresh_left_jump_24": 0.01688323,
+              "fresh_running_jump_24": 0.2834549,
+              "fresh_running_jump_40": 0.111320354,
+              "fresh_walking_jump_24": 0.0426256,
+              "fresh_walking_jump_40": 0.013595924,
+              "run_forward_16": 0.04805083,
+              "run_forward_8": 0.07967263,
+              "run_left_8": 0.016036147,
+              "sustain_running_jump_8": 0.31945884,
+              "sustain_walking_jump_8": 0.0053482503,
+              "walk_forward_8": 0.025945319
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "7861ffc8f3ccfc36defd0137546469c2c4786e215c6c43e8cb6bb25b8a095e5f",
+      "screen_after_sha256": "2c15c841a9674628fbd426685fba9055536ce8f835b5b3399756f4da53f3e52b",
+      "request_sha256": "9aac065d81598ceb747ce43aaee33ec2bbcbc188ff86495fa1ad37c7f37caab4"
+    },
+    {
+      "index": 8,
+      "frame_before": 98,
+      "frame_after": 106,
+      "sequence": [
+        [
+          8,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "respan/span-02-20261015",
+        "provider": "Respan",
+        "answers": {
+          "action": {
+            "choice": "sustain_running_jump_8",
+            "confidence": 0.4111344,
+            "probabilities": {
+              "coast_release_jump_4": 0.023763562,
+              "fresh_left_jump_24": 0.022308776,
+              "fresh_running_jump_24": 0.18742862,
+              "fresh_running_jump_40": 0.13021812,
+              "fresh_walking_jump_24": 0.035072673,
+              "fresh_walking_jump_40": 0.025166292,
+              "run_forward_16": 0.02565629,
+              "run_forward_8": 0.050703283,
+              "run_left_8": 0.0101652695,
+              "sustain_running_jump_8": 0.46020654,
+              "sustain_walking_jump_8": 0.01042113,
+              "walk_forward_8": 0.018889459
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "6d2c4e198e62ff9a2e7df285d66e13ab2446188a6281a08d0e504e403b4a25b9",
+      "screen_after_sha256": "8a3176f8f3dd0c092ce9e8b76d6754f91fc9e003c3d57c930a13a6e40289216e",
+      "request_sha256": "3be5d3e37b8e10008de64ad591b07bf4571d475cf184e4ddb2cd025b1bcc8719"
+    },
+    {
+      "index": 9,
+      "frame_before": 106,
+      "frame_after": 114,
+      "sequence": [
+        [
+          8,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "respan/span-02-20261015",
+        "provider": "Respan",
+        "answers": {
+          "action": {
+            "choice": "sustain_running_jump_8",
+            "confidence": 0.27421504,
+            "probabilities": {
+              "coast_release_jump_4": 0.0277107,
+              "fresh_left_jump_24": 0.020024588,
+              "fresh_running_jump_24": 0.28900725,
+              "fresh_running_jump_40": 0.10740189,
+              "fresh_walking_jump_24": 0.060700305,
+              "fresh_walking_jump_40": 0.028832216,
+              "run_forward_16": 0.021648355,
+              "run_forward_8": 0.052566115,
+              "run_left_8": 0.01060413,
+              "sustain_running_jump_8": 0.33469713,
+              "sustain_walking_jump_8": 0.01331523,
+              "walk_forward_8": 0.03349211
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "f2494ac2c31830996e96969935e52f1ddf927eb06227d4b8435f71caa87f5de3",
+      "screen_after_sha256": "582051eba3d7b08ba9f0b90687876144ce7e5ab4047bfc29b8d636b8022deed2",
+      "request_sha256": "e98c3f41725c90f26f24927f4eecd738a100c6fc63c0a42c51c6a0b5e7975a8e"
+    },
+    {
+      "index": 10,
+      "frame_before": 114,
+      "frame_after": 139,
+      "sequence": [
+        [
+          1,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ],
+        [
+          24,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "respan/span-02-20261015",
+        "provider": "Respan",
+        "answers": {
+          "action": {
+            "choice": "fresh_running_jump_24",
+            "confidence": 0.2807233,
+            "probabilities": {
+              "coast_release_jump_4": 0.024043625,
+              "fresh_left_jump_24": 0.020982986,
+              "fresh_running_jump_24": 0.34066302,
+              "fresh_running_jump_40": 0.22133735,
+              "fresh_walking_jump_24": 0.051773563,
+              "fresh_walking_jump_40": 0.028366433,
+              "run_forward_16": 0.03299614,
+              "run_forward_8": 0.0467522,
+              "run_left_8": 0.012446528,
+              "sustain_running_jump_8": 0.1999052,
+              "sustain_walking_jump_8": 0.004145182,
+              "walk_forward_8": 0.016587768
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "2f3a7f03f0e65e321ab0a99f75d85b7387d0407c5c7adba8e47970506a18ea2e",
+      "screen_after_sha256": "1062facda168259e1fc7afda13b0d4d48b0112b5674b6bc5e2afed21ee99e499",
+      "request_sha256": "81303db44f924b8c43abf7c3dcc1239a00d329aff808df8201fa8a45c233a778"
+    },
+    {
+      "index": 11,
+      "frame_before": 139,
+      "frame_after": 164,
+      "sequence": [
+        [
+          1,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ],
+        [
+          24,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "respan/span-02-20261015",
+        "provider": "Respan",
+        "answers": {
+          "action": {
+            "choice": "fresh_running_jump_24",
+            "confidence": 0.4425166,
+            "probabilities": {
+              "coast_release_jump_4": 0.033863086,
+              "fresh_left_jump_24": 0.020645674,
+              "fresh_running_jump_24": 0.48897356,
+              "fresh_running_jump_40": 0.12722689,
+              "fresh_walking_jump_24": 0.08186357,
+              "fresh_walking_jump_40": 0.016121307,
+              "run_forward_16": 0.045742534,
+              "run_forward_8": 0.06234674,
+              "run_left_8": 0.011383285,
+              "sustain_running_jump_8": 0.09198535,
+              "sustain_walking_jump_8": 0.0050596236,
+              "walk_forward_8": 0.014788383
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "3e3e03799243202ec7098a125477d7daa6d5cb5b17a2f1af613f4166dc5f4ea5",
+      "screen_after_sha256": "ba5100ed3eacf319fcc457ed97f1e56cade26345d478e25a8cd8cc1f3fab3bfa",
+      "request_sha256": "1e8a302ef7ddfa9728746ab27da37586a3edc5992d1ba65c0a2d4b487ebb08a6"
+    },
+    {
+      "index": 12,
+      "frame_before": 164,
+      "frame_after": 189,
+      "sequence": [
+        [
+          1,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ],
+        [
+          24,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "respan/span-02-20261015",
+        "provider": "Respan",
+        "answers": {
+          "action": {
+            "choice": "fresh_running_jump_24",
+            "confidence": 0.31233326,
+            "probabilities": {
+              "coast_release_jump_4": 0.05176833,
+              "fresh_left_jump_24": 0.023800887,
+              "fresh_running_jump_24": 0.36963883,
+              "fresh_running_jump_40": 0.1115498,
+              "fresh_walking_jump_24": 0.04986951,
+              "fresh_walking_jump_40": 0.019913485,
+              "run_forward_16": 0.044267047,
+              "run_forward_8": 0.053029854,
+              "run_left_8": 0.010148915,
+              "sustain_running_jump_8": 0.24463063,
+              "sustain_walking_jump_8": 0.0060716714,
+              "walk_forward_8": 0.015311039
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "b91a2d06434dfa03f6a93a9749448e0b9a73842ae601709322455427a3458c8b",
+      "screen_after_sha256": "8b328775ff134cd60dbb9205be3537de5d10e8ceb73ed2e3b805edb2b0d359de",
+      "request_sha256": "f86ec08607ff80afec8b37eb3e0cde84189fc09a722018775eb67d20abb1be19"
+    },
+    {
+      "index": 13,
+      "frame_before": 189,
+      "frame_after": 214,
+      "sequence": [
+        [
+          1,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ],
+        [
+          24,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "respan/span-02-20261015",
+        "provider": "Respan",
+        "answers": {
+          "action": {
+            "choice": "fresh_running_jump_24",
+            "confidence": 0.41158083,
+            "probabilities": {
+              "coast_release_jump_4": 0.02875841,
+              "fresh_left_jump_24": 0.017850645,
+              "fresh_running_jump_24": 0.46061575,
+              "fresh_running_jump_40": 0.18766078,
+              "fresh_walking_jump_24": 0.072779976,
+              "fresh_walking_jump_40": 0.012904214,
+              "run_forward_16": 0.05314034,
+              "run_forward_8": 0.052680757,
+              "run_left_8": 0.008582298,
+              "sustain_running_jump_8": 0.07643165,
+              "sustain_walking_jump_8": 0.0041476986,
+              "walk_forward_8": 0.02444748
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "5494339527a3f25cf4ceee9b94124233e3522a960402ce895d00fe5aa2dbd93c",
+      "screen_after_sha256": "48d8c89767db96e039d04d93feb7bd8be0b64021876801bbb4f2ed7f78fa070c",
+      "request_sha256": "c33774e4dab44215f304ef0b39d986cd11025d09751c57d1fb82f9aebdc363dc"
+    },
+    {
+      "index": 14,
+      "frame_before": 214,
+      "frame_after": 222,
+      "sequence": [
+        [
+          8,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "respan/span-02-20261015",
+        "provider": "Respan",
+        "answers": {
+          "action": {
+            "choice": "sustain_running_jump_8",
+            "confidence": 0.22319329,
+            "probabilities": {
+              "coast_release_jump_4": 0.07032192,
+              "fresh_left_jump_24": 0.043247707,
+              "fresh_running_jump_24": 0.25030294,
+              "fresh_running_jump_40": 0.08858346,
+              "fresh_walking_jump_24": 0.067735076,
+              "fresh_walking_jump_40": 0.02325859,
+              "run_forward_16": 0.047075585,
+              "run_forward_8": 0.07339136,
+              "run_left_8": 0.011953603,
+              "sustain_running_jump_8": 0.28792718,
+              "sustain_walking_jump_8": 0.0049792975,
+              "walk_forward_8": 0.031223262
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "0914c6be747e75f16e015d55b0d1f12aed870e2dd19a0f1694a3e0fb67a45f56",
+      "screen_after_sha256": "f52821e6886f6d75612ccfd33f69f8360b07d7aba694d63121c999e66ba24f8e",
+      "request_sha256": "9b0ca29a446b845ecc5f2f483de43092b8c70aa89fdb3791a757e024c0150f7e"
+    },
+    {
+      "index": 15,
+      "frame_before": 222,
+      "frame_after": 230,
+      "sequence": [
+        [
+          8,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "respan/span-02-20261015",
+        "provider": "Respan",
+        "answers": {
+          "action": {
+            "choice": "sustain_running_jump_8",
+            "confidence": 0.27859178,
+            "probabilities": {
+              "coast_release_jump_4": 0.07478012,
+              "fresh_left_jump_24": 0.03195774,
+              "fresh_running_jump_24": 0.21030968,
+              "fresh_running_jump_40": 0.06584085,
+              "fresh_walking_jump_24": 0.049806133,
+              "fresh_walking_jump_40": 0.020461615,
+              "run_forward_16": 0.025566753,
+              "run_forward_8": 0.058834802,
+              "run_left_8": 0.011013209,
+              "sustain_running_jump_8": 0.33870915,
+              "sustain_walking_jump_8": 0.028972419,
+              "walk_forward_8": 0.08374753
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "da0c1104212c1406f3aa4c24e68b37059034d7f3318774819437e80c76a9f8ed",
+      "screen_after_sha256": "90abefb93c0a20a12f5fa65493f63a4fed64a85e48a9e5b3134e33a6de778637",
+      "request_sha256": "b2eb3d18d8ac3de979ca241075bfe3936eec2159b4d8e099e9ef040f7d7a11d6"
+    },
+    {
+      "index": 16,
+      "frame_before": 230,
+      "frame_after": 238,
+      "sequence": [
+        [
+          8,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "respan/span-02-20261015",
+        "provider": "Respan",
+        "answers": {
+          "action": {
+            "choice": "sustain_running_jump_8",
+            "confidence": 0.30910203,
+            "probabilities": {
+              "coast_release_jump_4": 0.043094292,
+              "fresh_left_jump_24": 0.015673947,
+              "fresh_running_jump_24": 0.22251956,
+              "fresh_running_jump_40": 0.08140618,
+              "fresh_walking_jump_24": 0.052809697,
+              "fresh_walking_jump_40": 0.035013165,
+              "run_forward_16": 0.04332266,
+              "run_forward_8": 0.08097429,
+              "run_left_8": 0.011522225,
+              "sustain_running_jump_8": 0.36667687,
+              "sustain_walking_jump_8": 0.008607129,
+              "walk_forward_8": 0.038379993
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "d969b6925f16ef1fc72bdbbdc29486e68731b9bc3ef23173a8e9e95354ed0a73",
+      "screen_after_sha256": "f9c2ff7920f2ea06b7c3f2477c67040a74567a602987e2f96cf6a52d4f00f745",
+      "request_sha256": "a4b4c958c8a44e2aff2fbe6ec0fd3b39fd84687042fe64476122c78c55c11c6a"
+    },
+    {
+      "index": 17,
+      "frame_before": 238,
+      "frame_after": 242,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "respan/span-02-20261015",
+        "provider": "Respan",
+        "answers": {
+          "action": {
+            "choice": "sustain_running_jump_8",
+            "confidence": 0.25453013,
+            "probabilities": {
+              "coast_release_jump_4": 0.032397315,
+              "fresh_left_jump_24": 0.013061068,
+              "fresh_running_jump_24": 0.29892763,
+              "fresh_running_jump_40": 0.16501772,
+              "fresh_walking_jump_24": 0.04233554,
+              "fresh_walking_jump_40": 0.018407397,
+              "run_forward_16": 0.034571785,
+              "run_forward_8": 0.04815121,
+              "run_left_8": 0.0099356165,
+              "sustain_running_jump_8": 0.31665263,
+              "sustain_walking_jump_8": 0.0052120974,
+              "walk_forward_8": 0.015329992
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "94600fbcb1b95e24203a19318b0b7f894f661f2233661f31e288865e4a494c79",
+      "screen_after_sha256": "ab2fc22c2989ed7021361859ab951a4bba1ed7d6be1b9e3d421ffde14ca09b8d",
+      "request_sha256": "b341468d32e11ad4d2d09412bea7a6d885c3ff20372f11731fc9b9bd76e0e7a1"
+    }
+  ],
+  "source_hashes": {
+    "requests_sha256": "c6b546421a38614b7d81561b22f740fdc0049c11eca995b87d28d53441055388",
+    "responses_sha256": "3346ba52bec520efd180dcebe9311505797ad0d488bc71eb59e628d8c30968e6",
+    "private_replay_sha256": "7b07fb02b26dce1bcfa5576e1e3fc36de8c77dcf7e053ea806251728ec2ac140",
+    "audit_sha256": "25038e6957fbf4022fb0723363796119fbe7839b4d12847086d32d9475e74e55"
+  },
+  "input_audit": {
+    "native_replay_verified": true,
+    "privileged_state_sent": false,
+    "actual_native_pixels_verified": true,
+    "requests_audited": 18
+  }
+}

@@ -1,0 +1,832 @@
+{
+  "schema_version": 1,
+  "evidence_kind": "compact_native_action_trace",
+  "id": "pixels-best-cloudflare--clef-flash",
+  "mode": "image",
+  "level": "1-1",
+  "contract": {
+    "questions": {
+      "action": {
+        "criteria": {
+          "coast_release_jump_4": "Release directions+A+B4frames. Reduce acceleration while descending to a safe landing and prepare a fresh jump. Existing momentum can persist.",
+          "fresh_running_jump_40": "Hold right+B, release A for1frame then hold A40frames. Start a full sustained running jump when Mario feet visibly stand on ground/platform and a nearby visible obstacle or gap requires height/distance. Issuing this in midair cannot start a fresh jump on landing.",
+          "fresh_walking_jump_40": "Hold right, release B; release A1frame then hold A40frames. Start a full walking jump from a visible solid surface to clear a tall obstacle with less horizontal travel. Cannot start a new jump while airborne.",
+          "run_forward_4": "Hold right+B, release A, 4frames. Advance on clear ground, descend toward landing, or release A so a fresh jump can follow.",
+          "run_forward_8": "Hold right+B, release A, 8frames. Advance along safe ground or descend to land before initiating another jump.",
+          "run_left_8": "Hold left+B, release A8frames. Back away from a wall/hazard or create room for a future jump.",
+          "sustain_running_jump_8": "Hold right+B+A8frames. Sustain a rising jump for height; do not release A early if a tall obstacle must be cleared. Does not reset A for a fresh jump.",
+          "walk_forward_4": "Hold right, release A+B, 4frames. Advance slowly, descend toward landing, or prepare a fresh jump with precise positioning."
+        },
+        "instructions": "Choose one exact, fixed button sequence to advance safely using only CURRENT screenshot. Distinguish rising, falling and standing by Mario relative to visible surfaces. A fresh jump must start when standing on a solid surface, never in midair. Full jump holds last40frames; do not use them if forward travel would overshoot a small safe landing. No automatic correction exists.",
+        "type": "choice"
+      }
+    },
+    "initial_provider_text": [
+      "{\"game\":\"Super Mario Bros 1-1\",\"instructions\":\"Play Mario1-1 alive to the flag on the right, using screenshots only. Current screenshot is last; game is paused while deciding. Solid surfaces support Mario; background hills are decorative. A fresh jump requires A released then pressed while Mario is standing on a solid surface. Hold A during ascent to gain height; release on descent to prepare the next jump. Holding A through landing cannot jump again. Solid overhead blocks interrupt ascent; side contact with enemies hurts, landing on them can stomp. B runs faster and farther. At a visible gap, take off from solid ground near its edge with enough forward travel to land on the far side. A fixed jump sequence chosen in midair will not restart automatically when Mario lands; use a release action to land first, then choose the next jump.\",\"next_control_interval_native_frames\":\"Choose one fixed button sequence from the action list.\",\"previous_controls\":[]}",
+      "CURRENT paused screenshot; use this for your next action. Screenshot taken before decision 0"
+    ],
+    "cadence": 8
+  },
+  "actions": [
+    {
+      "index": 0,
+      "frame_before": 0,
+      "frame_after": 41,
+      "sequence": [
+        [
+          1,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ],
+        [
+          40,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "cloudflare/clef-flash",
+        "provider": "Cloudflare",
+        "answers": {
+          "action": {
+            "choice": "fresh_running_jump_40",
+            "confidence": 0.1762,
+            "probabilities": {
+              "coast_release_jump_4": 0.0893,
+              "fresh_running_jump_40": 0.4798,
+              "fresh_walking_jump_40": 0.1338,
+              "run_forward_4": 0.0444,
+              "run_forward_8": 0.1181,
+              "run_left_8": 0.0204,
+              "sustain_running_jump_8": 0.0465,
+              "walk_forward_4": 0.0677
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "e1fa71a00fd428d46fc3ee8d973a17bd8881ebb192cfc77bf81de8f031f4c3c8",
+      "screen_after_sha256": "ca48253cf376556f8fdb59affe8fd03b24c6f5a98e3d7e12b937e851fb3cdb96",
+      "request_sha256": "6c474e042501bcf0b1d12153d19ddf1df10931c78ce6605b2a9000c9d3e6bbc3"
+    },
+    {
+      "index": 1,
+      "frame_before": 41,
+      "frame_after": 45,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "released",
+            "jump": "released",
+            "run": "released",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "cloudflare/clef-flash",
+        "provider": "Cloudflare",
+        "answers": {
+          "action": {
+            "choice": "coast_release_jump_4",
+            "confidence": 0.0748,
+            "probabilities": {
+              "coast_release_jump_4": 0.3069,
+              "fresh_running_jump_40": 0.2246,
+              "fresh_walking_jump_40": 0.1275,
+              "run_forward_4": 0.0391,
+              "run_forward_8": 0.1189,
+              "run_left_8": 0.0191,
+              "sustain_running_jump_8": 0.0872,
+              "walk_forward_4": 0.0767
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "a23cb9321a4cc4c3572bbc89be51aad5974a012f84e951b07c792d28abaf2ad5",
+      "screen_after_sha256": "cd45ab4e3a7e5ecc5d7dcae5efba09405c581866826bbcb5928bd2568d113050",
+      "request_sha256": "4b4b3b1c28d6c03005a6487e2ea6c882b62af1792391b2ec72f7c55e366ce79d"
+    },
+    {
+      "index": 2,
+      "frame_before": 45,
+      "frame_after": 86,
+      "sequence": [
+        [
+          1,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ],
+        [
+          40,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "cloudflare/clef-flash",
+        "provider": "Cloudflare",
+        "answers": {
+          "action": {
+            "choice": "fresh_running_jump_40",
+            "confidence": 0.0819,
+            "probabilities": {
+              "coast_release_jump_4": 0.2016,
+              "fresh_running_jump_40": 0.3202,
+              "fresh_walking_jump_40": 0.1592,
+              "run_forward_4": 0.0484,
+              "run_forward_8": 0.1334,
+              "run_left_8": 0.0171,
+              "sustain_running_jump_8": 0.0454,
+              "walk_forward_4": 0.0747
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "b1b14e29c8e98e404923ff81006f6d53e2858e746f93907730b9c0ad61c612f4",
+      "screen_after_sha256": "d0985bdd634f8e91dfb1f6e331064371c38378ea6b64b1e19eb9a71fbe0aaa74",
+      "request_sha256": "c014672e15fca8e2b822178a55e39a8cf7e4b6a822fd0b4b1c9c7816380459f4"
+    },
+    {
+      "index": 3,
+      "frame_before": 86,
+      "frame_after": 127,
+      "sequence": [
+        [
+          1,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ],
+        [
+          40,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "cloudflare/clef-flash",
+        "provider": "Cloudflare",
+        "answers": {
+          "action": {
+            "choice": "fresh_running_jump_40",
+            "confidence": 0.083,
+            "probabilities": {
+              "coast_release_jump_4": 0.2338,
+              "fresh_running_jump_40": 0.3162,
+              "fresh_walking_jump_40": 0.1256,
+              "run_forward_4": 0.0407,
+              "run_forward_8": 0.1161,
+              "run_left_8": 0.0135,
+              "sustain_running_jump_8": 0.0744,
+              "walk_forward_4": 0.0797
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "512150cd38f671838b5e7313ac5a0cf935db8d90c9ab7524549ff5d1683b094d",
+      "screen_after_sha256": "32493aada0528ecce92ace0b917c0a76147797b583f581a1d4dd3d8c0e12cbaf",
+      "request_sha256": "334c12531a875614fc2847bfab3a0e34902062a38b34c3a1d97e1549117724c5"
+    },
+    {
+      "index": 4,
+      "frame_before": 127,
+      "frame_after": 168,
+      "sequence": [
+        [
+          1,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ],
+        [
+          40,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "cloudflare/clef-flash",
+        "provider": "Cloudflare",
+        "answers": {
+          "action": {
+            "choice": "fresh_running_jump_40",
+            "confidence": 0.0635,
+            "probabilities": {
+              "coast_release_jump_4": 0.2574,
+              "fresh_running_jump_40": 0.2575,
+              "fresh_walking_jump_40": 0.1163,
+              "run_forward_4": 0.0561,
+              "run_forward_8": 0.1405,
+              "run_left_8": 0.0245,
+              "sustain_running_jump_8": 0.0664,
+              "walk_forward_4": 0.0813
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "879dc327a811db51474d70c9b7a0b1dc9f6869ddf316fb55d3bd77260c243fe5",
+      "screen_after_sha256": "6174ed34ca1f9b8abf937af77a8f6c02b2a9b3b227e804ab3e21b0d1775942d2",
+      "request_sha256": "a1026c9434421157cfbf55328c1880b910cd9da31f1f7898c893ba62473290cc"
+    },
+    {
+      "index": 5,
+      "frame_before": 168,
+      "frame_after": 172,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "released",
+            "jump": "released",
+            "run": "released",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "cloudflare/clef-flash",
+        "provider": "Cloudflare",
+        "answers": {
+          "action": {
+            "choice": "coast_release_jump_4",
+            "confidence": 0.0981,
+            "probabilities": {
+              "coast_release_jump_4": 0.2953,
+              "fresh_running_jump_40": 0.2581,
+              "fresh_walking_jump_40": 0.2072,
+              "run_forward_4": 0.0345,
+              "run_forward_8": 0.0718,
+              "run_left_8": 0.0141,
+              "sustain_running_jump_8": 0.0755,
+              "walk_forward_4": 0.0435
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "aa1e2061c899ffb232be8c835d2adefc9a528873feab4983cb9499a7d688a76d",
+      "screen_after_sha256": "b14909e6d31c9bab93b490145983d4472e82f7c7af6d7a447b0eee5e2c81342a",
+      "request_sha256": "4adcf967b5eee3c8d777d64c809d97e549fc933ab14bb9b492fd37bc3d4d51d6"
+    },
+    {
+      "index": 6,
+      "frame_before": 172,
+      "frame_after": 213,
+      "sequence": [
+        [
+          1,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ],
+        [
+          40,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "cloudflare/clef-flash",
+        "provider": "Cloudflare",
+        "answers": {
+          "action": {
+            "choice": "fresh_running_jump_40",
+            "confidence": 0.1105,
+            "probabilities": {
+              "coast_release_jump_4": 0.1498,
+              "fresh_running_jump_40": 0.3868,
+              "fresh_walking_jump_40": 0.166,
+              "run_forward_4": 0.0462,
+              "run_forward_8": 0.1036,
+              "run_left_8": 0.0184,
+              "sustain_running_jump_8": 0.0485,
+              "walk_forward_4": 0.0807
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "4246a7d548ad328eb32376aa728e365232d8b0c5d680bdc954564450fba05660",
+      "screen_after_sha256": "f5b637d8718ef9f8eef034c36901de96a70974b276c6123fbbbef82f622a51fb",
+      "request_sha256": "bfab2f1554e2bd00f64765f0ff3f4272500c6997a3e23a171fc6b073c2f59565"
+    },
+    {
+      "index": 7,
+      "frame_before": 213,
+      "frame_after": 254,
+      "sequence": [
+        [
+          1,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ],
+        [
+          40,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "cloudflare/clef-flash",
+        "provider": "Cloudflare",
+        "answers": {
+          "action": {
+            "choice": "fresh_running_jump_40",
+            "confidence": 0.0695,
+            "probabilities": {
+              "coast_release_jump_4": 0.2274,
+              "fresh_running_jump_40": 0.2779,
+              "fresh_walking_jump_40": 0.1794,
+              "run_forward_4": 0.046,
+              "run_forward_8": 0.0804,
+              "run_left_8": 0.0179,
+              "sustain_running_jump_8": 0.1093,
+              "walk_forward_4": 0.0617
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "1cbeabe6cb13a94971fe1a9c1cf3319476c09c2bdf6daf5e5bd7c44d047efddc",
+      "screen_after_sha256": "7140722a083f4a5f4e11db2cc797df676534891a13830304098010db163beefe",
+      "request_sha256": "46a7b6e5485ee99e41f51af1db0768bb5bd847b615b0d61c41a6c900316e09ec"
+    },
+    {
+      "index": 8,
+      "frame_before": 254,
+      "frame_after": 258,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "released",
+            "jump": "released",
+            "run": "released",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "cloudflare/clef-flash",
+        "provider": "Cloudflare",
+        "answers": {
+          "action": {
+            "choice": "coast_release_jump_4",
+            "confidence": 0.0672,
+            "probabilities": {
+              "coast_release_jump_4": 0.2684,
+              "fresh_running_jump_40": 0.2387,
+              "fresh_walking_jump_40": 0.1454,
+              "run_forward_4": 0.0372,
+              "run_forward_8": 0.1445,
+              "run_left_8": 0.0188,
+              "sustain_running_jump_8": 0.0623,
+              "walk_forward_4": 0.0847
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "e3067814c4704b2bc14589e1168de7af7dece46083062d516ab361f9ec443edf",
+      "screen_after_sha256": "77087ba8fa55795e5dd11f68a6c25d209dd47f9858b6c4dc84e569076edb45e5",
+      "request_sha256": "5da4042365e2f18d292a6daf29819b4ef72af708a3d3a3955d34706687c924f2"
+    },
+    {
+      "index": 9,
+      "frame_before": 258,
+      "frame_after": 299,
+      "sequence": [
+        [
+          1,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ],
+        [
+          40,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "cloudflare/clef-flash",
+        "provider": "Cloudflare",
+        "answers": {
+          "action": {
+            "choice": "fresh_running_jump_40",
+            "confidence": 0.073,
+            "probabilities": {
+              "coast_release_jump_4": 0.1682,
+              "fresh_running_jump_40": 0.3075,
+              "fresh_walking_jump_40": 0.2024,
+              "run_forward_4": 0.0454,
+              "run_forward_8": 0.1124,
+              "run_left_8": 0.0245,
+              "sustain_running_jump_8": 0.0677,
+              "walk_forward_4": 0.0719
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "bfbad2d5f6ab08b3129e7256b811a9b79a7dfc1aaddd5b3b72eb5c7067afb397",
+      "screen_after_sha256": "c87f2de6085435a07209976b7bb2808ce8c172fda69ee5e166704dad1bc8f243",
+      "request_sha256": "e917910bacda3879ea9fddb0bda0de1cf89d9d977690d617feacae9943a368e1"
+    },
+    {
+      "index": 10,
+      "frame_before": 299,
+      "frame_after": 340,
+      "sequence": [
+        [
+          1,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ],
+        [
+          40,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "cloudflare/clef-flash",
+        "provider": "Cloudflare",
+        "answers": {
+          "action": {
+            "choice": "fresh_running_jump_40",
+            "confidence": 0.073,
+            "probabilities": {
+              "coast_release_jump_4": 0.2281,
+              "fresh_running_jump_40": 0.295,
+              "fresh_walking_jump_40": 0.1478,
+              "run_forward_4": 0.0437,
+              "run_forward_8": 0.1228,
+              "run_left_8": 0.019,
+              "sustain_running_jump_8": 0.0833,
+              "walk_forward_4": 0.0603
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "4b83eec8d73895a475adcd941f7952ed783800370f966b946c2cfdd1669156b1",
+      "screen_after_sha256": "d5634ce024dc87438bad76afb4c84116a93f0e5610c72edf5564a7fc7fa23596",
+      "request_sha256": "527ecdcec7d699ffab9dcbb37b4d746755b859cf4db278f65c22198b0393c564"
+    },
+    {
+      "index": 11,
+      "frame_before": 340,
+      "frame_after": 344,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "released",
+            "jump": "released",
+            "run": "released",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "cloudflare/clef-flash",
+        "provider": "Cloudflare",
+        "answers": {
+          "action": {
+            "choice": "coast_release_jump_4",
+            "confidence": 0.0744,
+            "probabilities": {
+              "coast_release_jump_4": 0.3081,
+              "fresh_running_jump_40": 0.2007,
+              "fresh_walking_jump_40": 0.1739,
+              "run_forward_4": 0.0367,
+              "run_forward_8": 0.0983,
+              "run_left_8": 0.0196,
+              "sustain_running_jump_8": 0.0837,
+              "walk_forward_4": 0.079
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "6adb4a87bbfb46a1675375952e0a10795a5ecf596d7bb80460e431cad6b0a021",
+      "screen_after_sha256": "49cb418f2dd20f505974bf27e0df870ea839ffec6863ce79da4e04b52b6a2e8b",
+      "request_sha256": "0a8a6b80aaf1767a01f62bd4ac220d235aa66976f1d4bb3b080e205db7e58f64"
+    },
+    {
+      "index": 12,
+      "frame_before": 344,
+      "frame_after": 385,
+      "sequence": [
+        [
+          1,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ],
+        [
+          40,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "cloudflare/clef-flash",
+        "provider": "Cloudflare",
+        "answers": {
+          "action": {
+            "choice": "fresh_running_jump_40",
+            "confidence": 0.0922,
+            "probabilities": {
+              "coast_release_jump_4": 0.173,
+              "fresh_running_jump_40": 0.3228,
+              "fresh_walking_jump_40": 0.2339,
+              "run_forward_4": 0.04,
+              "run_forward_8": 0.0844,
+              "run_left_8": 0.023,
+              "sustain_running_jump_8": 0.0657,
+              "walk_forward_4": 0.0572
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "b03a560281fd1ff9e61a79c61400e4d43265df8f643fbffbb24fc8e523ecbe3f",
+      "screen_after_sha256": "9255e099ca95d7539fcb13b86890fbc29bec1acf29d57bab77d8b126e488a0ac",
+      "request_sha256": "d58ff75689fa766a1c78288dc44221917cf7723b1a3e180386e2289ce45bc715"
+    },
+    {
+      "index": 13,
+      "frame_before": 385,
+      "frame_after": 426,
+      "sequence": [
+        [
+          1,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ],
+        [
+          40,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "cloudflare/clef-flash",
+        "provider": "Cloudflare",
+        "answers": {
+          "action": {
+            "choice": "fresh_running_jump_40",
+            "confidence": 0.0909,
+            "probabilities": {
+              "coast_release_jump_4": 0.2525,
+              "fresh_running_jump_40": 0.3131,
+              "fresh_walking_jump_40": 0.1412,
+              "run_forward_4": 0.0323,
+              "run_forward_8": 0.1129,
+              "run_left_8": 0.017,
+              "sustain_running_jump_8": 0.0753,
+              "walk_forward_4": 0.0557
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "2a789c1c677121bfe3d42c3ebe589d172852b6cd2d05fa60df415cd98b8c9c38",
+      "screen_after_sha256": "4bb41a61cfbeba813c77a6ad18a42515497b211bd89454ee48b0648c28ade330",
+      "request_sha256": "1af2fce4e37782d91efd1ff7a9794d888c10d55e5536d5c2ff997d9d0dd1fcb9"
+    },
+    {
+      "index": 14,
+      "frame_before": 426,
+      "frame_after": 467,
+      "sequence": [
+        [
+          1,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ],
+        [
+          40,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "cloudflare/clef-flash",
+        "provider": "Cloudflare",
+        "answers": {
+          "action": {
+            "choice": "fresh_running_jump_40",
+            "confidence": 0.0649,
+            "probabilities": {
+              "coast_release_jump_4": 0.2217,
+              "fresh_running_jump_40": 0.2835,
+              "fresh_walking_jump_40": 0.1532,
+              "run_forward_4": 0.0409,
+              "run_forward_8": 0.1116,
+              "run_left_8": 0.022,
+              "sustain_running_jump_8": 0.094,
+              "walk_forward_4": 0.0731
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "f06eb95e7530df7eedc54aeb4c5e2a8497c14bf4057c2704dd811daeb69ff7a1",
+      "screen_after_sha256": "aed1f716e86723f96fdee02702897749f036ee94f37c7aae04150e147e1474d8",
+      "request_sha256": "739e132a2ba74961652daec9809178ae80c0a6560540103932c5121e464780dd"
+    },
+    {
+      "index": 15,
+      "frame_before": 467,
+      "frame_after": 471,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "released",
+            "jump": "released",
+            "run": "released",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "cloudflare/clef-flash",
+        "provider": "Cloudflare",
+        "answers": {
+          "action": {
+            "choice": "coast_release_jump_4",
+            "confidence": 0.0754,
+            "probabilities": {
+              "coast_release_jump_4": 0.277,
+              "fresh_running_jump_40": 0.26,
+              "fresh_walking_jump_40": 0.1387,
+              "run_forward_4": 0.041,
+              "run_forward_8": 0.1082,
+              "run_left_8": 0.0121,
+              "sustain_running_jump_8": 0.098,
+              "walk_forward_4": 0.065
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "dbcc91fca3983e12287049902eb2d15289151de7849b20fadd935e076e0508d4",
+      "screen_after_sha256": "eaffc054e8adaad176c6ef83d882470e72d61df6051f5efc3e6bdec984b09298",
+      "request_sha256": "86f98cdedaf4c54cbf672f48742096e5615fea2e900917f28ffd83e224d69dac"
+    },
+    {
+      "index": 16,
+      "frame_before": 471,
+      "frame_after": 511,
+      "sequence": [
+        [
+          1,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ],
+        [
+          39,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "cloudflare/clef-flash",
+        "provider": "Cloudflare",
+        "answers": {
+          "action": {
+            "choice": "fresh_running_jump_40",
+            "confidence": 0.0558,
+            "probabilities": {
+              "coast_release_jump_4": 0.2258,
+              "fresh_running_jump_40": 0.2607,
+              "fresh_walking_jump_40": 0.1521,
+              "run_forward_4": 0.0472,
+              "run_forward_8": 0.1084,
+              "run_left_8": 0.0199,
+              "sustain_running_jump_8": 0.0869,
+              "walk_forward_4": 0.099
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "7a397d213067968c3c9272dc3574b1b2bc54ecee877762d684aedfb32c5f0def",
+      "screen_after_sha256": "ff1f7094624ada01649c1a11d848a3f7a30373181bb19a70996e3f3d89cf2f37",
+      "request_sha256": "d9f40252b8aa3e56d61822dc857d7db3287243cac0a8c7a1762735ecb70ec32f"
+    }
+  ],
+  "source_hashes": {
+    "requests_sha256": "365d56cd3229ea227d1af67de517ac820e02534152b726bde84f55ee1a11250e",
+    "responses_sha256": "8e544a3b2597773027081fb8f0f23820105c4f1a80ab447ef98119699c78855c",
+    "private_replay_sha256": "7acbaf90eb7b945e7894814bbfc30aa19f035139f833e8a3453fd4483096ca16",
+    "audit_sha256": "d10cc5f5e567403ea1427c68e0b2658fa2370ec93c6537ec7ad07242feda389b"
+  },
+  "input_audit": {
+    "native_replay_verified": true,
+    "privileged_state_sent": false,
+    "actual_native_pixels_verified": true,
+    "requests_audited": 17
+  }
+}

@@ -1,0 +1,2727 @@
+{
+  "schema_version": 1,
+  "evidence_kind": "compact_native_action_trace",
+  "id": "state-c4-nace-ai--drex-max",
+  "mode": "state",
+  "level": "1-1",
+  "contract": {
+    "questions": {
+      "action": {
+        "criteria": {
+          "left_run_jump": "Hold horizontal=left, B(run)=held, A(jump)=held; vertical released.",
+          "left_run_release": "Hold horizontal=left, B(run)=held, A(jump)=released; vertical released.",
+          "left_walk_jump": "Hold horizontal=left, B(run)=released, A(jump)=held; vertical released.",
+          "left_walk_release": "Hold horizontal=left, B(run)=released, A(jump)=released; vertical released.",
+          "released_run_jump": "Hold horizontal=released, B(run)=held, A(jump)=held; vertical released.",
+          "released_run_release": "Hold horizontal=released, B(run)=held, A(jump)=released; vertical released.",
+          "released_walk_jump": "Hold horizontal=released, B(run)=released, A(jump)=held; vertical released.",
+          "released_walk_release": "Hold horizontal=released, B(run)=released, A(jump)=released; vertical released.",
+          "right_run_jump": "Hold horizontal=right, B(run)=held, A(jump)=held; vertical released.",
+          "right_run_release": "Hold horizontal=right, B(run)=held, A(jump)=released; vertical released.",
+          "right_walk_jump": "Hold horizontal=right, B(run)=released, A(jump)=held; vertical released.",
+          "right_walk_release": "Hold horizontal=right, B(run)=released, A(jump)=released; vertical released."
+        },
+        "instructions": "Select the complete controller input that best advances Mario towards the flag alive. Evaluate the next interval and the resulting jump trajectory. All named buttons are held throughout the interval; choose deliberately when to press or release jump.",
+        "type": "choice"
+      }
+    },
+    "rules": "Play Super Mario Bros. World 1-1 to the flag. Coordinates are world pixels, x increases right, y increases down. Scene is current visible information, not a future map. Each action lasts the declared interval with physics paused until your answer. A jump starts only on a fresh A press while grounded; keeping A held through landing will NOT jump again. Release A before the next fresh jump. Holding A during ascent increases height; releasing A shortens the jump. B makes running faster and jumps longer. Momentum persists on release. Mario can jump onto pipes, blocks and stairs and must clear floor gaps. Enemy side contact is dangerous, landing from above stomps ordinary walking enemies. Think ahead about visible hazards and the size of your body. All action choices are your own. Reach the flag alive, avoid waiting indefinitely or running into walls. No action or route recommendation is supplied. General jump phases: hold A while ascending when height or distance is needed; release A while descending to prepare the next fresh jump. Releasing A during ascent shortens the jump, but keeping it held through landing prevents the next jump. On the ground a fresh jump needs the A release-to-press edge. For stairs, the feet must rise above each solid step before crossing its side; landing on a raised step permits another jump. A jump begun too far before a gap can end above the gap; the current visible geometry determines takeoff timing.",
+    "cadence": 4
+  },
+  "actions": [
+    {
+      "index": 0,
+      "frame_before": 0,
+      "frame_after": 4,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.9415110857767098,
+            "probabilities": {
+              "left_run_jump": 0.0001385644655829603,
+              "left_run_release": 0.000362016768109284,
+              "left_walk_jump": 0.0002825505088733614,
+              "left_walk_release": 0.0004359669786083788,
+              "released_run_jump": 0.0006322698614333164,
+              "released_run_release": 0.001249949856903636,
+              "released_walk_jump": 0.0005585810615275535,
+              "released_walk_release": 0.0027970423587423032,
+              "right_run_jump": 0.01163019466665129,
+              "right_run_release": 0.946385161961984,
+              "right_walk_jump": 0.0021830616927862594,
+              "right_walk_release": 0.03334463981879773
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "ffe24436cdd5013a6381fde9a17a1318ec5bc22a6ca0556130a67407c681fbee",
+      "screen_after_sha256": "ec8e137fb518c7d627e1933e90bcc3f4461520ce09b83c4e89a5ecb986b8e171",
+      "request_sha256": "627eaf0010e7047b9d59010a13911b46f31d01b7d3676f4a2db1e34c5ccbad11"
+    },
+    {
+      "index": 1,
+      "frame_before": 4,
+      "frame_after": 8,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.9611818414512833,
+            "probabilities": {
+              "left_run_jump": 0.00017539921196221408,
+              "left_run_release": 0.0002706354731600577,
+              "left_walk_jump": 0.00028793394606710593,
+              "left_walk_release": 0.00036891465626412407,
+              "released_run_jump": 0.002366853192360385,
+              "released_run_release": 0.0015339594185464192,
+              "released_walk_jump": 0.00028793394606710593,
+              "released_walk_release": 0.0010577059641611042,
+              "right_run_jump": 0.024927688898937938,
+              "right_run_release": 0.9644166879970096,
+              "right_walk_jump": 0.001273765235658149,
+              "right_walk_release": 0.003032522059805754
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "d479af9315776c570664864e593aa398f8d96d33c9b0296cf271e5f1337dc33f",
+      "screen_after_sha256": "4f16921dd41f8df2e18fe9f9143f61dad30d25b1b540cf66e7ab5e1f6c8d7485",
+      "request_sha256": "02a338b41255a31ce403b4346173ad4793fc5a8c1411e11bf660759c7601c3d7"
+    },
+    {
+      "index": 2,
+      "frame_before": 8,
+      "frame_after": 12,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.8764221128507934,
+            "probabilities": {
+              "left_run_jump": 0.0005568176837775099,
+              "left_run_release": 0.001410378867784615,
+              "left_walk_jump": 0.0010346537337265257,
+              "left_walk_release": 0.0018070426965729636,
+              "released_run_jump": 0.005864407062798893,
+              "released_run_release": 0.008504975515222031,
+              "released_walk_jump": 0.001100786607186633,
+              "released_walk_release": 0.004577107724376198,
+              "right_run_jump": 0.07438053197254214,
+              "right_run_release": 0.8867202701132273,
+              "right_walk_jump": 0.0038007268797409406,
+              "right_walk_release": 0.010242301143044303
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "9af573ff380864ea7142c2fde9a5de33111f335bb4437fb9760ec39b254064c3",
+      "screen_after_sha256": "d3f3e09411552f72246808c691d61d394fcfa21c758301c7973de8145d7cf0ea",
+      "request_sha256": "f255347a7fda9772a9cd2346a4a4b3ed36b7894e131ffc4be1414fa7b99890bb"
+    },
+    {
+      "index": 3,
+      "frame_before": 12,
+      "frame_after": 16,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.8965952148164603,
+            "probabilities": {
+              "left_run_jump": 0.0005342797589455851,
+              "left_run_release": 0.0009331307893913986,
+              "left_walk_jump": 0.0007748499676252214,
+              "left_walk_release": 0.001195570255050766,
+              "released_run_jump": 0.006776481399026994,
+              "released_run_release": 0.007670444838170219,
+              "released_walk_jump": 0.0008243768256093075,
+              "released_walk_release": 0.003028292465515268,
+              "right_run_jump": 0.06305195700961508,
+              "right_run_release": 0.9052122802484219,
+              "right_walk_jump": 0.00322185504360124,
+              "right_walk_release": 0.006776481399026994
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "ee11bb3cb1c67997910022c04cc3ed2ff073e8fe4854e51c24efff83b5b8babd",
+      "screen_after_sha256": "eb1f71bdbda3972c1ba3107e3d5806ea69392b1c02390fbe6431b3b6ddd576e4",
+      "request_sha256": "7d73b93975b7bbc8484c735a87607520d78d0df28918fcfb5923f3b38bfefd8a"
+    },
+    {
+      "index": 4,
+      "frame_before": 16,
+      "frame_after": 20,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.8959991882973442,
+            "probabilities": {
+              "left_run_jump": 0.00034605806809548194,
+              "left_run_release": 0.0006043976592171287,
+              "left_walk_jump": 0.00047172593079895927,
+              "left_walk_release": 0.0008238792430467351,
+              "released_run_jump": 0.004389191859518106,
+              "released_run_release": 0.004968220234278016,
+              "released_walk_jump": 0.0006430296170640971,
+              "released_walk_release": 0.0017328534274452419,
+              "right_run_jump": 0.07132679031995122,
+              "right_run_release": 0.9046659226058988,
+              "right_walk_jump": 0.0023621233941240895,
+              "right_walk_release": 0.0076658076405620645
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "6da5c5710a833cd81723d83a5ef68a0bea2d04591fa77e25a4bb9abfaa26a27e",
+      "screen_after_sha256": "1303253d60b41a96c697bef5c5e7cbf4b057bb2c327ea904f5a45493a53570d1",
+      "request_sha256": "29b9d771b907b144c6adff2371babb965020b15ff6ae27008b1292f294e5176b"
+    },
+    {
+      "index": 5,
+      "frame_before": 20,
+      "frame_after": 24,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.9089627433307338,
+            "probabilities": {
+              "left_run_jump": 0.0003097421259403813,
+              "left_run_release": 0.0005409705544030623,
+              "left_walk_jump": 0.0006123367582996295,
+              "left_walk_release": 0.0010052072270445508,
+              "released_run_jump": 0.005697504836155171,
+              "released_run_release": 0.008791071700520542,
+              "released_walk_jump": 0.0008880537693688813,
+              "released_walk_release": 0.003262202613582702,
+              "right_run_jump": 0.053012596617238235,
+              "right_run_release": 0.916549181386506,
+              "right_walk_jump": 0.0028820041277284455,
+              "right_walk_release": 0.006449128283212466
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "9a882c2f50cf617c3cdc773d91050a7a6fd0522de4c671846381e7e44d7eff28",
+      "screen_after_sha256": "58e6a980dd53a4675c693c053b6b06e3fade011bf7af0389092a4dcb44f9ea3e",
+      "request_sha256": "200624e454855c1b47af86a393240efe6c99e01342a1e589a960a38b35d9670b"
+    },
+    {
+      "index": 6,
+      "frame_before": 24,
+      "frame_after": 28,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.9160815923526552,
+            "probabilities": {
+              "left_run_jump": 0.00027559101330754023,
+              "left_run_release": 0.0005448226649608627,
+              "left_walk_jump": 0.0005796465626741419,
+              "left_walk_release": 0.00061669643778283,
+              "released_run_jump": 0.006104835382467631,
+              "released_run_release": 0.0039565521767961345,
+              "released_walk_jump": 0.0005448226649608627,
+              "released_walk_release": 0.0016618902063451433,
+              "right_run_jump": 0.056802668360163865,
+              "right_run_release": 0.9230747929899339,
+              "right_walk_jump": 0.0018811293638109471,
+              "right_walk_release": 0.0039565521767961345
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "5e92ec955d2e9a472a7a4746f80c18e088dea682037154613f7fa8ee6b6e5c6e",
+      "screen_after_sha256": "54b29490aea2a3d537af5989cb8cc1642162c72c17a200d34630bd911e34b8ae",
+      "request_sha256": "59f74eb8ead7ca21d7c6404913793f5817f1f4608866c8e8dc586bc129042bdd"
+    },
+    {
+      "index": 7,
+      "frame_before": 28,
+      "frame_after": 32,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.9225657180165956,
+            "probabilities": {
+              "left_run_jump": 0.0002607022935027941,
+              "left_run_release": 0.0004279667726349843,
+              "left_walk_jump": 0.0004279667726349843,
+              "left_walk_release": 0.0006206674454683514,
+              "released_run_jump": 0.0045073482041227495,
+              "released_run_release": 0.002425711725588887,
+              "released_walk_jump": 0.00048442479603093936,
+              "released_walk_release": 0.0013054409640748878,
+              "right_run_jump": 0.053733867967783774,
+              "right_run_release": 0.929018574848546,
+              "right_walk_jump": 0.0022799800054889327,
+              "right_walk_release": 0.0045073482041227495
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "7fcf4d27e785122b248f026828460c680b57667df3831a6cd079b1bfd27a94d7",
+      "screen_after_sha256": "259f1fc56ed096b08dd48825594d2fd567cdd3fe7b795ba9fc8bf695c6281913",
+      "request_sha256": "9389ae2d63003cf941f188941e0ca16d6e8c3eb3f97a3e5726cb69be25bdaa8b"
+    },
+    {
+      "index": 8,
+      "frame_before": 32,
+      "frame_after": 36,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.920273625880869,
+            "probabilities": {
+              "left_run_jump": 0.00015845132825331528,
+              "left_run_release": 0.0003545702646958105,
+              "left_walk_jump": 0.00026011243232509955,
+              "left_walk_release": 0.00042699888116190206,
+              "released_run_jump": 0.0069389687240905395,
+              "released_run_release": 0.005761962641006627,
+              "released_walk_jump": 0.0003132463418277653,
+              "released_walk_release": 0.0009555054746379273,
+              "right_run_jump": 0.05361234324059895,
+              "right_run_release": 0.9269174903907966,
+              "right_walk_jump": 0.0013857409931908714,
+              "right_walk_release": 0.0029146092874146046
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "ddd4ed1452fab43e9c7ac73c30221b0d5facc958e716814a6c4a1a5d47de4f68",
+      "screen_after_sha256": "4026eabbb105576e8d046ea775f9f4cd3dbd432929fc3b7f6788f84153f114a4",
+      "request_sha256": "97ed9608246ab0c910289252f4dd245ab840eb49bbc693c6230160af617c014b"
+    },
+    {
+      "index": 9,
+      "frame_before": 36,
+      "frame_after": 40,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.9428084916804823,
+            "probabilities": {
+              "left_run_jump": 0.00010498108983598651,
+              "left_run_release": 0.0001833516723022517,
+              "left_walk_jump": 0.00020753969305179636,
+              "left_walk_release": 0.00022080522000499594,
+              "released_run_jump": 0.0021858070347573868,
+              "released_run_release": 0.0011763331463268746,
+              "released_walk_jump": 0.00023491862891679042,
+              "released_walk_release": 0.0007165799590766773,
+              "right_run_jump": 0.045510645767679075,
+              "right_run_release": 0.9475744507071088,
+              "right_walk_jump": 0.0006330651141062957,
+              "right_walk_release": 0.0012515219668330802
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "81f4915355d0c98f223324e4b5bfc7a0230c95c4e4ad45a5eaae82f35fb7725a",
+      "screen_after_sha256": "d371c6936c2d05c2c114e0a5598d1dafef7f60bb0284623625e56082949e91f3",
+      "request_sha256": "d434b90e7517e343e63c53d7c8bdb51d9616a9c1d18af025bdd97c5cd85e85ac"
+    },
+    {
+      "index": 10,
+      "frame_before": 40,
+      "frame_after": 44,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.9571671152630915,
+            "probabilities": {
+              "left_run_jump": 0.00011324269954945635,
+              "left_run_release": 0.00023818170552801285,
+              "left_walk_jump": 0.0002868354991569369,
+              "left_walk_release": 0.0003051694293620847,
+              "released_run_jump": 0.0026688689414320053,
+              "released_run_release": 0.0017296974621564202,
+              "released_walk_jump": 0.0003051694293620847,
+              "released_walk_release": 0.0008223788470279413,
+              "right_run_jump": 0.029905183519417997,
+              "right_run_release": 0.9607365223245006,
+              "right_walk_jump": 0.0009308682722670685,
+              "right_walk_release": 0.0019578818702394745
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "97bf60eb166e5a115870e4719bb982a1f1d9b091ec5c6bd4f08817067c5052a7",
+      "screen_after_sha256": "e34ff08023ed309b0340c76c9405eaa1a23f932d622b901d1fe00c9387dede95",
+      "request_sha256": "7db8d335636ae92c7d819706a951913ac70ed556760055b4ef89f0e8fd2e3d91"
+    },
+    {
+      "index": 11,
+      "frame_before": 44,
+      "frame_after": 48,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.9318124753259109,
+            "probabilities": {
+              "left_run_jump": 0.0001602594488547415,
+              "left_run_release": 0.0002630808903707529,
+              "left_walk_jump": 0.0002472752993061572,
+              "left_walk_release": 0.0002798965007186639,
+              "released_run_jump": 0.004275209994945937,
+              "released_run_release": 0.0045484725979750085,
+              "released_walk_jump": 0.00040592553924512334,
+              "released_walk_release": 0.0008024841857338116,
+              "right_run_jump": 0.0479044928326834,
+              "right_run_release": 0.9374947690487517,
+              "right_walk_jump": 0.0013173516435362855,
+              "right_walk_release": 0.0023007820178783814
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "a3234a7c67d153f83cb7a2cf6ba4b76f1d2b47867f5a953f248312453ba1fb9d",
+      "screen_after_sha256": "8b5c258e871db4b53848501aafe88a474d31800527b379a2b320da784a76aec7",
+      "request_sha256": "0b2d26ba744a97238a1a167b7d53683fdea4c0b99e8513e2c57329b9e6830bb9"
+    },
+    {
+      "index": 12,
+      "frame_before": 48,
+      "frame_after": 52,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.9299364947280612,
+            "probabilities": {
+              "left_run_jump": 0.000110300478318224,
+              "left_run_release": 0.00026259830870639477,
+              "left_walk_jump": 0.00024682196590685373,
+              "left_walk_release": 0.000336453121694149,
+              "released_run_jump": 0.003770021099705037,
+              "released_run_release": 0.001583540611426806,
+              "released_walk_jump": 0.0002319933748134465,
+              "released_walk_release": 0.0006251820722755482,
+              "right_run_jump": 0.054124661887905365,
+              "right_run_release": 0.9357751201673894,
+              "right_walk_jump": 0.001026293865734677,
+              "right_walk_release": 0.0019070130461241379
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "c2746bc59ed4145312a5b27d37199a979387b27ea60c7c910d0f6abaab582875",
+      "screen_after_sha256": "4f89268883ca9816710e7aa7033303e289209b8a32e8ef3f8c03f38afd5e051f",
+      "request_sha256": "57557363aed2b78406a8d22006b2ebf5e5ea928ebde2e4a62077f1dd5c005913"
+    },
+    {
+      "index": 13,
+      "frame_before": 52,
+      "frame_after": 56,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.942612829851384,
+            "probabilities": {
+              "left_run_jump": 0.00013448117034481428,
+              "left_run_release": 0.0003009316492542145,
+              "left_walk_jump": 0.00028285231938547195,
+              "left_walk_release": 0.0003009316492542145,
+              "released_run_jump": 0.0031694108544990307,
+              "released_run_release": 0.0016032042888641147,
+              "released_walk_jump": 0.00026585911544275265,
+              "released_walk_release": 0.0006329452603231416,
+              "right_run_jump": 0.04276832497159583,
+              "right_run_release": 0.9473950940304353,
+              "right_walk_jump": 0.0013312634328499825,
+              "right_walk_release": 0.0018147012577510852
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "70e8ac88208f7705a0fd1ef9216cb0b8cfb242c6813f241cbcebe15f85260948",
+      "screen_after_sha256": "12fdfc82478345c0063066625373c581f27f32a7d392a9d01db3b05f2fbb982a",
+      "request_sha256": "32ab4be6b7639a5ed075ad1de0da0b696fd5d7517057730136ff5c7cf0db1228"
+    },
+    {
+      "index": 14,
+      "frame_before": 56,
+      "frame_after": 60,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.9292877788704844,
+            "probabilities": {
+              "left_run_jump": 0.00014123227125838062,
+              "left_run_release": 0.00031603874967135775,
+              "left_walk_jump": 0.00031603874967135775,
+              "left_walk_release": 0.0002970517603594787,
+              "released_run_jump": 0.004537243758441048,
+              "released_run_release": 0.001487458905810698,
+              "released_walk_jump": 0.0003362393104780017,
+              "released_walk_release": 0.0006647197145558073,
+              "right_run_jump": 0.05409026767888021,
+              "right_run_release": 0.9351804639646107,
+              "right_walk_jump": 0.0013980940830279848,
+              "right_walk_release": 0.0012351510532349313
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "cef6428b5c17621de2586c3e8f0a42f178e7c577a6864339e40cdec480cbbe7c",
+      "screen_after_sha256": "db44be6c32f5fb4e048294732ea892d56f8f02022669aee206ec7e0ee8b03351",
+      "request_sha256": "8a7c81ba761d861e13fc810cd1e91837b4157e6d588818d8e66f85bc41b1844e"
+    },
+    {
+      "index": 15,
+      "frame_before": 60,
+      "frame_after": 64,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.9368303798378933,
+            "probabilities": {
+              "left_run_jump": 0.00013372876152138735,
+              "left_run_release": 0.00040791717073536117,
+              "left_walk_jump": 0.00024848878239886943,
+              "left_walk_release": 0.0002992479555195335,
+              "released_run_jump": 0.004038079894879265,
+              "released_run_release": 0.0031516783143216093,
+              "released_walk_jump": 0.0003603758624597759,
+              "released_walk_release": 0.0008064215229121815,
+              "right_run_jump": 0.04524741083645662,
+              "right_run_release": 0.9420945148514022,
+              "right_walk_jump": 0.0011695289834433595,
+              "right_walk_release": 0.0020426070639498395
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "29cbb95ee341bbaffd508c8c5365fdbcbc67dd80c8dd4575476a3a14d7578633",
+      "screen_after_sha256": "61cbb7489ac8e428ea0287fbb6c55887720fe4e89500e738a2a8de8d23e9b009",
+      "request_sha256": "d202cf196678748adb01943da59b74667279a36a3d2b694ad0342d562e731143"
+    },
+    {
+      "index": 16,
+      "frame_before": 64,
+      "frame_after": 68,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.9362548599491977,
+            "probabilities": {
+              "left_run_jump": 9.804845580230618e-05,
+              "left_run_release": 0.00014219676249786485,
+              "left_walk_jump": 0.00019383439435079474,
+              "left_walk_release": 0.00023342926847582328,
+              "released_run_jump": 0.002960675662913332,
+              "released_run_release": 0.0013230750489440226,
+              "released_walk_jump": 0.0001712436953001909,
+              "released_walk_release": 0.00040768908107243217,
+              "right_run_jump": 0.0511878809260673,
+              "right_run_release": 0.9415669549534312,
+              "right_walk_jump": 0.0008574858755723484,
+              "right_walk_release": 0.0008574858755723484
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "4f7f457c85e76549fa7feddb90965772528c5f619c0ca48ad23d28bb445c9c2d",
+      "screen_after_sha256": "92d4ec8b7d8ac45508f03f2f61f81f9ab41acaa9eeebd4271c39ed5909e268cc",
+      "request_sha256": "e6454226e141b246cbf555401cecfc8c3beedf4df064f9f953dfd7075bcf206a"
+    },
+    {
+      "index": 17,
+      "frame_before": 68,
+      "frame_after": 72,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.9187736066424932,
+            "probabilities": {
+              "left_run_jump": 0.00013137921854971884,
+              "left_run_release": 0.00022945634574352849,
+              "left_walk_jump": 0.0003127816707179064,
+              "left_walk_release": 0.0003127816707179064,
+              "released_run_jump": 0.004490479468942312,
+              "released_run_release": 0.0010799527150157538,
+              "released_walk_jump": 0.000293990372730645,
+              "released_walk_release": 0.0006183451248996444,
+              "right_run_jump": 0.06446804929353915,
+              "right_run_release": 0.9255424727556187,
+              "right_walk_jump": 0.0009540880618612378,
+              "right_walk_release": 0.0015662233016634599
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "8c8362983ec432c7648d21aa2060a083387ef7c5b72b18b59d42747f98777ee4",
+      "screen_after_sha256": "1fb880a0c4cc687522289afec86ed340d213dd84879cd2328e7cdc54302d11f5",
+      "request_sha256": "93f7c231ccc9970d5af7cc12128b196624fd23560cf9a85be3cd3133e71ce7dd"
+    },
+    {
+      "index": 18,
+      "frame_before": 72,
+      "frame_after": 76,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.8153402248728289,
+            "probabilities": {
+              "left_run_jump": 0.00024802057561602284,
+              "left_run_release": 0.0004903175336676279,
+              "left_walk_jump": 0.0004903175336676279,
+              "left_walk_release": 0.0007110936058579894,
+              "released_run_jump": 0.007489234286438388,
+              "released_run_release": 0.0045621772768084465,
+              "released_walk_jump": 0.00046086023688564847,
+              "released_walk_release": 0.001167325547849776,
+              "right_run_jump": 0.14656490238937958,
+              "right_run_release": 0.8307285394667598,
+              "right_walk_jump": 0.0012419385731013083,
+              "right_walk_release": 0.005845272973967713
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "a06606b528b7eccccc38e5def3c4ab2fd39e743844f0d2f17362dcf6466b402a",
+      "screen_after_sha256": "cd855fba546b84f3b54eedb255772be48a1d628b5c85d3c0b202c6a1c8f75ebd",
+      "request_sha256": "1679fe327cf7d91420e1d3de7aa73a7d302912f1d5700b285b8e73fa2bd5d619"
+    },
+    {
+      "index": 19,
+      "frame_before": 76,
+      "frame_after": 80,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.8017994963577212,
+            "probabilities": {
+              "left_run_jump": 0.0002599306411205122,
+              "left_run_release": 0.0005467083429435999,
+              "left_walk_jump": 0.00042670003921348176,
+              "left_walk_release": 0.0005816529040257656,
+              "released_run_jump": 0.005412005711958398,
+              "released_run_release": 0.0032968003579759435,
+              "released_walk_jump": 0.0004539739075812335,
+              "released_walk_release": 0.0012233810023653251,
+              "right_run_jump": 0.16342118058082283,
+              "right_run_release": 0.8183162049945778,
+              "right_walk_jump": 0.0015674539297759887,
+              "right_walk_release": 0.004494007587639115
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "437498b28503e442fe437dda8592f0532f454471d1b8e6e3354cf2ade8c2525b",
+      "screen_after_sha256": "d9dd130f391c840c2b2b067bb861d566645b4de0621e728d509f022f3249e034",
+      "request_sha256": "f2b5f7d1b54bae439eb4e9d9dbadb1c7a74ca1ca1e81e0ff2035344970eb0213"
+    },
+    {
+      "index": 20,
+      "frame_before": 80,
+      "frame_after": 84,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.5743159464747422,
+            "probabilities": {
+              "left_run_jump": 0.0004906132776641039,
+              "left_run_release": 0.0006687753640579811,
+              "left_walk_jump": 0.000805387187691761,
+              "left_walk_release": 0.0008568659322695927,
+              "released_run_jump": 0.014814574975079983,
+              "released_run_release": 0.009601346345394423,
+              "released_walk_jump": 0.0009116350398666712,
+              "released_walk_release": 0.002309105148193389,
+              "right_run_jump": 0.34914565959364235,
+              "right_run_release": 0.609789617601847,
+              "right_walk_jump": 0.0035628801418480433,
+              "right_walk_release": 0.0070435393924446945
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "5147a44875d089ed3f87c352f21889e36229ebaa454c53b5a21f041c54def057",
+      "screen_after_sha256": "0d9f457b0f261ac76170a748e8b413cdb3e4a5850307947ac5445f1d27608e69",
+      "request_sha256": "7b2c03df0fbca38f4cc4a2fbc26e26696a5358dd3cf9f2d88be34bf3b46e5e50"
+    },
+    {
+      "index": 21,
+      "frame_before": 84,
+      "frame_after": 88,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.43287045169119226,
+            "probabilities": {
+              "left_run_jump": 0.0011075364881002181,
+              "left_run_release": 0.0017088956017042634,
+              "left_walk_jump": 0.0009784570555930983,
+              "left_walk_release": 0.0016062285910274081,
+              "released_run_jump": 0.021674576710730396,
+              "released_run_release": 0.017998080654506168,
+              "released_walk_jump": 0.001419028349600869,
+              "released_walk_release": 0.005212699441615353,
+              "right_run_jump": 0.451285970033901,
+              "right_run_release": 0.48013124738359286,
+              "right_walk_jump": 0.005212699441615353,
+              "right_walk_release": 0.011664580248013067
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "e5b79ac60dd6fc75c85ec053f2c662de3e558fddc370cdb9cffee84945521376",
+      "screen_after_sha256": "8c082c049d8e2f4d561625af394a6a5beaa73e6cd4d9e1d9a80a93d579f27a91",
+      "request_sha256": "bc58d6a6b354cb15c1c430ae62ecd8d473f009a2b71cb14c829ad68f7d73008a"
+    },
+    {
+      "index": 22,
+      "frame_before": 88,
+      "frame_after": 92,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.8237372250871453,
+            "probabilities": {
+              "left_run_jump": 0.0003207194996873966,
+              "left_run_release": 0.0006745647988625533,
+              "left_walk_jump": 0.00056014287633219,
+              "left_walk_release": 0.0009195268663183302,
+              "released_run_jump": 0.006677688344342852,
+              "released_run_release": 0.010962051310837264,
+              "released_walk_jump": 0.0007635543435360844,
+              "released_walk_release": 0.0024779655886412364,
+              "right_run_jump": 0.13068289290274873,
+              "right_run_release": 0.8384257896632166,
+              "right_walk_jump": 0.002636352099120406,
+              "right_walk_release": 0.004898751706356412
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "12f21d0c5b5a93cbea4391d076eada711e526340cb8df38d230d069f3d109ab3",
+      "screen_after_sha256": "1436757c4d69230121045795179b0fe7362a8bb32ed355716830c3f7f66aa374",
+      "request_sha256": "f2ffff002a4f427ff2b5269c057e751b9a50173fb528ae1186d39f4e332cf4f6"
+    },
+    {
+      "index": 23,
+      "frame_before": 92,
+      "frame_after": 96,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.7841582876372001,
+            "probabilities": {
+              "left_run_jump": 0.0003264538913695973,
+              "left_run_release": 0.0006066020115227203,
+              "left_walk_jump": 0.0005037081428084274,
+              "left_walk_release": 0.0006866258547896838,
+              "released_run_jump": 0.005305056607807196,
+              "released_run_release": 0.0034382109779565947,
+              "released_walk_jump": 0.0004734463547510363,
+              "released_walk_release": 0.00105944206612487,
+              "right_run_jump": 0.18132448802413612,
+              "right_run_release": 0.8021450970007667,
+              "right_walk_jump": 0.0012758560789428986,
+              "right_walk_release": 0.0028550129890241543
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "4ba1a5ab15d22f48a8d2627a073bf59abb5145ff7b8c389d7c09ca07f7211f7d",
+      "screen_after_sha256": "456b72b4c5528a042579a9b96f157770447666c18e1692a62ec760d5327e4a57",
+      "request_sha256": "0e0f5a54bcec84e11df0afc37a933351db93b327603aaa9c7d988d4990a798e6"
+    },
+    {
+      "index": 24,
+      "frame_before": 96,
+      "frame_after": 100,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_jump",
+            "confidence": 0.437339210635042,
+            "probabilities": {
+              "left_run_jump": 0.0005650123488891563,
+              "left_run_release": 0.0006395495888478865,
+              "left_walk_jump": 0.0007701915065334047,
+              "left_walk_release": 0.0008194206369745436,
+              "released_run_jump": 0.017061138949654202,
+              "released_run_release": 0.0032024845345563313,
+              "released_walk_jump": 0.0008194206369745436,
+              "released_walk_release": 0.0014311351470587955,
+              "right_run_jump": 0.4842276097487885,
+              "right_run_release": 0.4842276097487885,
+              "right_walk_jump": 0.002829246060462207,
+              "right_walk_release": 0.003407181092471951
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "8de8cc5b18b3f415a8718530afccdcebf46efb848415d68ac46b108affb28798",
+      "screen_after_sha256": "4ae5b0a5742cb1468275cac27cf4e57ea08bcd211eb8ee16f3ffae677ce9abc6",
+      "request_sha256": "ae0d3056949a54d25089557e74e42f95f77c2680eb04fabe3cd84212d7bc7497"
+    },
+    {
+      "index": 25,
+      "frame_before": 100,
+      "frame_after": 104,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_jump",
+            "confidence": 0.47520085397784995,
+            "probabilities": {
+              "left_run_jump": 0.0003688544413607599,
+              "left_run_release": 0.001965060535169489,
+              "left_walk_jump": 0.0007291973503496873,
+              "left_walk_release": 0.0009342814093930067,
+              "released_run_jump": 0.004977355677908249,
+              "released_run_release": 0.00637721884518391,
+              "released_walk_jump": 0.0006442119461418089,
+              "released_walk_release": 0.0015337102981902787,
+              "right_run_jump": 0.5189341161463624,
+              "right_run_release": 0.458454171908254,
+              "right_walk_jump": 0.0011970446087995706,
+              "right_walk_release": 0.0038847768328868215
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "70ab2be12714b9c53e540db556bbc9bc710a369c3720ad1f384bbf606701d049",
+      "screen_after_sha256": "5a74c7cff92b96d0715a5da76397297d5b62660dd5d2f364f9428df318127d8b",
+      "request_sha256": "104ce4e14d27d7fcaa3adcd94dbca1d300f2888dc1f8481b1d8f287d1e9d6ab3"
+    },
+    {
+      "index": 26,
+      "frame_before": 104,
+      "frame_after": 108,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_jump",
+            "confidence": 0.5037705631931795,
+            "probabilities": {
+              "left_run_jump": 0.00045238467292479484,
+              "left_run_release": 0.0023365471623390216,
+              "left_walk_jump": 0.000765997558453312,
+              "left_walk_release": 0.0011109035247932194,
+              "released_run_jump": 0.007127245882532773,
+              "released_run_release": 0.006699055865712752,
+              "released_walk_jump": 0.0008670490911205673,
+              "released_walk_release": 0.0021961721612347132,
+              "right_run_jump": 0.5451230162604145,
+              "right_run_release": 0.42546310787080943,
+              "right_walk_jump": 0.0019402160630386564,
+              "right_walk_release": 0.005918303886626324
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "14c6768cd2939e1b4a2ca67ee07a984ce1ad4afe6c52791d424c574f27de7304",
+      "screen_after_sha256": "bb21b2d50432aa677f68d9c255e3fa45bf7645d595e2267dca3c44ef3223684f",
+      "request_sha256": "d9724ec3913031fb14b7ec7e6079666b8f185b6b19094d0099796dd712f3f6aa"
+    },
+    {
+      "index": 27,
+      "frame_before": 108,
+      "frame_after": 112,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.5692297053504616,
+            "probabilities": {
+              "left_run_jump": 0.0012331856660034012,
+              "left_run_release": 0.025676106983713285,
+              "left_walk_jump": 0.001902766500393562,
+              "left_walk_release": 0.005804075892710992,
+              "released_run_jump": 0.014701302930615624,
+              "released_run_release": 0.047710187903777665,
+              "released_walk_jump": 0.0022914498734139,
+              "released_walk_release": 0.009527925623362837,
+              "right_run_jump": 0.25417460097561767,
+              "right_run_release": 0.6051272299045898,
+              "right_walk_jump": 0.006175060762087944,
+              "right_walk_release": 0.025676106983713285
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "32a79b93bf3b022ce185a4e9519202445a63064421d3fa3c8e80d04da4deb5b5",
+      "screen_after_sha256": "bde5326a1f8d14e74dc7a0ac3ee7d1455c64ae829a35f5ca2913a4b559b350d8",
+      "request_sha256": "d670da065e3c8c97b8b44c727d96ac3e2ba4715c64efdf573f1295cee6da8eac"
+    },
+    {
+      "index": 28,
+      "frame_before": 112,
+      "frame_after": 116,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.7832497368999363,
+            "probabilities": {
+              "left_run_jump": 0.001274532624246188,
+              "left_run_release": 0.017198659287408078,
+              "left_walk_jump": 0.001966565592588124,
+              "left_walk_release": 0.005998678904041511,
+              "released_run_jump": 0.011146465191843377,
+              "released_run_release": 0.04634741269408823,
+              "released_walk_jump": 0.0026807060631285676,
+              "released_walk_release": 0.014281378899350253,
+              "right_run_jump": 0.06317805428231447,
+              "right_run_release": 0.8013122588249416,
+              "right_walk_jump": 0.006382102541080461,
+              "right_walk_release": 0.02823318509496914
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "769f9f1b180fdde4b23292e2d248d6da778669c774ac3727ba0335e0e973bcdf",
+      "screen_after_sha256": "ee5ebd1ce47a0ad11c6bb41200baa850075d19fad826d9eeafe5acd808045eb5",
+      "request_sha256": "c876ac31f0260c7cb6661b2213844b15d1f44f26c5b0da85e4eef0d6ce277b4f"
+    },
+    {
+      "index": 29,
+      "frame_before": 116,
+      "frame_after": 120,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.8296759341578903,
+            "probabilities": {
+              "left_run_jump": 0.001261584519629296,
+              "left_run_release": 0.006721053120580304,
+              "left_walk_jump": 0.0018296402103367406,
+              "left_walk_release": 0.0038482560244331447,
+              "released_run_jump": 0.008611323713923433,
+              "released_run_release": 0.04312039740514934,
+              "released_walk_jump": 0.0023442195891439977,
+              "released_walk_release": 0.011033237495497828,
+              "right_run_jump": 0.05192867163841116,
+              "right_run_release": 0.8438696063113995,
+              "right_walk_jump": 0.004930563035555623,
+              "right_walk_release": 0.020501446935939627
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "e1e5dd34508e22f7b1361b4dc13bcac2e9babd3fe284d473e765e3413bc81889",
+      "screen_after_sha256": "90334107d02c8b5ac4ad81df8772a4f966380ac27da48bcbaeb7037726a55b71",
+      "request_sha256": "d1550c52ee2b947e67a9c58bcc354ef434556137c6a54f69609e334d44c72850"
+    },
+    {
+      "index": 30,
+      "frame_before": 120,
+      "frame_after": 124,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.8407808351090218,
+            "probabilities": {
+              "left_run_jump": 0.001060227370651484,
+              "left_run_release": 0.004990035622356896,
+              "left_walk_jump": 0.0015376174253990639,
+              "left_walk_release": 0.003440762461124833,
+              "released_run_jump": 0.006393464354620633,
+              "released_run_release": 0.026584262403242957,
+              "released_walk_jump": 0.0015376174253990639,
+              "released_walk_release": 0.00723690647076389,
+              "right_run_jump": 0.06329058643419924,
+              "right_run_release": 0.8540490988499366,
+              "right_walk_jump": 0.006393464354620633,
+              "right_walk_release": 0.02348595682768463
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "48b086648e7afd7703f84e4302db8b5c7598a25d6d053ae6e5b41df9dcca96ef",
+      "screen_after_sha256": "63db46e055748ffc694ddc121e5696e2462c1169b31422536c09efa440c69378",
+      "request_sha256": "ed53053f0a21037c315bb77968217d974475136f280720019b9e95aed7a1f3f0"
+    },
+    {
+      "index": 31,
+      "frame_before": 124,
+      "frame_after": 128,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.8934889084811527,
+            "probabilities": {
+              "left_run_jump": 0.0009896518195548192,
+              "left_run_release": 0.005967868306330746,
+              "left_walk_jump": 0.0011918094801133523,
+              "left_walk_release": 0.0025067160616403647,
+              "released_run_jump": 0.009208241909616801,
+              "released_run_release": 0.021922563299861853,
+              "released_walk_jump": 0.0012679875957545593,
+              "released_walk_release": 0.0036354150466006555,
+              "right_run_jump": 0.03598790412106614,
+              "right_run_release": 0.90236483277439,
+              "right_walk_jump": 0.0038677837651591813,
+              "right_walk_release": 0.011089225819911576
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "a5dfc8589d924690500c21c469e7e36ddee6d4a22591be23d1ad2ee15ebb248e",
+      "screen_after_sha256": "ffea59ed919b3b42287d9d49cc85240984433a05446fc518c6955ebf6bcb7bdc",
+      "request_sha256": "48d666f108a9172a94045c08c4f621e75303179127d3aaaf3d3542220d2c5e21"
+    },
+    {
+      "index": 32,
+      "frame_before": 128,
+      "frame_after": 132,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_jump",
+            "confidence": 0.8440934603380396,
+            "probabilities": {
+              "left_run_jump": 0.007726850157820887,
+              "left_run_release": 0.0016417153482180613,
+              "left_walk_jump": 0.0016417153482180613,
+              "left_walk_release": 0.001450379207127872,
+              "released_run_jump": 0.017290554278461222,
+              "released_run_release": 0.003673704666010007,
+              "released_walk_jump": 0.0016417153482180613,
+              "released_walk_release": 0.002103441547132997,
+              "right_run_jump": 0.8570856719765363,
+              "right_run_release": 0.0865807425597375,
+              "right_walk_jump": 0.013495093625983478,
+              "right_walk_release": 0.005668415936535592
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "71f67e81dd7f4d55403e3f3d87df66cf49069b94329c2ceaec191faa34b67ed8",
+      "screen_after_sha256": "a84bc64563b44d2f511925c0de8053e708a6f775b33016d4acc94f9d23a9e5e4",
+      "request_sha256": "e17a55f35ffde273c5d605e06371aa78f8d1db8fba4fa00bb218fe48785d16e7"
+    },
+    {
+      "index": 33,
+      "frame_before": 132,
+      "frame_after": 136,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_jump",
+            "confidence": 0.5360375255257052,
+            "probabilities": {
+              "left_run_jump": 0.0004919371518701517,
+              "left_run_release": 0.003156131102022574,
+              "left_walk_jump": 0.0008075600991670056,
+              "left_walk_release": 0.0012460410238084724,
+              "released_run_jump": 0.0051810796788215735,
+              "released_run_release": 0.006239427191499734,
+              "released_walk_jump": 0.000859177662821057,
+              "released_walk_release": 0.0021762344769588617,
+              "right_run_jump": 0.5747010650652297,
+              "right_run_release": 0.39627170168314707,
+              "right_walk_jump": 0.0018070961634504233,
+              "right_walk_release": 0.007062548701203438
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "17961e980d53700583973f40b025d868e75e4cdab77d0f444ea879604436b283",
+      "screen_after_sha256": "2afa6b357bd79f99da6088db9f8b2dfce46b3ff12828385f970d56d26f7b8408",
+      "request_sha256": "e1f7cdfa84922f563234e7602b45039a10631b20c14a69ecda01e644d198af43"
+    },
+    {
+      "index": 34,
+      "frame_before": 136,
+      "frame_after": 140,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.5238986793310197,
+            "probabilities": {
+              "left_run_jump": 0.0005132469338847531,
+              "left_run_release": 0.002270505810771753,
+              "left_walk_jump": 0.0010146500055113604,
+              "left_walk_release": 0.0015655744680500407,
+              "released_run_jump": 0.008340542377995655,
+              "released_run_release": 0.014566931244940174,
+              "released_walk_jump": 0.001221914218984508,
+              "released_walk_release": 0.002734306092382599,
+              "right_run_jump": 0.38859916540851713,
+              "right_run_release": 0.563573789386768,
+              "right_walk_jump": 0.003503322674117877,
+              "right_walk_release": 0.012096051378076102
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "d4c761cad0bd2d00b442b362537b43584fd19c16b163158649e8dcdf6f7fb031",
+      "screen_after_sha256": "3ab4261f3dd3d662417b7e97b908cbda9b22fca82d0cc5a3a8db1d024b4339af",
+      "request_sha256": "a3a95ab4a8c0900e74e3f638752e72b3089d55f08acfaeb09ac728097d098872"
+    },
+    {
+      "index": 35,
+      "frame_before": 140,
+      "frame_after": 144,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.9227458779897174,
+            "probabilities": {
+              "left_run_jump": 0.0008462076114160594,
+              "left_run_release": 0.0017798163483887077,
+              "left_walk_jump": 0.0009002964365629613,
+              "left_walk_release": 0.001572385096553436,
+              "released_run_jump": 0.003982736939042874,
+              "released_run_release": 0.011418804724529524,
+              "released_walk_jump": 0.001084201433936007,
+              "released_walk_release": 0.0022803853198848077,
+              "right_run_jump": 0.03483114912996782,
+              "right_run_release": 0.9291837214905743,
+              "right_walk_jump": 0.003743462024196132,
+              "right_walk_release": 0.008376833444947418
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "c03388dd544cac1680fb21f1956fcdf079b7449270607906d8055e430e81d898",
+      "screen_after_sha256": "36f4a80047bd675359495d9b7f2e6450ed3b9a8da7a558cea9917fedd47685f0",
+      "request_sha256": "1a72343b4910b6a8216779be4932ee7fda8032962dfd89ecb919ec8548b31110"
+    },
+    {
+      "index": 36,
+      "frame_before": 144,
+      "frame_after": 148,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.9171214922156068,
+            "probabilities": {
+              "left_run_jump": 0.0004256674400834576,
+              "left_run_release": 0.0010781845255800424,
+              "left_walk_jump": 0.0006173333172380993,
+              "left_walk_release": 0.0007434370789208173,
+              "released_run_jump": 0.002730962983367647,
+              "released_run_release": 0.004769684565911973,
+              "released_walk_jump": 0.0005802447322663486,
+              "released_walk_release": 0.0012204203086172362,
+              "right_run_jump": 0.05686127361324826,
+              "right_run_release": 0.9240280345309729,
+              "right_walk_jump": 0.002730962983367647,
+              "right_walk_release": 0.0042137939204255626
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "021020a5ed6c3c1693348cf097763b98e3481af59f5cb523cf5c9ca03f9a33be",
+      "screen_after_sha256": "aec4e4a3eba23e5f82a8e26694b726bc6575c074d437ebcaf570b39aef19581d",
+      "request_sha256": "c5887fbd7c43d68c40d17453317a0f5c0608c842f86a8ebbb92c4168945457c7"
+    },
+    {
+      "index": 37,
+      "frame_before": 148,
+      "frame_after": 152,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_jump",
+            "confidence": 0.5231607220290511,
+            "probabilities": {
+              "left_run_jump": 0.0004818332997559238,
+              "left_run_release": 0.0010782096145245806,
+              "left_walk_jump": 0.0008415310935714085,
+              "left_walk_release": 0.0010782096145245806,
+              "released_run_jump": 0.0057441234061866376,
+              "released_run_release": 0.0032888977088707397,
+              "released_walk_jump": 0.0008415310935714085,
+              "released_walk_release": 0.0015636953868208884,
+              "right_run_jump": 0.5628973285266301,
+              "right_run_release": 0.41294139914481837,
+              "right_walk_jump": 0.0057441234061866376,
+              "right_walk_release": 0.0034991177045387008
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "23952beefb2205972aa118436d3b4a1971c34e50cbdc47c12c01c71abfa84195",
+      "screen_after_sha256": "da2b73051ca33132ddd6f18499ec9288e509a5a36e4fc2bbac9ea26d77a3a0e0",
+      "request_sha256": "254a386d2b966028031d0306c56b8754578b1268c6b9bd8074073fa74b6ac2cb"
+    },
+    {
+      "index": 38,
+      "frame_before": 152,
+      "frame_after": 156,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_jump",
+            "confidence": 0.5396966354442031,
+            "probabilities": {
+              "left_run_jump": 0.0004650812662826569,
+              "left_run_release": 0.002188935825118625,
+              "left_walk_jump": 0.000919429680426097,
+              "left_walk_release": 0.0013334226950904736,
+              "released_run_jump": 0.017993328675491416,
+              "released_run_release": 0.009683437420820711,
+              "released_walk_jump": 0.0008641921831073364,
+              "released_walk_release": 0.0024777035585508644,
+              "right_run_jump": 0.5780552491571861,
+              "right_run_release": 0.37463836993012867,
+              "right_walk_jump": 0.003823022269441608,
+              "right_walk_release": 0.007557827338355466
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "e9e80ff3f38f1856fb2e743f69dcb0ed168520b62759e7325a92c64b9270ee5f",
+      "screen_after_sha256": "0ded5f09f54c9e0568fd12e8da1867bafac282b1bea8caa8deda9bff68bb1ce9",
+      "request_sha256": "1e2585d93afd40e9ff9c42ef67c6bc723616c02ff0917d3abd42426011eda476"
+    },
+    {
+      "index": 39,
+      "frame_before": 156,
+      "frame_after": 160,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.597539086390574,
+            "probabilities": {
+              "left_run_jump": 0.00043488210180530793,
+              "left_run_release": 0.002542462303265084,
+              "left_walk_jump": 0.0008335033938454307,
+              "left_walk_release": 0.0012088062324499796,
+              "released_run_jump": 0.003061818268668664,
+              "released_run_release": 0.008251070556016246,
+              "released_walk_jump": 0.0007363615066094605,
+              "released_walk_release": 0.0018651500791307587,
+              "right_run_jump": 0.3396261757488302,
+              "right_run_release": 0.6310774958580262,
+              "right_walk_jump": 0.0021112033953364605,
+              "right_walk_release": 0.008251070556016246
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "fc35dc18add7db792638c7d0398e15f5a925dcf8c974b5e00184b6072ca644c8",
+      "screen_after_sha256": "690d43ae74fd1e88b6ae92fcb3e879ef65d4fc67609478bb30e096d18d9df10a",
+      "request_sha256": "243979d39c09ec433ab7e700617a2d83cd2a3e3cda69e5e43b8cf5fdb9cee7f5"
+    },
+    {
+      "index": 40,
+      "frame_before": 160,
+      "frame_after": 164,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.8314200475193776,
+            "probabilities": {
+              "left_run_jump": 0.0007237100150192255,
+              "left_run_release": 0.0032015558173750665,
+              "left_walk_jump": 0.0010495759784761131,
+              "left_walk_release": 0.0015221689195273975,
+              "released_run_jump": 0.009179099554242365,
+              "released_run_release": 0.024736084937168435,
+              "released_walk_jump": 0.0012639746081111603,
+              "released_walk_release": 0.0030092130042399332,
+              "right_run_jump": 0.09667423699484728,
+              "right_run_release": 0.8454683768927628,
+              "right_walk_jump": 0.0034061927883567403,
+              "right_walk_release": 0.009765810489873477
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "a3361c654189170919a31495a90119a2207ba8a645b9c94d48e9bd54211adaf9",
+      "screen_after_sha256": "d0eaebcdc3b64411681bffefa6902eab277ca007bca8797035ba1610862e831f",
+      "request_sha256": "821bf149f9159fee9f3c1d73a2a130a53660c05a35fba65a38841b6e15cd334d"
+    },
+    {
+      "index": 41,
+      "frame_before": 164,
+      "frame_after": 168,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.826976353554195,
+            "probabilities": {
+              "left_run_jump": 0.0008673452782655491,
+              "left_run_release": 0.00712968007402166,
+              "left_walk_jump": 0.00206493378113727,
+              "left_walk_release": 0.004620750875430554,
+              "released_run_jump": 0.008586071451369538,
+              "released_run_release": 0.031540323425459794,
+              "released_walk_jump": 0.0018242730684884547,
+              "released_walk_release": 0.00712968007402166,
+              "right_run_jump": 0.062352836962581225,
+              "right_run_release": 0.841394990758012,
+              "right_walk_jump": 0.006298741122655116,
+              "right_walk_release": 0.026190373128557078
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "4fc851489d0b2421e00cdef3953b5501436809cfe1b4af7e55e79a46d131a61a",
+      "screen_after_sha256": "de20e8e756d83efe7d260d024623b7fda8d1875a4a9f0c5d7fc2cdecc8455074",
+      "request_sha256": "c78abe80682205e28b45a9b3672854024a46243dc9bc4512ccd5b93b1ba387e2"
+    },
+    {
+      "index": 42,
+      "frame_before": 168,
+      "frame_after": 172,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.8982028898116675,
+            "probabilities": {
+              "left_run_jump": 0.0006856584029021915,
+              "left_run_release": 0.00722135815830086,
+              "left_walk_jump": 0.0010579504006214034,
+              "left_walk_release": 0.0030332227776440402,
+              "released_run_jump": 0.004398992626350931,
+              "released_run_release": 0.015188578086576369,
+              "released_walk_jump": 0.0011255723338674199,
+              "released_walk_release": 0.0023674002644514824,
+              "right_run_jump": 0.040930590365764984,
+              "right_run_release": 0.9066859823273619,
+              "right_walk_jump": 0.0038863051514639343,
+              "right_walk_release": 0.01341838910469453
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "1dbd2b03205d45687925abd98dd390b9636098fda5e07cf8ec3e7734b1ceb3d2",
+      "screen_after_sha256": "b73dc9f2c770aec932dda3ddadf28d3c0c3730519693a8ec7904ec77403d938a",
+      "request_sha256": "cf386327c1e2c9c01559c6bdf2649d371830b05528e563a4fff0272ef08fd691"
+    },
+    {
+      "index": 43,
+      "frame_before": 172,
+      "frame_after": 176,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_jump",
+            "confidence": 0.6276469103414186,
+            "probabilities": {
+              "left_run_jump": 0.0016165095349967619,
+              "left_run_release": 0.0033999814609761833,
+              "left_walk_jump": 0.001428111008462482,
+              "left_walk_release": 0.0017198336059253425,
+              "released_run_jump": 0.01600225662256608,
+              "released_run_release": 0.009162361847745803,
+              "released_walk_jump": 0.0015193930783512838,
+              "released_walk_release": 0.0018297619181434305,
+              "right_run_jump": 0.6586763344796337,
+              "right_run_release": 0.2943511045881976,
+              "right_walk_jump": 0.005938138421087155,
+              "right_walk_release": 0.0043562134339142165
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "fcd553dd85264fd9e7596e6ecb597fd002d8dabc8369c35e7ac088d3f87d953b",
+      "screen_after_sha256": "c882b6f0eaecfa5faa5be88301349c695b251522192c7c2255395e52517bf587",
+      "request_sha256": "68aee09aaacab4d90387a9ac5e5d73205e0fe87fbce82abfa245cb9e8b5986a3"
+    },
+    {
+      "index": 44,
+      "frame_before": 176,
+      "frame_after": 180,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.6725581186985006,
+            "probabilities": {
+              "left_run_jump": 0.0008166015447460498,
+              "left_run_release": 0.008083754054427034,
+              "left_walk_jump": 0.0014262116456419417,
+              "left_walk_release": 0.0020683924246150216,
+              "released_run_jump": 0.006712560870836238,
+              "released_run_release": 0.017002429466761514,
+              "released_walk_jump": 0.0012599916406326767,
+              "released_walk_release": 0.0028195101193368584,
+              "right_run_jump": 0.2440971682410449,
+              "right_run_release": 0.6998449421402922,
+              "right_walk_jump": 0.0033954593126888644,
+              "right_walk_release": 0.012472978538976604
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "f0ceda6ccedafbb0090d8e83f4cb2c9f42f1cf5b306d0f80672c458bc64c994d",
+      "screen_after_sha256": "824ca83ad2ecbd5e5156ede62a3b0faea6bc335fa35aa025848924704be09aec",
+      "request_sha256": "0e5443e946189e1792e5b725c65e09a2aafd73022eaabe1a370467f0c55b4d2f"
+    },
+    {
+      "index": 45,
+      "frame_before": 180,
+      "frame_after": 184,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.9326234169635687,
+            "probabilities": {
+              "left_run_jump": 0.0004062469990282097,
+              "left_run_release": 0.001402665323178906,
+              "left_walk_jump": 0.000666892523456943,
+              "left_walk_release": 0.0010289940997943565,
+              "released_run_jump": 0.0033393985692880862,
+              "released_run_release": 0.010837372702858885,
+              "released_walk_jump": 0.0007095189297506593,
+              "released_walk_release": 0.0017971597575646,
+              "right_run_jump": 0.03305758914641711,
+              "right_run_release": 0.9382381322166046,
+              "right_walk_jump": 0.0014923209637423172,
+              "right_walk_release": 0.0070237087683153055
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "9b039f276e345d314c3fb5f21b8d74a6da472b2ad143715a7cce2f82db7301c8",
+      "screen_after_sha256": "6dfba77f535e297226d0aee6e7e5fdfea840e7329256d4c501ab1777c92100da",
+      "request_sha256": "99cebe5a680ca95b2020839dc263f5e79ebf36c7135303238ea243573fa941a3"
+    },
+    {
+      "index": 46,
+      "frame_before": 184,
+      "frame_after": 188,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.9599055803461538,
+            "probabilities": {
+              "left_run_jump": 0.0002875846751640518,
+              "left_run_release": 0.0008245268419159522,
+              "left_walk_jump": 0.0005343768968765668,
+              "left_walk_release": 0.0007284311141034048,
+              "released_run_jump": 0.003028843612345713,
+              "released_run_release": 0.0052899332841885695,
+              "released_walk_jump": 0.0005022726936894198,
+              "released_walk_release": 0.0011239473466711316,
+              "right_run_jump": 0.019432213545383957,
+              "right_run_release": 0.9632467819839743,
+              "right_walk_jump": 0.001353537923671742,
+              "right_walk_release": 0.003647550082015204
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "972dd70a96d8074e11210610cb49712e477087a5286b27b3296cf08ed009d093",
+      "screen_after_sha256": "bcdbf93c78d7177af38b9a410a62d32990606298ee5d9394c703750fffe06a1c",
+      "request_sha256": "8a009b72f9eff9603447b4da353f1f149979aae7a066262ce95dff1f2e79312a"
+    },
+    {
+      "index": 47,
+      "frame_before": 188,
+      "frame_after": 192,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.9561584880927847,
+            "probabilities": {
+              "left_run_jump": 0.0002865591845888363,
+              "left_run_release": 0.0006412401890262735,
+              "left_walk_jump": 0.0005004816140817583,
+              "left_walk_release": 0.0006822269954172837,
+              "released_run_jump": 0.0034161876928915785,
+              "released_run_release": 0.006347805475465171,
+              "released_walk_jump": 0.0005665058627448891,
+              "released_walk_release": 0.0013487112639037236,
+              "right_run_jump": 0.01936292012712045,
+              "right_run_release": 0.9598119474183859,
+              "right_walk_jump": 0.0020810190228387677,
+              "right_walk_release": 0.0049543951535352794
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "cb9e2d18c2aa0aa3257a4df3571b4bf0c4295bd5d39413c83e288648763d4a55",
+      "screen_after_sha256": "261e866d6d45e23a689c1d12ac157ff3edbd9d0e45b638a541243799c5305005",
+      "request_sha256": "35ccf999fc57164ffebe836b81cb9adbbfd94348833e4945f089319fa231450f"
+    },
+    {
+      "index": 48,
+      "frame_before": 192,
+      "frame_after": 196,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.9388087346491751,
+            "probabilities": {
+              "left_run_jump": 0.0002648803309382349,
+              "left_run_release": 0.0008079730513675459,
+              "left_walk_jump": 0.0006709226349866348,
+              "left_walk_release": 0.0009730190270171293,
+              "released_run_jump": 0.0023165191409483337,
+              "released_run_release": 0.0070661606501459485,
+              "released_walk_jump": 0.0006306149318971274,
+              "released_walk_release": 0.0019235853780135042,
+              "right_run_jump": 0.0276161570419633,
+              "right_run_release": 0.9439080067617439,
+              "right_walk_jump": 0.0035743195254491094,
+              "right_walk_release": 0.010247841525529267
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "6cc6df793e6b3df357160511dbf6e127280360251f676e3b1cb9fce23bccf501",
+      "screen_after_sha256": "09b50938d3f357db41955598edd6d6a6bdcc4afd9df2e620c30afbcaedc2e3af",
+      "request_sha256": "4c9e041f2811264d341906c3135db817ad723ca5dccc80b3f0b14ed2e10202f9"
+    },
+    {
+      "index": 49,
+      "frame_before": 196,
+      "frame_after": 200,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.9533433882322124,
+            "probabilities": {
+              "left_run_jump": 0.00028578902097406683,
+              "left_run_release": 0.0007701519837572709,
+              "left_walk_jump": 0.0005649828222640076,
+              "left_walk_release": 0.0009274721730611401,
+              "released_run_jump": 0.0026591320406661833,
+              "released_run_release": 0.007623930763989465,
+              "released_walk_jump": 0.0004409634719537157,
+              "released_walk_release": 0.0010498256781559516,
+              "right_run_jump": 0.02054517178059438,
+              "right_run_release": 0.9572314392128614,
+              "right_walk_jump": 0.0019507389152279178,
+              "right_walk_release": 0.005950402136494574
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "bff368149ce455da61c85561dd2c69288851d2c1c8699d09191260d05a5a292e",
+      "screen_after_sha256": "42593d91665ed53688b2b1237f619d2b76845af976df6628efb14eb55904e9ad",
+      "request_sha256": "0f86924f8acba5bffb39fec9b1a3f3c0a1067da45b380c986c21f6d14a8ff9e2"
+    },
+    {
+      "index": 50,
+      "frame_before": 200,
+      "frame_after": 204,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.8413678951523091,
+            "probabilities": {
+              "left_run_jump": 0.0004740958032467101,
+              "left_run_release": 0.0007782725515172189,
+              "left_walk_jump": 0.0006462600151207101,
+              "left_walk_release": 0.0011287056204039988,
+              "released_run_jump": 0.007241458970312426,
+              "released_run_release": 0.005312333131625046,
+              "released_walk_jump": 0.0007315156158898771,
+              "released_walk_release": 0.0013592681551126702,
+              "right_run_jump": 0.1176777238978756,
+              "right_run_release": 0.85458723722295,
+              "right_walk_jump": 0.004411242177012717,
+              "right_walk_release": 0.00565188683893294
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "0279cec065df31c67fecf4c7a1fd827fadb0ce43400488237e4908a64c5ac45f",
+      "screen_after_sha256": "d21555edb07585f37ab599c3dbf70d2d917d88f5c500680fad861eeaba2ee267",
+      "request_sha256": "92419fd1a117fe105c17e90f83d90b3309879f9611611f83f55ee4390b2485fa"
+    },
+    {
+      "index": 51,
+      "frame_before": 204,
+      "frame_after": 208,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.5788075934833466,
+            "probabilities": {
+              "left_run_jump": 0.0006328410656097586,
+              "left_run_release": 0.0011759156675860206,
+              "left_walk_jump": 0.0011759156675860206,
+              "left_walk_release": 0.0013310442164883953,
+              "released_run_jump": 0.012384750770790029,
+              "released_run_release": 0.00709109800424495,
+              "released_walk_jump": 0.0009764538328837003,
+              "released_walk_release": 0.001814402643848386,
+              "right_run_jump": 0.3515027994705126,
+              "right_run_release": 0.6139069606930678,
+              "right_walk_jump": 0.0024732865171708768,
+              "right_walk_release": 0.005534531450211411
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "7c3fd8f27d28d9331f1ef893fd5c66ae478a407ad676b1611f455fd6fbfcd978",
+      "screen_after_sha256": "5da2e27f518507cba6a197074ebbe6be8712a8aa8616a76d8caace7ba1b28602",
+      "request_sha256": "434001272df8c98ad8e1bea58711d92e9a116802a42b4ec64063f069422d0970"
+    },
+    {
+      "index": 52,
+      "frame_before": 208,
+      "frame_after": 212,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_jump",
+            "confidence": 0.5871495801614138,
+            "probabilities": {
+              "left_run_jump": 0.00044179589991200985,
+              "left_run_release": 0.0007252489017734097,
+              "left_walk_jump": 0.0008209247854715505,
+              "left_walk_release": 0.0009292224196368419,
+              "released_run_jump": 0.015100379136807623,
+              "released_run_release": 0.008645984286022299,
+              "released_walk_jump": 0.0008733966687777557,
+              "released_walk_release": 0.0016229064678623527,
+              "right_run_jump": 0.6215537818146294,
+              "right_run_release": 0.33450079362134433,
+              "right_walk_jump": 0.00437345213652236,
+              "right_walk_release": 0.010412113861240071
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "d7f1a8500e1c8442881ed8499723afbc7196011870f97d89855276b23b8ef844",
+      "screen_after_sha256": "8873bc61669039e567b589f58b54b6e15505868f6cebc4e661a69ed1ca4e735c",
+      "request_sha256": "63c75f1498a6207fde65e75ac06b52689e37503ae3ae464ce7c463bdae2984a3"
+    },
+    {
+      "index": 53,
+      "frame_before": 212,
+      "frame_after": 216,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_jump",
+            "confidence": 0.5130938559005033,
+            "probabilities": {
+              "left_run_jump": 0.00044546108415336486,
+              "left_run_release": 0.0022306033793728602,
+              "left_walk_jump": 0.0007312656630090875,
+              "left_walk_release": 0.0012004411001140089,
+              "released_run_jump": 0.008193971216946693,
+              "released_run_release": 0.014310928342766153,
+              "released_walk_jump": 0.0008806425212334442,
+              "released_walk_release": 0.0022306033793728602,
+              "right_run_jump": 0.5536693679087946,
+              "right_run_release": 0.4061717802532323,
+              "right_walk_jump": 0.001740963934057954,
+              "right_walk_release": 0.008193971216946693
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "7b48c10cc114e9f555e250df1a29d1888c79a17a73e5da58dedbb130e07d8c8f",
+      "screen_after_sha256": "51798c56f281c3b56ced201db0f8d8bcaa7a0a3d60b6e624bbbf744ebada76dd",
+      "request_sha256": "e4f6bf9cab296b62eae37eaccca5841969a0f60d6bab129d139c6fecf82b3edd"
+    },
+    {
+      "index": 54,
+      "frame_before": 216,
+      "frame_after": 220,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_jump",
+            "confidence": 0.536815635148182,
+            "probabilities": {
+              "left_run_jump": 0.0007143271905310152,
+              "left_run_release": 0.004307591132133399,
+              "left_walk_jump": 0.0011021844729201197,
+              "left_walk_release": 0.0017006376081678328,
+              "released_run_jump": 0.006646477989884926,
+              "released_run_release": 0.011608211974305341,
+              "released_walk_jump": 0.0015984667429772366,
+              "released_walk_release": 0.002970196240366144,
+              "right_run_jump": 0.5754143322191668,
+              "right_run_release": 0.3729264349169189,
+              "right_walk_jump": 0.005187509872227209,
+              "right_walk_release": 0.01582362964040107
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "071ee4deac927232eb6d5014f66a13c2c4d0d25886bc42885897d83f35ce196c",
+      "screen_after_sha256": "8dc265c81a95d1ca4efaa368bf941b83103511435c9398af4ed19e85cb893958",
+      "request_sha256": "a8325dea5b52f4d7b31696532058316edb001f84151276f43f7f5273b1507745"
+    },
+    {
+      "index": 55,
+      "frame_before": 220,
+      "frame_after": 224,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.45622910232401187,
+            "probabilities": {
+              "left_run_jump": 0.0005170119118949688,
+              "left_run_release": 0.0035290201245938373,
+              "left_walk_jump": 0.0007977331418045406,
+              "left_walk_release": 0.001230878291580125,
+              "released_run_jump": 0.004249898722991782,
+              "released_run_release": 0.006976606334467369,
+              "released_walk_jump": 0.0007047601403679584,
+              "released_walk_release": 0.001393257642329638,
+              "right_run_jump": 0.4714116759007617,
+              "right_run_release": 0.5015433437970108,
+              "right_walk_jump": 0.0014823118711971793,
+              "right_walk_release": 0.006163502121000059
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "48c59846f5191da1149f9d53ab543842868d64f553b821ce0d3ad7d93be7b79c",
+      "screen_after_sha256": "20fa63f1c633f7780bd45d8e7d4bd81571035a2c305ec8286a313652fa3f2f60",
+      "request_sha256": "6ee23bacfaf6f379d9bb5495b4c59dfaab8c5f9bb477fa53101c73e6f8e039ab"
+    },
+    {
+      "index": 56,
+      "frame_before": 224,
+      "frame_after": 228,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.9087348921989927,
+            "probabilities": {
+              "left_run_jump": 0.0005083547585601482,
+              "left_run_release": 0.0023926059472111133,
+              "left_walk_jump": 0.0008345111513189336,
+              "left_walk_release": 0.0016497656944547928,
+              "released_run_jump": 0.00535399063053025,
+              "released_run_release": 0.010584435730049808,
+              "released_walk_jump": 0.0008345111513189336,
+              "released_walk_release": 0.002248863055774613,
+              "right_run_jump": 0.0440104318399188,
+              "right_run_release": 0.9163403178490767,
+              "right_walk_jump": 0.0032614621805936517,
+              "right_walk_release": 0.011980750011192315
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "e0dec50a38b873c3c4079fe41cc8225fd7593d5e6cf689342b36391a266a94eb",
+      "screen_after_sha256": "dabc13117c2be0e0993819b15dd94983d4c3f910360ea50bbf4c2e2b2f99a605",
+      "request_sha256": "5a2c863e94aa774a5d9ced41567dbfd70c4319fed389959d3d14449f11b4e5bb"
+    },
+    {
+      "index": 57,
+      "frame_before": 228,
+      "frame_after": 232,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.9273620088246318,
+            "probabilities": {
+              "left_run_jump": 0.0006236047485795584,
+              "left_run_release": 0.0021531432873316643,
+              "left_walk_jump": 0.0010237046520411108,
+              "left_walk_release": 0.0011587534103189693,
+              "released_run_jump": 0.00400087423739049,
+              "released_run_release": 0.009525097909361676,
+              "released_walk_jump": 0.0009043954199018176,
+              "released_walk_release": 0.002023787005462156,
+              "right_run_jump": 0.032887659976517214,
+              "right_run_release": 0.9334151747559125,
+              "right_walk_jump": 0.0027587066878211647,
+              "right_walk_release": 0.009525097909361676
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "1d5ec56418c21f9ebee47cf012efd5cb72e7f896ccade60c9b0fe1ab934d7fb1",
+      "screen_after_sha256": "8df79440a2ddd9f77ea58a7d4d8ef0e7c6282b205b6cd98ca8cfe8f92e82ffd2",
+      "request_sha256": "8b850676a60fd76525b0971a057386b14ac75201ada68cc25b9e20ef9a9ad211"
+    },
+    {
+      "index": 58,
+      "frame_before": 232,
+      "frame_after": 236,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.935415763551037,
+            "probabilities": {
+              "left_run_jump": 0.0005907753016773425,
+              "left_run_release": 0.0031473370112215142,
+              "left_walk_jump": 0.0009698128360651486,
+              "left_walk_release": 0.001802062686765359,
+              "released_run_jump": 0.003348508748862684,
+              "released_run_release": 0.009600424586066945,
+              "released_walk_jump": 0.0010977520574337188,
+              "released_walk_release": 0.0026134777447048363,
+              "right_run_jump": 0.02285625316864365,
+              "right_run_release": 0.9407977832551172,
+              "right_walk_jump": 0.0023088861235368474,
+              "right_walk_release": 0.01086692647990475
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "34796e698149924112f6db440fc882370641fe5d86c5cace2760667ecd29b515",
+      "screen_after_sha256": "d0dc4ab188d324310e67af195eb4665f27d52bef0d78244e73bd8d0866230b7d",
+      "request_sha256": "d1e579e72e3eda27b909b88e28bc204d44dedd6e2e12b33af69fd6300dbbb570"
+    },
+    {
+      "index": 59,
+      "frame_before": 236,
+      "frame_after": 240,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.8987759776929813,
+            "probabilities": {
+              "left_run_jump": 0.0008790062368235693,
+              "left_run_release": 0.002368769709592739,
+              "left_walk_jump": 0.0017377290840067856,
+              "left_walk_release": 0.002226458971489435,
+              "released_run_jump": 0.0038885569832304073,
+              "released_run_release": 0.014284338939379453,
+              "released_walk_jump": 0.001356280216990993,
+              "released_walk_release": 0.003034977306471944,
+              "right_run_jump": 0.05247255123038273,
+              "right_run_release": 0.9072113128852329,
+              "right_walk_jump": 0.0028526420516268606,
+              "right_walk_release": 0.0076873763847721014
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "68caf5538e4b0627b79937552e1df7c7461238874099ae4e12ca1b8bcf0e1ff9",
+      "screen_after_sha256": "02a9f880472d9403e27330f47c6521069a635c4a5cfc93f82cf45d7fbf2c48a5",
+      "request_sha256": "b1622fc3a801acb38f98ee6f93ef120c5ab4f23b48a79700383a72b9d294978d"
+    },
+    {
+      "index": 60,
+      "frame_before": 240,
+      "frame_after": 244,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "nace-ai/drex-max-20261016",
+        "provider": "DeepInfra",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.7727327212926027,
+            "probabilities": {
+              "left_run_jump": 0.0015164171871603841,
+              "left_run_release": 0.003189458389587072,
+              "left_walk_jump": 0.001259198688813626,
+              "left_walk_release": 0.002817735639364135,
+              "released_run_jump": 0.012465129107540529,
+              "released_run_release": 0.016991725780946935,
+              "released_walk_jump": 0.002199214726612669,
+              "released_walk_release": 0.0040864820147133015,
+              "right_run_jump": 0.1396741319474405,
+              "right_run_release": 0.7916716611848859,
+              "right_walk_jump": 0.007137119551988042,
+              "right_walk_release": 0.016991725780946935
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "cf06a10139ba8445713440aaaedb93573b5d17d549c44ed598c05179502c8e14",
+      "screen_after_sha256": "6c94c5e1c9b742cd04c52cad7d2cd622fe0f645ad27fb73076b7ee2d367a3ed0",
+      "request_sha256": "2e85bad4bd6c018614021137a8d127265a6db4db5f63c23677090425a7b9c5f2"
+    }
+  ],
+  "source_hashes": {
+    "episode_sha256": "18616e77a0397cbd09a0289d78ed354bfdbe159c33592e7df138869a65695971",
+    "observer_source_sha256": "e9a16a88c9fbffbe62d62b7ce4f17714a764e5430528014ccb39cc9e23a2529c",
+    "audit_sha256": "587e0b2676d9fbee78bd333babeca7b523672293d64988b68f47b5bb9c89d06e"
+  },
+  "input_audit": {
+    "native_replay_verified": true,
+    "exact_request_audit_complete": true,
+    "privileged_state_sent": true
+  }
+}

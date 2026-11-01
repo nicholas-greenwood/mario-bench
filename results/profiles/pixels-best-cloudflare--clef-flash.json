@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "id": "pixels-best-cloudflare--clef-flash",
+  "mode": "image",
+  "cadence": 8,
+  "history": 1,
+  "contract": {
+    "questions": {
+      "action": {
+        "criteria": {
+          "coast_release_jump_4": "Release directions+A+B4frames. Reduce acceleration while descending to a safe landing and prepare a fresh jump. Existing momentum can persist.",
+          "fresh_running_jump_40": "Hold right+B, release A for1frame then hold A40frames. Start a full sustained running jump when Mario feet visibly stand on ground/platform and a nearby visible obstacle or gap requires height/distance. Issuing this in midair cannot start a fresh jump on landing.",
+          "fresh_walking_jump_40": "Hold right, release B; release A1frame then hold A40frames. Start a full walking jump from a visible solid surface to clear a tall obstacle with less horizontal travel. Cannot start a new jump while airborne.",
+          "run_forward_4": "Hold right+B, release A, 4frames. Advance on clear ground, descend toward landing, or release A so a fresh jump can follow.",
+          "run_forward_8": "Hold right+B, release A, 8frames. Advance along safe ground or descend to land before initiating another jump.",
+          "run_left_8": "Hold left+B, release A8frames. Back away from a wall/hazard or create room for a future jump.",
+          "sustain_running_jump_8": "Hold right+B+A8frames. Sustain a rising jump for height; do not release A early if a tall obstacle must be cleared. Does not reset A for a fresh jump.",
+          "walk_forward_4": "Hold right, release A+B, 4frames. Advance slowly, descend toward landing, or prepare a fresh jump with precise positioning."
+        },
+        "instructions": "Choose one exact, fixed button sequence to advance safely using only CURRENT screenshot. Distinguish rising, falling and standing by Mario relative to visible surfaces. A fresh jump must start when standing on a solid surface, never in midair. Full jump holds last40frames; do not use them if forward travel would overshoot a small safe landing. No automatic correction exists.",
+        "type": "choice"
+      }
+    },
+    "initial_provider_text": [
+      "{\"game\":\"Super Mario Bros 1-1\",\"instructions\":\"Play Mario1-1 alive to the flag on the right, using screenshots only. Current screenshot is last; game is paused while deciding. Solid surfaces support Mario; background hills are decorative. A fresh jump requires A released then pressed while Mario is standing on a solid surface. Hold A during ascent to gain height; release on descent to prepare the next jump. Holding A through landing cannot jump again. Solid overhead blocks interrupt ascent; side contact with enemies hurts, landing on them can stomp. B runs faster and farther. At a visible gap, take off from solid ground near its edge with enough forward travel to land on the far side. A fixed jump sequence chosen in midair will not restart automatically when Mario lands; use a release action to land first, then choose the next jump.\",\"next_control_interval_native_frames\":\"Choose one fixed button sequence from the action list.\",\"previous_controls\":[]}",
+      "CURRENT paused screenshot; use this for your next action. Screenshot taken before decision 0"
+    ],
+    "cadence": 8
+  },
+  "source_hashes": {
+    "requests_sha256": "365d56cd3229ea227d1af67de517ac820e02534152b726bde84f55ee1a11250e",
+    "responses_sha256": "8e544a3b2597773027081fb8f0f23820105c4f1a80ab447ef98119699c78855c",
+    "private_replay_sha256": "7acbaf90eb7b945e7894814bbfc30aa19f035139f833e8a3453fd4483096ca16",
+    "audit_sha256": "d10cc5f5e567403ea1427c68e0b2658fa2370ec93c6537ec7ad07242feda389b"
+  },
+  "common_benchmark_default": false,
+  "data_class": "development_observation"
+}

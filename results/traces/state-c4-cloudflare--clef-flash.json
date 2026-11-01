@@ -1,0 +1,1275 @@
+{
+  "schema_version": 1,
+  "evidence_kind": "compact_native_action_trace",
+  "id": "state-c4-cloudflare--clef-flash",
+  "mode": "state",
+  "level": "1-1",
+  "contract": {
+    "questions": {
+      "action": {
+        "criteria": {
+          "left_run_jump": "Hold horizontal=left, B(run)=held, A(jump)=held; vertical released.",
+          "left_run_release": "Hold horizontal=left, B(run)=held, A(jump)=released; vertical released.",
+          "left_walk_jump": "Hold horizontal=left, B(run)=released, A(jump)=held; vertical released.",
+          "left_walk_release": "Hold horizontal=left, B(run)=released, A(jump)=released; vertical released.",
+          "released_run_jump": "Hold horizontal=released, B(run)=held, A(jump)=held; vertical released.",
+          "released_run_release": "Hold horizontal=released, B(run)=held, A(jump)=released; vertical released.",
+          "released_walk_jump": "Hold horizontal=released, B(run)=released, A(jump)=held; vertical released.",
+          "released_walk_release": "Hold horizontal=released, B(run)=released, A(jump)=released; vertical released.",
+          "right_run_jump": "Hold horizontal=right, B(run)=held, A(jump)=held; vertical released.",
+          "right_run_release": "Hold horizontal=right, B(run)=held, A(jump)=released; vertical released.",
+          "right_walk_jump": "Hold horizontal=right, B(run)=released, A(jump)=held; vertical released.",
+          "right_walk_release": "Hold horizontal=right, B(run)=released, A(jump)=released; vertical released."
+        },
+        "instructions": "Select the complete controller input that best advances Mario towards the flag alive. Evaluate the next interval and the resulting jump trajectory. All named buttons are held throughout the interval; choose deliberately when to press or release jump.",
+        "type": "choice"
+      }
+    },
+    "rules": "Play Super Mario Bros. World 1-1 to the flag. Coordinates are world pixels, x increases right, y increases down. Scene is current visible information, not a future map. Each action lasts the declared interval with physics paused until your answer. A jump starts only on a fresh A press while grounded; keeping A held through landing will NOT jump again. Release A before the next fresh jump. Holding A during ascent increases height; releasing A shortens the jump. B makes running faster and jumps longer. Momentum persists on release. Mario can jump onto pipes, blocks and stairs and must clear floor gaps. Enemy side contact is dangerous, landing from above stomps ordinary walking enemies. Think ahead about visible hazards and the size of your body. All action choices are your own. Reach the flag alive, avoid waiting indefinitely or running into walls. No action or route recommendation is supplied. General jump phases: hold A while ascending when height or distance is needed; release A while descending to prepare the next fresh jump. Releasing A during ascent shortens the jump, but keeping it held through landing prevents the next jump. On the ground a fresh jump needs the A release-to-press edge. For stairs, the feet must rise above each solid step before crossing its side; landing on a raised step permits another jump. A jump begun too far before a gap can end above the gap; the current visible geometry determines takeoff timing.",
+    "cadence": 4
+  },
+  "actions": [
+    {
+      "index": 0,
+      "frame_before": 0,
+      "frame_after": 4,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "cloudflare/clef-flash",
+        "provider": "PrimeIntellect",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.1643,
+            "probabilities": {
+              "left_run_jump": 0.0332,
+              "left_run_release": 0.0364,
+              "left_walk_jump": 0.037,
+              "left_walk_release": 0.0302,
+              "released_run_jump": 0.0916,
+              "released_run_release": 0.0564,
+              "released_walk_jump": 0.049,
+              "released_walk_release": 0.0235,
+              "right_run_jump": 0.2321,
+              "right_run_release": 0.2339,
+              "right_walk_jump": 0.1105,
+              "right_walk_release": 0.066
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "ffe24436cdd5013a6381fde9a17a1318ec5bc22a6ca0556130a67407c681fbee",
+      "screen_after_sha256": "ec8e137fb518c7d627e1933e90bcc3f4461520ce09b83c4e89a5ecb986b8e171",
+      "request_sha256": "bc4928ace9aec37cfdfaa6465ade7c29505e24da4ad259fac67ca188218c59a3"
+    },
+    {
+      "index": 1,
+      "frame_before": 4,
+      "frame_after": 8,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "held",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "cloudflare/clef-flash",
+        "provider": "PrimeIntellect",
+        "answers": {
+          "action": {
+            "choice": "right_run_jump",
+            "confidence": 0.2768,
+            "probabilities": {
+              "left_run_jump": 0.0209,
+              "left_run_release": 0.0216,
+              "left_walk_jump": 0.026,
+              "left_walk_release": 0.0222,
+              "released_run_jump": 0.0533,
+              "released_run_release": 0.0369,
+              "released_walk_jump": 0.035,
+              "released_walk_release": 0.0199,
+              "right_run_jump": 0.3371,
+              "right_run_release": 0.2093,
+              "right_walk_jump": 0.1543,
+              "right_walk_release": 0.0633
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "2c644487cf5bd2e94bdf6386f4aae9d2129bb6780fecf9bdfca214708ff9199a",
+      "screen_after_sha256": "ca61de884fe50d1872f0a452fc4c93a2b63366a04e82dc3cbb97201049f6c900",
+      "request_sha256": "eca6bac4985d3532169099cb4a0274f766714b26163f709c8d7947294fd0ad89"
+    },
+    {
+      "index": 2,
+      "frame_before": 8,
+      "frame_after": 12,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "cloudflare/clef-flash",
+        "provider": "PrimeIntellect",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.1336,
+            "probabilities": {
+              "left_run_jump": 0.0283,
+              "left_run_release": 0.0554,
+              "left_walk_jump": 0.0283,
+              "left_walk_release": 0.074,
+              "released_run_jump": 0.052,
+              "released_run_release": 0.1043,
+              "released_walk_jump": 0.0504,
+              "released_walk_release": 0.1182,
+              "right_run_jump": 0.0825,
+              "right_run_release": 0.2058,
+              "right_walk_jump": 0.0689,
+              "right_walk_release": 0.1318
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "cfb6833ef5d219a28f7ec7f6f7d8e25604287b1043242065ae6cc58ce23ced57",
+      "screen_after_sha256": "6b9181a62b2277de01af8b2c8c85c3dcbbac374b811e60638195ad4a0d0a34b0",
+      "request_sha256": "123bc52732fa4e5687b9f7b1b5921ff428b600f4c607d92117b18903497c3e73"
+    },
+    {
+      "index": 3,
+      "frame_before": 12,
+      "frame_after": 16,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "cloudflare/clef-flash",
+        "provider": "PrimeIntellect",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.107,
+            "probabilities": {
+              "left_run_jump": 0.0338,
+              "left_run_release": 0.0571,
+              "left_walk_jump": 0.0383,
+              "left_walk_release": 0.0705,
+              "released_run_jump": 0.0598,
+              "released_run_release": 0.0963,
+              "released_walk_jump": 0.0528,
+              "released_walk_release": 0.0786,
+              "right_run_jump": 0.1256,
+              "right_run_release": 0.1814,
+              "right_walk_jump": 0.085,
+              "right_walk_release": 0.1208
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "6921b96cc51e57514ff112be014b454c27711317509928e1f6b9248e3263b72b",
+      "screen_after_sha256": "04148fbb0df4f84db0b4382e93b0860ffebbb19945a0656c60e044488ed21966",
+      "request_sha256": "ce76f75a0dcb870ddd441f80939994b324945043cb6e0dbec541aef06c20d38a"
+    },
+    {
+      "index": 4,
+      "frame_before": 16,
+      "frame_after": 20,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "cloudflare/clef-flash",
+        "provider": "PrimeIntellect",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.1466,
+            "probabilities": {
+              "left_run_jump": 0.0319,
+              "left_run_release": 0.0509,
+              "left_walk_jump": 0.0409,
+              "left_walk_release": 0.0644,
+              "released_run_jump": 0.0609,
+              "released_run_release": 0.0989,
+              "released_walk_jump": 0.0501,
+              "released_walk_release": 0.0696,
+              "right_run_jump": 0.125,
+              "right_run_release": 0.2177,
+              "right_walk_jump": 0.0853,
+              "right_walk_release": 0.1045
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "33c0527deeb653e8d7f3f089595758272f4dbc7d3cec9ba4208a9ae2fe9fa5c6",
+      "screen_after_sha256": "2205d5fcd10b29414d2c90cf21c813205f1cca255ab1d7cbabd22989e9a2e40a",
+      "request_sha256": "55d903e645a4ec2630715718edacbda3953e79b871821a49e762813e2b7c082e"
+    },
+    {
+      "index": 5,
+      "frame_before": 20,
+      "frame_after": 24,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "cloudflare/clef-flash",
+        "provider": "PrimeIntellect",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.135,
+            "probabilities": {
+              "left_run_jump": 0.033,
+              "left_run_release": 0.0536,
+              "left_walk_jump": 0.0444,
+              "left_walk_release": 0.0678,
+              "released_run_jump": 0.0571,
+              "released_run_release": 0.0956,
+              "released_walk_jump": 0.054,
+              "released_walk_release": 0.0705,
+              "right_run_jump": 0.1208,
+              "right_run_release": 0.2071,
+              "right_walk_jump": 0.087,
+              "right_walk_release": 0.1091
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "bbf4848c3a37a1cf7f6817b455c5d13cc1dd484b5ba8acd10a329656b6be125e",
+      "screen_after_sha256": "b25fef83082b670d1155c8398c8ed5be4b9579dcc2af02cbc42ab1dabd706256",
+      "request_sha256": "12a20367c2d761d4cc470723d08aa5386430671f2498bd36a5f9b3db658ee4b9"
+    },
+    {
+      "index": 6,
+      "frame_before": 24,
+      "frame_after": 28,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "cloudflare/clef-flash",
+        "provider": "PrimeIntellect",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.1245,
+            "probabilities": {
+              "left_run_jump": 0.0383,
+              "left_run_release": 0.0561,
+              "left_walk_jump": 0.0424,
+              "left_walk_release": 0.0699,
+              "released_run_jump": 0.0523,
+              "released_run_release": 0.0993,
+              "released_walk_jump": 0.0515,
+              "released_walk_release": 0.0749,
+              "right_run_jump": 0.1134,
+              "right_run_release": 0.1975,
+              "right_walk_jump": 0.0856,
+              "right_walk_release": 0.1188
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "c3ebf183ecae38e1d9ec9bfdc0105d999f2bb5869ae3c824d10a82701cd88f69",
+      "screen_after_sha256": "54d0d01a1467afc673e6fcacc8dd445ec803978073bc35ab01b551765f09427f",
+      "request_sha256": "41bc6d52d5c136d9901db2d0b75cdfd121d03525caef97734695f54add951be3"
+    },
+    {
+      "index": 7,
+      "frame_before": 28,
+      "frame_after": 32,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "cloudflare/clef-flash",
+        "provider": "PrimeIntellect",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.1982,
+            "probabilities": {
+              "left_run_jump": 0.0262,
+              "left_run_release": 0.0332,
+              "left_walk_jump": 0.0353,
+              "left_walk_release": 0.0382,
+              "released_run_jump": 0.0538,
+              "released_run_release": 0.0582,
+              "released_walk_jump": 0.045,
+              "released_walk_release": 0.0339,
+              "right_run_jump": 0.208,
+              "right_run_release": 0.265,
+              "right_walk_jump": 0.1261,
+              "right_walk_release": 0.0771
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "323793a179574aff17fe1c0d11a17f44b0872ea18c928fa9248ae35aa312d4e2",
+      "screen_after_sha256": "5fe3a22c68c7a5e602807d7339dec4386f1d2e4cab1c98eba546649024dcaebc",
+      "request_sha256": "4ce8dd917876eb5cc20e721734568026c4385e5833712234617345811f958c87"
+    },
+    {
+      "index": 8,
+      "frame_before": 32,
+      "frame_after": 36,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "cloudflare/clef-flash",
+        "provider": "PrimeIntellect",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.2197,
+            "probabilities": {
+              "left_run_jump": 0.0263,
+              "left_run_release": 0.0302,
+              "left_walk_jump": 0.0312,
+              "left_walk_release": 0.0319,
+              "released_run_jump": 0.0548,
+              "released_run_release": 0.0561,
+              "released_walk_jump": 0.0394,
+              "released_walk_release": 0.0289,
+              "right_run_jump": 0.2217,
+              "right_run_release": 0.2847,
+              "right_walk_jump": 0.1234,
+              "right_walk_release": 0.0714
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "e8c12b27a1b79eb76d3c14cc70ebb5af973930ed1f1b0f06b5f81ed886db91c0",
+      "screen_after_sha256": "f68276cb9c87e865638e5a206f878f10ad3a28d208c78dc384c9e55cba9cc42d",
+      "request_sha256": "1fbd11469f9b1cd7d3ab34eeca1e303dbe27ffb42bbb476cc34ed4798afaa2a3"
+    },
+    {
+      "index": 9,
+      "frame_before": 36,
+      "frame_after": 40,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "cloudflare/clef-flash",
+        "provider": "PrimeIntellect",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.2378,
+            "probabilities": {
+              "left_run_jump": 0.0282,
+              "left_run_release": 0.0386,
+              "left_walk_jump": 0.0351,
+              "left_walk_release": 0.0431,
+              "released_run_jump": 0.054,
+              "released_run_release": 0.0627,
+              "released_walk_jump": 0.0405,
+              "released_walk_release": 0.0333,
+              "right_run_jump": 0.173,
+              "right_run_release": 0.3013,
+              "right_walk_jump": 0.1117,
+              "right_walk_release": 0.0786
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "4d9e9de4c782042d4e1f35d65226c6d5e9a2e205ccb554215ce4e3fcfd7740a3",
+      "screen_after_sha256": "8dca0fe14e840655257dcfbd3d29806971c9d0e9c72e2b3ff13c37c847c2b490",
+      "request_sha256": "12bf6f09e06e91546b9103d4684826e3a632ec41dd20d1f5547420f526956f18"
+    },
+    {
+      "index": 10,
+      "frame_before": 40,
+      "frame_after": 44,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "cloudflare/clef-flash",
+        "provider": "PrimeIntellect",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.2508,
+            "probabilities": {
+              "left_run_jump": 0.0272,
+              "left_run_release": 0.0371,
+              "left_walk_jump": 0.0343,
+              "left_walk_release": 0.0424,
+              "released_run_jump": 0.0527,
+              "released_run_release": 0.0598,
+              "released_walk_jump": 0.0395,
+              "released_walk_release": 0.0322,
+              "right_run_jump": 0.1729,
+              "right_run_release": 0.3132,
+              "right_walk_jump": 0.1125,
+              "right_walk_release": 0.0761
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "d4e423507bdcfa38b6f72066564601a694f633d162cb430bf06a7b3a0d4135d3",
+      "screen_after_sha256": "70fe500aa2b34c8e1624c530fca504261ce30039a2239a23c9fa71f1bb50e5ff",
+      "request_sha256": "4e2f470ad88f263c0a20f43f3dd8cfa7ae6485f80aa45c7d16e3da1692b1267b"
+    },
+    {
+      "index": 11,
+      "frame_before": 44,
+      "frame_after": 48,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "cloudflare/clef-flash",
+        "provider": "PrimeIntellect",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.2488,
+            "probabilities": {
+              "left_run_jump": 0.0238,
+              "left_run_release": 0.0375,
+              "left_walk_jump": 0.0347,
+              "left_walk_release": 0.0438,
+              "released_run_jump": 0.052,
+              "released_run_release": 0.0576,
+              "released_walk_jump": 0.0393,
+              "released_walk_release": 0.0331,
+              "right_run_jump": 0.1747,
+              "right_run_release": 0.3114,
+              "right_walk_jump": 0.1128,
+              "right_walk_release": 0.0794
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "29b2bad705b0f6e9ea874f5a753e7df4ac541080f11f4de0a38660db4ce26500",
+      "screen_after_sha256": "05f9b9d338235609b4ad64f50456404489cd74bcca37b127727f76763dd02900",
+      "request_sha256": "6f27a71606268d651a2930f9f0e9df8bb1003e4c6ac1d04465ff8f43440a34ed"
+    },
+    {
+      "index": 12,
+      "frame_before": 48,
+      "frame_after": 52,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "cloudflare/clef-flash",
+        "provider": "PrimeIntellect",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.2408,
+            "probabilities": {
+              "left_run_jump": 0.0244,
+              "left_run_release": 0.0402,
+              "left_walk_jump": 0.0355,
+              "left_walk_release": 0.0481,
+              "released_run_jump": 0.0533,
+              "released_run_release": 0.0571,
+              "released_walk_jump": 0.0396,
+              "released_walk_release": 0.0339,
+              "right_run_jump": 0.1693,
+              "right_run_release": 0.3041,
+              "right_walk_jump": 0.1145,
+              "right_walk_release": 0.08
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "e8a218b2ee16481b8fe330db8c6b99e7f9f4deec09a787e7a8d58b726aef6aff",
+      "screen_after_sha256": "2aaa0c74f3f498bc05582afe065eb678d89c2c9cfbed47e7f067343680c2e805",
+      "request_sha256": "43c72c651912e2709829ed8a55e9ab75b7ae1ed5977cff6ba57bf27489381807"
+    },
+    {
+      "index": 13,
+      "frame_before": 52,
+      "frame_after": 56,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "cloudflare/clef-flash",
+        "provider": "PrimeIntellect",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.236,
+            "probabilities": {
+              "left_run_jump": 0.0238,
+              "left_run_release": 0.0406,
+              "left_walk_jump": 0.0358,
+              "left_walk_release": 0.0456,
+              "released_run_jump": 0.0546,
+              "released_run_release": 0.0599,
+              "released_walk_jump": 0.0428,
+              "released_walk_release": 0.035,
+              "right_run_jump": 0.1681,
+              "right_run_release": 0.2997,
+              "right_walk_jump": 0.1129,
+              "right_walk_release": 0.0813
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "c82dbab80bee2ced5b9f6e607f63e1ad05630b9700896bed9886cda74afcb417",
+      "screen_after_sha256": "6ab46c9cce5890c9861f8754df64d3a715060dcce3bb3d1034002a87dc4350f8",
+      "request_sha256": "79b222e449af6d1572953fb783520bc029435ef6eb3f7963d83ab0608b9977e9"
+    },
+    {
+      "index": 14,
+      "frame_before": 56,
+      "frame_after": 60,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "cloudflare/clef-flash",
+        "provider": "PrimeIntellect",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.2284,
+            "probabilities": {
+              "left_run_jump": 0.0229,
+              "left_run_release": 0.0366,
+              "left_walk_jump": 0.0355,
+              "left_walk_release": 0.0449,
+              "released_run_jump": 0.0567,
+              "released_run_release": 0.0604,
+              "released_walk_jump": 0.0445,
+              "released_walk_release": 0.0352,
+              "right_run_jump": 0.1721,
+              "right_run_release": 0.2927,
+              "right_walk_jump": 0.1183,
+              "right_walk_release": 0.08
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "bb259f75335b7bd699e16d8c1325f34088277a0412834e439eece17a6f0cc682",
+      "screen_after_sha256": "6b7171f0a5f5f986ceff67b4eee976b04293833abbb732284854a08b6bbf6409",
+      "request_sha256": "211c398d2cc3f639383b98f2f21b3d8ffa0ee4d5f2c40e691d44b1541159cde9"
+    },
+    {
+      "index": 15,
+      "frame_before": 60,
+      "frame_after": 64,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "cloudflare/clef-flash",
+        "provider": "PrimeIntellect",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.2543,
+            "probabilities": {
+              "left_run_jump": 0.026,
+              "left_run_release": 0.0344,
+              "left_walk_jump": 0.0333,
+              "left_walk_release": 0.0387,
+              "released_run_jump": 0.047,
+              "released_run_release": 0.0585,
+              "released_walk_jump": 0.0396,
+              "released_walk_release": 0.0323,
+              "right_run_jump": 0.1789,
+              "right_run_release": 0.3164,
+              "right_walk_jump": 0.1173,
+              "right_walk_release": 0.0775
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "af1fbe80b74ef36d101b4c89cb3dd296560b85026c7503801117b80eb1d75144",
+      "screen_after_sha256": "6d0650395e97587eff5f105df733bdddae4726389052c382e9bf7e29381f1b9a",
+      "request_sha256": "a88555b9cdcf0374e1b257b245e0f83b55e768fcfdc313355980bdc3b9610748"
+    },
+    {
+      "index": 16,
+      "frame_before": 64,
+      "frame_after": 68,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "cloudflare/clef-flash",
+        "provider": "PrimeIntellect",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.2801,
+            "probabilities": {
+              "left_run_jump": 0.025,
+              "left_run_release": 0.0342,
+              "left_walk_jump": 0.0331,
+              "left_walk_release": 0.0385,
+              "released_run_jump": 0.0482,
+              "released_run_release": 0.06,
+              "released_walk_jump": 0.0379,
+              "released_walk_release": 0.0309,
+              "right_run_jump": 0.167,
+              "right_run_release": 0.3401,
+              "right_walk_jump": 0.1104,
+              "right_walk_release": 0.0747
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "c001e8a386a41f2fee827a7780dcae5ca62666aaa5efe69bc1d4b756cf0eaa24",
+      "screen_after_sha256": "ff6d849c5d014a0b9e96e7bc06c3ae366cb617945d17faaa6ed6061193aa6ef9",
+      "request_sha256": "a658de21c5f29dc25f9d993556d86bd7d15d01646519e8d39a42fdd747e2b5d3"
+    },
+    {
+      "index": 17,
+      "frame_before": 68,
+      "frame_after": 72,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "cloudflare/clef-flash",
+        "provider": "PrimeIntellect",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.2912,
+            "probabilities": {
+              "left_run_jump": 0.021,
+              "left_run_release": 0.0326,
+              "left_walk_jump": 0.0311,
+              "left_walk_release": 0.0369,
+              "released_run_jump": 0.0474,
+              "released_run_release": 0.0614,
+              "released_walk_jump": 0.0369,
+              "released_walk_release": 0.0313,
+              "right_run_jump": 0.1668,
+              "right_run_release": 0.3503,
+              "right_walk_jump": 0.1085,
+              "right_walk_release": 0.0758
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "00f32ca5b15f152d6dd94f4c08f65fd9379e84fc4010e63aa84e1f22a22d486f",
+      "screen_after_sha256": "e2a012adc66a77b9b49c3583b95d51043e50ffdae95046e13831c896b1b915ee",
+      "request_sha256": "5cee453dbed36fcb5200cab7c3e64dc31a83e635a53b278cf033f059d91cb5bf"
+    },
+    {
+      "index": 18,
+      "frame_before": 72,
+      "frame_after": 76,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "cloudflare/clef-flash",
+        "provider": "PrimeIntellect",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.2409,
+            "probabilities": {
+              "left_run_jump": 0.0227,
+              "left_run_release": 0.0311,
+              "left_walk_jump": 0.0336,
+              "left_walk_release": 0.0352,
+              "released_run_jump": 0.0524,
+              "released_run_release": 0.0563,
+              "released_walk_jump": 0.0402,
+              "released_walk_release": 0.0296,
+              "right_run_jump": 0.1903,
+              "right_run_release": 0.3042,
+              "right_walk_jump": 0.1298,
+              "right_walk_release": 0.0745
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "577f1d8505929423a4591e3e629963c8bd83f76125de25a68d1a0186adb8d2ad",
+      "screen_after_sha256": "110745b9b514b7db07aa5a4da1391e2519a434a067053cde84c7902d0c23cd8e",
+      "request_sha256": "4e1e95ee3f24873fff82667be85e93a4ac61439cfbdf8edc0677d5c28d1f2ab8"
+    },
+    {
+      "index": 19,
+      "frame_before": 76,
+      "frame_after": 80,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "cloudflare/clef-flash",
+        "provider": "PrimeIntellect",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.2553,
+            "probabilities": {
+              "left_run_jump": 0.0258,
+              "left_run_release": 0.037,
+              "left_walk_jump": 0.0359,
+              "left_walk_release": 0.042,
+              "released_run_jump": 0.0506,
+              "released_run_release": 0.0535,
+              "released_walk_jump": 0.0385,
+              "released_walk_release": 0.0332,
+              "right_run_jump": 0.1753,
+              "right_run_release": 0.3174,
+              "right_walk_jump": 0.1132,
+              "right_walk_release": 0.0778
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "81216389dce507e05571ef9bcaf6f0ad441f503e35c29fdd0fd837f8f23b48fa",
+      "screen_after_sha256": "8931f74c48730d9bdf8650efb8414ac92dc756feb513f8c2fe39061850323acc",
+      "request_sha256": "8d7e6e3b950509162ea991edc647a7c44d09147552fbf5e0f6ff990c14cb6cc7"
+    },
+    {
+      "index": 20,
+      "frame_before": 80,
+      "frame_after": 84,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "cloudflare/clef-flash",
+        "provider": "PrimeIntellect",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.2365,
+            "probabilities": {
+              "left_run_jump": 0.026,
+              "left_run_release": 0.0367,
+              "left_walk_jump": 0.0382,
+              "left_walk_release": 0.0436,
+              "released_run_jump": 0.0506,
+              "released_run_release": 0.053,
+              "released_walk_jump": 0.0409,
+              "released_walk_release": 0.0332,
+              "right_run_jump": 0.1751,
+              "right_run_release": 0.3001,
+              "right_walk_jump": 0.1232,
+              "right_walk_release": 0.0795
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "f3c11cecb43b18432865e246fcaae3b4a208769ad9a5deaab2af65b5d5bab1f6",
+      "screen_after_sha256": "694d1a96be04f19446b99ed102645f857324f8a2708deb0dadaf0fb62391204e",
+      "request_sha256": "6f827a4204709a33caf366daf73e558998d8aafb6d03283ad4efa5190fb1c59f"
+    },
+    {
+      "index": 21,
+      "frame_before": 84,
+      "frame_after": 88,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "cloudflare/clef-flash",
+        "provider": "PrimeIntellect",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.2555,
+            "probabilities": {
+              "left_run_jump": 0.0261,
+              "left_run_release": 0.0351,
+              "left_walk_jump": 0.0351,
+              "left_walk_release": 0.0382,
+              "released_run_jump": 0.0483,
+              "released_run_release": 0.0547,
+              "released_walk_jump": 0.04,
+              "released_walk_release": 0.0337,
+              "right_run_jump": 0.1699,
+              "right_run_release": 0.3175,
+              "right_walk_jump": 0.1159,
+              "right_walk_release": 0.0855
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "326285549cbb83a9e266b65041deca24e46231b2dc7dfd4ab3ebfeb816b372b9",
+      "screen_after_sha256": "a78700917f9fff0abbee9f27371d538a54b5e7c7fe66186267734d8d13ddd338",
+      "request_sha256": "c5c92217261e1e73344439d7b83627a399767f3665e602c526ef4075a10fb485"
+    },
+    {
+      "index": 22,
+      "frame_before": 88,
+      "frame_after": 92,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "cloudflare/clef-flash",
+        "provider": "PrimeIntellect",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.255,
+            "probabilities": {
+              "left_run_jump": 0.0273,
+              "left_run_release": 0.0326,
+              "left_walk_jump": 0.0359,
+              "left_walk_release": 0.0353,
+              "released_run_jump": 0.0479,
+              "released_run_release": 0.0526,
+              "released_walk_jump": 0.0385,
+              "released_walk_release": 0.0309,
+              "right_run_jump": 0.1864,
+              "right_run_release": 0.3171,
+              "right_walk_jump": 0.1185,
+              "right_walk_release": 0.0771
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "7053a535b7d318d99bfc3e617db137fc04f3c5b1a17b3f6917f0754430891262",
+      "screen_after_sha256": "cc74ccc7094868ee77df22a51530801b9d66b4db5ea1992474236befa6fc4b55",
+      "request_sha256": "dc99801cc88884ea816c684a1bde265197ac3052c7af2de43e3bec6481989729"
+    },
+    {
+      "index": 23,
+      "frame_before": 92,
+      "frame_after": 96,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "cloudflare/clef-flash",
+        "provider": "PrimeIntellect",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.2348,
+            "probabilities": {
+              "left_run_jump": 0.028,
+              "left_run_release": 0.0346,
+              "left_walk_jump": 0.0338,
+              "left_walk_release": 0.0383,
+              "released_run_jump": 0.0484,
+              "released_run_release": 0.0557,
+              "released_walk_jump": 0.0398,
+              "released_walk_release": 0.0335,
+              "right_run_jump": 0.1913,
+              "right_run_release": 0.2986,
+              "right_walk_jump": 0.1151,
+              "right_walk_release": 0.0829
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "3501ef0f3498a4165cecef81e07c15b3d2c2887a47e9f35cb2b86855184037d2",
+      "screen_after_sha256": "c7428e1e5b83c95c5d2d17c902d7fb5ea5b8925bf4a084a75fd1fc59a9b4e3da",
+      "request_sha256": "8a9e8339627b25518b4fe0e2afd52980dfa0baf5960500495da32b9a73633728"
+    },
+    {
+      "index": 24,
+      "frame_before": 96,
+      "frame_after": 100,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "cloudflare/clef-flash",
+        "provider": "PrimeIntellect",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.2497,
+            "probabilities": {
+              "left_run_jump": 0.03,
+              "left_run_release": 0.0391,
+              "left_walk_jump": 0.0359,
+              "left_walk_release": 0.0422,
+              "released_run_jump": 0.0486,
+              "released_run_release": 0.062,
+              "released_walk_jump": 0.0409,
+              "released_walk_release": 0.0367,
+              "right_run_jump": 0.1632,
+              "right_run_release": 0.3122,
+              "right_walk_jump": 0.1046,
+              "right_walk_release": 0.0847
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "41e8f2d59aba8f5ff04463a7b734bea4487bc5c1d83c5273afd5c95a894b0691",
+      "screen_after_sha256": "6704962333f2faa9b427bddd9234f0e3b18c3e272e34f5f656087267173f1e5d",
+      "request_sha256": "897bd4968b466e182a7b429e3895e3479d5d31bbfc3b4cbe527b5ad14b624ddd"
+    },
+    {
+      "index": 25,
+      "frame_before": 100,
+      "frame_after": 104,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "cloudflare/clef-flash",
+        "provider": "PrimeIntellect",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.2387,
+            "probabilities": {
+              "left_run_jump": 0.0304,
+              "left_run_release": 0.0396,
+              "left_walk_jump": 0.0355,
+              "left_walk_release": 0.0419,
+              "released_run_jump": 0.0486,
+              "released_run_release": 0.0633,
+              "released_walk_jump": 0.0393,
+              "released_walk_release": 0.0375,
+              "right_run_jump": 0.1656,
+              "right_run_release": 0.3021,
+              "right_walk_jump": 0.1069,
+              "right_walk_release": 0.0893
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "a76eb8dabb4711e91c4a9f6051e6bbd363ceb3a415e9e0ec84858cfc5be153e1",
+      "screen_after_sha256": "0334ffc305fc74b4ff27de184ae218ecf06818e99e0b2874b537a2116bcfb388",
+      "request_sha256": "3f12e57a60259557badcd2dd35c67d9ec6191d10f9bac427e0bfa412c13631d5"
+    },
+    {
+      "index": 26,
+      "frame_before": 104,
+      "frame_after": 108,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "cloudflare/clef-flash",
+        "provider": "PrimeIntellect",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.2272,
+            "probabilities": {
+              "left_run_jump": 0.0278,
+              "left_run_release": 0.0379,
+              "left_walk_jump": 0.0351,
+              "left_walk_release": 0.0404,
+              "released_run_jump": 0.0511,
+              "released_run_release": 0.0651,
+              "released_walk_jump": 0.0427,
+              "released_walk_release": 0.0371,
+              "right_run_jump": 0.1701,
+              "right_run_release": 0.2916,
+              "right_walk_jump": 0.1124,
+              "right_walk_release": 0.0889
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "c914447a48a1e3ea72ded2a23bd195bb45785f68da9f35e370a820c747f967d6",
+      "screen_after_sha256": "91556041d0d0692298420e25eaeaa4d8e5c766963befaa1cf3666b184fb80ea4",
+      "request_sha256": "202dc657c8457dd60d1580205da15c0778bb51c07864de678578712f10029c59"
+    },
+    {
+      "index": 27,
+      "frame_before": 108,
+      "frame_after": 110,
+      "sequence": [
+        [
+          4,
+          {
+            "horizontal": "right",
+            "jump": "released",
+            "run": "held",
+            "vertical": "released"
+          }
+        ]
+      ],
+      "native_response": {
+        "model": "cloudflare/clef-flash",
+        "provider": "PrimeIntellect",
+        "answers": {
+          "action": {
+            "choice": "right_run_release",
+            "confidence": 0.2221,
+            "probabilities": {
+              "left_run_jump": 0.0317,
+              "left_run_release": 0.0443,
+              "left_walk_jump": 0.0391,
+              "left_walk_release": 0.0472,
+              "released_run_jump": 0.0491,
+              "released_run_release": 0.063,
+              "released_walk_jump": 0.043,
+              "released_walk_release": 0.041,
+              "right_run_jump": 0.1524,
+              "right_run_release": 0.2869,
+              "right_walk_jump": 0.1098,
+              "right_walk_release": 0.0924
+            },
+            "type": "choice"
+          }
+        }
+      },
+      "after_observation_sha256": "ab69c1f3e1a3b45bb16c968a8e81a42bf230bb9d42e7179f5298f6ed8c6e3c47",
+      "screen_after_sha256": "8513d5c62b8c987ffd3bfa9d2883eb9f4e51d6db977ecd557b183a2be9bdb3ce",
+      "request_sha256": "a916e089e27927cfd94ff8c495f9bf21b5670d3326e7ad8e82b4194bac0ec800"
+    }
+  ],
+  "source_hashes": {
+    "episode_sha256": "3c47e092d1c30284fa967198cfd6e6a9ce8ac85adb35dac490fccbeb061275c9",
+    "observer_source_sha256": "e9a16a88c9fbffbe62d62b7ce4f17714a764e5430528014ccb39cc9e23a2529c",
+    "audit_sha256": "b1a5a056b141f9ea25c79e4ab826bfe410407ffa2ad8c30ee2e0882eeef50f8b"
+  },
+  "input_audit": {
+    "native_replay_verified": true,
+    "exact_request_audit_complete": true,
+    "privileged_state_sent": true
+  }
+}
