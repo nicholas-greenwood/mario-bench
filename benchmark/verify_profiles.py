@@ -66,14 +66,16 @@ def public_parity():
                     if game.done:
                         break
                 actual = game.frame - before
-                assert actual == frames and game.frame == action['frame_after']
+                assert game.frame == action['frame_after'] and 0 < actual <= frames
+                assert actual == frames or game.done, 'Only native termination may shorten a historical held interval'
                 assert digest(game.observe()) == action['after_observation_sha256']
                 assert hashlib.sha256(game.frame_rgb().tobytes()).hexdigest() == action['screen_after_sha256']
                 session.advance(image=image, frame=before, decision=index, buttons=buttons, actual_frames=actual)
             assert game.flag_get
             if session.sampler and not session.multistage:
                 assert mismatches == 9
-            print(f'PASS: {name}: {len(trace["actions"])} exact request/choice checkpoints, {game.frame} native frames, flag_get')
+            print(f'PASS: {name}: {len(trace["actions"]) * len(session.stages)} exact request bodies, '
+                  f'{len(trace["actions"])} action checkpoints, {game.frame} native frames, flag_get')
         finally:
             game.close()
 
@@ -260,6 +262,35 @@ def mercury_recovery():
     print('PASS: Mercury per-stage retry, pending-plan/motor safety, plan-only and actor/action recovery, sampled choices and 502 cost unknown')
 
 
+def state_cli():
+    """Exercise every added state controller through public dispatch and audit."""
+    names = ('mercury-state-clear', 'drex-state-clear', 'liquid-state-clear')
+    with tempfile.TemporaryDirectory() as tmp:
+        env = dict(os.environ, PYTHONPATH=str(ROOT))
+        for name in names:
+            output = Path(tmp) / name
+            command = [sys.executable, '-m', 'benchmark.run', '--profile', name, '--policy', 'fake',
+                       '--max-native-frames', '13', '--output', str(output), '--execute']
+            result = subprocess.run(command, cwd='/tmp', env=env, capture_output=True, text=True)
+            assert result.returncode == 0, result.stderr
+            manifest = json.loads((output / 'manifest.json').read_text())
+            session = ProfileSession(name)
+            assert manifest['models'] == [session.model]
+            assert manifest['config']['decisions'] == (13 + session.cadence - 1) // session.cadence
+            summary = json.loads((output / 'summary.json').read_text())
+            assert summary['results'][0]['frames'] == 13 and summary['results'][0]['status'] == 'frame_budget'
+            assert summary['cost_usd'] is None
+            audited = subprocess.run([sys.executable, '-m', 'benchmark.audit', str(output)],
+                                     cwd='/tmp', env=env, capture_output=True, text=True)
+            assert audited.returncode == 0, audited.stderr
+            if name == 'liquid-state-clear':
+                events = read_events(output / (safe_name(session.model['id']) + '.jsonl'))
+                for action in [row for row in events if row['event'] == 'action']:
+                    assert set(action['native_choices']) == {'movement', 'jump'}
+                    assert action['buttons']['horizontal'] == 'right' and action['buttons']['jump'] == 'released'
+    print('PASS: Mercury/Drex/Liquid public state CLI from /tmp, strict native caps, factored Liquid controls, replay audit and unknown fixture billing')
+
+
 def cli_envelope():
     with tempfile.TemporaryDirectory() as tmp:
         output = Path(tmp) / 'run'
@@ -292,6 +323,7 @@ def main():
         reject_bad_vectors()
         recovery()
         mercury_recovery()
+        state_cli()
         cli_envelope()
 
 

@@ -156,7 +156,10 @@ def execute_episode(output, config, trial=0, *, audit=False, client_factory=Clie
                           observed_frame=before, observation_sha256=digest(state), request_sha256=request_hash,
                           image_sha256=image_hash, buttons=chosen['buttons'], frames=steps,
                           requested_frames=chosen['requested_frames'], sampling=chosen['sampling'],
-                          native_choice=outcome['raw_response']['answers']['action']['choice'])
+                          native_choice=outcome['raw_response']['answers'].get('action', {}).get('choice'))
+            if 'action' not in outcome['raw_response']['answers']:
+                action['native_choices'] = {name: answer['choice']
+                                            for name, answer in outcome['raw_response']['answers'].items()}
             if session.multistage:
                 action['stage_request_sha256'] = stage_hashes
             if actions:

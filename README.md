@@ -164,11 +164,14 @@ interrupted requests stop for inspection rather than silently spending twice
 
 ### rerun a frozen development controller
 
-these explicit profiles run the controllers used by 4 published clears:
+these explicit profiles run the controllers used by all 7 published clears:
 
 ```sh
 # plans only; each profile pins its own model, provider, inputs and controller
 .venv/bin/python -m benchmark.run --profile pplx-state-clear
+.venv/bin/python -m benchmark.run --profile mercury-state-clear
+.venv/bin/python -m benchmark.run --profile drex-state-clear
+.venv/bin/python -m benchmark.run --profile liquid-state-clear
 .venv/bin/python -m benchmark.run --profile mammoth-pixels-first-clear
 .venv/bin/python -m benchmark.run --profile pplx-pixels-sampled-clear-t005-seed0
 .venv/bin/python -m benchmark.run --profile mercury-pixels-planner-sampled-clear-t02-seed0
@@ -198,7 +201,7 @@ logs distinguish its requested and actual duration
 
 the frozen controller and the fresh run envelope have separate hashes. historical
 research budgets differed, so these commands do not recreate an identical whole
-experiment or guarantee another clear. the 4 profiles also differ from each other
+experiment or guarantee another clear. the 7 profiles also differ from each other
 and from the common runner. changing a profile, source or envelope requires a new
 output directory; resume cannot extend the budget
 
