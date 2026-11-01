@@ -13,6 +13,7 @@
     "update:readme": "node scripts/update-readme-results.mjs",
     "check:readme": "node scripts/update-readme-results.mjs --check",
     "test:readme": "node --test scripts/update-readme-results.test.mjs",
+    "test:common": "node --test scripts/common-benchmark.test.mjs",
     "check:ui": "node scripts/check-ui.mjs"
   },
   "dependencies": {

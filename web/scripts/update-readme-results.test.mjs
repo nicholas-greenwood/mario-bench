@@ -1,10 +1,10 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFile } from 'node:fs/promises';
 import { formatRunCost, parseDataset, unavailableProgress } from '../lib/data.ts';
+import { readPublishedIndex } from '../lib/read-results.mjs';
 import { renderResults, replaceResults } from './update-readme-results.mjs';
 
-const index = JSON.parse(await readFile(new URL('../../results/index.json', import.meta.url), 'utf8'));
+const index = await readPublishedIndex(new URL('../../results/index.json', import.meta.url));
 
 test('README includes every website episode once, with exact progress and completed-only time', () => {
   const generated = renderResults(index);

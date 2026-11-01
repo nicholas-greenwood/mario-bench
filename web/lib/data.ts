@@ -1,4 +1,6 @@
 /** Public benchmark results, served from public/benchmark-data (copied from ../results). */
+import { parseCommonBenchmark, type CommonBenchmark } from './common-benchmark.ts';
+
 export const DATA_BASE = '/benchmark-data/';
 
 export type Track = 'state' | 'image';
@@ -58,6 +60,7 @@ export type Dataset = {
   generatedAt: string;
   leaderboardReady: boolean;
   catalogue: { state: number; image: number };
+  commonBenchmark: CommonBenchmark | null;
 };
 
 export type Result = Omit<Run, 'progressPct' | 'nativeFrames' | 'decisions' | 'replaySrc'> & {
@@ -167,7 +170,7 @@ function toObservation(raw: RawExample): Result {
 }
 
 export function parseDataset(index: unknown): Dataset {
-  const data = index as { examples?: RawExample[]; observations?: RawExample[]; technical_diagnostics?: RawExample[]; generated_at_utc?: string; leaderboard_ready?: boolean; model_counts?: { state?: number; image?: number } };
+  const data = index as { examples?: RawExample[]; observations?: RawExample[]; technical_diagnostics?: RawExample[]; common_benchmark?: unknown; generated_at_utc?: string; leaderboard_ready?: boolean; model_counts?: { state?: number; image?: number } };
   if (!Array.isArray(data?.examples)) throw new Error('benchmark index has no examples');
   const byId = [...new Map([
     ...data.examples,
@@ -198,12 +201,27 @@ export function parseDataset(index: unknown): Dataset {
     }
   }
   const published = [...byEpisode.values()];
+  const legacyIds = new Set([...data.examples, ...(data.observations ?? []), ...(data.technical_diagnostics ?? [])].map(raw => text(raw.id)));
+  const commonBenchmark = parseCommonBenchmark(data.common_benchmark, legacyIds, runCost);
+  const validCommonIds = new Set(commonBenchmark?.rows.flatMap(row => row.validTrialIds) ?? []);
+  for (const trial of commonBenchmark?.trials ?? []) {
+    if ((trial.track !== 'state' && trial.track !== 'image') || published.some(raw => raw.id === trial.id)) continue;
+    const valid = validCommonIds.has(text(trial.id));
+    published.push({ ...trial, mode: trial.track,
+      completed: valid && trial.flag_get === true,
+      progress_pct: valid ? trial.progress_pct : null,
+      status: valid ? trial.status : 'technical_pending',
+      speedrun_score_native_frames: valid && trial.flag_get === true ? trial.native_frames_to_completion : null,
+      nominal_game_seconds_to_completion: valid && trial.flag_get === true ? Number(trial.native_frames_to_completion) / 60 : null,
+    });
+  }
   return {
-    runs: published.filter(raw => text(raw.replay_href)).map(toRun),
+    runs: published.filter(raw => text(raw.replay_href) && num(raw.native_frames) !== null && num(raw.decisions) !== null).map(toRun),
     observations: published.map(toObservation),
     generatedAt: text(data.generated_at_utc),
     leaderboardReady: data.leaderboard_ready === true,
     catalogue: { state: num(data.model_counts?.state) ?? 0, image: num(data.model_counts?.image) ?? 0 },
+    commonBenchmark,
   };
 }
 

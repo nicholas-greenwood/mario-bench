@@ -2,6 +2,7 @@
 // All *_href fields in index.json are relative, so the folder is served as-is.
 import { createHash } from 'node:crypto';
 import { cp, mkdir, readFile, rm, stat } from 'node:fs/promises';
+import { readPublishedIndex } from '../lib/read-results.mjs';
 
 const source = new URL('../../results/', import.meta.url);
 const destination = new URL('../public/benchmark-data/', import.meta.url);
@@ -17,8 +18,8 @@ await rm(destination, { recursive: true, force: true });
 await mkdir(destination, { recursive: true });
 await cp(source, destination, { recursive: true, filter: path => !path.endsWith('README.md') });
 
-const index = JSON.parse(await readFile(new URL('index.json', destination), 'utf8'));
-for (const example of [...index.examples, ...(index.observations ?? []), ...(index.technical_diagnostics ?? [])]) {
+const index = await readPublishedIndex(new URL('index.json', destination));
+for (const example of [...index.examples, ...(index.observations ?? []), ...(index.technical_diagnostics ?? []), ...(index.common_benchmark?.trials ?? [])]) {
   for (const key of ['replay', 'trace', 'profile']) {
     const href = example[`${key}_href`];
     const expected = example[`${key}_sha256`];

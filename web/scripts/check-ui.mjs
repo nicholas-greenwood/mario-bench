@@ -3,7 +3,7 @@
 import { chromium } from '@playwright/test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
-import { formatCost, formatRunCost, parseDataset } from '../lib/data.ts';
+import { formatCost, formatRunCost, formatSeconds, parseDataset } from '../lib/data.ts';
 
 const BASE = process.env.BASE_URL ?? 'http://127.0.0.1:3112';
 const CHROME = process.env.CHROME ?? '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
@@ -11,21 +11,32 @@ const shots = new URL('../screenshots/', import.meta.url).pathname;
 await fs.mkdir(shots, { recursive: true });
 
 const index = await (await fetch(`${BASE}/benchmark-data/index.json`)).json();
+if (index.common_cohort_href) {
+  const common = await (await fetch(`${BASE}/benchmark-data/${index.common_cohort_href}`)).json();
+  index.common_benchmark = common.common_benchmark;
+}
 const examples = index.examples;
 const observations = index.observations;
 const parsed = parseDataset(index);
-const publishedIds = new Set(parsed.observations.map(run => run.id));
-const published = [...new Map([...examples, ...observations, ...(index.technical_diagnostics ?? [])].map(e => [e.id, e])).values()].filter(e => publishedIds.has(e.id));
-const replays = published.filter(e => e.replay_href);
+const rawById = new Map([...examples, ...observations, ...(index.technical_diagnostics ?? []), ...(parsed.commonBenchmark?.trials ?? [])].map(e => [e.id, e]));
+const published = parsed.observations.map(run => ({ ...rawById.get(run.id), id: run.id, model_id: run.modelId,
+  display_name: run.name, mode: run.track, status: run.status, completed: run.completed,
+  progress_pct: run.progressPct, native_frames: run.nativeFrames, decisions: run.decisions,
+  nominal_game_seconds_to_completion: run.clearSeconds,
+  replay_href: run.replaySrc?.replace('/benchmark-data/', '') ?? null,
+  trace_href: run.traceSrc.replace('/benchmark-data/', ''),
+}));
+const playableIds = new Set(parsed.runs.map(run => run.id));
+const replays = published.filter(e => playableIds.has(e.id));
 assert.equal(published.length, parsed.observations.length);
 assert.equal(replays.length, parsed.runs.length);
 assert.ok(published.length >= 42 && replays.length >= 41, 'previous published runs remain available');
 const mercuryPixels = parsed.runs.filter(run => run.modelId === 'inception/mercury-decide' && run.track === 'image');
-assert.equal(mercuryPixels.length, 1, 'duplicate exports of the same source episode count once');
-assert.deepEqual(mercuryPixels[0].aliasIds, ['pixels-best-inception--mercury-decide']);
-assert.equal(mercuryPixels[0].id, 'mercury-pixels-partial', 'original replay ID retained');
+const originalMercury = mercuryPixels.find(run => run.id === 'mercury-pixels-partial');
+assert.ok(originalMercury, 'original replay ID retained');
+assert.deepEqual(originalMercury.aliasIds, ['pixels-best-inception--mercury-decide']);
 const repeated = parseDataset({ ...index, observations: [...observations, { ...examples.find(e => e.id === 'mercury-pixels-partial'), id: 'independent-repeat' }] });
-assert.equal(repeated.runs.filter(run => run.modelId === 'inception/mercury-decide' && run.track === 'image').length, 2, 'independent repeat IDs survive even when source contents match');
+assert.equal(repeated.runs.filter(run => run.modelId === 'inception/mercury-decide' && run.track === 'image').length, mercuryPixels.length + 1, 'independent repeat IDs survive even when source contents match');
 assert.ok(examples.length > 0);
 const receipt = { attempt_scope_verified: true, source_request_count: 1, source_attempt_count: 1, error_count: 0, unreceipted_count: 0, unreceipted_attempt_count: 0, unbilled_error_attempts_unknown: 0, kind: 'recorded_response_usage', cost_basis: 'all_in_inference', request_count: 1, costed_request_count: 1, actual_costed_request_count: 1, coverage_complete: true, includes_retries: true, includes_auxiliary_calls: true };
 const costFixture = (value, provenance) => parseDataset({ examples: [{ ...examples[0], cost_usd: value, cost_provenance: provenance }], observations: [] }).runs[0].costUsd;
@@ -79,6 +90,26 @@ const noOverflow = page => page.evaluate(() => document.documentElement.scrollWi
 
 // Desktop
 const { context, page } = await open(1440, 1000);
+if (parsed.commonBenchmark) {
+  const table = page.locator('[data-common-benchmark]');
+  assert.ok(await table.isVisible(), 'a valid evaluation cohort is the primary view');
+  assert.equal(await table.locator('tbody tr').count(), parsed.commonBenchmark.rows.length);
+  for (const row of parsed.commonBenchmark.rows) {
+    const element = table.locator(`tr[data-common-model="${row.modelId}"][data-track="${row.track}"]`);
+    const cells = await element.locator('td').allInnerTexts();
+    assert.equal(cells[2], row.meanProgressPct === null ? 'pending' : `${row.meanProgressPct.toFixed(2)}%`);
+    assert.equal(cells[3], formatSeconds(row.bestClearSeconds) ?? '–');
+    assert.equal(cells[4], formatRunCost({ costUsd: row.meanCostUsd, costEstimateUsd: row.meanCostEstimateUsd }) ?? '–');
+    assert.equal(await element.getAttribute('data-run-id'), null, 'a mean is not a replay episode');
+  }
+  const evidence = parsed.commonBenchmark.rows.find(row => row.recordedTrialIds.length);
+  if (evidence) {
+    await table.locator(`tr[data-common-model="${evidence.modelId}"][data-track="${evidence.track}"]`).getByRole('button', { name: `${evidence.recordedTrialIds.length} runs`, exact: true }).click();
+    const filtered = await page.locator('tbody tr').evaluateAll(rows => rows.map(row => row.dataset.runId));
+    assert.deepEqual(filtered.sort(), [...evidence.recordedTrialIds].sort(), 'evidence opens the actual trial IDs');
+  }
+  await page.getByRole('button', { name: `all runs (${published.length})`, exact: true }).click();
+}
 assert.ok(await page.locator('h1').isVisible());
 assert.ok(await page.getByText(/fixed number of frames per action/).isVisible());
 assert.ok(await page.getByText(/not a ranking/).isVisible());
@@ -94,7 +125,7 @@ assert.equal(await page.getByRole('columnheader', { name: 'cost', exact: true })
 assert.equal(await rows.count(), published.length, 'every published run shown by default');
 const clearIds = examples.filter(e => e.completed).map(e => e.id).sort();
 for (const id of ['pplx-state-clear', 'mercury-state-clear', 'drex-state-clear', 'liquid-state-clear']) assert.ok(clearIds.includes(id), `${id}: previous verified clear remains published`);
-assert.equal(published.filter(e => e.completed).length, clearIds.length, 'same dataset-derived clears in both views');
+assert.ok(published.filter(e => e.completed).length >= clearIds.length, 'showcase clears remain alongside fresh evaluation trials');
 for (const id of clearIds) {
   assert.ok(published.some(e => e.id === id && e.completed), `${id}: showcase clear belongs to all runs`);
   assert.ok(replays.some(e => e.id === id && e.completed), `${id}: showcase clear is playable`);
@@ -102,7 +133,7 @@ for (const id of clearIds) {
 for (const e of replays) assert.equal(await page.locator(`tr[data-run-id="${e.id}"][data-replay="true"]`).count(), 1, `${e.id}: replay belongs to all runs`);
 for (const id of clearIds) assert.equal(await page.locator(`tr[data-run-id="${id}"] td`).nth(6).innerText(), 'cleared');
 const mercuryRuns = published.filter(e => e.model_id === 'inception/mercury-decide' && e.mode === 'state');
-assert.equal(mercuryRuns.length, 2, 'distinct state profiles for one model stay separate');
+assert.ok(mercuryRuns.length >= 2, 'distinct state profiles and fresh trials for one model stay separate');
 assert.ok(mercuryRuns.some(e => e.completed) && mercuryRuns.some(e => !e.completed));
 const noActions = published.find(e => e.id === 'state-c4-jaredpalmer--kev-4b');
 assert.ok(noActions && !noActions.replay_href && noActions.progress_pct === null && noActions.native_frames === 0);
@@ -272,6 +303,12 @@ await context.close();
 // fresh contexts per viewport avoid compositor artefacts in screenshots
 for (const [width, name] of [[1920, 'wide'], [1440, 'desktop'], [1280, 'laptop'], [1024, 'small-desktop'], [768, 'tablet'], [390, 'mobile']]) {
   const { context, page } = await open(width, width === 390 ? 844 : 1000);
+  if (parsed.commonBenchmark) {
+    assert.ok(await page.locator('[data-common-benchmark]').isVisible());
+    assert.ok(await noOverflow(page), `${width} benchmark has no page overflow`);
+    assert.ok(await page.locator('.table-scroll').evaluate(el => el.scrollWidth <= el.clientWidth), `${width} benchmark table fits`);
+    await page.getByRole('button', { name: `all runs (${published.length})`, exact: true }).click();
+  }
   assert.ok(await noOverflow(page), `${width} has no page overflow`);
   assert.ok(await page.locator('.table-scroll').evaluate(el => el.scrollWidth <= el.clientWidth), `${width} table fits without scrolling`);
   assert.equal(await page.getByRole('columnheader', { name: 'cadence', exact: true }).count(), 0);
