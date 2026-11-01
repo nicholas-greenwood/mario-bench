@@ -1,4 +1,5 @@
 /** A separate, frozen evaluation cohort. Development examples never enter a mean. */
+import { resolveImageRecovery } from './image-recovery-lineage.ts';
 import { resolveTechnicalRecovery, closedTechnicalFailures, type RecoverySummary } from './recovery-lineage.ts';
 export type CommonTrack = 'state' | 'image';
 type Raw = Record<string, unknown>;
@@ -167,7 +168,7 @@ export function parseCommonBenchmark(value: unknown, legacyIds: Set<string>, rea
   const trialCounts = new Map<string, number>();
   for (const trial of trials) trialCounts.set(string(trial.id), (trialCounts.get(string(trial.id)) ?? 0) + 1);
   const byId = new Map(trials.map(trial => [string(trial.id), trial]));
-  const recovery = resolveTechnicalRecovery(cohort, trials, stateOnly, validOutcome);
+  const recovery = imageOnly ? resolveImageRecovery(cohort, trials, imageOnly, validOutcome) : resolveTechnicalRecovery(cohort, trials, stateOnly, validOutcome);
   const unavailable = closedTechnicalFailures(cohort, trials, recovery.summary !== null);
   const rawRows = records(cohort.rows);
   const rows: CommonResult[] = [];
