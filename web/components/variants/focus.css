@@ -1,5 +1,5 @@
 .page {
-  width: min(1320px, 100%);
+  width: min(1600px, 100%);
   margin: 0 auto;
   padding: 0 clamp(18px, 4vw, 56px);
 }
@@ -46,7 +46,7 @@
 .colophon { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 24px; padding: 0 0 40px; font-size: 12px; }
 .colophon p { max-width: 70ch; }
 
-@media (max-width: 1040px) {
+@media (max-width: 1200px) {
   .layout { grid-template-columns: minmax(0, 1fr); row-gap: 64px; padding-top: 16px; }
   .intro, .watch, .human, .results { grid-column: 1; grid-row: auto; }
   .intro { max-width: 620px; padding-right: 0; }

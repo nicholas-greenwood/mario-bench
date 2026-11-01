@@ -18,7 +18,7 @@ await mkdir(destination, { recursive: true });
 await cp(source, destination, { recursive: true, filter: path => !path.endsWith('README.md') });
 
 const index = JSON.parse(await readFile(new URL('index.json', destination), 'utf8'));
-for (const example of [...index.examples, ...(index.observations ?? [])]) {
+for (const example of [...index.examples, ...(index.observations ?? []), ...(index.technical_diagnostics ?? [])]) {
   for (const key of ['replay', 'trace', 'profile']) {
     const href = example[`${key}_href`];
     const expected = example[`${key}_sha256`];

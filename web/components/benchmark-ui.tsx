@@ -26,7 +26,8 @@ export function Intro() {
     <section className="intro" aria-labelledby="intro-title">
       <h1 id="intro-title">a benchmark for decision models playing super mario bros.</h1>
       <div className="intro-detail">
-        <p>models choose buttons from game state or screenshots. the game pauses during inference, so api latency doesn't affect scores.</p>
+        <p>models choose every controller input. state models receive visible geometry and motion from game memory; pixels models receive screenshots without that memory data.</p>
+        <p>the game pauses during inference, then advances a fixed number of frames per action. we measure progress, completion and gameplay time, excluding api waits. published runs are verified by replaying their recorded actions offline.</p>
       </div>
     </section>
   );
@@ -182,7 +183,6 @@ export function HumanPane() {
         </figcaption>
       </figure>
       {!idle && <TouchControls />}
-      <p className="human-note faint">saved in this browser · no frame limit</p>
     </section>
   );
 }
