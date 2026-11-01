@@ -72,10 +72,11 @@ function useBenchmarkState(dataset: Dataset) {
     try { localStorage.setItem(THEME_KEY, next); } catch { /* theme still works for this visit */ }
   };
 
-  const runById = (id: string) => runs.find(run => run.id === id) ?? runs[0];
+  const runById = (id: string) => runs.find(run => run.id === id || run.aliasIds.includes(id)) ?? runs[0];
   const watch = (id: string) => {
-    if (!runs.some(run => run.id === id)) return;
-    setSlots(current => ({ ...current, [activeSide]: id }));
+    const run = runs.find(run => run.id === id || run.aliasIds.includes(id));
+    if (!run) return;
+    setSlots(current => ({ ...current, [activeSide]: run.id }));
     setPlaying(true);
   };
 
