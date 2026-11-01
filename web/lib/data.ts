@@ -10,7 +10,7 @@ export type Run = {
   provider: string;
   track: Track;
   level: string;
-  progressPct: number;
+  progressPct: number | null;
   completed: boolean;
   status: string;
   nativeFrames: number;
@@ -51,7 +51,7 @@ function toRun(raw: RawExample): Run {
   const frames = num(raw.native_frames);
   const decisions = num(raw.decisions);
   const replay = text(raw.replay_href);
-  if (progress === null || frames === null || decisions === null || !replay || (raw.mode !== 'state' && raw.mode !== 'image')) {
+  if ((progress === null && raw.progress_pct !== null) || frames === null || decisions === null || !replay || (raw.mode !== 'state' && raw.mode !== 'image')) {
     throw new Error(`benchmark example ${String(raw.id)} is missing required fields`);
   }
   const completed = raw.completed === true;
@@ -98,7 +98,10 @@ export function parseDataset(index: unknown): Dataset {
   const data = index as { examples?: RawExample[]; observations?: RawExample[]; generated_at_utc?: string; leaderboard_ready?: boolean; model_counts?: { state?: number; image?: number } };
   if (!Array.isArray(data?.examples)) throw new Error('benchmark index has no examples');
   return {
-    runs: data.examples.map(toRun),
+    runs: [...new Map([
+      ...data.examples,
+      ...(data.observations ?? []).filter(raw => text(raw.replay_href)),
+    ].map(raw => [text(raw.id), toRun(raw)] as const)).values()],
     observations: (data.observations ?? []).map(toObservation),
     generatedAt: text(data.generated_at_utc),
     leaderboardReady: data.leaderboard_ready === true,

@@ -27,4 +27,5 @@ for (const example of [...index.examples, ...(index.observations ?? []), ...(ind
     if (actual !== expected) throw new Error(`${example.id}: ${key} checksum mismatch`);
   }
 }
-console.log(`Prepared ${index.observations?.length ?? 0} observations and ${index.examples.length} replays in public/benchmark-data`);
+const replays = new Set([...index.examples, ...(index.observations ?? [])].map(record => record.replay_href).filter(Boolean));
+console.log(`Prepared ${index.observations?.length ?? 0} observations and ${replays.size} replay videos in public/benchmark-data`);
