@@ -58,3 +58,17 @@ python -m benchmark.verify_costs
 ```
 
 these checks use local synthetic receipts only and make no api calls
+
+## invalidated certificates
+
+complete costs require an explicit source-attempt inventory, not just generation
+receipts or successful actions. standalone `request_error`, `api_error` and pending
+calls count towards that inventory. an unscoped error cannot be silently dropped
+when selecting an episode
+
+for an independently audited correction to an invalid old certificate, use the
+explicit replacement path; normal imports continue to preserve complete evidence:
+
+```sh
+python -m benchmark.public_results results --cost-report corrected-costs.json --replace-invalidated-costs
+```

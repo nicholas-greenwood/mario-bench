@@ -27,9 +27,12 @@ assert.equal(mercuryPixels[0].id, 'mercury-pixels-partial', 'original replay ID 
 const repeated = parseDataset({ ...index, observations: [...observations, { ...examples.find(e => e.id === 'mercury-pixels-partial'), id: 'independent-repeat' }] });
 assert.equal(repeated.runs.filter(run => run.modelId === 'inception/mercury-decide' && run.track === 'image').length, 2, 'independent repeat IDs survive even when source contents match');
 assert.ok(examples.length > 0);
-const receipt = { kind: 'recorded_response_usage', cost_basis: 'all_in_inference', request_count: 1, costed_request_count: 1, actual_costed_request_count: 1, coverage_complete: true, includes_retries: true, includes_auxiliary_calls: true };
+const receipt = { attempt_scope_verified: true, source_request_count: 1, source_attempt_count: 1, error_count: 0, unreceipted_count: 0, unreceipted_attempt_count: 0, unbilled_error_attempts_unknown: 0, kind: 'recorded_response_usage', cost_basis: 'all_in_inference', request_count: 1, costed_request_count: 1, actual_costed_request_count: 1, coverage_complete: true, includes_retries: true, includes_auxiliary_calls: true };
 const costFixture = (value, provenance) => parseDataset({ examples: [{ ...examples[0], cost_usd: value, cost_provenance: provenance }], observations: [] }).runs[0].costUsd;
 assert.equal(costFixture(0, receipt), 0, 'verified actual zero remains zero');
+assert.equal(costFixture(.00898152, { ...receipt, request_count: 116, costed_request_count: 116, actual_costed_request_count: 116, source_request_count: 117, source_attempt_count: 117, error_count: 1, unreceipted_count: 1, unreceipted_attempt_count: 1, unbilled_error_attempts_unknown: 1 }), null, '116 receipts plus an unreceipted error are 117 attempts, not an exact total');
+assert.equal(costFixture(.1, { ...receipt, attempt_scope_verified: undefined }), null, 'inherited receipt-only certificates do not certify all attempts');
+assert.equal(costFixture(.1, { ...receipt, error_count: 1 }), .1, 'an error with an explicit billed receipt can still be fully covered');
 assert.equal(costFixture(0, { ...receipt, request_count: 0, costed_request_count: 0, actual_costed_request_count: 0 }), null, 'an empty ledger is unknown, not a free run');
 assert.equal(costFixture(null, receipt), null, 'missing billing is unknown');
 assert.equal(costFixture(1, undefined), null, 'a number without billing provenance is unknown');

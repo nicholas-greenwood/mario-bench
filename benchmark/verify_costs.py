@@ -70,6 +70,40 @@ def main():
         try: costs_from_events(bad)
         except ValueError: pass
         else: raise AssertionError('Ambiguous attempt ledger accepted')
+    # Regression: action/generation receipts alone omitted a separately logged API error.
+    source = []
+    for i in range(116):
+        identity = dict(episode_id='drex-fixture', decision_index=i, attempt=0)
+        value = .00898152 if i == 0 else 0
+        source += [dict(event='request_intent', **identity),
+                   dict(event='request_result', valid=True, raw_response={'usage': {'cost': value}},
+                        billing_receipt=dict(is_byok=False, total_cost=value), **identity)]
+    error = dict(event='request_error', error='response not retained')
+    for unscoped in (error, dict(event='error'), dict(event='api_crash')):
+        try: costs_from_events(source + [unscoped], episode_id='drex-fixture')
+        except ValueError: pass
+        else: raise AssertionError('Unscoped error silently dropped from episode coverage')
+    undercounted = costs_from_events(source)
+    corrected = costs_from_events(source + [error])
+    assert corrected['cost_usd'] is None and corrected['cost_estimate_usd'] is None
+    assert corrected['recorded_cost_usd'] == .00898152
+    assert corrected['cost_provenance']['request_count'] == 117
+    assert corrected['cost_provenance']['source_request_count'] == 117
+    assert corrected['cost_provenance']['error_count'] == 1
+    assert corrected['cost_provenance']['unreceipted_count'] == 1
+    assert costs_from_events(source + [error, dict(event='api_error')])['cost_provenance']['request_count'] == 118
+    assert costs_from_events(source + [dict(event='request_pending')])['cost_usd'] is None
+    inherited = deepcopy(undercounted)
+    inherited['cost_provenance'].pop('attempt_scope_verified')
+    try: validate_public_cost(inherited)
+    except ValueError: pass
+    else: raise AssertionError('Inherited receipt-only complete certificate accepted')
+    assert merge_public_cost(inherited, corrected, replace_invalidated=True)['cost_usd'] is None
+    stale = deepcopy(undercounted)
+    stale['cost_provenance']['source_request_count'] = 117
+    try: validate_public_cost(stale)
+    except ValueError: pass
+    else: raise AssertionError('Source attempt mismatch accepted')
     assert merge_public_cost(ordinary, unknown) == ordinary
     assert merge_public_cost(byok, unknown) == byok
     try: merge_public_cost(ordinary, total([receipt(3)]))

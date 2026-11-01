@@ -61,7 +61,8 @@ def aggregate_receipts(receipts, *, request_count=None, coverage_complete=False,
         safe_receipts.append(dict(credit=str(credit) if credit is not None else None,
                                   is_byok=byok if isinstance(byok, bool) else None,
                                   actual_direct=str(upstream) if upstream is not None else None,
-                                  estimated_direct=str(estimate) if estimate is not None else None))
+                                  estimated_direct=str(estimate) if estimate is not None else None,
+                                  request_failed=receipt.get('request_failed') is True))
     actual_known = sum(value is not None for value in totals)
     known = sum(value is not None for value in estimated_totals)
     complete_scope = (coverage_complete is True and includes_retries is True
@@ -79,6 +80,13 @@ def aggregate_receipts(receipts, *, request_count=None, coverage_complete=False,
                 cost_provenance=dict(kind=KIND, cost_basis=BASIS, request_count=count,
                                      costed_request_count=known, actual_costed_request_count=actual_known,
                                      coverage_complete=bool(estimated_complete),
+                                     attempt_scope_verified=coverage_complete is True,
+                                     source_request_count=count, source_attempt_count=count,
+                                     error_count=sum(r.get('request_failed') is True for r in receipts),
+                                     unbilled_error_attempts_unknown=sum(r.get('request_failed') is True
+                                         and amount(r.get('openrouter_cost_usd')) is None for r in receipts),
+                                     unreceipted_count=count - sum(v is not None for v in credits),
+                                     unreceipted_attempt_count=count - sum(v is not None for v in credits),
                                      upstream_cost_basis=('recorded_direct_billing' if exact else (
                                          'openrouter_activity_list_price_estimate' if estimated_complete else 'unknown')),
                                      includes_retries=includes_retries is True,
@@ -118,23 +126,45 @@ def costs_from_events(events, *, episode_id=None, scope_complete=True):
     Research-specific formats require an audited explicit normalisation first.
     """
     pending, results = {}, {}
-    for event in events:
-        if episode_id is not None and event.get('episode_id') != episode_id:
-            continue
+    failures = {'request_error', 'api_error', 'request_failed', 'request_timeout'}
+    waiting = {'request_pending', 'api_pending'}
+    for ordinal, event in enumerate(events):
         kind = event.get('event')
-        if kind not in ('request_intent', 'request_result'):
+        if episode_id is not None and event.get('episode_id') != episode_id:
+            if event.get('episode_id') is None and (kind == 'error' or isinstance(kind, str)
+                    and kind.startswith(('request_', 'api_'))):
+                raise ValueError('Unscoped request/error event cannot certify a single episode')
+            continue
+        if kind not in {'request_intent', 'request_result'} | failures | waiting:
+            if kind == 'error' or isinstance(kind, str) and kind.startswith(('request_', 'api_')):
+                raise ValueError('Unrecognised request/error event; audit its attempt scope explicitly')
             continue
         key = (event.get('episode_id'), event.get('decision_index'), event.get('stage', 'decision'), event.get('attempt'))
         if kind == 'request_intent':
             if key in pending:
                 raise ValueError('Duplicate request intent')
             pending[key] = event
+        elif kind in failures | waiting:
+            # Link only explicit standard identities; otherwise count a separate
+            # unreceipted attempt rather than silently losing an error/pending call.
+            linked = key in pending and event.get('attempt') is not None and event.get('decision_index') is not None
+            if not linked:
+                key = ('standalone', ordinal)
+                pending[key] = event
+            if kind in failures:
+                if key in results:
+                    raise ValueError('Ambiguous duplicate error/result attempt')
+                results[key] = dict(event, request_failed=True)
         else:
             if key not in pending or key in results:
                 raise ValueError('Request result has no unique matching intent')
-            results[key] = event
-    receipts = [response_receipt(results.get(key, {}).get('raw_response'), results.get(key, {}).get('billing_receipt'))
-                for key in pending]
+            results[key] = dict(event, request_failed=event.get('valid') is False)
+    receipts = []
+    for key in pending:
+        result = results.get(key, {})
+        receipt = response_receipt(result.get('raw_response'), result.get('billing_receipt'))
+        receipt['request_failed'] = result.get('request_failed') is True
+        receipts.append(receipt)
     return aggregate_receipts(receipts, request_count=len(pending), coverage_complete=scope_complete,
                               includes_retries=True, includes_auxiliary_calls=True)
 
@@ -159,6 +189,17 @@ def validate_public_cost(record):
             or isinstance(count, bool) or not isinstance(count, int) or count <= 0
             or isinstance(known, bool) or not isinstance(known, int) or count != known):
         raise ValueError('Exact all-in cost requires complete explicit attempt billing provenance')
+    for field in ('source_request_count', 'source_attempt_count', 'error_count',
+                  'unreceipted_count', 'unreceipted_attempt_count', 'unbilled_error_attempts_unknown'):
+        number = provenance.get(field)
+        if isinstance(number, bool) or not isinstance(number, int) or number < 0:
+            raise ValueError('Attempt-scope counters must be explicit nonnegative integers')
+    if (provenance.get('attempt_scope_verified') is not True
+            or provenance['source_request_count'] != count or provenance['source_attempt_count'] != count
+            or provenance['unreceipted_count'] != 0 or provenance['unreceipted_attempt_count'] != 0
+            or provenance['unbilled_error_attempts_unknown'] != 0
+            or provenance['error_count'] > count):
+        raise ValueError('Complete billing requires every source attempt, including errors and pending calls')
     actual = provenance.get('actual_costed_request_count')
     if isinstance(actual, bool) or not isinstance(actual, int) or not 0 <= actual <= count:
         raise ValueError('Actual receipt coverage must be explicit')
@@ -178,10 +219,16 @@ def validate_public_cost(record):
     return exact_value is not None
 
 
-def merge_public_cost(record, evidence):
+def merge_public_cost(record, evidence, *, replace_invalidated=False):
     """Never downgrade or silently replace an already audited exact cost."""
-    current_exact = validate_public_cost(record)
     incoming_exact = validate_public_cost(evidence)
+    if replace_invalidated:
+        if evidence.get('cost_provenance', {}).get('attempt_scope_verified') is not True:
+            raise ValueError('Audited replacement requires a verified source-attempt inventory')
+        replacement = {key: value for key, value in record.items() if key not in COST_FIELDS}
+        replacement.update({key: evidence[key] for key in COST_FIELDS if key in evidence})
+        return replacement
+    current_exact = validate_public_cost(record)
     if current_exact:
         if incoming_exact and amount(record['cost_usd']) != amount(evidence['cost_usd']):
             raise ValueError('Conflicting audited cost; reconcile the receipts explicitly')
