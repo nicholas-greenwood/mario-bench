@@ -1,5 +1,6 @@
 # Deploy only the website and its published benchmark dataset.
 /*
+!/README.md
 !/web
 !web/**
 !/results
@@ -11,6 +12,7 @@ web/.next/
 web/.vercel/
 web/screenshots/
 web/public/benchmark-data/
+web/public/game/*.nes
 web/tsconfig.tsbuildinfo
 **/.env
 **/.env.*
