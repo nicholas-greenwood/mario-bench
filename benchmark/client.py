@@ -67,8 +67,9 @@ def request_body(model, state, image_png=None, *, profile="joint-visible-v1", st
 
 
 class Client:
-    def __init__(self, key, model, timeout):
+    def __init__(self, key, model, timeout, *, decoder=None):
         self.key, self.model, self.timeout = key, model, timeout
+        self.decoder = decoder
         self.connection = None
         self.validator = OpenRouterPolicy(key, model=model['id'], timeout=timeout)
 
@@ -92,6 +93,7 @@ class Client:
             raw = response.read()
             try:
                 result = json.loads(raw)
+                canonical(result)  # Reject non-finite JSON before it can corrupt a durable log.
             except (ValueError, UnicodeError):
                 record['response_text'] = raw.decode(errors='replace')[:16384]
                 record.update(failure_class='infrastructure', retryable=True)
@@ -108,7 +110,8 @@ class Client:
                 raise PolicyError('API service error envelope instead of a decision')
             if not isinstance(result.get('answers'), dict) or set(result['answers']) != set(body['questions']):
                 raise PolicyError('Response question keys differ from the requested contract')
-            parsed = self.validator._parse_response(result, 0, record['header_request_id'])
+            parsed = (self.decoder(result, body, record['header_request_id']) if self.decoder
+                      else self.validator._parse_response(result, 0, record['header_request_id']))
             # A schema error is a model invalid action; service errors remain infrastructure.
             expected = self.model.get('expected_returned_model')
             if expected and parsed['model'] != expected:

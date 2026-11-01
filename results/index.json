@@ -740,7 +740,7 @@
         "life_budget": 1,
         "selected_attempt": true,
         "matched_cohort": false,
-        "profile_id": "pplx-pixels-partial",
+        "profile_id": "pplx-pixels-sampled-clear-t005-seed0",
         "probability_sampler": {
           "kind": "seeded_tempered_model_probabilities",
           "temperature": 0.05,
@@ -2839,7 +2839,7 @@
         "life_budget": 1,
         "selected_attempt": true,
         "matched_cohort": false,
-        "profile_id": "pplx-pixels-partial",
+        "profile_id": "pplx-pixels-sampled-clear-t005-seed0",
         "probability_sampler": {
           "kind": "seeded_tempered_model_probabilities",
           "temperature": 0.05,
