@@ -197,15 +197,17 @@ def load_key():
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--profile', help='Explicit selected frozen development profile; see benchmark/profiles/README.md')
+    parser.add_argument('--max-native-frames', type=int, help='Frozen-profile immutable native frame cap (default6000)')
     parser.add_argument('--roster', type=Path, default=HERE / 'models.json')
     parser.add_argument('--models', nargs='+')
     parser.add_argument('--levels', nargs='+', choices=['1-1', '1-2', '1-3', '1-4'], default=['1-1'])
-    parser.add_argument('--track', choices=['state', 'image'], default='state')
+    parser.add_argument('--track', choices=['state', 'image'], default=None)
     parser.add_argument('--state-serialization', choices=['auto', 'text', 'json_object'], default='auto')
     parser.add_argument('--image-eligibility', choices=['verified', 'advertised'], default='verified')
     parser.add_argument('--policy', choices=['openrouter', 'fake'], default='openrouter')
     parser.add_argument('--concurrency', type=int, default=22)
-    parser.add_argument('--cadence', type=int, default=4)
+    parser.add_argument('--cadence', type=int, default=None)
     parser.add_argument('--frames', type=int, default=6000)
     parser.add_argument('--decisions', type=int)
     parser.add_argument('--trials', type=int, default=1)
@@ -214,6 +216,16 @@ def main():
     parser.add_argument('--output', type=Path)
     parser.add_argument('--execute', action='store_true', help='Run planned model requests; otherwise print plan only')
     args = parser.parse_args()
+    if args.profile:
+        from benchmark.profile_runtime import PROFILE_IDS
+        if args.profile not in PROFILE_IDS:
+            parser.error("Runnable frozen profiles: " + ", ".join(PROFILE_IDS))
+        from benchmark.frozen_run import run_profile
+        return run_profile(args, parser)
+    if args.max_native_frames is not None:
+        parser.error("--max-native-frames requires --profile; use --frames for the common runner")
+    args.track = args.track or "state"
+    args.cadence = 4 if args.cadence is None else args.cadence
     if min(args.concurrency, args.cadence, args.frames, args.trials) < 1 or not 0 <= args.retries <= 3 or not math.isfinite(args.timeout) or args.timeout <= 0:
         parser.error('Positive budgets/timeouts required; retries must be between zero and three')
     if args.frames % args.cadence:

@@ -19,6 +19,9 @@ from benchmark.scoring import score_episode, validated_progress_x
 
 def audit(path):
     manifest = json.loads((path / 'manifest.json').read_text())
+    if manifest.get('runner') == 'frozen-profiles-v1':
+        from benchmark.frozen_run import audit_profile
+        return audit_profile(path, manifest)
     cadence = manifest['config']['cadence']
     models = {m['id']: m for m in manifest['models']}
     calls = valid = actions = 0

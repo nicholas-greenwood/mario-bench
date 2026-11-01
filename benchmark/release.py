@@ -27,8 +27,9 @@ def candidate_manifest() -> dict:
     roster = json.loads((ROOT / 'benchmark/models.json').read_text())
     source_files = sorted(
         path for package in ('prototype', 'benchmark')
-        for path in (ROOT / package).glob('*.py')
+        for path in (ROOT / package).rglob('*.py')
     )
+    source_files += sorted((ROOT / 'benchmark/profiles').glob('*.json'))
     source_files += [ROOT / name for name in (
         'benchmark/protocol.json', 'benchmark/models.json', 'pyproject.toml',
         'requirements.txt', 'requirements.lock.txt',
