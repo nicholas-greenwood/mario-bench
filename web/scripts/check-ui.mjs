@@ -32,7 +32,7 @@ const noOverflow = page => page.evaluate(() => document.documentElement.scrollWi
 // Desktop
 const { context, page } = await open(1440, 1000);
 assert.ok(await page.locator('h1').isVisible());
-assert.ok(await page.getByText(/api latency doesn't affect scores/).isVisible());
+assert.ok(await page.getByText(/fixed number of frames per action/).isVisible());
 assert.ok(await page.getByText(/not a ranking/).isVisible());
 
 // every recorded run, with the exact identity and numbers from the index
@@ -45,8 +45,8 @@ for (const e of observations) {
   assert.ok(cells[0].includes(e.model_id), `${e.id}: exact model identity`);
   assert.equal(cells[2], e.progress_pct === null ? '–' : pct(e.progress_pct), `${e.id}: no invented score`);
   assert.equal(Number(cells[4].replaceAll(',', '')), e.native_frames);
-  if (e.status === 'api_abort') assert.equal(cells[7], 'incomplete');
-  else if (/abort/.test(e.status)) assert.equal(cells[7], 'aborted');
+  if (e.status === 'api_abort') assert.equal(cells[6], 'incomplete');
+  else if (/abort/.test(e.status)) assert.equal(cells[6], 'aborted');
   if (!e.replay_href) assert.ok((await page.locator(`tr[data-run-id="${e.id}"] a`).getAttribute('href')).endsWith(e.trace_href));
 }
 // Check null-score sorting in both directions before moving to the replay view.
@@ -65,7 +65,6 @@ for (const e of examples) {
   assert.equal(cells[3], e.completed ? `${e.nominal_game_seconds_to_completion.toFixed(2)} s` : '–');
   assert.equal(Number(cells[4].replace(/,/g, '')), e.native_frames);
   assert.equal(Number(cells[5]), e.decisions);
-  assert.equal(Number(cells[6]), e.experiment_config.cadence);
 }
 assert.equal(await page.getByText(/cost|\$/i).count(), 0, 'no cost is shown for api runs');
 
@@ -80,12 +79,12 @@ for (const v of videos) {
 // every column sorts both ways; missing values stay last
 const headers = page.locator('thead th');
 const count = await headers.count();
-assert.equal(count, 8);
+assert.equal(count, 7);
 const parse = (text, col) => {
   if (text === '–') return null;
   if (col === 0) return text.split('\n')[0].trim().toLowerCase();
   if (col === 1) return text;
-  if (col === 7) return text;
+  if (col === 6) return text;
   return Number(text.replace(/[,%s ]/g, ''));
 };
 for (let col = 0; col < count; col++) {
@@ -194,9 +193,12 @@ await page.screenshot({ path: shots + 'redesign-desktop-dark.png', fullPage: tru
 await context.close();
 
 // fresh contexts per viewport avoid compositor artefacts in screenshots
-for (const [width, name] of [[1440, 'desktop'], [768, 'tablet'], [390, 'mobile']]) {
+for (const [width, name] of [[1920, 'wide'], [1440, 'desktop'], [1280, 'laptop'], [1024, 'small-desktop'], [768, 'tablet'], [390, 'mobile']]) {
   const { context, page } = await open(width, width === 390 ? 844 : 1000);
   assert.ok(await noOverflow(page), `${width} has no page overflow`);
+  assert.ok(await page.locator('.table-scroll').evaluate(el => el.scrollWidth <= el.clientWidth), `${width} table fits without scrolling`);
+  assert.equal(await page.getByRole('columnheader', { name: 'cadence', exact: true }).count(), 0);
+  assert.equal(await page.getByText('saved in this browser · no frame limit', { exact: true }).count(), 0);
   assert.equal(await page.locator('tbody tr').count(), observations.length);
   assert.ok(await page.locator('h1').isVisible());
   const screens = await page.locator('.screen').evaluateAll(s => s.map(e => e.getBoundingClientRect().width));
@@ -211,4 +213,4 @@ for (const [width, name] of [[1440, 'desktop'], [768, 'tablet'], [390, 'mobile']
 
 await browser.close();
 assert.deepEqual(errors, []);
-console.log(`ui check passed: all ${observations.length} observations, ${examples.length} replays, null scores, abort status, 8 sortable columns, hover-only rows, matched screens, human play, themes, responsive`);
+console.log(`ui check passed: ${observations.length} observations, ${examples.length} replays, 7 sortable columns, no table scrolling at 6 widths, hover-only rows, matched screens, human play, themes`);

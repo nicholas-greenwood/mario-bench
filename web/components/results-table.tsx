@@ -16,7 +16,6 @@ const COLUMNS: Column[] = [
   { key: 'clear', label: 'clear time', title: 'native frames to the flag / 60, excluding api waits', numeric: true, first: 'ascending', value: run => run.clearSeconds },
   { key: 'frames', label: 'frames', title: 'native frames played', numeric: true, first: 'ascending', value: run => run.nativeFrames },
   { key: 'decisions', label: 'decisions', numeric: true, first: 'ascending', value: run => run.decisions },
-  { key: 'cadence', label: 'cadence', title: 'native frames per decision', numeric: true, first: 'ascending', value: run => run.cadence },
   { key: 'status', label: 'status', first: 'ascending', value: statusLabel },
 ];
 
@@ -91,13 +90,12 @@ export default function ResultsTable() {
                       <span className="run-id mono">{run.modelId}</span>
                     </button> : <a className="run-name" href={run.traceSrc} target="_blank" rel="noreferrer" aria-label={`inspect ${run.name}, ${trackLabel(run.track)} action trace`}><span>{run.name}</span><span className="run-id mono">{run.modelId} · trace ↗</span></a>}
                   </td>
-                  <td>{trackLabel(run.track)}</td>
-                  <td className="num">{run.progressPct === null ? <span className="faint" aria-label="score unavailable">–</span> : formatProgress(run.progressPct)}</td>
-                  <td className="num">{formatSeconds(run.clearSeconds) ?? <span className="faint" aria-label="not cleared">–</span>}</td>
-                  <td className="num">{run.nativeFrames?.toLocaleString('en-GB') ?? '–'}</td>
-                  <td className="num">{run.decisions ?? '–'}</td>
-                  <td className="num">{run.cadence ?? <span className="faint" aria-label="unknown">–</span>}</td>
-                  <td>{statusLabel(run)}</td>
+                  <td data-label="input">{trackLabel(run.track)}</td>
+                  <td className="num" data-label="progress">{run.progressPct === null ? <span className="faint" aria-label="score unavailable">–</span> : formatProgress(run.progressPct)}</td>
+                  <td className="num" data-label="clear time">{formatSeconds(run.clearSeconds) ?? <span className="faint" aria-label="not cleared">–</span>}</td>
+                  <td className="num" data-label="frames">{run.nativeFrames?.toLocaleString('en-GB') ?? '–'}</td>
+                  <td className="num" data-label="decisions">{run.decisions ?? '–'}</td>
+                  <td data-label="status">{statusLabel(run)}</td>
                 </tr>
               );
             })}
