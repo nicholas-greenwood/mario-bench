@@ -119,6 +119,21 @@ def safe_asset(root, relative):
     return path
 
 
+def duration_first_choice(session, action, image, frame, index):
+    """Rebuild both paused requests and reproduce the frozen motor sampler."""
+    bodies = {}
+    for stage, response in [('plan', action['native_plan_response']), ('motor', action['native_response'])]:
+        body = session.image_request(image, frame, index, stage=stage)
+        bodies[stage] = digest(body)
+        session.parse(response, body)
+        session.accept_stage(stage, response, body)
+    assert bodies == action['stage_request_sha256'], 'Frozen two-stage request bodies differ'
+    chosen = session.choose(action['native_response'], body)
+    for key, value in action['sampling'].items():
+        assert chosen['sampling'].get(key) == value, f'Frozen sampling differs: {key}'
+    return chosen
+
+
 def verify_episode(root, summary, render=False):
     trace_path = safe_asset(root, summary['trace_href'])
     assert hashlib.sha256(trace_path.read_bytes()).hexdigest() == summary['trace_sha256']
@@ -126,6 +141,10 @@ def verify_episode(root, summary, render=False):
     assert trace['id'] == summary['id']
     assert digest(trace['contract']) == summary['experiment_config']['contract_sha256']
     game, encoder = MarioGame(summary['level']), None
+    duration_first = trace['contract'].get('adapter') == 'duration_first'
+    if duration_first:
+        from benchmark.profile_runtime import ProfileSession
+        profile_session = ProfileSession(trace['id'])
     sampler = trace['contract'].get('probability_sampler')
     rng = random.Random(sampler['seed']) if sampler else None
     furthest = float(game.observe()['player']['x'])
@@ -147,7 +166,11 @@ def verify_episode(root, summary, render=False):
             if action.get('question_names') is not None:
                 assert set(action['native_response']['answers']) == set(action['question_names'])
             response = action['native_response']
-            if sampler:
+            image = profile_session.screenshot(game.frame_rgb()) if duration_first else None
+            if duration_first:
+                chosen = duration_first_choice(profile_session, action, image, game.frame, index)
+                expected = [[chosen['requested_frames'], chosen['buttons']]]
+            elif sampler:
                 from benchmark.profiles.probability_sampler_v1 import sample_choice
                 probabilities = response['answers']['action']['probabilities']
                 choice, draw, _ = sample_choice(probabilities, rng, sampler['temperature'])
@@ -155,7 +178,8 @@ def verify_episode(root, summary, render=False):
                 assert action['sampling']['sampled_choice'] == choice
                 response = json.loads(json.dumps(response))
                 response['answers']['action']['choice'] = choice
-            expected = decode_sequence(trace, response, summary['experiment_config']['cadence'])
+            if not duration_first:
+                expected = decode_sequence(trace, response, summary['experiment_config']['cadence'])
             # Older showcase exports shorten only their terminal held interval.
             recorded = action['sequence']
             assert len(recorded) == len(expected)
@@ -177,6 +201,9 @@ def verify_episode(root, summary, render=False):
                     break
             assert recorded == expected or game.done, 'Only terminal actions can have a partial interval'
             assert action['frame_after'] == game.frame
+            if duration_first:
+                profile_session.advance(image=image, frame=action['frame_before'], decision=index,
+                                        buttons=chosen['buttons'], actual_frames=game.frame-action['frame_before'])
             assert digest(game.observe()) == action['after_observation_sha256']
             assert hashlib.sha256(game.frame_rgb().tobytes()).hexdigest() == action['screen_after_sha256']
         assert game.frame == summary['native_frames']
