@@ -12,6 +12,7 @@ web/.next/
 web/.vercel/
 web/screenshots/
 web/public/benchmark-data/
+web/public/game/*.nes
 web/tsconfig.tsbuildinfo
 **/.env
 **/.env.*
