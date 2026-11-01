@@ -81,6 +81,18 @@ test('legacy output is unchanged when no evaluation cohort is present', () => {
   assert.equal(parseDataset(failedPilot).commonBenchmark, null);
 });
 
+test('optional native death flags must agree with the outcome when present', () => {
+  const data = fixture();
+  assert.equal(result(data).meanProgressPct, 80, 'older exports may omit the optional death flag');
+  for (const trial of data.common_benchmark.trials) trial.death = !trial.flag_get;
+  assert.equal(result(data).meanProgressPct, 80, 'consistent explicit flags remain valid');
+  data.common_benchmark.trials[0].death = true;
+  assert.equal(result(data).meanProgressPct, null, 'a completed flag cannot also be a native death');
+  data.common_benchmark.trials[0].death = false;
+  data.common_benchmark.trials[2].death = false;
+  assert.equal(result(data).meanProgressPct, null, 'a declared game-over death cannot explicitly deny death');
+});
+
 for (const [reason, mutate] of [
   ['infrastructure', trial => { trial.rankable = false; trial.status = 'technical_pending'; trial.progress_pct = null; }],
   ['contradictory technical pending', trial => { trial.technical_pending = true; }],

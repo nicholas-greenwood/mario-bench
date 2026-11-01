@@ -46,11 +46,12 @@ function validOutcome(trial: Raw) {
   const frames = integer(trial.native_frames), progress = number(trial.progress_pct);
   if (trial.technical_pending === true || trial.rankable !== true || trial.native_replay_verified !== true || frames === null || frames < 0 || frames > 6000
     || progress === null || progress < 0 || progress > 100) return false;
+  if (trial.death !== undefined && typeof trial.death !== 'boolean') return false;
   if (trial.status === 'completed') {
-    return trial.flag_get === true && progress === 100 && frames > 0 && trial.native_frames_to_completion === frames;
+    return trial.death !== true && trial.flag_get === true && progress === 100 && frames > 0 && trial.native_frames_to_completion === frames;
   }
   if (trial.flag_get !== false || progress > 99.9 || trial.native_frames_to_completion != null) return false;
-  if (trial.status === 'game_over') return frames > 0;
+  if (trial.status === 'game_over') return trial.death !== false && frames > 0;
   if (trial.status === 'frame_budget') return frames === 6000;
   // A bad head or parser is technical by default, not an invented model score.
   return trial.status === 'model_contract_failure' && trial.technical_pending === false
