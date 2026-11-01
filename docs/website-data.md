@@ -2,7 +2,7 @@
 
 `results/index.json` is the entry point. the website and README both use
 `readPublishedIndex` and `parseDataset`; they resolve the optional
-`common_cohort_href` before selecting rows
+`common_cohort_href` and `common_image_cohort_href` before selecting rows
 
 ## common evaluation
 
@@ -19,8 +19,11 @@ calibrated progress mapping; other world 1 endpoints remain null
 the state track uses privileged current-viewport ram terrain and motion, which
 can include unrevealed tile ids. the frozen term visible refers to viewport scope,
 not rendered pixels. there is no offscreen or future-buffer lookahead or rollout
-common image calibration is pending; the image development history remains
-pixels-only and outside the common state means
+the separate common image progress baseline uses actual current and past full
+frames, fixed 7-frame actions and a seeded temperature-0.05 native probability
+sampler. its 16 model rows require three valid prescribed runs each. the earlier
+failed calibration gates remain failed; historical clear evidence is not scored
+as a final evaluation trial. state and image means use separate frozen protocols
 
 `common_benchmark_status` reports the published cutoff and complete/pending
 counts. do not turn pending means into zero or claim that a partial publication
@@ -42,7 +45,8 @@ of these earlier records
 ## files and paths
 
 - `results/index.json`: entry point, legacy records and optional cohort reference
-- `results/common-state/index.json`: frozen evaluation manifest, trials and means
+- `results/common-state/index.json`: frozen state evaluation manifest, trials and means
+- `results/common-image/index.json`: separate image baseline, trials and means
 - `results/models.json`: model/provider catalogue; compatibility is separate from performance
 - `results/traces/` and `results/common-state/traces/`: native answers, actual inputs,
   request/attempt proofs and state/screen hashes

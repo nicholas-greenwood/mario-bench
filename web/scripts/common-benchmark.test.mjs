@@ -433,7 +433,7 @@ test('website and README resolve the same optional cohort file inside the datase
     const data = fixture();
     await mkdir(path.join(directory, 'common'));
     await writeFile(path.join(directory, 'common/index.json'), JSON.stringify({ schema_version: 1, common_benchmark: data.common_benchmark }));
-    delete data.common_benchmark; data.common_cohort_href = 'common/index.json';
+    delete data.common_benchmark; delete data.common_image_cohort_href; data.common_cohort_href = 'common/index.json';
     await writeFile(path.join(directory, 'index.json'), JSON.stringify(data));
     assert.equal(result(await readPublishedIndex(path.join(directory, 'index.json'))).meanProgressPct, 80);
     data.common_cohort_href = '../outside.json';

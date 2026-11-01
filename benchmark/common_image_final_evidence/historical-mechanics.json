@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "status": "conditional_candidate_not_activated",
+  "source_sha256": {
+    "benchmark/common_image_v2_policy.py": "19cdd3382f9919d4b474691b2fc78cb676e1382d94b1fd43b21280e6039483da",
+    "benchmark/profiles/image_v1.py": "920eb9982577e1fb32646e05eef83f17af4f7907fbac23a02a5f275203638481",
+    "benchmark/profiles/probability_sampler_v1.py": "351ca09a9b52c67face02a2bebeb5a77f8583caa97c1c95af8b9166cb6ff2e63"
+  },
+  "verifier_sha256": "5e99f8de109c643a7e171dc1e2f91c8906233db0fa66f0bda29d8fa0dcc938e3",
+  "neutral_contract_sha256": "dbdca2aec90fd9ff13bba50202e6119c9d513cfd0ad191d1bcf6006862d7b5ef",
+  "historical": {
+    "fixture": "results/traces/pplx-pixels-sampled-clear-t005-seed0.json",
+    "fixture_sha256": "30392705e81db66ea234bfd71ac64e9cab2cca3dc1577829a620d3ff8f48432d",
+    "exact_request_bodies": 268,
+    "exact_sampler_draws": 268,
+    "temperature": 0.05,
+    "seed": 0,
+    "native_flag_frame": 1871,
+    "all_observation_and_rgb_hashes_verified": true
+  },
+  "generic_boundary": {
+    "transport_pins_with_identical_evidence": 22,
+    "full_current_and_maximum_full_past_screens": 2,
+    "maximum_previous_controls": 2,
+    "requested_native_frames": 7,
+    "ram_fields_rejected": true,
+    "malformed_vectors_and_pins_rejected_before_rng": true,
+    "external_seed9001_verified": true
+  },
+  "activation": "Not launched. Compiler/root own the v1-zero-clear gate, immutable registration and any paid work."
+}

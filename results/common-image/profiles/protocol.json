@@ -1,0 +1,873 @@
+{
+  "schema_version": 1,
+  "manifest": {
+    "protocol_id": "mario-common-image-h7-progress-baseline-v1",
+    "phase": "evaluation",
+    "evaluation_scope": "image_progress_baseline",
+    "tracks": [
+      "image"
+    ],
+    "frozen_at_utc": "2026-11-01T23:16:02.348732+00:00",
+    "level": "1-1",
+    "temperature": 0.05,
+    "cadence_native_frames": 7,
+    "requested_native_hold": 7,
+    "native_frame_budget": 6000,
+    "life_budget": 1,
+    "maximum_control_actions": 858,
+    "repeat_schedule": [
+      {
+        "episode_id": "image-h7-baseline-evaluation-baseten__elephant-1-repeat0-seed101",
+        "model_id": "baseten/elephant-1",
+        "track": "image",
+        "temperature": 0.05,
+        "repeat_id": 0,
+        "local_rng_seed": 101,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "image-h7-baseline-evaluation-baseten__elephant-1-repeat1-seed102",
+        "model_id": "baseten/elephant-1",
+        "track": "image",
+        "temperature": 0.05,
+        "repeat_id": 1,
+        "local_rng_seed": 102,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "image-h7-baseline-evaluation-baseten__elephant-1-repeat2-seed103",
+        "model_id": "baseten/elephant-1",
+        "track": "image",
+        "temperature": 0.05,
+        "repeat_id": 2,
+        "local_rng_seed": 103,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "image-h7-baseline-evaluation-baseten__joey-1-repeat0-seed101",
+        "model_id": "baseten/joey-1",
+        "track": "image",
+        "temperature": 0.05,
+        "repeat_id": 0,
+        "local_rng_seed": 101,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "image-h7-baseline-evaluation-baseten__joey-1-repeat1-seed102",
+        "model_id": "baseten/joey-1",
+        "track": "image",
+        "temperature": 0.05,
+        "repeat_id": 1,
+        "local_rng_seed": 102,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "image-h7-baseline-evaluation-baseten__joey-1-repeat2-seed103",
+        "model_id": "baseten/joey-1",
+        "track": "image",
+        "temperature": 0.05,
+        "repeat_id": 2,
+        "local_rng_seed": 103,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "image-h7-baseline-evaluation-baseten__mammoth-1-repeat0-seed101",
+        "model_id": "baseten/mammoth-1",
+        "track": "image",
+        "temperature": 0.05,
+        "repeat_id": 0,
+        "local_rng_seed": 101,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "image-h7-baseline-evaluation-baseten__mammoth-1-repeat1-seed102",
+        "model_id": "baseten/mammoth-1",
+        "track": "image",
+        "temperature": 0.05,
+        "repeat_id": 1,
+        "local_rng_seed": 102,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "image-h7-baseline-evaluation-baseten__mammoth-1-repeat2-seed103",
+        "model_id": "baseten/mammoth-1",
+        "track": "image",
+        "temperature": 0.05,
+        "repeat_id": 2,
+        "local_rng_seed": 103,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "image-h7-baseline-evaluation-cloudflare__clef-repeat0-seed101",
+        "model_id": "cloudflare/clef",
+        "track": "image",
+        "temperature": 0.05,
+        "repeat_id": 0,
+        "local_rng_seed": 101,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "image-h7-baseline-evaluation-cloudflare__clef-repeat1-seed102",
+        "model_id": "cloudflare/clef",
+        "track": "image",
+        "temperature": 0.05,
+        "repeat_id": 1,
+        "local_rng_seed": 102,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "image-h7-baseline-evaluation-cloudflare__clef-repeat2-seed103",
+        "model_id": "cloudflare/clef",
+        "track": "image",
+        "temperature": 0.05,
+        "repeat_id": 2,
+        "local_rng_seed": 103,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "image-h7-baseline-evaluation-cloudflare__clef-flash-repeat0-seed101",
+        "model_id": "cloudflare/clef-flash",
+        "track": "image",
+        "temperature": 0.05,
+        "repeat_id": 0,
+        "local_rng_seed": 101,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "image-h7-baseline-evaluation-cloudflare__clef-flash-repeat1-seed102",
+        "model_id": "cloudflare/clef-flash",
+        "track": "image",
+        "temperature": 0.05,
+        "repeat_id": 1,
+        "local_rng_seed": 102,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "image-h7-baseline-evaluation-cloudflare__clef-flash-repeat2-seed103",
+        "model_id": "cloudflare/clef-flash",
+        "track": "image",
+        "temperature": 0.05,
+        "repeat_id": 2,
+        "local_rng_seed": 103,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "image-h7-baseline-evaluation-cloudflare__clef-omni-repeat0-seed101",
+        "model_id": "cloudflare/clef-omni",
+        "track": "image",
+        "temperature": 0.05,
+        "repeat_id": 0,
+        "local_rng_seed": 101,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "image-h7-baseline-evaluation-cloudflare__clef-omni-repeat1-seed102",
+        "model_id": "cloudflare/clef-omni",
+        "track": "image",
+        "temperature": 0.05,
+        "repeat_id": 1,
+        "local_rng_seed": 102,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "image-h7-baseline-evaluation-cloudflare__clef-omni-repeat2-seed103",
+        "model_id": "cloudflare/clef-omni",
+        "track": "image",
+        "temperature": 0.05,
+        "repeat_id": 2,
+        "local_rng_seed": 103,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "image-h7-baseline-evaluation-inception__mercury-decide-repeat0-seed101",
+        "model_id": "inception/mercury-decide",
+        "track": "image",
+        "temperature": 0.05,
+        "repeat_id": 0,
+        "local_rng_seed": 101,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "image-h7-baseline-evaluation-inception__mercury-decide-repeat1-seed102",
+        "model_id": "inception/mercury-decide",
+        "track": "image",
+        "temperature": 0.05,
+        "repeat_id": 1,
+        "local_rng_seed": 102,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "image-h7-baseline-evaluation-inception__mercury-decide-repeat2-seed103",
+        "model_id": "inception/mercury-decide",
+        "track": "image",
+        "temperature": 0.05,
+        "repeat_id": 2,
+        "local_rng_seed": 103,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "image-h7-baseline-evaluation-liquid__d1-ultra-repeat0-seed101",
+        "model_id": "liquid/d1-ultra",
+        "track": "image",
+        "temperature": 0.05,
+        "repeat_id": 0,
+        "local_rng_seed": 101,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "image-h7-baseline-evaluation-liquid__d1-ultra-repeat1-seed102",
+        "model_id": "liquid/d1-ultra",
+        "track": "image",
+        "temperature": 0.05,
+        "repeat_id": 1,
+        "local_rng_seed": 102,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "image-h7-baseline-evaluation-liquid__d1-ultra-repeat2-seed103",
+        "model_id": "liquid/d1-ultra",
+        "track": "image",
+        "temperature": 0.05,
+        "repeat_id": 2,
+        "local_rng_seed": 103,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "image-h7-baseline-evaluation-liquid__d1.1-repeat0-seed101",
+        "model_id": "liquid/d1.1",
+        "track": "image",
+        "temperature": 0.05,
+        "repeat_id": 0,
+        "local_rng_seed": 101,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "image-h7-baseline-evaluation-liquid__d1.1-repeat1-seed102",
+        "model_id": "liquid/d1.1",
+        "track": "image",
+        "temperature": 0.05,
+        "repeat_id": 1,
+        "local_rng_seed": 102,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "image-h7-baseline-evaluation-liquid__d1.1-repeat2-seed103",
+        "model_id": "liquid/d1.1",
+        "track": "image",
+        "temperature": 0.05,
+        "repeat_id": 2,
+        "local_rng_seed": 103,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "image-h7-baseline-evaluation-nace-ai__drex-max-repeat0-seed101",
+        "model_id": "nace-ai/drex-max",
+        "track": "image",
+        "temperature": 0.05,
+        "repeat_id": 0,
+        "local_rng_seed": 101,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "image-h7-baseline-evaluation-nace-ai__drex-max-repeat1-seed102",
+        "model_id": "nace-ai/drex-max",
+        "track": "image",
+        "temperature": 0.05,
+        "repeat_id": 1,
+        "local_rng_seed": 102,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "image-h7-baseline-evaluation-nace-ai__drex-max-repeat2-seed103",
+        "model_id": "nace-ai/drex-max",
+        "track": "image",
+        "temperature": 0.05,
+        "repeat_id": 2,
+        "local_rng_seed": 103,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "image-h7-baseline-evaluation-openai__gpt-6-luna-decisions-repeat0-seed101",
+        "model_id": "openai/gpt-6-luna-decisions",
+        "track": "image",
+        "temperature": 0.05,
+        "repeat_id": 0,
+        "local_rng_seed": 101,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "image-h7-baseline-evaluation-openai__gpt-6-luna-decisions-repeat1-seed102",
+        "model_id": "openai/gpt-6-luna-decisions",
+        "track": "image",
+        "temperature": 0.05,
+        "repeat_id": 1,
+        "local_rng_seed": 102,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "image-h7-baseline-evaluation-openai__gpt-6-luna-decisions-repeat2-seed103",
+        "model_id": "openai/gpt-6-luna-decisions",
+        "track": "image",
+        "temperature": 0.05,
+        "repeat_id": 2,
+        "local_rng_seed": 103,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "image-h7-baseline-evaluation-perplexity__pplx-decider-flash-v1.2-repeat0-seed101",
+        "model_id": "perplexity/pplx-decider-flash-v1.2",
+        "track": "image",
+        "temperature": 0.05,
+        "repeat_id": 0,
+        "local_rng_seed": 101,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "image-h7-baseline-evaluation-perplexity__pplx-decider-flash-v1.2-repeat1-seed102",
+        "model_id": "perplexity/pplx-decider-flash-v1.2",
+        "track": "image",
+        "temperature": 0.05,
+        "repeat_id": 1,
+        "local_rng_seed": 102,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "image-h7-baseline-evaluation-perplexity__pplx-decider-flash-v1.2-repeat2-seed103",
+        "model_id": "perplexity/pplx-decider-flash-v1.2",
+        "track": "image",
+        "temperature": 0.05,
+        "repeat_id": 2,
+        "local_rng_seed": 103,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "image-h7-baseline-evaluation-perplexity__pplx-decider-v1.2-repeat0-seed101",
+        "model_id": "perplexity/pplx-decider-v1.2",
+        "track": "image",
+        "temperature": 0.05,
+        "repeat_id": 0,
+        "local_rng_seed": 101,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "image-h7-baseline-evaluation-perplexity__pplx-decider-v1.2-repeat1-seed102",
+        "model_id": "perplexity/pplx-decider-v1.2",
+        "track": "image",
+        "temperature": 0.05,
+        "repeat_id": 1,
+        "local_rng_seed": 102,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "image-h7-baseline-evaluation-perplexity__pplx-decider-v1.2-repeat2-seed103",
+        "model_id": "perplexity/pplx-decider-v1.2",
+        "track": "image",
+        "temperature": 0.05,
+        "repeat_id": 2,
+        "local_rng_seed": 103,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "image-h7-baseline-evaluation-respan__span-02-repeat0-seed101",
+        "model_id": "respan/span-02",
+        "track": "image",
+        "temperature": 0.05,
+        "repeat_id": 0,
+        "local_rng_seed": 101,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "image-h7-baseline-evaluation-respan__span-02-repeat1-seed102",
+        "model_id": "respan/span-02",
+        "track": "image",
+        "temperature": 0.05,
+        "repeat_id": 1,
+        "local_rng_seed": 102,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "image-h7-baseline-evaluation-respan__span-02-repeat2-seed103",
+        "model_id": "respan/span-02",
+        "track": "image",
+        "temperature": 0.05,
+        "repeat_id": 2,
+        "local_rng_seed": 103,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "image-h7-baseline-evaluation-typesafe__jev-1.13-repeat0-seed101",
+        "model_id": "typesafe/jev-1.13",
+        "track": "image",
+        "temperature": 0.05,
+        "repeat_id": 0,
+        "local_rng_seed": 101,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "image-h7-baseline-evaluation-typesafe__jev-1.13-repeat1-seed102",
+        "model_id": "typesafe/jev-1.13",
+        "track": "image",
+        "temperature": 0.05,
+        "repeat_id": 1,
+        "local_rng_seed": 102,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "image-h7-baseline-evaluation-typesafe__jev-1.13-repeat2-seed103",
+        "model_id": "typesafe/jev-1.13",
+        "track": "image",
+        "temperature": 0.05,
+        "repeat_id": 2,
+        "local_rng_seed": 103,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "image-h7-baseline-evaluation-typesafe__jev-1.14-repeat0-seed101",
+        "model_id": "typesafe/jev-1.14",
+        "track": "image",
+        "temperature": 0.05,
+        "repeat_id": 0,
+        "local_rng_seed": 101,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "image-h7-baseline-evaluation-typesafe__jev-1.14-repeat1-seed102",
+        "model_id": "typesafe/jev-1.14",
+        "track": "image",
+        "temperature": 0.05,
+        "repeat_id": 1,
+        "local_rng_seed": 102,
+        "emulator_seed": 0
+      },
+      {
+        "episode_id": "image-h7-baseline-evaluation-typesafe__jev-1.14-repeat2-seed103",
+        "model_id": "typesafe/jev-1.14",
+        "track": "image",
+        "temperature": 0.05,
+        "repeat_id": 2,
+        "local_rng_seed": 103,
+        "emulator_seed": 0
+      }
+    ],
+    "media": {
+      "current_full_size": [
+        512,
+        480
+      ],
+      "source_native_size": [
+        256,
+        240
+      ],
+      "nearest_scale": 2,
+      "past_full_screens": 1,
+      "own_controls": 2,
+      "order": "FULLCURRENT then one FULLPAST; no crops or additional heads"
+    },
+    "sampling": {
+      "head": "action",
+      "formula": "all12nativep**(1/T);sortedkeys;oneRandom(seed)drawpercommittedmotor",
+      "temperature": 0.05,
+      "final_seeds": [
+        101,
+        102,
+        103
+      ],
+      "preflight_seed": 9001,
+      "selection_method": "predeclared_shared_baseline_not_pilot_selected"
+    },
+    "software_sha256": {
+      "benchmark/common_image_final_run.py": "22f9b42c60258cb35647fdcdfb027c2f30fe48aff93aba109ef213771922024e",
+      "benchmark/common_image_final_spec.json": "86e4974bc01f983980c1773184e75900856d55a3d68fa6fc32c43c416e91bf29",
+      "benchmark/common_image_final_evidence/negative-v1.json": "983ea565f48b385490f7b018b5119faad816b0ca3468310b56e6be74bdf61f31",
+      "benchmark/common_image_final_evidence/negative-v2.json": "a505e41e1847a576904feea5d63f21d716a47ec12c79f2fa02835454f554026b",
+      "benchmark/common_image_final_evidence/negative-v3.json": "38f081ab2fc0d3ca22ca90790585adc4ba7cafde15e27f8431636caad95ba8a0",
+      "benchmark/common_image_final_evidence/historical-mechanics.json": "9599dea865c7b675e7ee33b2ff1c98b6b34bca0abf21d2da15c6cbb9ae1be7f1",
+      "benchmark/common_image_v2_policy.py": "19cdd3382f9919d4b474691b2fc78cb676e1382d94b1fd43b21280e6039483da",
+      "benchmark/common_image_runtime_v2.py": "0a7fc35cd2654b20d386814c9376d905b57bde927ab3d0c4e0dfc66664dae95b",
+      "benchmark/common_image_run_v2.py": "8f239e3fcbca9559c857b8037f968a8622e8d50ba8408ff357f1964cb7b60c8a",
+      "benchmark/profiles/image_v1.py": "920eb9982577e1fb32646e05eef83f17af4f7907fbac23a02a5f275203638481",
+      "benchmark/profiles/probability_sampler_v1.py": "351ca09a9b52c67face02a2bebeb5a77f8583caa97c1c95af8b9166cb6ff2e63",
+      "benchmark/client.py": "71c601070c57e0920089a41d5a054157c633b38396e2c9f0637ef2d86d762d58",
+      "benchmark/costs.py": "014aed8425326468bf1a570f95126a135dfcec3f45ee4ef27490c47e123db1c7",
+      "benchmark/scoring.py": "0bb6eaf7e76e7e019b8f042fc9af10728828206928dc588b38c7132703b46423",
+      "benchmark/run.py": "b958123971c742c82f85a7dfd2bd11d63b7279d0325f801c42b3a9f1a328498c",
+      "prototype/emulator.py": "d71541a6c12a1cae821fbf2cd22381a709c639fefe06f07aee4d209c218ee0d8",
+      "prototype/decisions.py": "f4b90349b98c3a79dac41cc17cc45288f61a7c72c2bc024aa759b8f955fee391",
+      "prototype/control.py": "70452cbb94e4fa4a340b2450086d6b1d9b5268a689e1bce0e35fd24a217eb634",
+      "benchmark/protocol.json": "b50db77febc7519e1b7e5373d54bf69cf002c36a28e3b3bd297cb6191e7c0a54",
+      "benchmark/models.json": "5cac8363aa0faa687ae3106d3ab54823bfaf894260fdcc828b25bc5b3261525b",
+      "requirements.lock.txt": "36f24452255efa14dd0088b4f82fe325c48e5f2d8c3716a4ae3538ef0a5db455"
+    },
+    "roster_source_sha256": "5cac8363aa0faa687ae3106d3ab54823bfaf894260fdcc828b25bc5b3261525b",
+    "actual_rom_sha256": "ec299b990e8bfee8ba46e3f61d63b2e1ae5b8a2e431de84e2e4bbd692dc53586",
+    "initial_observation_sha256": "f622a8e29704d9c939aca042363f83949d1ea6f36bc1ce4f3a42f7fc404ec089",
+    "initial_screen_sha256": "86194c33cbeda37c4cab1c765cf02dfac0995ed9d66ff597fd9cbb79b35e67a0",
+    "observation_and_controller_hashes": {
+      "image_controller_sha256": "658d541b1df18a58fc37eb465f39d05d66b58a1074666b3fd70ab36848e0f6a4"
+    },
+    "acceptance_contract": {
+      "mode": "explicit_progress_baseline_v1",
+      "positive_pilot_required": false,
+      "native_clear_is_outcome": true,
+      "prior_failed_pilot_gates_preserved": true,
+      "spec_sha256": "86e4974bc01f983980c1773184e75900856d55a3d68fa6fc32c43c416e91bf29",
+      "image_controller_sha256": "658d541b1df18a58fc37eb465f39d05d66b58a1074666b3fd70ab36848e0f6a4",
+      "historical_mechanics": {
+        "trace_sha256": "30392705e81db66ea234bfd71ac64e9cab2cca3dc1577829a620d3ff8f48432d",
+        "exact_native_requests": 268,
+        "native_flag_frame": 1871,
+        "development_seed": 0,
+        "development_temperature": 0.05,
+        "not_a_scored_final_trial": true,
+        "pure_policy_sha256": "19cdd3382f9919d4b474691b2fc78cb676e1382d94b1fd43b21280e6039483da",
+        "runtime_sha256": "0a7fc35cd2654b20d386814c9376d905b57bde927ab3d0c4e0dfc66664dae95b"
+      },
+      "historical_mechanics_proof_sha256": "9599dea865c7b675e7ee33b2ff1c98b6b34bca0abf21d2da15c6cbb9ae1be7f1",
+      "preflight_protocol_sha256": "a2f3b3a61e492ef3370eeddfed3ec354f0ee3645a2ae5511ed6dcc099aae9113",
+      "preflight_report_sha256": "ba9b2a12515176d5fa180f778561b471a150947775c1bf6780509ec600026971",
+      "preflight_audit_sha256": "064ec4424b82fb19d4838bc5ada1940f1d6b903f21f726823bfb6db678c71455",
+      "preflight_model_count": 16,
+      "preflight_audit_complete": true,
+      "negative_calibration_proofs": [
+        {
+          "protocol_sha256": "66cd3ae7b068fc57add4b783328dceb5f7992ca55a8737a14ea2eef02ad9dd62",
+          "certificate_sha256": "983ea565f48b385490f7b018b5119faad816b0ca3468310b56e6be74bdf61f31",
+          "native_image_clears": 0
+        },
+        {
+          "protocol_sha256": "4f489c937469d7d68379fe83bc8d457faae83e67e0b00bdb39bc4ecddc105194",
+          "certificate_sha256": "a505e41e1847a576904feea5d63f21d716a47ec12c79f2fa02835454f554026b",
+          "native_image_clears": 0
+        },
+        {
+          "protocol_sha256": "3f6b8108c02a5a60bc91c841a868d9ff3724bb2de92d17b53ac5c431b4812675",
+          "certificate_sha256": "38f081ab2fc0d3ca22ca90790585adc4ba7cafde15e27f8431636caad95ba8a0",
+          "native_image_clears": 0
+        }
+      ],
+      "track": "image"
+    },
+    "protocol_sha256": "2f11c42b8d47f8cd8959e828243acacb8abcf83c478a6206508ebd635004fdf1",
+    "preregistered": true,
+    "emulator_seed": 0,
+    "provider_seed": null,
+    "predeclared_local_sampler_seeds": {
+      "image": [
+        101,
+        102,
+        103
+      ]
+    },
+    "calibration_only_episodes_excluded": true,
+    "eligible_model_provider_pairs": [
+      {
+        "model_id": "baseten/elephant-1",
+        "track": "image",
+        "request_model": "baseten/elephant-1-20261021",
+        "expected_returned_model": "baseten/elephant-1-20261021",
+        "provider": {
+          "only": [
+            "baseten"
+          ],
+          "allow_fallbacks": false
+        },
+        "expected_returned_provider_names": [
+          "BaseTen"
+        ]
+      },
+      {
+        "model_id": "baseten/joey-1",
+        "track": "image",
+        "request_model": "baseten/joey-1-20261029",
+        "expected_returned_model": "baseten/joey-1-20261029",
+        "provider": {
+          "only": [
+            "baseten"
+          ],
+          "allow_fallbacks": false
+        },
+        "expected_returned_provider_names": [
+          "BaseTen"
+        ]
+      },
+      {
+        "model_id": "baseten/mammoth-1",
+        "track": "image",
+        "request_model": "baseten/mammoth-1-20261021",
+        "expected_returned_model": "baseten/mammoth-1-20261021",
+        "provider": {
+          "only": [
+            "baseten"
+          ],
+          "allow_fallbacks": false
+        },
+        "expected_returned_provider_names": [
+          "BaseTen"
+        ]
+      },
+      {
+        "model_id": "cloudflare/clef",
+        "track": "image",
+        "request_model": "cloudflare/clef",
+        "expected_returned_model": "cloudflare/clef",
+        "provider": {
+          "only": [
+            "cloudflare"
+          ],
+          "allow_fallbacks": false
+        },
+        "expected_returned_provider_names": [
+          "Cloudflare"
+        ]
+      },
+      {
+        "model_id": "cloudflare/clef-flash",
+        "track": "image",
+        "request_model": "cloudflare/clef-flash",
+        "expected_returned_model": "cloudflare/clef-flash",
+        "provider": {
+          "only": [
+            "cloudflare"
+          ],
+          "allow_fallbacks": false
+        },
+        "expected_returned_provider_names": [
+          "Cloudflare"
+        ]
+      },
+      {
+        "model_id": "cloudflare/clef-omni",
+        "track": "image",
+        "request_model": "cloudflare/clef-omni-20261009",
+        "expected_returned_model": "cloudflare/clef-omni-20261009",
+        "provider": {
+          "only": [
+            "cloudflare"
+          ],
+          "allow_fallbacks": false
+        },
+        "expected_returned_provider_names": [
+          "Cloudflare"
+        ]
+      },
+      {
+        "model_id": "inception/mercury-decide",
+        "track": "image",
+        "request_model": "inception/mercury-decide-20260930",
+        "expected_returned_model": "inception/mercury-decide-20260930",
+        "provider": {
+          "only": [
+            "inception"
+          ],
+          "allow_fallbacks": false
+        },
+        "expected_returned_provider_names": [
+          "Inception"
+        ]
+      },
+      {
+        "model_id": "liquid/d1-ultra",
+        "track": "image",
+        "request_model": "liquid/d1-ultra-20261015",
+        "expected_returned_model": "liquid/d1-ultra-20261015",
+        "provider": {
+          "only": [
+            "liquid"
+          ],
+          "allow_fallbacks": false
+        },
+        "expected_returned_provider_names": [
+          "Liquid"
+        ]
+      },
+      {
+        "model_id": "liquid/d1.1",
+        "track": "image",
+        "request_model": "liquid/d1.1-20261027",
+        "expected_returned_model": "liquid/d1.1-20261027",
+        "provider": {
+          "only": [
+            "liquid"
+          ],
+          "allow_fallbacks": false
+        },
+        "expected_returned_provider_names": [
+          "Liquid"
+        ]
+      },
+      {
+        "model_id": "nace-ai/drex-max",
+        "track": "image",
+        "request_model": "nace-ai/drex-max-20261016",
+        "expected_returned_model": "nace-ai/drex-max-20261016",
+        "provider": {
+          "only": [
+            "deepinfra"
+          ],
+          "allow_fallbacks": false
+        },
+        "expected_returned_provider_names": [
+          "DeepInfra"
+        ]
+      },
+      {
+        "model_id": "openai/gpt-6-luna-decisions",
+        "track": "image",
+        "request_model": "openai/gpt-6-luna-decisions-20261006",
+        "expected_returned_model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": {
+          "only": [
+            "openai"
+          ],
+          "allow_fallbacks": false
+        },
+        "expected_returned_provider_names": [
+          "OpenAI"
+        ]
+      },
+      {
+        "model_id": "perplexity/pplx-decider-flash-v1.2",
+        "track": "image",
+        "request_model": "perplexity/pplx-decider-flash-v1.2-20261016",
+        "expected_returned_model": "perplexity/pplx-decider-flash-v1.2-20261016",
+        "provider": {
+          "only": [
+            "perplexity"
+          ],
+          "allow_fallbacks": false
+        },
+        "expected_returned_provider_names": [
+          "Perplexity"
+        ]
+      },
+      {
+        "model_id": "perplexity/pplx-decider-v1.2",
+        "track": "image",
+        "request_model": "perplexity/pplx-decider-v1.2-20261016",
+        "expected_returned_model": "perplexity/pplx-decider-v1.2-20261016",
+        "provider": {
+          "only": [
+            "perplexity"
+          ],
+          "allow_fallbacks": false
+        },
+        "expected_returned_provider_names": [
+          "Perplexity"
+        ]
+      },
+      {
+        "model_id": "respan/span-02",
+        "track": "image",
+        "request_model": "respan/span-02-20261015",
+        "expected_returned_model": "respan/span-02-20261015",
+        "provider": {
+          "only": [
+            "respan"
+          ],
+          "allow_fallbacks": false
+        },
+        "expected_returned_provider_names": [
+          "Respan"
+        ]
+      },
+      {
+        "model_id": "typesafe/jev-1.13",
+        "track": "image",
+        "request_model": "typesafe/jev-1.13-20260917",
+        "expected_returned_model": "typesafe/jev-1.13-20260917",
+        "provider": {
+          "only": [
+            "typesafe"
+          ],
+          "allow_fallbacks": false
+        },
+        "expected_returned_provider_names": [
+          "TypeSafe"
+        ]
+      },
+      {
+        "model_id": "typesafe/jev-1.14",
+        "track": "image",
+        "request_model": "typesafe/jev-1.14-20261014",
+        "expected_returned_model": "typesafe/jev-1.14-20261014",
+        "provider": {
+          "only": [
+            "typesafe"
+          ],
+          "allow_fallbacks": false
+        },
+        "expected_returned_provider_names": [
+          "TypeSafe"
+        ]
+      }
+    ]
+  },
+  "controller_contracts": {
+    "builder_profile_id": "pixels-edge-pplx-c7-v1",
+    "rules": "Play Super Mario Bros 1-1 alive to the flag toward the right. Use the actual screenshots to infer Mario, enemies, surfaces and motion. Game physics pauses while you decide. The selected complete button state is held for the whole declared interval. A starts a jump only on a NEW press while on a surface. Holding A during ascent increases height and airtime; releasing during ascent makes a shorter jump. Once descending, release A to prepare the next fresh press. Holding A through landing cannot start another jump. B runs faster and farther; momentum persists on release. Jump onto solid pipes/blocks/stairs or over gaps; time takeoff from the visible ground. Enemies hurt on side contact and can be stomped from above. Background hills/clouds are decorative. You choose all controls; no automatic correction exists.",
+    "questions": {
+      "action": {
+        "criteria": {
+          "left_B_held_A_held": "Horizontal left; B held; A held; vertical released.",
+          "left_B_held_A_released": "Horizontal left; B held; A released; vertical released.",
+          "left_B_released_A_held": "Horizontal left; B released; A held; vertical released.",
+          "left_B_released_A_released": "Horizontal left; B released; A released; vertical released.",
+          "released_B_held_A_held": "Horizontal released; B held; A held; vertical released.",
+          "released_B_held_A_released": "Horizontal released; B held; A released; vertical released.",
+          "released_B_released_A_held": "Horizontal released; B released; A held; vertical released.",
+          "released_B_released_A_released": "Horizontal released; B released; A released; vertical released.",
+          "right_B_held_A_held": "Horizontal right; B held; A held; vertical released.",
+          "right_B_held_A_released": "Horizontal right; B held; A released; vertical released.",
+          "right_B_released_A_held": "Horizontal right; B released; A held; vertical released.",
+          "right_B_released_A_released": "Horizontal right; B released; A released; vertical released."
+        },
+        "instructions": "Choose one complete simultaneous BUTTON STATE for the interval, not an abstract jump request. If A is already held, choosing A_held continues that same press and cannot start a fresh jump after landing. Holding A remains useful during ascent. Infer surfaces and motion from the current/past images.",
+        "type": "choice"
+      }
+    },
+    "metadata_template": {
+      "a_button_note": "A is currently RELEASED. Selecting A_held creates a fresh press, which can start a jump only if Mario is on a surface.",
+      "control_interval_frames": 7,
+      "currently_held_buttons": {
+        "horizontal": "released",
+        "jump": "released",
+        "run": "released",
+        "vertical": "released"
+      },
+      "game": "Super Mario Bros., world 1-1",
+      "native_frame": 0,
+      "observation_interface": "image_only",
+      "previous_model_controls": [],
+      "rules_and_button_semantics": "Play Super Mario Bros 1-1 alive to the flag toward the right. Use the actual screenshots to infer Mario, enemies, surfaces and motion. Game physics pauses while you decide. The selected complete button state is held for the whole declared interval. A starts a jump only on a NEW press while on a surface. Holding A during ascent increases height and airtime; releasing during ascent makes a shorter jump. Once descending, release A to prepare the next fresh press. Holding A through landing cannot start another jump. B runs faster and farther; momentum persists on release. Jump onto solid pipes/blocks/stairs or over gaps; time takeoff from the visible ground. Enemies hurt on side contact and can be stomped from above. Background hills/clouds are decorative. You choose all controls; no automatic correction exists.",
+      "screenshot_format": "CURRENT fullpaused screenshot FIRST; remaining images are PAST motion context, oldest-to-newest. All screens are native256x240 enlarged2x nearest."
+    },
+    "a_button_notes": {
+      "released": "A is currently RELEASED. Selecting A_held creates a fresh press, which can start a jump only if Mario is on a surface.",
+      "held": "A is ALREADY HELD. Selecting A_held continues this SAME press; it cannot start a new jump after landing. Holding remains useful during ascent. Release A to enable a subsequent fresh press."
+    },
+    "requested_frames": 7
+  },
+  "software_sha256": {
+    "benchmark/common_image_final_run.py": "22f9b42c60258cb35647fdcdfb027c2f30fe48aff93aba109ef213771922024e",
+    "benchmark/common_image_final_spec.json": "86e4974bc01f983980c1773184e75900856d55a3d68fa6fc32c43c416e91bf29",
+    "benchmark/common_image_final_evidence/negative-v1.json": "983ea565f48b385490f7b018b5119faad816b0ca3468310b56e6be74bdf61f31",
+    "benchmark/common_image_final_evidence/negative-v2.json": "a505e41e1847a576904feea5d63f21d716a47ec12c79f2fa02835454f554026b",
+    "benchmark/common_image_final_evidence/negative-v3.json": "38f081ab2fc0d3ca22ca90790585adc4ba7cafde15e27f8431636caad95ba8a0",
+    "benchmark/common_image_final_evidence/historical-mechanics.json": "9599dea865c7b675e7ee33b2ff1c98b6b34bca0abf21d2da15c6cbb9ae1be7f1",
+    "benchmark/common_image_v2_policy.py": "19cdd3382f9919d4b474691b2fc78cb676e1382d94b1fd43b21280e6039483da",
+    "benchmark/common_image_runtime_v2.py": "0a7fc35cd2654b20d386814c9376d905b57bde927ab3d0c4e0dfc66664dae95b",
+    "benchmark/common_image_run_v2.py": "8f239e3fcbca9559c857b8037f968a8622e8d50ba8408ff357f1964cb7b60c8a",
+    "benchmark/profiles/image_v1.py": "920eb9982577e1fb32646e05eef83f17af4f7907fbac23a02a5f275203638481",
+    "benchmark/profiles/probability_sampler_v1.py": "351ca09a9b52c67face02a2bebeb5a77f8583caa97c1c95af8b9166cb6ff2e63",
+    "benchmark/client.py": "71c601070c57e0920089a41d5a054157c633b38396e2c9f0637ef2d86d762d58",
+    "benchmark/costs.py": "014aed8425326468bf1a570f95126a135dfcec3f45ee4ef27490c47e123db1c7",
+    "benchmark/scoring.py": "0bb6eaf7e76e7e019b8f042fc9af10728828206928dc588b38c7132703b46423",
+    "benchmark/run.py": "b958123971c742c82f85a7dfd2bd11d63b7279d0325f801c42b3a9f1a328498c",
+    "prototype/emulator.py": "d71541a6c12a1cae821fbf2cd22381a709c639fefe06f07aee4d209c218ee0d8",
+    "prototype/decisions.py": "f4b90349b98c3a79dac41cc17cc45288f61a7c72c2bc024aa759b8f955fee391",
+    "prototype/control.py": "70452cbb94e4fa4a340b2450086d6b1d9b5268a689e1bce0e35fd24a217eb634",
+    "benchmark/protocol.json": "b50db77febc7519e1b7e5373d54bf69cf002c36a28e3b3bd297cb6191e7c0a54",
+    "benchmark/models.json": "5cac8363aa0faa687ae3106d3ab54823bfaf894260fdcc828b25bc5b3261525b",
+    "requirements.lock.txt": "36f24452255efa14dd0088b4f82fe325c48e5f2d8c3716a4ae3538ef0a5db455"
+  }
+}
