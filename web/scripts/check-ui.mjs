@@ -325,11 +325,11 @@ for (const [width, name] of [[1920, 'wide'], [1440, 'desktop'], [1280, 'laptop']
   if (parsed.commonBenchmark) {
     assert.ok(await page.locator('[data-common-benchmark]').first().isVisible());
     assert.ok(await noOverflow(page), `${width} benchmark has no page overflow`);
-    assert.ok(await page.locator('.table-scroll').evaluate(el => el.scrollWidth <= el.clientWidth), `${width} benchmark table fits`);
+    assert.ok(await page.locator('.table-scroll').evaluateAll(elements => elements.every(el => el.scrollWidth <= el.clientWidth)), `${width} benchmark table fits`);
     await page.getByRole('button', { name: `all runs (${published.length})`, exact: true }).click();
   }
   assert.ok(await noOverflow(page), `${width} has no page overflow`);
-  assert.ok(await page.locator('.table-scroll').evaluate(el => el.scrollWidth <= el.clientWidth), `${width} table fits without scrolling`);
+  assert.ok(await page.locator('.table-scroll').evaluateAll(elements => elements.every(el => el.scrollWidth <= el.clientWidth)), `${width} table fits without scrolling`);
   assert.equal(await page.getByRole('columnheader', { name: 'cadence', exact: true }).count(), 0);
   assert.equal(await page.getByRole('columnheader', { name: 'frames', exact: true }).count(), 0);
   assert.equal(await page.locator('td[data-label="frames"]').count(), 0);
