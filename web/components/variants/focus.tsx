@@ -1,34 +1,30 @@
 'use client';
 
-import {
-  ArenaControls,
-  HumanSeat,
-  Leaderboard,
-  SiteNav,
-  ReplayCard,
-} from '../benchmark-ui';
-import { useBenchmark } from '../benchmark-provider';
+import { Colophon, HumanPane, Intro, Masthead, ReplayPane, Transport } from '../benchmark-ui';
+import ResultsTable from '../results-table';
+import { BenchmarkProvider } from '../benchmark-provider';
+import type { Dataset } from '../../lib/data';
 import './focus.css';
 
-export default function Focus() {
-  const { openPlay } = useBenchmark();
-
+export default function Focus({ dataset }: { dataset: Dataset }) {
   return (
-    <div className="variant-focus">
-      <div className="focus-shell">
-        <SiteNav />
-        <main className="focus-main">
-          <section className="focus-stage" id="arena-stage" aria-label="two model replays and your game">
-            <div className="focus-model focus-model-left"><ReplayCard side="left" /></div>
-            <div className="focus-model focus-model-right"><ReplayCard side="right" /></div>
-            <div className="focus-player"><HumanSeat idle={!openPlay} /></div>
-            <div className="focus-transport"><ArenaControls /></div>
+    <BenchmarkProvider dataset={dataset}>
+      <div className="page">
+        <Masthead />
+        <main className="layout">
+          <Intro />
+          <section className="watch" aria-label="2 recorded model runs">
+            <div className="pair">
+              <ReplayPane side="a" />
+              <ReplayPane side="b" />
+            </div>
+            <Transport />
           </section>
-          <section className="focus-results" aria-label="benchmark results">
-            <Leaderboard />
-          </section>
+          <HumanPane />
+          <ResultsTable />
         </main>
+        <Colophon />
       </div>
-    </div>
+    </BenchmarkProvider>
   );
 }

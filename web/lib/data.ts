@@ -1,25 +1,91 @@
-export const LEVEL_DISTANCE = 3168;
+/** Public benchmark results, served from public/benchmark-data (copied from ../results). */
+export const DATA_BASE = '/benchmark-data/';
 
-export type Replay = { id: string; score: number; seconds: number; seed: number };
-export type Model = { id: string; name: string; score: number; cost: number; runs: Replay[] };
+export type Track = 'state' | 'image';
 
-const entries = [
-  { id: 'jev', name: 'JEV', score: 94.2, cost: 0.028 },
-  { id: 'gpt', name: 'GPT-4.1', score: 81.6, cost: 0.094 },
-  { id: 'claude', name: 'Claude Sonnet 4.5', score: 73.8, cost: 0.086 },
-  { id: 'gemini', name: 'Gemini 2.5 Pro', score: 67.4, cost: 0.061 },
-  { id: 'qwen', name: 'Qwen3-235B', score: 52.1, cost: 0.019 },
-  { id: 'deepseek', name: 'DeepSeek V3', score: 44.8, cost: 0.012 },
-];
+export type Run = {
+  id: string;
+  modelId: string;
+  name: string;
+  provider: string;
+  track: Track;
+  level: string;
+  progressPct: number;
+  completed: boolean;
+  nativeFrames: number;
+  decisions: number;
+  /** Native frames to the flag; null when the run did not finish. */
+  clearFrames: number | null;
+  clearSeconds: number | null;
+  cadence: number | null;
+  previousScreens: number | null;
+  profile: string;
+  replaySrc: string;
+  traceSrc: string;
+};
 
-export const MODELS: Model[] = entries.map((model, index) => ({
-  ...model,
-  runs: Array.from({ length: 10 }, (_, i) => ({
-    id: `${model.id}-${i + 1}`,
-    score: Math.round(Math.max(4, model.score - i * (4.1 + index * .7)) * 10) / 10,
-    seconds: 28 + index * 5 + i * 3,
-    seed: index * 17 + i * 7,
-  })),
-}));
+export type Dataset = {
+  runs: Run[];
+  generatedAt: string;
+  leaderboardReady: boolean;
+  catalogue: { state: number; image: number };
+};
 
-export type Side = 'left' | 'right';
+type RawExample = Record<string, unknown> & { experiment_config?: Record<string, unknown> };
+
+const num = (value: unknown) => (typeof value === 'number' && Number.isFinite(value) ? value : null);
+const text = (value: unknown, fallback = '') => (typeof value === 'string' ? value : fallback);
+
+function toRun(raw: RawExample): Run {
+  const config = raw.experiment_config ?? {};
+  const progress = num(raw.progress_pct);
+  const frames = num(raw.native_frames);
+  const decisions = num(raw.decisions);
+  const replay = text(raw.replay_href);
+  if (progress === null || frames === null || decisions === null || !replay || (raw.mode !== 'state' && raw.mode !== 'image')) {
+    throw new Error(`benchmark example ${String(raw.id)} is missing required fields`);
+  }
+  const completed = raw.completed === true;
+  return {
+    id: text(raw.id),
+    modelId: text(raw.model_id),
+    name: text(raw.display_name, text(raw.model_id)),
+    provider: text(raw.provider),
+    track: raw.mode,
+    level: text(raw.level, '1-1'),
+    progressPct: progress,
+    completed,
+    nativeFrames: frames,
+    decisions,
+    clearFrames: completed ? num(raw.speedrun_score_native_frames) : null,
+    clearSeconds: completed ? num(raw.nominal_game_seconds_to_completion) : null,
+    cadence: num(config.cadence),
+    previousScreens: num(config.previous_screens),
+    profile: text(config.profile),
+    replaySrc: DATA_BASE + replay,
+    traceSrc: DATA_BASE + text(raw.trace_href),
+  };
+}
+
+export function parseDataset(index: unknown): Dataset {
+  const data = index as { examples?: RawExample[]; generated_at_utc?: string; leaderboard_ready?: boolean; model_counts?: { state?: number; image?: number } };
+  if (!Array.isArray(data?.examples)) throw new Error('benchmark index has no examples');
+  return {
+    runs: data.examples.map(toRun),
+    generatedAt: text(data.generated_at_utc),
+    leaderboardReady: data.leaderboard_ready === true,
+    catalogue: { state: num(data.model_counts?.state) ?? 0, image: num(data.model_counts?.image) ?? 0 },
+  };
+}
+
+export const trackLabel = (track: Track) => (track === 'image' ? 'pixels' : 'state');
+
+export function formatProgress(value: number) {
+  return value >= 100 ? '100%' : `${(Math.floor(value * 10) / 10).toFixed(1)}%`;
+}
+
+export function formatSeconds(value: number | null) {
+  return value === null ? null : `${value.toFixed(2)} s`;
+}
+
+export type Side = 'a' | 'b';

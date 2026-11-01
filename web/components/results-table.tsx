@@ -1,40 +1,102 @@
 'use client';
 
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useBenchmark } from './benchmark-provider';
+import { formatProgress, formatSeconds, trackLabel, type Run } from '../lib/data';
 
-type SortKey = 'score' | 'cost' | 'runs';
-type ResultRow = { id: string; name: string; score: number; cost: number; runs: number; player?: boolean };
+type Value = string | number | null;
+type Column = { key: string; label: string; title?: string; numeric?: boolean; first: 'ascending' | 'descending'; value: (run: Run) => Value };
+
+const COLUMNS: Column[] = [
+  { key: 'model', label: 'model', first: 'ascending', value: run => run.name.toLowerCase() },
+  { key: 'track', label: 'input', first: 'ascending', value: run => trackLabel(run.track) },
+  { key: 'progress', label: 'progress', numeric: true, first: 'descending', value: run => run.progressPct },
+  { key: 'clear', label: 'clear time', title: 'native frames to the flag / 60, excluding api waits', numeric: true, first: 'ascending', value: run => run.clearSeconds },
+  { key: 'frames', label: 'frames', title: 'native frames played', numeric: true, first: 'ascending', value: run => run.nativeFrames },
+  { key: 'decisions', label: 'decisions', numeric: true, first: 'ascending', value: run => run.decisions },
+  { key: 'cadence', label: 'cadence', title: 'native frames per decision', numeric: true, first: 'ascending', value: run => run.cadence },
+];
+
+/** Missing values go last in either direction. */
+function compare(a: Value, b: Value) {
+  if (a === null || b === null) return 0;
+  return typeof a === 'string' || typeof b === 'string' ? String(a).localeCompare(String(b)) : a - b;
+}
+
+const natural = (a: Run, b: Run) =>
+  b.progressPct - a.progressPct
+  || (a.clearSeconds ?? Infinity) - (b.clearSeconds ?? Infinity)
+  || a.name.localeCompare(b.name)
+  || a.track.localeCompare(b.track);
 
 export default function ResultsTable() {
-  const { models, leftModel, rightModel, activeSlot, selectModel, hasPlayed, playerBestScore, playerRuns } = useBenchmark();
-  const [sort, setSort] = useState<{ key: SortKey; ascending: boolean }>({ key: 'score', ascending: false });
-  const rows: ResultRow[] = models.map(model => ({ id: model.id, name: model.name, score: model.score, cost: model.cost, runs: model.runs.length }));
-  if (hasPlayed) rows.push({ id: 'player', name: 'you', score: playerBestScore, cost: 0, runs: playerRuns, player: true });
-  const ranked = [...rows].sort((a, b) => b.score - a.score);
-  const ranks = new Map(ranked.map((row, index) => [row.id, index + 1]));
-  const sorted = [...ranked].sort((a, b) => (a[sort.key] - b[sort.key]) * (sort.ascending ? 1 : -1));
-  const changeSort = (key: SortKey) => setSort(current => ({ key, ascending: current.key === key ? !current.ascending : key === 'cost' }));
-  const sortDirection = (key: SortKey) => sort.key === key ? sort.ascending ? 'ascending' as const : 'descending' as const : undefined;
-  const selectedId = activeSlot === 'left' ? leftModel.id : rightModel.id;
+  const { runs, watch, slots, activeSide } = useBenchmark();
+  const [sort, setSort] = useState<{ key: string; direction: 'ascending' | 'descending' }>({ key: 'progress', direction: 'descending' });
 
-  return <section className="leaderboard" aria-label="results">
-    <div className="leaderboard-head"><h2>results</h2><span className="demo-badge">demo data</span></div>
-    <div className="table-container"><table className="results-table">
-      <thead><tr>
-        <th className="rank-cell" scope="col">#</th>
-        <th scope="col">model</th>
-        <th className="score-cell" scope="col" aria-sort={sortDirection('score')}><button className={sort.key === 'score' ? 'sorted' : ''} onClick={() => changeSort('score')}>score</button></th>
-        <th className="cost-column" scope="col" aria-sort={sortDirection('cost')}><button className={sort.key === 'cost' ? 'sorted' : ''} onClick={() => changeSort('cost')}>cost / run</button></th>
-        <th className="runs-column" scope="col" aria-sort={sortDirection('runs')}><button className={sort.key === 'runs' ? 'sorted' : ''} onClick={() => changeSort('runs')}>runs</button></th>
-      </tr></thead>
-      <tbody>{sorted.map(row => <tr key={row.id} className={row.player ? 'player-row' : row.id === selectedId ? 'selected-row' : ''} onClick={row.player ? undefined : () => selectModel(row.id)}>
-        <td className="rank-cell">{String(ranks.get(row.id)).padStart(2, '0')}</td>
-        <td>{row.player ? <span className="model-cell">you</span> : <button className="model-cell" onClick={event => { event.stopPropagation(); selectModel(row.id); }} aria-label={`watch ${row.name} best replay`}>{row.name}</button>}</td>
-        <td className="score-cell">{row.score.toFixed(1)}%</td>
-        <td className="cost-column">${row.cost.toFixed(3)}</td>
-        <td className="runs-column">{row.runs}</td>
-      </tr>)}</tbody>
-    </table></div>
-  </section>;
+  const sorted = useMemo(() => {
+    const column = COLUMNS.find(c => c.key === sort.key)!;
+    const sign = sort.direction === 'ascending' ? 1 : -1;
+    return [...runs].sort((a, b) => {
+      const av = column.value(a), bv = column.value(b);
+      if (av === null && bv !== null) return 1;
+      if (bv === null && av !== null) return -1;
+      return compare(av, bv) * sign || natural(a, b);
+    });
+  }, [runs, sort]);
+
+  const toggle = (column: Column) => setSort(current => ({
+    key: column.key,
+    direction: current.key === column.key ? (current.direction === 'ascending' ? 'descending' : 'ascending') : column.first,
+  }));
+
+  return (
+    <section className="results" aria-labelledby="results-title">
+      <div className="results-head">
+        <h2 id="results-title" className="section-label">selected runs</h2>
+        <p className="results-note">{runs.length} development runs picked from wider experiments. prompts, cadence and image history differ, so read this as a snapshot of what works rather than a ranking. no pixels run has reached the flag yet.</p>
+      </div>
+      <div className="table-scroll">
+        <table className="runs">
+          <caption className="visually-hidden">selected development runs; choose a row to watch it in pane {activeSide}</caption>
+          <thead>
+            <tr>
+              {COLUMNS.map(column => {
+                const sorted = sort.key === column.key;
+                return (
+                  <th key={column.key} scope="col" className={column.numeric ? 'num' : undefined} aria-sort={sorted ? sort.direction : 'none'}>
+                    <button onClick={() => toggle(column)} title={column.title} data-sorted={sorted || undefined}>
+                      {column.label}
+                      <span className="sort-mark" aria-hidden="true">{(sorted ? sort.direction : column.first) === 'ascending' ? '↑' : '↓'}</span>
+                    </button>
+                  </th>
+                );
+              })}
+            </tr>
+          </thead>
+          <tbody>
+            {sorted.map(run => {
+              const loaded = (['a', 'b'] as const).filter(side => slots[side] === run.id);
+              return (
+                <tr key={run.id} data-run-id={run.id} onClick={() => watch(run.id)}>
+                  <td>
+                    <button className="run-name" onClick={event => { event.stopPropagation(); watch(run.id); }} aria-label={`watch ${run.name}, ${trackLabel(run.track)} run, in pane ${activeSide}`}>
+                      <span>{run.name}{loaded.length > 0 && <span className="loaded mono" aria-label={`in pane ${loaded.join(' and ')}`}>{loaded.join(' ')}</span>}</span>
+                      <span className="run-id mono">{run.modelId}</span>
+                    </button>
+                  </td>
+                  <td>{trackLabel(run.track)}</td>
+                  <td className="num">{formatProgress(run.progressPct)}</td>
+                  <td className="num">{formatSeconds(run.clearSeconds) ?? <span className="faint" aria-label="not cleared">–</span>}</td>
+                  <td className="num">{run.nativeFrames.toLocaleString('en-GB')}</td>
+                  <td className="num">{run.decisions}</td>
+                  <td className="num">{run.cadence ?? <span className="faint" aria-label="unknown">–</span>}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+      <p className="results-hint faint">choose a row to watch it in pane {activeSide}</p>
+    </section>
+  );
 }

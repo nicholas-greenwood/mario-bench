@@ -1,15 +1,48 @@
 # mario bench
 
-a benchmark for decision models playing super mario bros. models receive screenshots
-or game state and choose controller inputs
+mario bench gives decision models the controller in super mario bros. so
+engineers can test whether they reach the flag
 
-[demo](https://mario.nicholasg.com/)
+models choose the buttons from game state or screenshots. the game pauses during
+inference and advances fixed native-frame intervals. scoring measures valid
+progress, confirmed completion and gameplay frames, excluding api latency
+
+[try the live demo](https://mario.nicholasg.com/)
+
+## try the live demo
+
+no sign-in, installation or api key needed
+
+- watch 2 recorded model runs side by side
+- select **a** or **b** under a replay, then click a result row to change it.
+  click column headings to sort all 8 published runs
+- press **play world 1-1** to try it yourself. left/right arrows move, up jumps
+  and shift runs. touch controls work too; your personal best stays in this browser
+
+human practice scores are separate from model results
+
+## built at devday exchange london, 1 november 2026
+
+codex built mario bench end to end using `gpt-6.1-sol` with high reasoning,
+from my concept and direction: the decision runner, scoring, replay verification,
+website and deployment
+
+codex implemented offline replay checks that apply the recorded controller inputs
+and compare the resulting state and screen hashes against the original run,
+without another model call
+
+existing emulators and game content are credited in the
+[benchmark notices](docs/third-party-notices.md) and
+[website notices](web/THIRD_PARTY_NOTICES.md)
 
 ## results
 
 22 models have recorded state attempts. the tables show individual development
 runs, not model averages or a ranking. earlier verified clears and all 8 replay
 showcases remain in [the recorded examples](results/README.md)
+
+the live website shows the 8 replay showcases; the tables below also include
+the broader development observations
 
 ### state: common input profile
 
@@ -83,6 +116,21 @@ and available only for completed runs
 
 <details>
 <summary>run locally</summary>
+
+### website
+
+with node.js 24 installed, run from the repository checkout:
+
+```sh
+cd web
+npm ci
+npm run dev
+```
+
+open [localhost:3100](http://127.0.0.1:3100). the build prepares the game asset
+and published results automatically. no python installation or api key is needed
+
+### model viewer
 
 with python 3.13 and `uv` installed, run from the repository root:
 
@@ -224,6 +272,8 @@ read the [full protocol](benchmark/PROTOCOL.txt) and
 
 - `prototype/` contains the emulator, decision client and local viewer
 - `benchmark/` contains the runner, scoring, protocol and replay tools
+- `web/` contains the website and browser-local human game
+- `results/` contains public development examples, profiles, action traces and replays
 
 `requirements.lock.txt` pins the environment. secrets, environments, run logs,
 screenshots and recordings stay ignored. `playground/` is local scratch space

@@ -1,73 +1,203 @@
 'use client';
 
-import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
-import { ArrowUp, ArrowLeft, ArrowRight, ChevronLeft, ChevronRight, Moon, Pause, Play, RotateCcw, Sun, X } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ArrowUp, Moon, Pause, Play, RotateCcw, Sun, X } from 'lucide-react';
 import { useBenchmark } from './benchmark-provider';
 import GameCanvas from './game-canvas';
-import type { Side } from '../lib/data';
-export { default as Leaderboard } from './results-table';
+import { formatProgress, formatSeconds, trackLabel, type Run, type Side } from '../lib/data';
 
-export function SiteNav() {
-  const { theme, toggleTheme, setOpenMethodology, openMethodology } = useBenchmark();
-  return <><header className="site-nav">
-    <Link href="/" className="brand">mario bench</Link>
-    <div className="nav-actions"><span className="level-label">1-1</span><button className="about-button" onClick={() => setOpenMethodology(true)}>about</button><button className="icon-button" aria-label={`switch to ${theme === 'light' ? 'dark' : 'light'} mode`} onClick={toggleTheme}>{theme === 'light' ? <Moon size={16} /> : <Sun size={16} />}</button></div>
-  </header>{openMethodology && <AboutDialog />}</>;
+export function Masthead() {
+  const { theme, toggleTheme } = useBenchmark();
+  return (
+    <header className="masthead">
+      <a href="/" className="wordmark">mario bench</a>
+      <div className="masthead-end">
+        <span className="mono faint">world 1-1</span>
+        <button className="icon-button" aria-label={`switch to ${theme === 'light' ? 'dark' : 'light'} theme`} onClick={toggleTheme}>
+          {theme === 'light' ? <Moon size={15} /> : <Sun size={15} />}
+        </button>
+      </div>
+    </header>
+  );
 }
 
-export function ReplayCard({ side }: { side: Side }) {
-  const state = useBenchmark();
-  const model = side === 'left' ? state.leftModel : state.rightModel;
-  const run = side === 'left' ? state.leftRun : state.rightRun;
-  const index = side === 'left' ? state.leftRunIndex : state.rightRunIndex;
-  return <article className={`replay-card ${state.activeSlot === side ? 'is-active' : ''}`} data-side={side}>
-    <button className="replay-header replay-select" onClick={() => state.setActiveSlot(side)} aria-label={`select ${side} replay, ${model.name}`} aria-pressed={state.activeSlot === side}>
-      <span className="model-name">{model.name}</span><span className="replay-score">{run.score.toFixed(1)}<small>%</small></span>
-    </button>
-    <div className="replay-screen"><GameCanvas mode="replay" paused={!state.playing} speed={state.speed} seed={run.seed} resetKey={state.resetKey} /></div>
-    <div className="replay-footer"><span className="replay-attempt">{index === 0 ? 'best run' : `run ${index + 1}`}<span> / {model.runs.length}</span></span><div className="attempt-navigation"><button className="icon-button" aria-label={`previous ${model.name} replay`} onClick={() => state.cycleRun(side, -1)}><ChevronLeft size={16} /></button><button className="icon-button" aria-label={`next ${model.name} replay`} onClick={() => state.cycleRun(side, 1)}><ChevronRight size={16} /></button></div></div>
-  </article>;
+export function Intro() {
+  return (
+    <section className="intro" aria-labelledby="intro-title">
+      <p className="eyebrow mono faint">hackathon project</p>
+      <h1 id="intro-title">mario bench gives decision models the controller in super mario bros. and measures how far they get.</h1>
+      <div className="intro-detail">
+        <p>the game freezes while a model thinks, then plays its chosen buttons for a fixed number of native frames. api latency never touches the game clock, so clear time counts gameplay frames only.</p>
+        <p>there are 2 tracks. state models read a compact view of game memory; pixels models only see screenshots.</p>
+        <p>every published run is replayed offline from its recorded inputs and has to match frame for frame before its progress and clear time count.</p>
+      </div>
+    </section>
+  );
 }
 
-export function ArenaControls() {
-  const { playing, setPlaying, speed, setSpeed, restartReplay } = useBenchmark();
-  return <div className="arena-controls" aria-label="replay controls"><button className="icon-button" aria-label={playing ? 'pause replays' : 'play replays'} onClick={() => setPlaying(!playing)}>{playing ? <Pause size={14} fill="currentColor" /> : <Play size={14} fill="currentColor" />}</button><button className="icon-button" aria-label="restart replays" onClick={restartReplay}><RotateCcw size={15} /></button><button className="speed-button" aria-label={`replay speed ${speed} times; click to change`} onClick={() => setSpeed(speed === 1 ? 2 : speed === 2 ? .5 : 1)}>{speed}×</button></div>;
+function outcome(run: Run) {
+  return run.completed ? `cleared in ${formatSeconds(run.clearSeconds)}` : `reached ${formatProgress(run.progressPct)}`;
+}
+
+export function ReplayPane({ side }: { side: Side }) {
+  const { runA, runB, activeSide, setActiveSide, playing, speed, restartKey } = useBenchmark();
+  const run = side === 'a' ? runA : runB;
+  const video = useRef<HTMLVideoElement>(null);
+  const [failed, setFailed] = useState(false);
+  const active = activeSide === side;
+
+  const sync = () => {
+    const element = video.current;
+    if (!element) return;
+    element.muted = true;
+    element.defaultMuted = true;
+    element.defaultPlaybackRate = speed;
+    element.playbackRate = speed;
+    if (playing) void element.play().catch(() => {});
+    else element.pause();
+  };
+  useEffect(sync, [run.id, playing, speed]);
+  useEffect(() => { if (video.current) video.current.currentTime = 0; }, [restartKey]);
+  useEffect(() => setFailed(false), [run.id]);
+
+  return (
+    <figure className="pane" data-side={side} data-run-id={run.id}>
+      <div className="screen">
+        <video
+          key={run.id}
+          ref={video}
+          src={run.replaySrc}
+          muted
+          playsInline
+          loop
+          preload="auto"
+          disablePictureInPicture
+          aria-label={`recorded ${trackLabel(run.track)} run by ${run.modelId}`}
+          onLoadedMetadata={sync}
+          onError={() => setFailed(true)}
+        />
+        {failed && <div className="screen-note" role="status">replay unavailable</div>}
+      </div>
+      <figcaption className="caption">
+        <button className={`slot${active ? ' is-active' : ''}`} aria-pressed={active} aria-label={`send table selections to pane ${side}`} onClick={() => setActiveSide(side)}>{side}</button>
+        <div className="caption-body">
+          <div className="caption-line">
+            <span className="caption-name">{run.name}</span>
+            <span className="caption-result mono">{outcome(run)}</span>
+          </div>
+          <div className="caption-meta mono faint">
+            <span className="caption-id">{run.modelId}</span>
+            <span>{trackLabel(run.track)}{run.cadence !== null ? ` · every ${run.cadence} frames` : ''}</span>
+          </div>
+        </div>
+      </figcaption>
+    </figure>
+  );
+}
+
+const SPEEDS = [0.5, 1, 2];
+
+export function Transport() {
+  const { playing, setPlaying, speed, setSpeed, restart } = useBenchmark();
+  return (
+    <div className="transport" role="group" aria-label="replay controls">
+      <div className="transport-buttons">
+        <button className="icon-button" aria-label={playing ? 'pause replays' : 'play replays'} onClick={() => setPlaying(!playing)}>
+          {playing ? <Pause size={14} fill="currentColor" strokeWidth={0} /> : <Play size={14} fill="currentColor" strokeWidth={0} />}
+        </button>
+        <button className="icon-button" aria-label="restart replays" onClick={restart}><RotateCcw size={14} /></button>
+        <div className="speeds" role="group" aria-label="replay speed">
+          {SPEEDS.map(value => (
+            <button key={value} className="speed mono" aria-pressed={speed === value} aria-label={`${value}× speed`} onClick={() => setSpeed(value)}>{value}×</button>
+          ))}
+        </div>
+      </div>
+      <p className="transport-note faint">native game speed, api waits cut out</p>
+    </div>
+  );
 }
 
 function TouchControls() {
-  function send(code: string, down: boolean) {
-    const canvas = document.querySelector<HTMLCanvasElement>('.human-game-screen canvas');
+  const send = (code: string, down: boolean) => {
+    const canvas = document.querySelector<HTMLCanvasElement>('.human-screen canvas');
     canvas?.focus({ preventScroll: true });
     canvas?.dispatchEvent(new KeyboardEvent(down ? 'keydown' : 'keyup', { code, bubbles: true, cancelable: true }));
-  }
+  };
   const controls = [
-    { code: 'ArrowLeft', label: 'move left', content: <ArrowLeft size={20} /> },
-    { code: 'ArrowUp', label: 'jump', content: <ArrowUp size={20} /> },
-    { code: 'ArrowRight', label: 'move right', content: <ArrowRight size={20} /> },
-    { code: 'ShiftLeft', label: 'run', content: 'shift' },
+    { code: 'ArrowLeft', label: 'move left', content: <ArrowLeft size={18} /> },
+    { code: 'ArrowRight', label: 'move right', content: <ArrowRight size={18} /> },
+    { code: 'ShiftLeft', label: 'run', content: 'run' },
+    { code: 'ArrowUp', label: 'jump', content: <ArrowUp size={18} /> },
   ];
-  return <div className="touch-controls" aria-label="touch game controls">{controls.map(({ code, label, content }) => <button key={code} aria-label={label} onPointerDown={event => { event.preventDefault(); event.currentTarget.setPointerCapture(event.pointerId); send(code, true); }} onPointerUp={() => send(code, false)} onPointerCancel={() => send(code, false)} onContextMenu={event => event.preventDefault()}>{content}</button>)}</div>;
-}
-
-export function HumanSeat({ idle = false }: { idle?: boolean }) {
-  const { playerDistance, setPlayerDistance, humanOutcome, setHumanOutcome, humanReset, startHumanPlay, setOpenPlay } = useBenchmark();
-  const [paused, setPaused] = useState(false);
-  useEffect(() => { setPaused(false); }, [humanReset]);
-  return <article className={`replay-card human-seat ${idle ? 'is-idle' : ''}`} aria-label="your Mario game">
-    <div className="replay-header"><span className="model-name">you</span><span className="human-seat-actions">{!idle && <><span className="replay-score">{playerDistance.toFixed(1)}<small>%</small></span><button className="icon-button" aria-label="stop playing" onClick={() => setOpenPlay(false)}><X size={15} /></button></>}</span></div>
-    <div className="replay-screen human-game-screen"><GameCanvas mode="human" paused={idle || paused || !!humanOutcome} resetKey={humanReset} onProgress={setPlayerDistance} onEnd={setHumanOutcome} />
-      {idle ? <div className="game-overlay"><button className="play-button" onClick={startHumanPlay}><Play size={14} />play Mario</button></div> : humanOutcome ? <div className="game-overlay result-overlay"><span className="result-score">{playerDistance.toFixed(1)}<small>%</small></span><span>{humanOutcome === 'complete' ? 'level cleared' : 'end of run'}</span><button className="play-button" onClick={startHumanPlay}><RotateCcw size={15} />try again</button></div> : paused && <div className="game-overlay"><button className="play-button" onClick={() => setPaused(false)}><Play size={14} />resume</button></div>}
+  return (
+    <div className="touch-pad" aria-label="touch controls">
+      {controls.map(({ code, label, content }) => (
+        <button
+          key={code}
+          aria-label={label}
+          onPointerDown={event => { event.preventDefault(); event.currentTarget.setPointerCapture(event.pointerId); send(code, true); }}
+          onPointerUp={() => send(code, false)}
+          onPointerCancel={() => send(code, false)}
+          onContextMenu={event => event.preventDefault()}
+        >{content}</button>
+      ))}
     </div>
-    <div className="replay-footer human-seat-controls">{!idle && <><span className="key-hints" aria-label="left and right arrows move; up jumps; Shift runs"><kbd>←</kbd><kbd>↑</kbd><kbd>→</kbd><kbd className="modifier-key">shift</kbd></span><button className="icon-button" disabled={!!humanOutcome} aria-label={paused ? 'resume game' : 'pause game'} onClick={() => setPaused(!paused)}>{paused ? <Play size={14} /> : <Pause size={14} />}</button></>}</div>
-    {!idle && <TouchControls />}
-  </article>;
+  );
 }
 
-function AboutDialog() {
-  const { setOpenMethodology } = useBenchmark();
-  const dialog = useRef<HTMLDialogElement>(null);
-  useEffect(() => { dialog.current?.showModal(); }, []);
-  const close = () => setOpenMethodology(false);
-  return <dialog ref={dialog} className="about-dialog" aria-label="about the benchmark" onCancel={close} onClick={event => { if (event.target === event.currentTarget) close(); }}><button className="dialog-close icon-button" aria-label="close" onClick={close}><X size={18} /></button><h2>about the benchmark</h2><p>decision models play Super Mario Bros., World 1-1.</p><dl><div><dt>score</dt><dd>furthest progress through the level, from 0 to 100%</dd></div><div><dt>your result</dt><dd>your best score and attempt count are saved in this browser. your cost is zero.</dd></div><div><dt>controls</dt><dd>← → move, ↑ jumps, Shift runs</dd></div><div><dt>demo data</dt><dd>model results are illustrative. replay scenes are scripted demonstrations.</dd></div></dl></dialog>;
+export function HumanPane() {
+  const { humanOpen, humanProgress, humanOutcome, humanReset, humanPaused, setHumanPaused, onHumanProgress, onHumanEnd, startHuman, stopHuman, best } = useBenchmark();
+  const idle = !humanOpen;
+  const bestClear = best.clearFrames !== null ? formatSeconds(best.clearFrames / 60) : null;
+  return (
+    <section className="human" aria-labelledby="human-title">
+      <h2 id="human-title" className="section-label">your turn</h2>
+      <figure className="pane">
+        <div className="screen human-screen">
+          <GameCanvas paused={idle || humanPaused || !!humanOutcome} resetKey={humanReset} onProgress={onHumanProgress} onEnd={onHumanEnd} />
+          {idle ? (
+            <div className="screen-overlay"><button className="primary" onClick={startHuman}><Play size={13} fill="currentColor" strokeWidth={0} />play world 1-1</button></div>
+          ) : humanOutcome ? (
+            <div className="screen-overlay is-result" role="status">
+              <span className="result-figure mono">{formatProgress(humanProgress)}</span>
+              <span>{humanOutcome === 'complete' ? 'you reached the flag' : 'run over'}</span>
+              <button className="primary" onClick={startHuman}><RotateCcw size={13} />try again</button>
+            </div>
+          ) : humanPaused ? (
+            <div className="screen-overlay"><button className="primary" onClick={() => setHumanPaused(false)}><Play size={13} fill="currentColor" strokeWidth={0} />resume</button></div>
+          ) : null}
+        </div>
+        <figcaption className="caption">
+          <div className="caption-body">
+            <div className="caption-line">
+              <span className="caption-name">you</span>
+              <span className="caption-result mono" data-testid="human-progress">{idle ? '' : formatProgress(humanProgress)}</span>
+              {!idle && (
+                <span className="caption-actions">
+                  <button className="icon-button" disabled={!!humanOutcome} aria-label={humanPaused ? 'resume game' : 'pause game'} onClick={() => setHumanPaused(!humanPaused)}>{humanPaused ? <Play size={13} /> : <Pause size={13} />}</button>
+                  <button className="icon-button" aria-label="stop playing" onClick={stopHuman}><X size={14} /></button>
+                </span>
+              )}
+            </div>
+            <div className="caption-meta mono faint">
+              <span data-testid="human-best">{best.attempts ? `best ${formatProgress(best.bestPct)}${bestClear ? `, cleared in ${bestClear}` : ''} · ${best.attempts} ${best.attempts === 1 ? 'attempt' : 'attempts'}` : 'no attempts yet'}</span>
+              <span className="keys" aria-label="arrows move, up jumps, shift runs"><kbd>←</kbd><kbd>→</kbd><kbd>↑</kbd><kbd>shift</kbd></span>
+            </div>
+          </div>
+        </figcaption>
+      </figure>
+      {!idle && <TouchControls />}
+      <p className="human-note faint">kept in this browser and played without a frame budget, so it sits apart from the model runs</p>
+    </section>
+  );
+}
+
+export function Colophon() {
+  const { dataset } = useBenchmark();
+  return (
+    <footer className="colophon faint">
+      <p>the model catalogue covers {dataset.catalogue.state} state and {dataset.catalogue.image} pixels-compatible model/provider pairs. only the runs listed here have published replays.</p>
+      <p><a href="/benchmark-data/index.json">raw data</a> · generated {dataset.generatedAt.slice(0, 10)}</p>
+    </footer>
+  );
 }
