@@ -441,3 +441,119 @@ test('website and README resolve the same optional cohort file inside the datase
     await assert.rejects(readPublishedIndex(path.join(directory, 'index.json')), /escapes/);
   } finally { await rm(directory, { recursive: true, force: true }); }
 });
+
+
+function imageOnlyFixture() {
+  const data = fixture('image'), cohort = data.common_benchmark, manifest = cohort.manifest;
+  const templates = structuredClone(cohort.trials), row = structuredClone(cohort.rows[0]), pair = structuredClone(manifest.eligible_model_provider_pairs[0]);
+  Object.assign(manifest, { evaluation_scope: 'image_progress_baseline', tracks: ['image'],
+    protocol_id: 'mario-common-image-h7-progress-baseline-v1', temperature: .05, cadence_native_frames: 7,
+    native_frame_budget: 6000, life_budget: 1, provider_seed: null, emulator_seed: 0, requested_native_hold: 7,
+    media: { current_full_size: [512,480], past_full_screens: 1, own_controls: 2 },
+    sampling: { temperature: .05, final_seeds: [101,102,103] }, software_sha256: { 'fixed-controller.py': hash },
+    roster_source_sha256: hash, actual_rom_sha256: hash, initial_observation_sha256: hash, initial_screen_sha256: hash,
+  });
+  delete manifest.pilot_selection_evidence;
+  manifest.observation_and_controller_hashes.image_controller_sha256 = '658d541b1df18a58fc37eb465f39d05d66b58a1074666b3fd70ab36848e0f6a4';
+  manifest.acceptance_contract = { mode: 'explicit_progress_baseline_v1', track: 'image', positive_pilot_required: false,
+    native_clear_is_outcome: true, prior_failed_pilot_gates_preserved: true, preflight_model_count: 16, preflight_audit_complete: true,
+    spec_sha256: '86e4974bc01f983980c1773184e75900856d55a3d68fa6fc32c43c416e91bf29',
+    ...Object.fromEntries(['historical_mechanics_proof_sha256','preflight_protocol_sha256','preflight_report_sha256','preflight_audit_sha256','image_controller_sha256'].map(key => [key, hash])),
+    image_controller_sha256: '658d541b1df18a58fc37eb465f39d05d66b58a1074666b3fd70ab36848e0f6a4',
+    historical_mechanics_proof_sha256: '9599dea865c7b675e7ee33b2ff1c98b6b34bca0abf21d2da15c6cbb9ae1be7f1',
+    historical_mechanics: { trace_sha256: '30392705e81db66ea234bfd71ac64e9cab2cca3dc1577829a620d3ff8f48432d',
+      exact_native_requests: 268, native_flag_frame: 1871, development_seed: 0, development_temperature: .05,
+      not_a_scored_final_trial: true, pure_policy_sha256: '19cdd3382f9919d4b474691b2fc78cb676e1382d94b1fd43b21280e6039483da', runtime_sha256: '0a7fc35cd2654b20d386814c9376d905b57bde927ab3d0c4e0dfc66664dae95b' },
+    negative_calibration_proofs: [
+      ['66cd3ae7b068fc57add4b783328dceb5f7992ca55a8737a14ea2eef02ad9dd62', '983ea565f48b385490f7b018b5119faad816b0ca3468310b56e6be74bdf61f31'],
+      ['4f489c937469d7d68379fe83bc8d457faae83e67e0b00bdb39bc4ecddc105194', 'a505e41e1847a576904feea5d63f21d716a47ec12c79f2fa02835454f554026b'],
+      ['3f6b8108c02a5a60bc91c841a868d9ff3724bb2de92d17b53ac5c431b4812675', '38f081ab2fc0d3ca22ca90790585adc4ba7cafde15e27f8431636caad95ba8a0'],
+    ].map(([protocol_sha256,certificate_sha256]) => ({protocol_sha256,certificate_sha256,native_image_clears:0})),
+  };
+  manifest.repeat_schedule = []; manifest.eligible_model_provider_pairs = []; cohort.trials = []; cohort.rows = [];
+  for (let model = 0; model < 16; model++) {
+    const modelId = `fixture/image-model-${model}`;
+    const trials = templates.map(trial => ({ ...structuredClone(trial), id: `image-final-fixture-${model}-${trial.repeat_id}`,
+      model_id: modelId, request_model: modelId, returned_model: `${modelId}-v1`,
+      status: 'game_over', progress_pct: 30 + trial.repeat_id, flag_get: false, native_frames_to_completion: null, cadence_native_frames: 7,
+    }));
+    cohort.trials.push(...trials);
+    manifest.repeat_schedule.push(...trials.map(({id,model_id,track,repeat_id,local_rng_seed,emulator_seed,temperature}) =>
+      ({episode_id:id,model_id,track,repeat_id,local_rng_seed,emulator_seed,temperature})));
+    manifest.eligible_model_provider_pairs.push({...pair,model_id:modelId,request_model:modelId,expected_returned_model:`${modelId}-v1`});
+    cohort.rows.push({...row,model_id:modelId,expected_trial_ids:trials.map(trial=>trial.id),recorded_trial_ids:trials.map(trial=>trial.id)});
+  }
+  return data;
+}
+
+test('explicit image progress baseline accepts 16 independent fresh three-run means without a calibration clear', () => {
+  const parsed = parseDataset(imageOnlyFixture()), cohort = parsed.commonBenchmark;
+  assert.equal(cohort?.imageOnly, true); assert.equal(cohort.rows.length, 16);
+  assert.ok(cohort.rows.every(row => row.meanProgressPct === 31 && row.bestClearSeconds === null && row.nCompleted === 0));
+  assert.equal(parsed.observations.length, parseDataset(legacy).observations.length + 48);
+  const rendered = renderResults(imageOnlyFixture()); assert.match(rendered, /earlier failed calibration gates remain failed/);
+
+});
+for (const [name, mutate] of [
+  ['old scope cannot bypass its positive gate', c => {delete c.manifest.evaluation_scope;}],
+  ['no mixed tracks', c => {c.manifest.repeat_schedule[0].track='state';}],
+  ['no seed0 witness substitution', c => {c.manifest.repeat_schedule[0].local_rng_seed=0;}],
+  ['no seed9001 calibration substitution', c => {c.manifest.repeat_schedule[0].local_rng_seed=9001;}],
+  ['all16 pairs required', c => {c.manifest.eligible_model_provider_pairs.pop();}],
+  ['one common temperature', c => {c.manifest.temperature=.2;}],
+  ['no fabricated positive gate', c => {c.manifest.pilot_selection_evidence={selected_image_temperature_gate_passed:true};}],
+  ['real16 preflight required', c => {c.manifest.acceptance_contract.preflight_audit_complete=false;}],
+  ['historical witness not a final trial', c => {c.manifest.acceptance_contract.historical_mechanics.not_a_scored_final_trial=false;}],
+  ['negative evidence retained', c => {c.manifest.acceptance_contract.negative_calibration_proofs[0].native_image_clears=1;}],
+  ['controller hash fixed', c => {c.manifest.acceptance_contract.image_controller_sha256='e'.repeat(64);}],
+  ['full current image required', c => {c.manifest.media.current_full_size=[256,240];}],
+  ['hold7 fixed', c => {c.manifest.requested_native_hold=8;}],
+]) test(`image branch rejects ${name}`,()=>{const data=imageOnlyFixture();mutate(data.common_benchmark);assert.equal(parseDataset(data).commonBenchmark,null);});
+test('technical image trial keeps mean and speed pending and costs unknown',()=>{
+  const data=imageOnlyFixture();data.common_benchmark.trials[0].technical_pending=true;
+  const row=parseDataset(data).commonBenchmark.rows[0];assert.equal(row.meanProgressPct,null);assert.equal(row.bestClearSeconds,null);assert.equal(row.meanCostUsd,null);
+});
+test('state and image cohorts retain separate protocol means and all actual trials',()=>{
+  const data=stateOnlyFixture(), image=imageOnlyFixture().common_benchmark;image.manifest.protocol_sha256='f'.repeat(64);
+  for(const trial of image.trials)trial.protocol_sha256='f'.repeat(64);for(const row of image.rows)row.protocol_sha256='f'.repeat(64);
+  data.common_image_benchmark=image;const parsed=parseDataset(data);
+  assert.equal(parsed.commonBenchmarks.length,2);assert.equal(parsed.commonBenchmarks[0].rows.length,22);assert.equal(parsed.commonBenchmarks[1].rows.length,16);
+  assert.equal(parsed.observations.length,parseDataset(legacy).observations.length+66+48);
+  assert.equal(new Set(parsed.observations.map(run=>run.id)).size,parsed.observations.length);
+  assert.match(renderResults(data),/state and image use separate frozen protocols/);
+  assert.doesNotMatch(renderResults(data),/common image track: calibration pending/);
+  const stateMean=parsed.commonBenchmarks[0].rows[0].meanProgressPct;image.trials[0].progress_pct=5;
+  assert.equal(parseDataset(data).commonBenchmarks[0].rows[0].meanProgressPct,stateMean);
+});
+test('additional image cohort cannot replace an existing prescribed state ID',()=>{
+  const data=stateOnlyFixture(),image=imageOnlyFixture().common_benchmark;
+  image.manifest.repeat_schedule[0].episode_id=data.common_benchmark.manifest.repeat_schedule[0].episode_id;
+  data.common_image_benchmark=image;assert.equal(parseDataset(data).commonBenchmarks.length,1);
+});
+test('pending image cohort exposes 16 pending rows without a historical witness score',()=>{
+  const data=imageOnlyFixture();data.common_benchmark.trials=[];for(const row of data.common_benchmark.rows){row.coverage_complete=false;row.recorded_trial_ids=[];}
+  const parsed=parseDataset(data);assert.equal(parsed.commonBenchmark.rows.length,16);assert.ok(parsed.commonBenchmark.rows.every(row=>row.meanProgressPct===null&&row.bestClearSeconds===null&&row.meanCostUsd===null));
+  assert.equal(parsed.observations.length,parseDataset(legacy).observations.length);
+});
+
+test('independent tracks cannot share a protocol digest',()=>{
+  const data=stateOnlyFixture();data.common_image_benchmark=imageOnlyFixture().common_benchmark;
+  assert.equal(parseDataset(data).commonBenchmarks.length,1);
+});
+test('one image run with a different control cadence cannot enter the mean',()=>{
+  const data=imageOnlyFixture();data.common_benchmark.trials[0].cadence_native_frames=4;
+  assert.equal(parseDataset(data).commonBenchmark.rows[0].meanProgressPct,null);
+});
+test('published loader attaches image and state cohorts independently',async()=>{
+  const directory=await mkdtemp(path.join(os.tmpdir(),'mario-dual-cohort-'));
+  try {
+    const state=stateOnlyFixture(),image=imageOnlyFixture().common_benchmark;image.manifest.protocol_sha256='f'.repeat(64);
+    for(const trial of image.trials)trial.protocol_sha256='f'.repeat(64);for(const row of image.rows)row.protocol_sha256='f'.repeat(64);
+    const index={...structuredClone(legacy),common_cohort_href:'state.json',common_image_cohort_href:'image.json'};
+    await writeFile(path.join(directory,'index.json'),JSON.stringify(index));
+    await writeFile(path.join(directory,'state.json'),JSON.stringify({schema_version:1,common_benchmark:state.common_benchmark}));
+    await writeFile(path.join(directory,'image.json'),JSON.stringify({schema_version:1,common_benchmark:image}));
+    const parsed=parseDataset(await readPublishedIndex(path.join(directory,'index.json')));
+    assert.equal(parsed.commonBenchmarks.length,2);assert.equal(parsed.commonBenchmarks[1].rows.length,16);
+  } finally {await rm(directory,{recursive:true,force:true});}
+});

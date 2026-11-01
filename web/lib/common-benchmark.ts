@@ -29,6 +29,7 @@ export type CommonBenchmark = {
   protocolSha256: string;
   frozenAt: string;
   stateOnly: boolean;
+  imageOnly: boolean;
   technicalRecovery: RecoverySummary | null;
   rows: CommonResult[];
   trials: Raw[];
@@ -62,6 +63,44 @@ function stateOnlyGate(manifest: Raw, pilot: Raw) {
     && hashes?.state_controller_sha256 === pilot.state_controller_sha256;
 }
 
+function imageOnlyGate(manifest: Raw) {
+  const acceptance = object(manifest.acceptance_contract), historical = object(acceptance?.historical_mechanics);
+  const hashes = object(manifest.observation_and_controller_hashes), negative = records(acceptance?.negative_calibration_proofs);
+  const media = object(manifest.media), sampling = object(manifest.sampling), software = object(manifest.software_sha256);
+  const digest = (value: unknown) => /^[a-f0-9]{64}$/.test(string(value));
+  return strings(manifest.tracks).length === 1 && strings(manifest.tracks)[0] === 'image'
+    && manifest.protocol_id === 'mario-common-image-h7-progress-baseline-v1'
+    && manifest.native_frame_budget === 6000 && manifest.life_budget === 1 && manifest.cadence_native_frames === 7
+    && manifest.requested_native_hold === 7 && sampling?.temperature === .05
+    && JSON.stringify(sampling.final_seeds) === '[101,102,103]'
+    && JSON.stringify(media?.current_full_size) === '[512,480]' && media?.past_full_screens === 1 && media?.own_controls === 2
+    && software !== null && Object.keys(software).length > 0 && Object.values(software).every(digest)
+    && ['roster_source_sha256', 'actual_rom_sha256', 'initial_observation_sha256', 'initial_screen_sha256'].every(field => digest(manifest[field]))
+    && acceptance?.spec_sha256 === '86e4974bc01f983980c1773184e75900856d55a3d68fa6fc32c43c416e91bf29'
+    && manifest.temperature === .05 && manifest.emulator_seed === 0 && manifest.provider_seed === null
+    && !object(manifest.pilot_selection_evidence)
+    && acceptance?.mode === 'explicit_progress_baseline_v1' && acceptance.track === 'image'
+    && acceptance.positive_pilot_required === false && acceptance.native_clear_is_outcome === true
+    && acceptance.prior_failed_pilot_gates_preserved === true && acceptance.preflight_model_count === 16
+    && acceptance.preflight_audit_complete === true
+    && ['spec_sha256', 'historical_mechanics_proof_sha256', 'preflight_protocol_sha256', 'preflight_report_sha256',
+      'preflight_audit_sha256', 'image_controller_sha256'].every(field => digest(acceptance[field]))
+    && hashes?.image_controller_sha256 === acceptance.image_controller_sha256
+    && acceptance.image_controller_sha256 === '658d541b1df18a58fc37eb465f39d05d66b58a1074666b3fd70ab36848e0f6a4'
+    && acceptance.historical_mechanics_proof_sha256 === '9599dea865c7b675e7ee33b2ff1c98b6b34bca0abf21d2da15c6cbb9ae1be7f1'
+    && historical?.trace_sha256 === '30392705e81db66ea234bfd71ac64e9cab2cca3dc1577829a620d3ff8f48432d'
+    && historical.exact_native_requests === 268 && historical.native_flag_frame === 1871
+    && historical.development_seed === 0 && historical.development_temperature === .05 && historical.not_a_scored_final_trial === true
+    && historical.pure_policy_sha256 === '19cdd3382f9919d4b474691b2fc78cb676e1382d94b1fd43b21280e6039483da'
+    && historical.runtime_sha256 === '0a7fc35cd2654b20d386814c9376d905b57bde927ab3d0c4e0dfc66664dae95b'
+    && negative.length === 3 && new Set(negative.map(entry => entry.protocol_sha256)).size === 3
+    && [
+      ['66cd3ae7b068fc57add4b783328dceb5f7992ca55a8737a14ea2eef02ad9dd62', '983ea565f48b385490f7b018b5119faad816b0ca3468310b56e6be74bdf61f31'],
+      ['4f489c937469d7d68379fe83bc8d457faae83e67e0b00bdb39bc4ecddc105194', 'a505e41e1847a576904feea5d63f21d716a47ec12c79f2fa02835454f554026b'],
+      ['3f6b8108c02a5a60bc91c841a868d9ff3724bb2de92d17b53ac5c431b4812675', '38f081ab2fc0d3ca22ca90790585adc4ba7cafde15e27f8431636caad95ba8a0'],
+    ].every(([protocol, certificate]) => negative.some(entry => entry.protocol_sha256 === protocol && entry.certificate_sha256 === certificate && entry.native_image_clears === 0));
+}
+
 function validOutcome(trial: Raw) {
   const frames = integer(trial.native_frames), progress = number(trial.progress_pct);
   if (trial.technical_pending === true || trial.rankable !== true || trial.native_replay_verified !== true || frames === null || frames < 0 || frames > 6000
@@ -85,18 +124,24 @@ export function parseCommonBenchmark(value: unknown, legacyIds: Set<string>, rea
     || !string(manifest.protocol_id) || !/^[a-f0-9]{64}$/.test(string(manifest.protocol_sha256))
     || !Number.isFinite(Date.parse(string(manifest.frozen_at_utc)))) return null;
   const pilot = object(manifest.pilot_selection_evidence);
-  if (!pilot) return null;
+  const imageOnly = manifest.evaluation_scope === 'image_progress_baseline';
+  if (!pilot && !imageOnly) return null;
   const stateOnly = manifest.evaluation_scope === 'state_only';
-  if (stateOnly) {
-    if (!stateOnlyGate(manifest, pilot)) return null;
-  } else if (pilot.state_gate_passed !== true || pilot.selected_image_temperature_gate_passed !== true
-    || ![.05, .2].includes(number(pilot.selected_temperature) ?? -1) || !safeHref(pilot.selection_href)
-    || ['pilot_protocol_sha256', 'pilot_summary_sha256', 'pilot_audit_sha256'].some(field => !/^[a-f0-9]{64}$/.test(string(pilot[field])))) return null;
+  if (imageOnly) {
+    if (!imageOnlyGate(manifest)) return null;
+  } else if (stateOnly) {
+    if (!stateOnlyGate(manifest, pilot!)) return null;
+  } else if (pilot!.state_gate_passed !== true || pilot!.selected_image_temperature_gate_passed !== true
+    || ![.05, .2].includes(number(pilot!.selected_temperature) ?? -1) || !safeHref(pilot!.selection_href)
+    || ['pilot_protocol_sha256', 'pilot_summary_sha256', 'pilot_audit_sha256'].some(field => !/^[a-f0-9]{64}$/.test(string(pilot![field])))) return null;
   const schedule = records(manifest.repeat_schedule), pairs = records(manifest.eligible_model_provider_pairs);
   if (!schedule.length || !pairs.length || !object(manifest.observation_and_controller_hashes)) return null;
   if (stateOnly && (schedule.length !== 66 || pairs.length !== 22
     || [...schedule, ...pairs, ...records(cohort.trials), ...records(cohort.rows)].some(entry => entry.track !== 'state')
     || schedule.some(entry => entry.temperature !== null))) return null;
+  if (imageOnly && (schedule.length !== 48 || pairs.length !== 16
+    || [...schedule, ...pairs, ...records(cohort.trials), ...records(cohort.rows)].some(entry => entry.track !== 'image')
+    || schedule.some(entry => entry.temperature !== .05 || entry.local_rng_seed !== 101 + Number(entry.repeat_id)))) return null;
   const groups = new Map<string, Raw[]>();
   const scheduledIds = new Set<string>();
   for (const entry of schedule) {
@@ -109,7 +154,7 @@ export function parseCommonBenchmark(value: unknown, legacyIds: Set<string>, rea
     groups.set(key(entry), group);
   }
   if (pairs.length !== groups.size || new Set(pairs.map(key)).size !== pairs.length || pairs.some(pair => !groups.has(key(pair)))) return null;
-  if (stateOnly && groups.size !== 22) return null;
+  if ((stateOnly && groups.size !== 22) || (imageOnly && groups.size !== 16)) return null;
   for (const group of groups.values()) {
     if (group.length !== 3 || new Set(group.map(entry => entry.repeat_id)).size !== 3) return null;
     if (group[0].track === 'state' && group.some(entry => entry.local_rng_seed !== null)) return null;
@@ -117,7 +162,7 @@ export function parseCommonBenchmark(value: unknown, legacyIds: Set<string>, rea
       || new Set(group.map(entry => entry.local_rng_seed)).size !== 3)) return null;
   }
   const trials = records(cohort.trials).filter(trial => string(trial.id) && !legacyIds.has(string(trial.id)) && trial.phase === 'evaluation');
-  if (!trials.length && !stateOnly) return null;
+  if (!trials.length && !stateOnly && !imageOnly) return null;
   const trialCounts = new Map<string, number>();
   for (const trial of trials) trialCounts.set(string(trial.id), (trialCounts.get(string(trial.id)) ?? 0) + 1);
   const byId = new Map(trials.map(trial => [string(trial.id), trial]));
@@ -140,7 +185,8 @@ export function parseCommonBenchmark(value: unknown, legacyIds: Set<string>, rea
       const started = Date.parse(string(trial.started_at_utc));
       return pinValid && prescribed && trial.id === prescribed.episode_id && trial.model_id === modelId && trial.track === input && trial.level === '1-1'
         && trial.protocol_sha256 === manifest.protocol_sha256 && trial.emulator_seed === 0
-        && trial.temperature === (input === 'image' ? pilot.selected_temperature : null)
+        && trial.temperature === (input === 'image' ? imageOnly ? .05 : pilot!.selected_temperature : null)
+        && (!imageOnly || trial.cadence_native_frames === 7)
         && trial.local_rng_seed === prescribed.local_rng_seed && trial.native_frame_budget === 6000 && trial.life_budget === 1
         && trial.returned_model === pair.expected_returned_model && providerNames.includes(string(trial.provider))
         && (trial.request_model === undefined || trial.request_model === pair.request_model)
@@ -178,6 +224,6 @@ export function parseCommonBenchmark(value: unknown, legacyIds: Set<string>, rea
     const resolved = recovery.effective.get(string(trial.id));
     return resolved && validOutcome(resolved) ? resolved : trial;
   });
-  return { protocolId: string(manifest.protocol_id), protocolSha256: string(manifest.protocol_sha256), frozenAt: string(manifest.frozen_at_utc), stateOnly,
+  return { protocolId: string(manifest.protocol_id), protocolSha256: string(manifest.protocol_sha256), frozenAt: string(manifest.frozen_at_utc), stateOnly, imageOnly,
     technicalRecovery: recovery.summary, rows, trials: projectedTrials };
 }

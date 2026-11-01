@@ -33,13 +33,14 @@ export async function hydrateRecoveryProofs(index, readAsset) {
 export async function readPublishedIndex(file) {
   const filename = path.resolve(file instanceof URL ? fileURLToPath(file) : file);
   const index = JSON.parse(await readFile(filename, 'utf8'));
-  if (typeof index.common_cohort_href === 'string') {
+  for (const [hrefKey, valueKey] of [['common_cohort_href', 'common_benchmark'], ['common_image_cohort_href', 'common_image_benchmark']]) {
+    if (typeof index[hrefKey] !== 'string') continue;
     const directory = path.dirname(filename);
-    const cohortFile = path.resolve(directory, index.common_cohort_href);
+    const cohortFile = path.resolve(directory, index[hrefKey]);
     if (!cohortFile.startsWith(directory + path.sep)) throw new Error('common cohort path escapes the published dataset');
     const cohort = JSON.parse(await readFile(cohortFile, 'utf8'));
     if (cohort.schema_version !== 1 || !cohort.common_benchmark) throw new Error(`${cohortFile}: invalid common cohort schema`);
-    index.common_benchmark = cohort.common_benchmark;
+    index[valueKey] = cohort.common_benchmark;
   }
   return hydrateRecoveryProofs(index, relative => {
     const directory = path.dirname(filename), asset = path.resolve(directory, relative);

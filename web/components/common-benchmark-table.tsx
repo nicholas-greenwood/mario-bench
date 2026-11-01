@@ -28,7 +28,7 @@ export default function CommonBenchmarkTable({ cohort, showRuns }: { cohort: Com
   });
   return (
     <div className="table-scroll">
-      <table className="runs" data-common-benchmark>
+      <table className="runs" data-common-benchmark data-common-protocol={cohort.protocolSha256}>
         <caption className="visually-hidden">mean progress over 3 prespecified evaluation runs per model and input</caption>
         <thead><tr>
           {columns.map(item => <th key={item.key} className={item.numeric ? 'num' : undefined} scope="col" aria-sort={sort.key === item.key ? sort.ascending ? 'ascending' : 'descending' : 'none'}>
