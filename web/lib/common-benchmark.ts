@@ -1,5 +1,5 @@
 /** A separate, frozen evaluation cohort. Development examples never enter a mean. */
-import { resolveImageRecovery } from './image-recovery-lineage.ts';
+import { resolveImageRecovery, type TerminalEvidence } from './image-recovery-lineage.ts';
 import { resolveTechnicalRecovery, closedTechnicalFailures, type RecoverySummary } from './recovery-lineage.ts';
 export type CommonTrack = 'state' | 'image';
 type Raw = Record<string, unknown>;
@@ -17,6 +17,7 @@ export type CommonResult = {
   validTrials: number;
   coverageComplete: boolean;
   availability: 'complete' | 'pending' | 'unavailable';
+  technicalEvidence: TerminalEvidence[];
   meanProgressPct: number | null;
   bestClearSeconds: number | null;
   meanCompletedSeconds: number | null;
@@ -168,8 +169,9 @@ export function parseCommonBenchmark(value: unknown, legacyIds: Set<string>, rea
   const trialCounts = new Map<string, number>();
   for (const trial of trials) trialCounts.set(string(trial.id), (trialCounts.get(string(trial.id)) ?? 0) + 1);
   const byId = new Map(trials.map(trial => [string(trial.id), trial]));
-  const recovery = imageOnly ? resolveImageRecovery(cohort, trials, imageOnly, validOutcome) : resolveTechnicalRecovery(cohort, trials, stateOnly, validOutcome);
-  const unavailable = closedTechnicalFailures(cohort, trials, recovery.summary !== null);
+  const imageRecovery = imageOnly ? resolveImageRecovery(cohort, trials, imageOnly, validOutcome) : null;
+  const recovery = imageRecovery ?? resolveTechnicalRecovery(cohort, trials, stateOnly, validOutcome);
+  const unavailable = imageRecovery?.unavailable ?? closedTechnicalFailures(cohort, trials, recovery.summary !== null);
   const rawRows = records(cohort.rows);
   const rows: CommonResult[] = [];
   for (const [groupKey, group] of groups) {
@@ -215,6 +217,7 @@ export function parseCommonBenchmark(value: unknown, legacyIds: Set<string>, rea
       id: `${manifest.protocol_sha256}:${input}:${modelId}`, modelId,
       name: string(row.display_name) || modelId, track: input,
       expectedTrialIds: expected, recordedTrialIds: recorded, validTrialIds: valid.map(trial => string(trial.id)), validTrials: valid.length, coverageComplete: complete,
+      technicalEvidence: expected.flatMap(id => { const evidence = imageRecovery?.unavailableEvidence.get(id); return evidence ? [evidence] : []; }),
       availability: complete ? 'complete' : expected.some(id => unavailable.has(id) && !valid.some(trial => trial.id === id)) ? 'unavailable' : 'pending',
       meanProgressPct: complete ? valid.reduce((sum, trial) => sum + (trial.progress_pct as number), 0) / 3 : null,
       bestClearSeconds: complete && completed.length ? (completed[0].native_frames_to_completion as number) / 60 : null,

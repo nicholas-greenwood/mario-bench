@@ -68,10 +68,13 @@ export function renderResults(index) {
       '| model | mean progress | best clear (game s) | mean cost/run (usd) | valid runs | evidence |',
       '| --- | ---: | ---: | ---: | ---: | --- |');
     for (const row of rows) {
-      const evidence = row.recordedTrialIds.map((id, position) => {
+      const closedEvidence = row.technicalEvidence.flatMap(item => [
+        `[closed continuation trace](results/${item.traceHref})`, `[native proof](results/${item.proofHref})`,
+        item.replayHref && `[technical replay](results/${item.replayHref})`].filter(Boolean));
+      const evidence = [...row.recordedTrialIds.map((id, position) => {
         const trial = rawById.get(id);
         return trial?.trace_href ? `[run ${position + 1}](results/${trial.trace_href})` : null;
-      }).filter(Boolean).join(' · ') || '-';
+      }).filter(Boolean), ...closedEvidence].join(' · ') || '-';
       benchmark.push(`| ${escape(row.name.toLowerCase())} | ${row.meanProgressPct === null ? row.availability === 'unavailable' ? 'unavailable' : 'pending' : `${row.meanProgressPct.toFixed(2)}%`} | ${row.bestClearSeconds === null ? '-' : row.bestClearSeconds.toFixed(2)} | ${formatRunCost({ costUsd: row.meanCostUsd, costEstimateUsd: row.meanCostEstimateUsd }) ?? '-'} | ${row.validTrials}/3 | ${evidence} |`);
     }
     benchmark.push('', '<details>', '<summary>completed-run timing</summary>', '');
