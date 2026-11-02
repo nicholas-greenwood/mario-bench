@@ -16,7 +16,7 @@ export async function hydrateRecoveryProofs(index, readAsset) {
     delete slot._computed_pin_sha256;
     if (slot.pin_payload && typeof slot.pin_payload === 'object') slot._computed_pin_sha256 = digest(slot.pin_payload);
   }
-  for (const resolution of overlay.resolutions ?? []) {
+  for (const resolution of [...(overlay.resolutions ?? []), ...(overlay.continuations ?? [])]) {
     delete resolution.proof;
     delete resolution.proof_verified_sha256;
     if (typeof resolution.proof_href !== 'string' || !/^[a-f0-9]{64}$/.test(resolution.proof_sha256 ?? '')) continue;

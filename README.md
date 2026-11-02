@@ -45,7 +45,7 @@ mean cost/run requires complete billing for all 3 runs; ~ includes a byok list-p
 | jaredpalmer/kev-4b | 8.20% | - | $0.001558 | 3/3 | [run 1](results/common-state/traces/state-v2-eval-20261101T201131691317Z-jaredpalmer__kev-4b-repeat0.json) · [run 2](results/common-state/traces/state-v2-eval-20261101T201131691317Z-jaredpalmer__kev-4b-repeat1.json) · [run 3](results/common-state/traces/state-v2-eval-20261101T201131691317Z-jaredpalmer__kev-4b-repeat2.json) |
 | scaledown/classify-1 | 0.00% | - | - | 3/3 | [run 1](results/common-state/traces/state-v2-eval-20261101T201131691317Z-scaledown__classify-1-repeat0.json) · [run 2](results/common-state/traces/state-v2-eval-20261101T201131691317Z-scaledown__classify-1-repeat1.json) · [run 3](results/common-state/recovery/traces/state-v2-eval-20261101T201131691317Z-scaledown__classify-1-repeat2--technical-recovery-v1.json) |
 | upstage/solar-decide-flash | 0.00% | - | - | 3/3 | [run 1](results/common-state/traces/state-v2-eval-20261101T201131691317Z-upstage__solar-decide-flash-repeat0.json) · [run 2](results/common-state/recovery/traces/state-v2-eval-20261101T201131691317Z-upstage__solar-decide-flash-repeat1--technical-recovery-v1.json) · [run 3](results/common-state/recovery/traces/state-v2-eval-20261101T201131691317Z-upstage__solar-decide-flash-repeat2--technical-recovery-v1.json) |
-| nace-ai/drex-v2.0 | pending | - | - | 0/3 | [run 1](results/common-state/traces/state-v2-eval-20261101T201131691317Z-nace-ai__drex-v2.0-repeat0.json) · [run 2](results/common-state/traces/state-v2-eval-20261101T201131691317Z-nace-ai__drex-v2.0-repeat1.json) · [run 3](results/common-state/traces/state-v2-eval-20261101T201131691317Z-nace-ai__drex-v2.0-repeat2.json) |
+| nace-ai/drex-v2.0 | unavailable | - | - | 0/3 | [run 1](results/common-state/traces/state-v2-eval-20261101T201131691317Z-nace-ai__drex-v2.0-repeat0.json) · [run 2](results/common-state/traces/state-v2-eval-20261101T201131691317Z-nace-ai__drex-v2.0-repeat1.json) · [run 3](results/common-state/traces/state-v2-eval-20261101T201131691317Z-nace-ai__drex-v2.0-repeat2.json) |
 
 <details>
 <summary>completed-run timing</summary>
@@ -71,7 +71,7 @@ mean cost/run requires complete billing for all 3 runs; ~ includes a byok list-p
 - jaredpalmer/kev-4b: 0/3 completed; mean completed time unavailable
 - scaledown/classify-1: 0/3 completed; mean completed time unavailable
 - upstage/solar-decide-flash: 0/3 completed; mean completed time unavailable
-- nace-ai/drex-v2.0: pending
+- nace-ai/drex-v2.0: unavailable (technical)
 
 </details>
 

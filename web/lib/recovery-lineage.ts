@@ -170,3 +170,56 @@ export function resolveTechnicalRecovery(cohort: Raw, originals: Raw[], stateOnl
   }
   return { effective, summary: { protocolSha256: str(authority.protocol_sha256), planned: 8, resolved: effective.size, originalUnknownProviderAttempts: 5 } };
 }
+
+/** A closed, audited failed child exhausts its one registered continuation, without earning a score. */
+export function closedTechnicalFailures(cohort: Raw, originals: Raw[], authorityValidated: boolean) {
+  const exhausted = new Set<string>();
+  if (!authorityValidated) return exhausted;
+  const overlay = obj(cohort.technical_recovery), authority = obj(overlay?.manifest);
+  if (!overlay || authority?.max_continuations_per_slot !== 1) return exhausted;
+  const frozen = Date.parse(str(authority.frozen_at_utc));
+  const pairs = rows(obj(cohort.manifest)?.eligible_model_provider_pairs);
+  for (const child of rows(overlay.continuations)) {
+    const slot = rows(authority.slots).find(s => s.child_run_id === child.id);
+    const original = originals.find(t => t.id === slot?.original_trial_id), attempt = obj(child.attempt_proof);
+    const proof = obj(child.proof), grade = obj(proof?.result), old = obj(original?.attempt_proof);
+    const pair = pairs.find(p => p.model_id === child.model_id && p.track === child.track);
+    const started = Date.parse(str(child.started_at_utc)), terminal = Date.parse(str(attempt?.terminal_at_utc));
+    if (!slot || !original || !attempt || !proof || !grade || !old || !pair
+      || child.status !== 'infra_error' || child.rankable !== false || child.technical_pending !== true
+      || child.flag_get !== false || child.completed !== false || child.death !== false || child.progress_pct !== null || child.native_frames_to_completion !== null
+      || child.native_replay_verified !== true || child.record_kind !== 'technical_continuation' || child.phase !== 'technical_recovery'
+      || child.protocol_sha256 !== authority.protocol_sha256 || child.parent_protocol_sha256 !== parentProtocol
+      || child.resolves_original_trial_id !== original.id || child.parent_episode_sha256 !== slot.parent_episode_sha256
+      || ['model_id','track','repeat_id','local_rng_seed','temperature','emulator_seed'].some(k => !same(child[k],original[k]))
+      || child.level !== '1-1' || child.native_frame_budget !== 6000 || child.life_budget !== 1 || child.cadence_native_frames !== 4
+      || child.returned_model !== pair.expected_returned_model || !Array.isArray(pair.expected_returned_provider_names) || !pair.expected_returned_provider_names.includes(child.provider)
+      || !Number.isFinite(started) || started < frozen || !Number.isFinite(terminal) || terminal < started
+      || !sha(child.proof_sha256) || child.proof_verified_sha256 !== child.proof_sha256 || !href(child.proof_href)
+      || attempt.native_audit_sha256 !== child.proof_sha256 || !sha(attempt.source_episode_sha256)
+      || proof.schema_version !== 1 || proof.verified !== true || proof.pending_unexecuted === true
+      || proof.original_trial_id !== original.id || proof.child_run_id !== child.id
+      || proof.parent_protocol_sha256 !== parentProtocol || proof.recovery_protocol_sha256 !== authority.protocol_sha256
+      || proof.parent_episode_sha256 !== slot.parent_episode_sha256 || proof.child_episode_sha256 !== attempt.source_episode_sha256
+      || checks.some(k => proof[k] !== true) || proof.no_observed_valid_choice_discarded !== true
+      || grade.frames !== child.native_frames || gradeKeys.some(k => !Object.hasOwn(grade,k) || !same(grade[k],child[k]))
+      || grade.technical_pending !== true
+      || checkpointKeys.some(k => !same(slot[k],obj(child.checkpoint)?.[k]) || !same(slot[k],obj(child.reconstructed_checkpoint)?.[k])
+        || !same(slot[k],obj(proof.declared_checkpoint)?.[k]) || !same(slot[k],obj(proof.reconstructed_checkpoint)?.[k]))
+      || proof.total_native_frame_budget !== 6000 || proof.total_native_frames !== child.native_frames
+      || int(child.native_frames) < int(slot.checkpoint_native_frame) || int(child.native_frames) >= 6000
+      || proof.new_native_frames !== int(child.native_frames)-int(slot.checkpoint_native_frame) || proof.new_native_frames !== child.continuation_native_frames
+      || attempt.scope !== 'composed_trajectory' || attempt.unanswered_attempt_count !== 0 || attempt.request_intent_count !== attempt.request_result_count
+      || proof.original_attempt_count !== old.request_intent_count || int(proof.recovery_attempt_count) < 1
+      || proof.joined_attempt_count !== int(old.request_intent_count)+int(proof.recovery_attempt_count)
+      || proof.joined_attempt_count !== attempt.request_intent_count || proof.joined_request_result_count !== attempt.request_result_count
+      || proof.original_request_result_count !== old.request_result_count || proof.recovery_request_result_count !== proof.recovery_attempt_count
+      || proof.original_error_attempt_count !== old.error_attempt_count || proof.joined_error_attempt_count !== int(old.error_attempt_count)+int(proof.recovery_error_attempt_count)
+      || int(proof.recovery_error_attempt_count)<0 || int(proof.recovery_error_attempt_count)>int(proof.recovery_attempt_count)
+      || proof.joined_error_attempt_count !== attempt.error_attempt_count || proof.original_unanswered_attempt_count!==0 || proof.recovery_unanswered_attempt_count!==0 || proof.joined_unanswered_attempt_count !== 0
+      || int(attempt.request_result_count)-int(attempt.error_attempt_count) !== child.decisions
+      || int(proof.recovery_request_result_count)-int(proof.recovery_error_attempt_count) !== child.continuation_decisions) continue;
+    exhausted.add(str(original.id));
+  }
+  return exhausted;
+}
