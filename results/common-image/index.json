@@ -4618,7 +4618,7 @@
         "image-h7-baseline-evaluation-typesafe__jev-1.14-repeat2-seed103": "f2e2cca930dbc1d9ef21e8e480a9d86686bd706a88c2cb48785870a44f09689d"
       },
       "billing_sidecar_sha256": {},
-      "replay_proof_href": "common-image/replay-proof.json",
+      "replay_proof_href": "common-image/replay-proof-original48.json",
       "replay_proof_sha256": "56b8c7d8f0260af130188673e9b8d15c4e4541f8f5c8a6e5fca164ff43941a9f",
       "original_all_trials_audited": true,
       "original_valid_trials": 47,

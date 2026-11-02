@@ -1,6 +1,6 @@
 {
   "protocol_sha256": "2f11c42b8d47f8cd8959e828243acacb8abcf83c478a6206508ebd635004fdf1",
-  "captured_at_utc": "2026-11-01T23:54:26.601619+00:00",
+  "captured_at_utc": "2026-11-01T23:28:14.981981+00:00",
   "replays": [
     {
       "id": "image-h7-baseline-evaluation-baseten__elephant-1-repeat0-seed101",
@@ -503,78 +503,6 @@
       "replay_sha256": "6fed06d0f41e468fcf9adbd855517291e8f97de869d07754cad4e6965e1a395e",
       "source_episode_sha256": "f2e2cca930dbc1d9ef21e8e480a9d86686bd706a88c2cb48785870a44f09689d",
       "video_frames": 107,
-      "silent": true,
-      "fps": 60
-    },
-    {
-      "id": "image-h7-baseline-evaluation-baseten__joey-1-repeat0-seed101",
-      "native_frames": 6000,
-      "flag_get": false,
-      "death": false,
-      "replay_href": "common-image/replays/image-h7-baseline-evaluation-baseten__joey-1-repeat0-seed101.mp4",
-      "replay_sha256": "bc7cac39bf1c7ac3837ff8e683ce39a9f03a1dc3ce3dae93d4036a6e76615cc9",
-      "source_episode_sha256": "11380a1cdfff8f648a7c7d03ceb940cb7fffd5a48a2962ad5c2a614d0676c621",
-      "video_frames": 6001,
-      "silent": true,
-      "fps": 60
-    },
-    {
-      "id": "image-h7-baseline-evaluation-baseten__joey-1-repeat1-seed102",
-      "native_frames": 6000,
-      "flag_get": false,
-      "death": false,
-      "replay_href": "common-image/replays/image-h7-baseline-evaluation-baseten__joey-1-repeat1-seed102.mp4",
-      "replay_sha256": "16f741b7817dc898a5a831633804ed4ef7e246a4674764347d0bbfc2b4dfb9f1",
-      "source_episode_sha256": "b8956ff3347dcfd38b2c90226eda40a5d9439c31c527c5a4b168c12e4592f53d",
-      "video_frames": 6001,
-      "silent": true,
-      "fps": 60
-    },
-    {
-      "id": "image-h7-baseline-evaluation-baseten__joey-1-repeat2-seed103",
-      "native_frames": 6000,
-      "flag_get": false,
-      "death": false,
-      "replay_href": "common-image/replays/image-h7-baseline-evaluation-baseten__joey-1-repeat2-seed103.mp4",
-      "replay_sha256": "16f741b7817dc898a5a831633804ed4ef7e246a4674764347d0bbfc2b4dfb9f1",
-      "source_episode_sha256": "12ec3d9167c6781a02e7173896a1aae98101fd1f5117b6b2a6abba470cecefd9",
-      "video_frames": 6001,
-      "silent": true,
-      "fps": 60
-    },
-    {
-      "id": "image-h7-baseline-evaluation-cloudflare__clef-omni-repeat0-seed101",
-      "native_frames": 6000,
-      "flag_get": false,
-      "death": false,
-      "replay_href": "common-image/replays/image-h7-baseline-evaluation-cloudflare__clef-omni-repeat0-seed101.mp4",
-      "replay_sha256": "ee77cba4939aeb3c6ded39494222f01993908f87b2dfcb7fa788075784d4b10e",
-      "source_episode_sha256": "596ab89fed3e247439f0b3a3cdda96d7ba17a2c8033a57bba8f9f565f75b3387",
-      "video_frames": 6001,
-      "silent": true,
-      "fps": 60
-    },
-    {
-      "id": "image-h7-baseline-evaluation-cloudflare__clef-omni-repeat1-seed102",
-      "native_frames": 6000,
-      "flag_get": false,
-      "death": false,
-      "replay_href": "common-image/replays/image-h7-baseline-evaluation-cloudflare__clef-omni-repeat1-seed102.mp4",
-      "replay_sha256": "ee77cba4939aeb3c6ded39494222f01993908f87b2dfcb7fa788075784d4b10e",
-      "source_episode_sha256": "b53e6d6a8823fde4fbc823ca98a6474aa4c8f93d75ef97131a43bb6208710acc",
-      "video_frames": 6001,
-      "silent": true,
-      "fps": 60
-    },
-    {
-      "id": "image-h7-baseline-evaluation-cloudflare__clef-omni-repeat2-seed103",
-      "native_frames": 6000,
-      "flag_get": false,
-      "death": false,
-      "replay_href": "common-image/replays/image-h7-baseline-evaluation-cloudflare__clef-omni-repeat2-seed103.mp4",
-      "replay_sha256": "ee77cba4939aeb3c6ded39494222f01993908f87b2dfcb7fa788075784d4b10e",
-      "source_episode_sha256": "2a21f6917611db00a66da5e119831eac5bc3bbf06677796eab1d5282bf29987d",
-      "video_frames": 6001,
       "silent": true,
       "fps": 60
     }
