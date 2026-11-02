@@ -43,6 +43,11 @@ technical slots and three remain unavailable. the effective denominator is still
 66, with 21 complete model means and one unavailable mean. original aborts remain
 downloadable. joined billing stays unknown where any old request lacks a receipt
 
+the single registered image continuation also ended with a technical service
+error. its mean is unavailable, never zero; the original 48 image attempts and
+all 47 valid original outcomes are unchanged. its composed replay contains the
+original prefix and the new native controls. no further continuation is scheduled
+
 ## individual history
 
 `examples`, `observations` and `technical_diagnostics` preserve development

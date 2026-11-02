@@ -4661,7 +4661,7 @@
     "published_trials": 66,
     "prespecified_trials": 66,
     "captured_at_utc": "2026-11-01T22:52:23.268270+00:00",
-    "image_status": "published_progress_baseline_original48_complete",
+    "image_status": "complete_with_terminal_technical_outcome",
     "protocol_sha256": "e1c1086b8dc2d5613deaad37cbc75003dedaf7564cf82802a17b0e81fcdb8371",
     "valid_trials": 63,
     "technical_trials": 3,
@@ -4687,13 +4687,19 @@
     "published_trials": 48,
     "prespecified_trials": 48,
     "complete_model_means": 15,
-    "pending_model_means": 1,
+    "pending_model_means": 0,
     "valid_trials": 47,
     "technical_trials": 1,
     "captured_at_utc": "2026-11-01T23:54:26.601619+00:00",
     "acceptance": "explicit_progress_baseline_v1",
     "native_clears": 0,
     "historical_mechanics_witness_not_scored": true,
-    "original_all_trials_audited": true
+    "original_all_trials_audited": true,
+    "unavailable_model_means": 1,
+    "technical_continuations_published": 1,
+    "technical_resolutions": 0,
+    "technical_recovery_status": "all_predeclared_continuations_terminal",
+    "logical_trials": 48,
+    "remaining_model_invocations": 0
   }
 }
