@@ -725,5 +725,5 @@ test('image recovery disclosure uses its own dynamic planned and resolved counts
   const state=recoveryFixture();await prepareRecovery(state);state.data.common_image_benchmark=image.cohort;
   const parsed=parseDataset(state.data);assert.equal(parsed.commonBenchmarks.length,2);
   assert.equal(parsed.commonBenchmarks[1].technicalRecovery.planned,1);assert.equal(parsed.commonBenchmarks[1].technicalRecovery.resolved,0);
-  const readme=renderResults(state.data);assert.match(readme,/1\/8 technical continuations/);assert.match(readme,/pixels: 0\/1 technical continuations/);
+  const readme=renderResults(state.data);assert.match(readme,/1\/8 technical interruptions resolved/);assert.match(readme,/pixels: 0\/1 technical interruptions resolved/);
 });

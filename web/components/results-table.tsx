@@ -82,7 +82,7 @@ export default function ResultsTable() {
       </div>
       {view === 'benchmark' && dataset.commonBenchmark ? <>{dataset.commonBenchmarks.map(cohort => <div key={cohort.protocolSha256}>
         {dataset.commonBenchmarks.length > 1 && <h3 className="section-label">{cohort.imageOnly ? 'pixels only' : 'state'}</h3>}
-        {cohort.technicalRecovery && <p className="results-note">{cohort.technicalRecovery.resolved}/{cohort.technicalRecovery.planned} technical continuations independently verified. original interruptions and proofs remain linked; unresolved trials and incomplete billing stay unknown.</p>}
+        {cohort.technicalRecovery && <p className="results-note">{cohort.technicalRecovery.resolved}/{cohort.technicalRecovery.planned} technical interruptions resolved under a separate registered authority. original attempts and verified continuation proofs remain linked; unavailable grades and incomplete billing stay unknown.</p>}
         {cohort.imageOnly && <p className="results-note">shared image progress baseline; a native clear is an outcome, not an entry requirement. earlier failed calibration gates remain failed. historical mechanics evidence is excluded from these fresh runs.</p>}
         <CommonBenchmarkTable cohort={cohort} showRuns={ids => { setEvidenceIds(ids); setView('observations'); }} />
       </div>)}</> : <div className="table-scroll">

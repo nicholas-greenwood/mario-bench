@@ -55,7 +55,7 @@ export function renderResults(index) {
   if (dataset.commonBenchmark.stateOnly && !dataset.commonBenchmarks.some(cohort => cohort.imageOnly)) benchmark.push('common image track: calibration pending. image replays and history remain development runs', '');
   for (const cohort of dataset.commonBenchmarks) {
     const recovery = cohort.technicalRecovery;
-    if (recovery) benchmark.push(`${cohort.imageOnly ? 'pixels: ' : ''}${recovery.resolved}/${recovery.planned} technical continuations independently verified under a separate registered authority; original aborts and proofs remain linked`, '');
+    if (recovery) benchmark.push(`${cohort.imageOnly ? 'pixels: ' : ''}${recovery.resolved}/${recovery.planned} technical interruptions resolved under a separate registered authority; original attempts and verified continuation proofs remain linked`, '');
   }
   for (const [track, title] of [['state', 'state'], ['image', 'pixels only']]) {
     const cohorts = dataset.commonBenchmarks.filter(cohort => cohort.rows.some(row => row.track === track));
