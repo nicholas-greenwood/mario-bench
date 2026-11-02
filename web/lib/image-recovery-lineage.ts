@@ -1,6 +1,7 @@
 /** Image continuations retain the original 48-slot evaluation identity. */
 import type { RecoverySummary } from './recovery-lineage.ts';
 type Raw = Record<string, unknown>;
+export type TerminalEvidence = { originalTrialId: string; childRunId: string; traceHref: string; proofHref: string; replayHref: string | null };
 const obj = (v: unknown): Raw | null => v !== null && typeof v === 'object' && !Array.isArray(v) ? v as Raw : null;
 const rows = (v: unknown): Raw[] => Array.isArray(v) ? v.map(obj).filter((x): x is Raw => x !== null) : [];
 const str = (v: unknown) => typeof v === 'string' ? v : '';
@@ -23,7 +24,9 @@ const metricKeys = [...gradeKeys.filter(k => !['protocol_sha256','resolves_origi
 
 export function resolveImageRecovery(cohort: Raw, originals: Raw[], imageOnly: boolean, validOutcome: (trial: Raw) => boolean) {
   const effective = new Map<string, Raw>();
-  const none = { effective, summary: null as RecoverySummary | null };
+  const unavailable = new Set<string>();
+  const unavailableEvidence = new Map<string,TerminalEvidence>();
+  const none = { effective, unavailable, unavailableEvidence, summary: null as RecoverySummary | null };
   const overlay = obj(cohort.technical_recovery), authority = obj(overlay?.manifest), base = obj(cohort.manifest);
   if (!imageOnly || !overlay || !authority || base?.protocol_sha256 !== parent || originals.length !== 48
     || new Set(originals.map(t => t.id)).size !== 48) return none;
@@ -102,38 +105,44 @@ export function resolveImageRecovery(cohort: Raw, originals: Raw[], imageOnly: b
     unknown+=int(slot.provider_outcome_unknown_attempt_count);
   }
   if (unknown!==authority.provider_outcome_unknown_attempt_count) return none;
-  for (const resolution of resolutions) {
-    const slot = slots.find(s=>s.original_trial_id===resolution.original_trial_id)!;
+  const candidates = [...resolutions.map(record=>({record,terminal:false})),
+    ...children.filter(child=>child.status==='infra_error'&&!resolutions.some(r=>r.child_run_id===child.id)).map(record=>({record,terminal:true}))];
+  for (const {record:resolution,terminal} of candidates) {
+    const slot = slots.find(s=>s.original_trial_id===(terminal?resolution.resolves_original_trial_id:resolution.original_trial_id));
+    if (!slot) continue;
     const original = originals.find(t=>t.id===slot.original_trial_id)!, child = children.find(c=>c.id===slot.child_run_id);
     const logical = obj(resolution.effective_trial), proof = obj(resolution.proof), grade = obj(proof?.result);
     const attempt = obj(child?.attempt_proof), old = obj(original.attempt_proof)!;
     const pair = pairs.find(p=>p.model_id===slot.model_id&&p.track==='image')!;
     const cp = obj(slot.checkpoint)!;
-    if (!child||!logical||!proof||!grade||!attempt||slot.continuation_mode==='unanswered_no_resend'
+    if (!child||(!terminal&&!logical)||!proof||!grade||!attempt||slot.continuation_mode==='unanswered_no_resend'
       || child.phase!=='technical_recovery'||child.record_kind!=='technical_continuation'||child.protocol_sha256!==authority.protocol_sha256
       || child.parent_protocol_sha256!==parent||child.resolves_original_trial_id!==original.id||child.parent_episode_sha256!==slot.parent_episode_sha256
       || ['model_id','track','repeat_id','local_rng_seed','temperature','emulator_seed'].some(k=>!same(child[k],slot[k]))
       || child.level!=='1-1'||child.start_x!==40||!Number.isFinite(child.max_progress_x)||!Number.isFinite(original.max_progress_x)
       ||Number(child.max_progress_x)<Number(original.max_progress_x)||child.native_frame_budget!==6000||child.life_budget!==1||child.cadence_native_frames!==7
       || child.returned_model!==pair.expected_returned_model||!Array.isArray(pair.expected_returned_provider_names)||!pair.expected_returned_provider_names.includes(child.provider)
-      || (child.request_model!==undefined&&child.request_model!==pair.request_model)||!validOutcome(child)
-      || !['completed','game_over','frame_budget'].includes(str(child.status))
+      || (child.request_model!==undefined&&child.request_model!==pair.request_model)
+      || (terminal ? child.status!=='infra_error'||child.rankable!==false||child.technical_pending!==true||child.native_replay_verified!==true
+        ||child.flag_get!==false||child.completed!==false||child.death!==false||child.progress_pct!==null||child.native_frames_to_completion!==null
+        ||!Number.isFinite(Date.parse(str(attempt.terminal_at_utc)))||Date.parse(str(attempt.terminal_at_utc))<Date.parse(str(child.started_at_utc))
+        ||int(child.native_frames)>=6000 : !validOutcome(child)||!['completed','game_over','frame_budget'].includes(str(child.status)))
       || !Number.isFinite(Date.parse(str(child.started_at_utc)))||Date.parse(str(child.started_at_utc))<frozen
       || !same(child.checkpoint,cleanCheckpoint(cp))||!same(child.reconstructed_checkpoint,cleanCheckpoint(cp))
       || proof.schema_version!==1||proof.verified!==true||proof.pending_unexecuted===true
       || resolution.proof_verified_sha256!==resolution.proof_sha256||!sha(resolution.proof_sha256)||!href(resolution.proof_href)
-      || proof.original_trial_id!==original.id||proof.child_run_id!==child.id||proof.parent_protocol_sha256!==parent||proof.recovery_protocol_sha256!==authority.protocol_sha256
+      || (!terminal&&resolution.original_trial_id!==original.id)||proof.original_trial_id!==original.id||proof.child_run_id!==child.id||proof.parent_protocol_sha256!==parent||proof.recovery_protocol_sha256!==authority.protocol_sha256
       || resolution.parent_episode_sha256!==slot.parent_episode_sha256||proof.parent_episode_sha256!==slot.parent_episode_sha256
-      || resolution.child_episode_sha256!==attempt.source_episode_sha256||proof.child_episode_sha256!==attempt.source_episode_sha256
+      || (!terminal&&resolution.child_episode_sha256!==attempt.source_episode_sha256)||proof.child_episode_sha256!==attempt.source_episode_sha256
       || !sha(attempt.source_episode_sha256)||attempt.native_audit_sha256!==resolution.proof_sha256
-      || checks.some(k=>resolution[k]!==true||proof[k]!==true)||proof.no_observed_valid_choice_discarded!==true
+      || checks.some(k=>(!terminal&&resolution[k]!==true)||proof[k]!==true)||proof.no_observed_valid_choice_discarded!==true
       || !same(proof.declared_checkpoint,cleanCheckpoint(cp))||!same(proof.reconstructed_checkpoint,cleanCheckpoint(cp))
       || gradeKeys.some(k=>!Object.hasOwn(grade,k)||!same(grade[k],child[k]))
-      || proof.total_native_frame_budget!==6000||proof.total_native_frames!==child.native_frames||int(child.native_frames)<=int(cp.checkpoint_native_frame)
+      || proof.total_native_frame_budget!==6000||proof.total_native_frames!==child.native_frames||(terminal?int(child.native_frames)<int(cp.checkpoint_native_frame):int(child.native_frames)<=int(cp.checkpoint_native_frame))
       || proof.new_native_frames!==child.continuation_native_frames||int(child.native_frames)-int(cp.checkpoint_native_frame)!==child.continuation_native_frames
-      || logical.id!==original.id||logical.logical_trial_id!==original.id||logical.source_run_id!==child.id||logical.record_kind!=='technical_resolution'
-      || logical.phase!=='technical_recovery'||logical.protocol_sha256!==authority.protocol_sha256||logical.base_protocol_sha256!==parent
-      || metricKeys.some(k=>!same(logical[k],child[k]))||!href(child.trace_href)||!sha(child.trace_sha256)||!href(original.trace_href)) continue;
+      || (!terminal&&(logical!.id!==original.id||logical!.logical_trial_id!==original.id||logical!.source_run_id!==child.id||logical!.record_kind!=='technical_resolution'
+        ||logical!.phase!=='technical_recovery'||logical!.protocol_sha256!==authority.protocol_sha256||logical!.base_protocol_sha256!==parent
+        ||metricKeys.some(k=>!same(logical![k],child[k]))))||!href(child.trace_href)||!sha(child.trace_sha256)||!href(original.trace_href)) continue;
     const oldCount=int(old.request_intent_count), newCount=int(proof.recovery_attempt_count), joined=oldCount+newCount;
     const inherited=slot.continuation_mode==='reuse_recorded_valid_response'?1:0;
     const oldErrors=int(old.error_attempt_count), newErrors=int(proof.recovery_error_attempt_count), errors=oldErrors+newErrors;
@@ -148,6 +157,12 @@ export function resolveImageRecovery(cohort: Raw, originals: Raw[], imageOnly: b
       || child.continuation_decisions!==int(child.decisions)-int(original.decisions)
       || proof.provider_outcome_unknown_attempt_count!==slot.provider_outcome_unknown_attempt_count||unknownNew<0||unknownNew>newErrors
       || proof.total_provider_outcome_unknown_attempt_count!==unknownTotal)continue;
+    if (terminal) {
+      unavailable.add(str(original.id));
+      unavailableEvidence.set(str(original.id), {originalTrialId:str(original.id),childRunId:str(child.id),traceHref:str(child.trace_href),proofHref:str(resolution.proof_href),
+        replayHref:href(child.replay_href)&&sha(child.replay_sha256)?child.replay_href:null});
+      continue;
+    }
     const projected:Raw={...logical},billing=obj(projected.cost_provenance);
     if(!billing||billing.joined_attempt_count!==joined||['request_count','source_request_count','source_attempt_count'].some(k=>billing[k]!==joined)
       ||billing.error_count!==errors||unknownTotal!==0){
@@ -157,5 +172,5 @@ export function resolveImageRecovery(cohort: Raw, originals: Raw[], imageOnly: b
     projected.recovery_lineage={childRunId:child.id,originalTraceHref:original.trace_href,childTraceHref:child.trace_href,proofHref:resolution.proof_href};
     effective.set(str(original.id),projected);
   }
-  return {effective,summary:{protocolSha256:str(authority.protocol_sha256),planned:slots.length,resolved:effective.size,originalUnknownProviderAttempts:unknown}};
+  return {effective,unavailable,unavailableEvidence,summary:{protocolSha256:str(authority.protocol_sha256),planned:slots.length,resolved:effective.size,originalUnknownProviderAttempts:unknown}};
 }

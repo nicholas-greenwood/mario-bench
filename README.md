@@ -18,7 +18,9 @@ pending means the 3 prescribed results are not fully confirmed; best clear is th
 mean cost/run requires complete billing for all 3 runs; ~ includes a byok list-price estimate
 [protocol and trial evidence](results/common-state/index.json)
 
-5/8 technical continuations independently verified under a separate registered authority; original aborts and proofs remain linked
+5/8 technical interruptions resolved under a separate registered authority; original attempts and verified continuation proofs remain linked
+
+pixels: 0/1 technical interruptions resolved under a separate registered authority; original attempts and verified continuation proofs remain linked
 
 ### state
 
@@ -97,7 +99,7 @@ shared image progress baseline; native clears are outcomes. earlier failed calib
 | respan/span-02 | 8.14% | - | - | 3/3 | [run 1](results/common-image/traces/image-h7-baseline-evaluation-respan__span-02-repeat0-seed101.json) · [run 2](results/common-image/traces/image-h7-baseline-evaluation-respan__span-02-repeat1-seed102.json) · [run 3](results/common-image/traces/image-h7-baseline-evaluation-respan__span-02-repeat2-seed103.json) |
 | baseten/joey-1 | 0.00% | - | - | 3/3 | [run 1](results/common-image/traces/image-h7-baseline-evaluation-baseten__joey-1-repeat0-seed101.json) · [run 2](results/common-image/traces/image-h7-baseline-evaluation-baseten__joey-1-repeat1-seed102.json) · [run 3](results/common-image/traces/image-h7-baseline-evaluation-baseten__joey-1-repeat2-seed103.json) |
 | cloudflare/clef-omni | 0.00% | - | - | 3/3 | [run 1](results/common-image/traces/image-h7-baseline-evaluation-cloudflare__clef-omni-repeat0-seed101.json) · [run 2](results/common-image/traces/image-h7-baseline-evaluation-cloudflare__clef-omni-repeat1-seed102.json) · [run 3](results/common-image/traces/image-h7-baseline-evaluation-cloudflare__clef-omni-repeat2-seed103.json) |
-| typesafe/jev-1.14 | pending | - | - | 2/3 | [run 1](results/common-image/traces/image-h7-baseline-evaluation-typesafe__jev-1.14-repeat0-seed101.json) · [run 2](results/common-image/traces/image-h7-baseline-evaluation-typesafe__jev-1.14-repeat1-seed102.json) · [run 3](results/common-image/traces/image-h7-baseline-evaluation-typesafe__jev-1.14-repeat2-seed103.json) |
+| typesafe/jev-1.14 | unavailable | - | - | 2/3 | [run 1](results/common-image/traces/image-h7-baseline-evaluation-typesafe__jev-1.14-repeat0-seed101.json) · [run 2](results/common-image/traces/image-h7-baseline-evaluation-typesafe__jev-1.14-repeat1-seed102.json) · [run 3](results/common-image/traces/image-h7-baseline-evaluation-typesafe__jev-1.14-repeat2-seed103.json) · [closed continuation trace](results/common-image/recovery/traces/image-h7-baseline-evaluation-typesafe__jev-1.14-repeat1-seed102--image-technical-recovery-v1.json) · [native proof](results/common-image/recovery/proofs/image-h7-baseline-evaluation-typesafe__jev-1.14-repeat1-seed102--image-technical-recovery-v1.json) · [technical replay](results/common-image/recovery/replays/image-h7-baseline-evaluation-typesafe__jev-1.14-repeat1-seed102--image-technical-recovery-v1.mp4) |
 
 <details>
 <summary>completed-run timing</summary>
@@ -117,7 +119,7 @@ shared image progress baseline; native clears are outcomes. earlier failed calib
 - respan/span-02: 0/3 completed; mean completed time unavailable
 - baseten/joey-1: 0/3 completed; mean completed time unavailable
 - cloudflare/clef-omni: 0/3 completed; mean completed time unavailable
-- typesafe/jev-1.14: pending
+- typesafe/jev-1.14: unavailable (technical)
 
 </details>
 

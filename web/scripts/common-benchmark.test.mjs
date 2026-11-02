@@ -646,6 +646,7 @@ function imageRecoveryFixture(inherited=false) {
 async function prepareImageRecovery(f, mutate=()=>{}) {
   mutate(f);f.prefix.slots=structuredClone(f.authority.slots);const proof=jsonBytes(f.proof),prefix=jsonBytes(f.prefix);
   f.resolution.proof_sha256=bytesHash(proof);f.child.attempt_proof.native_audit_sha256=f.resolution.proof_sha256;
+  f.child.proof_href=f.resolution.proof_href;f.child.proof_sha256=f.resolution.proof_sha256;
   f.authority.prefix_proof_sha256=bytesHash(prefix);
   await hydrateRecoveryProofs(f.data,p=>Promise.resolve(p===f.resolution.proof_href?proof:prefix));
   return parseDataset(f.data);
@@ -725,5 +726,43 @@ test('image recovery disclosure uses its own dynamic planned and resolved counts
   const state=recoveryFixture();await prepareRecovery(state);state.data.common_image_benchmark=image.cohort;
   const parsed=parseDataset(state.data);assert.equal(parsed.commonBenchmarks.length,2);
   assert.equal(parsed.commonBenchmarks[1].technicalRecovery.planned,1);assert.equal(parsed.commonBenchmarks[1].technicalRecovery.resolved,0);
-  const readme=renderResults(state.data);assert.match(readme,/1\/8 technical continuations/);assert.match(readme,/pixels: 0\/1 technical continuations/);
+  const readme=renderResults(state.data);assert.match(readme,/1\/8 technical interruptions resolved/);assert.match(readme,/pixels: 0\/1 technical interruptions resolved/);
+});
+
+function terminalImageFixture() {
+  const f=imageRecoveryFixture();f.cohort.technical_recovery.resolutions=[];
+  Object.assign(f.child,{status:'infra_error',rankable:false,technical_pending:true,progress_pct:null,death:false,cost_usd:null,cost_estimate_usd:null});
+  Object.assign(f.child.attempt_proof,{request_intent_count:59,request_result_count:59,error_attempt_count:16,terminal_at_utc:'2026-01-06T00:00:00Z'});
+  Object.assign(f.proof,{recovery_attempt_count:4,joined_attempt_count:59,recovery_request_result_count:4,joined_request_result_count:59,recovery_error_attempt_count:3,joined_error_attempt_count:16});
+  f.proof.result=structuredClone(f.child);
+  return f;
+}
+test('proved closed image technical continuation is unavailable without a resolution or score',async()=>{
+  const f=terminalImageFixture(),original=JSON.stringify(f.cohort.trials),parsed=await prepareImageRecovery(f),row=parsed.commonBenchmark.rows[0];
+  assert.equal(row.availability,'unavailable');assert.equal(row.meanProgressPct,null);assert.equal(row.bestClearSeconds,null);assert.equal(row.meanCostUsd,null);
+  assert.equal(parsed.commonBenchmark.technicalRecovery.resolved,0);assert.equal(parsed.commonBenchmark.trials.length,48);assert.equal(f.cohort.technical_recovery.resolutions.length,0);
+  assert.equal(JSON.stringify(f.cohort.trials),original);assert.equal(parsed.observations.length,parseDataset(legacy).observations.length+48);assert.match(renderResults(f.data),/unavailable \|/);
+});
+for(const [name,change] of [
+  ['missing terminal timestamp',f=>delete f.child.attempt_proof.terminal_at_utc],
+  ['unanswered child request',f=>f.child.attempt_proof.unanswered_attempt_count=1],
+  ['mismatched whole-prefix grade',f=>f.proof.result.native_frames=302],
+  ['wrong closed source',f=>f.proof.child_episode_sha256=hash],
+  ['changed full RNG prefix',f=>f.cp.rng_state[1][0]=456],
+  ['wrong joined attempts',f=>f.proof.joined_attempt_count=4],
+  ['unverified native result',f=>f.proof.verified=false],
+  ['unproved completion',f=>f.child.flag_get=true],
+])test(`closed image mean stays pending with ${name}`,async()=>{const parsed=await prepareImageRecovery(terminalImageFixture(),change);assert.equal(parsed.commonBenchmark.rows[0].availability,'pending');assert.equal(parsed.commonBenchmark.rows[0].meanProgressPct,null);});
+
+test('only proved closed image continuations expose trace proof and optional replay links',async()=>{
+  const f=terminalImageFixture();f.child.replay_href='image-recovery/replays/closed.mp4';f.child.replay_sha256=hash;
+  const parsed=await prepareImageRecovery(f),row=parsed.commonBenchmark.rows[0];assert.deepEqual(row.technicalEvidence,[{originalTrialId:f.original.id,childRunId:f.child.id,traceHref:f.child.trace_href,proofHref:f.child.proof_href,replayHref:f.child.replay_href}]);
+  assert.match(renderResults(f.data),/technical replay/);assert.equal(parsed.observations.some(r=>r.id===f.child.id),false);
+});
+test('unproved terminal image claims expose no continuation evidence',async()=>{
+  const parsed=await prepareImageRecovery(terminalImageFixture(),f=>f.proof.verified=false);assert.deepEqual(parsed.commonBenchmark.rows[0].technicalEvidence,[]);
+});
+test('unsafe optional terminal replay paths are never exposed',async()=>{
+  const f=terminalImageFixture();f.child.replay_href='https://example.test/not-proof.mp4';f.child.replay_sha256=hash;const parsed=await prepareImageRecovery(f);
+  assert.equal(parsed.commonBenchmark.rows[0].availability,'unavailable');assert.equal(parsed.commonBenchmark.rows[0].technicalEvidence[0].replayHref,null);
 });

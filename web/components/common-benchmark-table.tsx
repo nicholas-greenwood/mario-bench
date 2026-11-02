@@ -51,6 +51,7 @@ export default function CommonBenchmarkTable({ cohort, showRuns }: { cohort: Com
               <button onClick={() => showRuns(row.recordedTrialIds)} disabled={!row.recordedTrialIds.length}>{row.recordedTrialIds.length} runs</button>
               <details><summary>details</summary>
                 <p>{row.coverageComplete ? `${row.nCompleted}/3 completed; mean completed time ${formatSeconds(row.meanCompletedSeconds) ?? 'unavailable'}` : row.availability === 'unavailable' ? 'mean unavailable: a registered technical continuation ended without a valid result; no model score is assigned' : 'mean pending until all 3 prescribed results are fully confirmed'}</p>
+                {row.technicalEvidence.map(evidence => <p key={evidence.childRunId}>closed technical continuation · <a href={DATA_BASE + evidence.traceHref} target="_blank" rel="noreferrer">trace</a> · <a href={DATA_BASE + evidence.proofHref} target="_blank" rel="noreferrer">native proof</a>{evidence.replayHref && <> · <a href={DATA_BASE + evidence.replayHref} target="_blank" rel="noreferrer">replay (technical)</a></>}</p>)}
                 {representative && <button onClick={() => watch(representative.id)}>watch representative demo</button>}
                 {row.recordedTrialIds.map(id => {
                   const trial = cohort.trials.find(candidate => candidate.id === id);

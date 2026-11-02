@@ -55,7 +55,7 @@ export function renderResults(index) {
   if (dataset.commonBenchmark.stateOnly && !dataset.commonBenchmarks.some(cohort => cohort.imageOnly)) benchmark.push('common image track: calibration pending. image replays and history remain development runs', '');
   for (const cohort of dataset.commonBenchmarks) {
     const recovery = cohort.technicalRecovery;
-    if (recovery) benchmark.push(`${cohort.imageOnly ? 'pixels: ' : ''}${recovery.resolved}/${recovery.planned} technical continuations independently verified under a separate registered authority; original aborts and proofs remain linked`, '');
+    if (recovery) benchmark.push(`${cohort.imageOnly ? 'pixels: ' : ''}${recovery.resolved}/${recovery.planned} technical interruptions resolved under a separate registered authority; original attempts and verified continuation proofs remain linked`, '');
   }
   for (const [track, title] of [['state', 'state'], ['image', 'pixels only']]) {
     const cohorts = dataset.commonBenchmarks.filter(cohort => cohort.rows.some(row => row.track === track));
@@ -68,10 +68,13 @@ export function renderResults(index) {
       '| model | mean progress | best clear (game s) | mean cost/run (usd) | valid runs | evidence |',
       '| --- | ---: | ---: | ---: | ---: | --- |');
     for (const row of rows) {
-      const evidence = row.recordedTrialIds.map((id, position) => {
+      const closedEvidence = row.technicalEvidence.flatMap(item => [
+        `[closed continuation trace](results/${item.traceHref})`, `[native proof](results/${item.proofHref})`,
+        item.replayHref && `[technical replay](results/${item.replayHref})`].filter(Boolean));
+      const evidence = [...row.recordedTrialIds.map((id, position) => {
         const trial = rawById.get(id);
         return trial?.trace_href ? `[run ${position + 1}](results/${trial.trace_href})` : null;
-      }).filter(Boolean).join(' · ') || '-';
+      }).filter(Boolean), ...closedEvidence].join(' · ') || '-';
       benchmark.push(`| ${escape(row.name.toLowerCase())} | ${row.meanProgressPct === null ? row.availability === 'unavailable' ? 'unavailable' : 'pending' : `${row.meanProgressPct.toFixed(2)}%`} | ${row.bestClearSeconds === null ? '-' : row.bestClearSeconds.toFixed(2)} | ${formatRunCost({ costUsd: row.meanCostUsd, costEstimateUsd: row.meanCostEstimateUsd }) ?? '-'} | ${row.validTrials}/3 | ${evidence} |`);
     }
     benchmark.push('', '<details>', '<summary>completed-run timing</summary>', '');

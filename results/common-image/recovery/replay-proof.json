@@ -1,0 +1,17 @@
+{
+  "protocol_sha256": "a88fd7b408f1defb4459329afa2234ed3a1e0d50b430d58d8bc9d94493bbd5e0",
+  "whole_trajectory_includes_original_prefix": true,
+  "replays": [
+    {
+      "id": "image-h7-baseline-evaluation-typesafe__jev-1.14-repeat1-seed102--image-technical-recovery-v1",
+      "native_frames": 3976,
+      "replay_href": "common-image/recovery/replays/image-h7-baseline-evaluation-typesafe__jev-1.14-repeat1-seed102--image-technical-recovery-v1.mp4",
+      "replay_sha256": "78fecbaf3a68c2fc7018c08d4392d6dd7f04d83938bf33a8627cfa0f37c7290e",
+      "source_episode_sha256": "349a556d77925187bf9dd584e5dd01552e520b55da032643c9d2f554504f40a1",
+      "trace_sha256": "2f8b9fa69bd83c8f1d37e98c181cc86cf73d5dd5f7ec8794d4c6b79fd0ebf50b",
+      "silent": true,
+      "fps": 60,
+      "video_frames": 3977
+    }
+  ]
+}
