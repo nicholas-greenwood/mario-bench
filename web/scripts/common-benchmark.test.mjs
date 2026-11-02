@@ -591,3 +591,139 @@ for(const [name,change] of [
 test('missing image trials remain pending rather than becoming terminal technical outcomes',()=>{
   const data=imageOnlyFixture();data.common_benchmark.trials=[];const cohort=parseDataset(data).commonBenchmark;assert.ok(cohort.rows.every(r=>r.availability==='pending'));
 });
+
+const imageParent = '2f11c42b8d47f8cd8959e828243acacb8abcf83c478a6206508ebd635004fdf1';
+const canonicalJson = value => value && typeof value === 'object' && !Array.isArray(value)
+  ? Object.fromEntries(Object.keys(value).sort().map(key=>[key,canonicalJson(value[key])])) : Array.isArray(value)?value.map(canonicalJson):value;
+const jsonBytes = value => Buffer.from(JSON.stringify(canonicalJson(value)));
+const bytesHash = value => createHash('sha256').update(value).digest('hex');
+function imageRecoveryFixture(inherited=false) {
+  const data=imageOnlyFixture(),cohort=data.common_benchmark,base=cohort.manifest;
+  base.protocol_sha256=imageParent;for(const row of cohort.rows)row.protocol_sha256=imageParent;
+  const source={};for(const trial of cohort.trials){trial.protocol_sha256=imageParent;trial.attempt_proof={source_episode_sha256:hash,native_audit_sha256:hash,
+    request_intent_count:10,request_result_count:10,error_attempt_count:0,unanswered_attempt_count:0,terminal_at_utc:'2026-01-03T00:00:00Z'};source[trial.id]=hash;}
+  cohort.release_provenance={source_manifest_sha256:'c'.repeat(64)};
+  const original=cohort.trials[0],pair=base.eligible_model_provider_pairs[0],oldCount=inherited?56:55;
+  Object.assign(original,{status:'infra_error',rankable:false,technical_pending:true,flag_get:false,completed:false,death:false,native_frames:294,frames:294,decisions:42,progress_pct:null,max_progress_x:300,native_frames_to_completion:null,cost_usd:null,cost_estimate_usd:null});
+  Object.assign(original.attempt_proof,{request_intent_count:oldCount,request_result_count:oldCount,error_attempt_count:13});
+  const pin={id:pair.model_id,request_model:pair.request_model,provider:pair.provider,expected_returned_model:pair.expected_returned_model,expected_returned_provider_names:pair.expected_returned_provider_names};
+  const controls=[280,287].map(frame=>({frame,frames:7,buttons:{horizontal:'right',vertical:'released',jump:'released',run:'held'}}));
+  const rng=[3,[...Array(624).fill(123),84],null];
+  const cp={checkpoint_native_frame:294,checkpoint_ram_sha256:hash,checkpoint_rgb_sha256:hash,checkpoint_observation_sha256:hash,controller_history_sha256:hash,
+    session_controls:controls,session_controls_sha256:bytesHash(jsonBytes(controls)),current_png_sha256:hash,previous_images:[{frame:287,png_sha256:hash}],
+    failed_request_sha256:hash,controller_sha256:base.observation_and_controller_hashes.image_controller_sha256,pin_sha256:bytesHash(jsonBytes(pin)),
+    rng_mode:'global_full12_temperature_sampling',rng_state:rng,rng_state_sha256:bytesHash(jsonBytes(rng)),rng_mt_index:84,rng_draw_count:42};
+  const slot={original_trial_id:original.id,child_run_id:original.id+'--image-technical-recovery-v1',parent_episode_sha256:hash,model_id:original.model_id,track:'image',repeat_id:0,
+    temperature:.05,emulator_seed:0,local_rng_seed:101,pin_payload:pin,checkpoint:cp,failed_decision_index:42,failed_stage:'motor',failed_attempt_chain:3,
+    continuation_mode:inherited?'reuse_recorded_valid_response':'fresh_after_observed_failures',parent_abort_status:'infra_error',parent_valid_native_actions:42,parent_http_attempts:oldCount,
+    parent_max_progress_x:300,remaining_native_frame_budget:5706,provider_outcome_unknown_attempt_count:0,no_observed_valid_choice_discarded:true,unmatched_ledger_intent_count:0,
+    inherited_parent_valid_response_sha256:inherited?hash:null,inherited_parent_receipt_id_sha256:inherited?hash:null};
+  const child={...structuredClone(original),id:slot.child_run_id,record_kind:'technical_continuation',phase:'technical_recovery',protocol_sha256:'e'.repeat(64),parent_protocol_sha256:imageParent,
+    resolves_original_trial_id:original.id,parent_episode_sha256:hash,started_at_utc:'2026-01-05T00:00:00Z',status:'game_over',rankable:true,technical_pending:false,death:true,
+    progress_pct:40,max_progress_x:1300,native_frames:301,frames:301,decisions:43,continuation_native_frames:7,continuation_decisions:1,start_x:40,
+    checkpoint:structuredClone(cp),reconstructed_checkpoint:structuredClone(cp),trace_href:'image-recovery/traces/child.json',trace_sha256:hash,
+    attempt_proof:{source_episode_sha256:'d'.repeat(64),native_audit_sha256:null,scope:'composed_trajectory',request_intent_count:56,request_result_count:56,error_attempt_count:13,unanswered_attempt_count:0}};
+  const proof={schema_version:1,verified:true,original_trial_id:original.id,child_run_id:child.id,parent_protocol_sha256:imageParent,recovery_protocol_sha256:child.protocol_sha256,
+    parent_episode_sha256:hash,child_episode_sha256:'d'.repeat(64),declared_checkpoint:structuredClone(cp),reconstructed_checkpoint:structuredClone(cp),
+    prefix_replay_verified:true,failed_body_identical:true,controller_pin_history_rng_verified:true,total_native_budget_verified:true,no_observed_valid_choice_discarded:true,
+    original_attempt_count:oldCount,recovery_attempt_count:inherited?0:1,joined_attempt_count:56,original_error_attempt_count:13,recovery_error_attempt_count:0,joined_error_attempt_count:13,
+    original_request_result_count:oldCount,recovery_request_result_count:inherited?0:1,joined_request_result_count:56,
+    original_unanswered_attempt_count:0,recovery_unanswered_attempt_count:0,joined_unanswered_attempt_count:0,
+    inherited_parent_valid_choice_count:inherited?1:0,inherited_parent_valid_response_sha256:slot.inherited_parent_valid_response_sha256,inherited_parent_receipt_id_sha256:slot.inherited_parent_receipt_id_sha256,
+    provider_outcome_unknown_attempt_count:0,new_provider_outcome_unknown_attempt_count:0,total_provider_outcome_unknown_attempt_count:0,
+    total_native_frames:301,new_native_frames:7,total_native_frame_budget:6000,result:structuredClone(child)};
+  const logical={...structuredClone(child),id:original.id,logical_trial_id:original.id,source_run_id:child.id,record_kind:'technical_resolution',base_protocol_sha256:imageParent};
+  const resolution={original_trial_id:original.id,child_run_id:child.id,parent_episode_sha256:hash,child_episode_sha256:'d'.repeat(64),proof_href:'image-recovery/proofs/child.json',proof_sha256:null,
+    prefix_replay_verified:true,failed_body_identical:true,controller_pin_history_rng_verified:true,total_native_budget_verified:true,effective_trial:logical};
+  const authority={protocol_id:'mario-image-technical-recovery-v1',protocol_sha256:child.protocol_sha256,parent_protocol_sha256:imageParent,parent_manifest_file_sha256:'c'.repeat(64),
+    parent_audit_sha256:hash,prefix_proof_href:'image-recovery/prefix.json',prefix_proof_sha256:null,acceptance_mode:'same_checkpoint_technical_recovery_v1',
+    phase:'technical_recovery',preregistered:true,frozen_at_utc:'2026-01-04T00:00:00Z',slots:[slot],tracks:['image'],native_frame_budget:6000,native_frame_cap:6000,cadence_native_frames:7,
+    requested_native_hold:7,life_budget:1,temperature:.05,provider_seed:null,emulator_seed:0,max_continuations_per_slot:1,retries_after_initial:2,provider_outcome_unknown_attempt_count:0};
+  const prefix={verified:true,parent_protocol_sha256:imageParent,source_log_sha256:source,slots:[structuredClone(slot)]};
+  cohort.technical_recovery={manifest:authority,continuations:[child],resolutions:[resolution]};
+  return {data,cohort,original,slot,cp,child,proof,logical,resolution,authority,prefix};
+}
+async function prepareImageRecovery(f, mutate=()=>{}) {
+  mutate(f);f.prefix.slots=structuredClone(f.authority.slots);const proof=jsonBytes(f.proof),prefix=jsonBytes(f.prefix);
+  f.resolution.proof_sha256=bytesHash(proof);f.child.attempt_proof.native_audit_sha256=f.resolution.proof_sha256;
+  f.authority.prefix_proof_sha256=bytesHash(prefix);
+  await hydrateRecoveryProofs(f.data,p=>Promise.resolve(p===f.resolution.proof_href?proof:prefix));
+  return parseDataset(f.data);
+}
+test('image continuation resolves one original slot without adding a quality trial',async()=>{
+  const f=imageRecoveryFixture(),before=JSON.stringify(f.original),parsed=await prepareImageRecovery(f);
+  assert.equal(parsed.commonBenchmark.technicalRecovery?.planned,1);assert.equal(parsed.commonBenchmark.technicalRecovery?.resolved,1);
+  assert.equal(parsed.commonBenchmark.trials.length,48);assert.equal(parsed.commonBenchmark.rows[0].meanProgressPct,(40+31+32)/3);
+  assert.equal(JSON.stringify(f.original),before);assert.equal(parsed.observations.length,parseDataset(legacy).observations.length+48);
+  assert.equal(parsed.commonBenchmark.trials[0].source_run_id,f.child.id);assert.equal(parsed.commonBenchmark.trials[0].phase,'technical_recovery');
+});
+test('received parent choice is reused without another HTTP or billing receipt',async()=>{
+  const f=imageRecoveryFixture(true),parsed=await prepareImageRecovery(f);assert.equal(parsed.commonBenchmark.technicalRecovery?.resolved,1);
+  assert.equal(f.proof.recovery_attempt_count,0);assert.equal(parsed.commonBenchmark.trials[0].decisions,43);
+});
+for(const [name,change] of [
+  ['wrong image parent',f=>f.authority.parent_protocol_sha256=hash],
+  ['missing independent prefix bytes',f=>f.authority.prefix_proof_href=null],
+  ['omitted original source',f=>delete f.prefix.source_log_sha256[f.original.id]],
+  ['wrong source log',f=>f.prefix.source_log_sha256[f.original.id]='f'.repeat(64)],
+  ['valid death retry',f=>{f.original.status='game_over';f.original.rankable=true;f.original.death=true;}],
+  ['extra undeclared child',f=>f.cohort.technical_recovery.continuations.push({...f.child,id:'extra-child'})],
+  ['different seed',f=>f.slot.local_rng_seed=102],
+  ['different temperature',f=>f.authority.temperature=.2],
+  ['reset native frame',f=>f.cp.checkpoint_native_frame=0],
+  ['missing native RAM',f=>f.cp.checkpoint_ram_sha256=null],
+  ['missing current PNG',f=>f.cp.current_png_sha256=null],
+  ['missing prior full PNG',f=>f.cp.previous_images=[]],
+  ['changed history',f=>f.cp.session_controls[0].frame=0],
+  ['changed full MT state',f=>f.cp.rng_state[1][0]=124],
+  ['changed MT index',f=>f.cp.rng_mt_index=0],
+  ['changed draw count',f=>f.cp.rng_draw_count=0],
+  ['unanswered resend',f=>{f.slot.continuation_mode='unanswered_no_resend';f.slot.unmatched_ledger_intent_count=1;}],
+  ['forged native grade',f=>{f.child.progress_pct=99;f.logical.progress_pct=99;}],
+  ['extra native budget',f=>f.proof.total_native_frame_budget=6294],
+  ['child-only attempt scope',f=>f.child.attempt_proof.request_intent_count=1],
+  ['duplicate resolution',f=>f.cohort.technical_recovery.resolutions.push(structuredClone(f.resolution))],
+  ['extra RNG at inherited boundary',f=>f.proof.inherited_parent_valid_choice_count=1],
+])test(`image recovery rejects ${name}`,async()=>{const parsed=await prepareImageRecovery(imageRecoveryFixture(),change);assert.equal(parsed.commonBenchmark.technicalRecovery?.resolved??0,0);assert.equal(parsed.commonBenchmark.rows[0].meanProgressPct,null);});
+test('new image child infrastructure failure keeps original mean pending',async()=>{
+  const f=imageRecoveryFixture();f.cohort.technical_recovery.resolutions=[];
+  Object.assign(f.child,{status:'infra_error',rankable:false,technical_pending:true});const parsed=await prepareImageRecovery(f);
+  assert.equal(parsed.commonBenchmark.technicalRecovery?.resolved,0);assert.equal(parsed.commonBenchmark.rows[0].meanProgressPct,null);
+});
+
+test('image recovery cannot promote an unfinished 47-trial cutoff',async()=>{
+  const f=imageRecoveryFixture();f.cohort.trials.pop();const parsed=await prepareImageRecovery(f);assert.equal(parsed.commonBenchmark.technicalRecovery,null);
+});
+test('unmatched original request remains pending without a resend or a false score',async()=>{
+  const f=imageRecoveryFixture();f.slot.continuation_mode='unanswered_no_resend';f.slot.parent_http_attempts=56;f.slot.unmatched_ledger_intent_count=1;f.slot.provider_outcome_unknown_attempt_count=1;
+  f.original.attempt_proof.request_intent_count=56;f.original.attempt_proof.unanswered_attempt_count=1;f.authority.provider_outcome_unknown_attempt_count=1;
+  f.cohort.technical_recovery.continuations=[];f.cohort.technical_recovery.resolutions=[];
+  const parsed=await prepareImageRecovery(f);assert.equal(parsed.commonBenchmark.technicalRecovery?.planned,1);assert.equal(parsed.commonBenchmark.technicalRecovery?.resolved,0);assert.equal(parsed.commonBenchmark.rows[0].meanProgressPct,null);
+});
+test('image continuation never publishes child-only billing as total spend',async()=>{
+  const f=imageRecoveryFixture();f.logical.cost_usd=.01;f.logical.cost_provenance={...billing,joined_attempt_count:1};
+  const parsed=await prepareImageRecovery(f);assert.equal(parsed.commonBenchmark.technicalRecovery?.resolved,1);assert.equal(parsed.observations.find(r=>r.id===f.original.id).costUsd,null);
+});
+test('complete joined image billing retains a verified actual cost',async()=>{
+  const f=imageRecoveryFixture();f.logical.cost_usd=.07;f.logical.cost_provenance={...billing,joined_attempt_count:56,request_count:56,costed_request_count:56,actual_costed_request_count:56,source_request_count:56,source_attempt_count:56,error_count:13};
+  const parsed=await prepareImageRecovery(f);assert.equal(parsed.commonBenchmark.technicalRecovery?.resolved,1);assert.equal(parsed.observations.find(r=>r.id===f.original.id).costUsd,.07);
+});
+test('unknown original provider outcome masks both exact and estimated joined billing',async()=>{
+  const f=imageRecoveryFixture();f.slot.provider_outcome_unknown_attempt_count=1;f.authority.provider_outcome_unknown_attempt_count=1;f.proof.provider_outcome_unknown_attempt_count=1;f.proof.total_provider_outcome_unknown_attempt_count=1;
+  f.logical.cost_usd=.07;f.logical.cost_estimate_usd=.08;f.logical.cost_provenance={...billing,joined_attempt_count:56,request_count:56,costed_request_count:56,actual_costed_request_count:56,source_request_count:56,source_attempt_count:56,error_count:13};
+  const parsed=await prepareImageRecovery(f);const run=parsed.observations.find(r=>r.id===f.original.id);assert.equal(run.costUsd,null);assert.equal(run.costEstimateUsd,null);
+});
+
+test('composed image progress cannot discard the original valid prefix maximum',async()=>{
+  const f=imageRecoveryFixture();for(const record of [f.child,f.logical,f.proof.result]){record.max_progress_x=200;record.progress_pct=5;}
+  const parsed=await prepareImageRecovery(f);assert.equal(parsed.commonBenchmark.technicalRecovery?.resolved,0);assert.equal(parsed.commonBenchmark.rows[0].meanProgressPct,null);
+});
+
+test('image recovery disclosure uses its own dynamic planned and resolved counts',async()=>{
+  const image=imageRecoveryFixture();image.cohort.technical_recovery.continuations=[];image.cohort.technical_recovery.resolutions=[];
+  await prepareImageRecovery(image);
+  const state=recoveryFixture();await prepareRecovery(state);state.data.common_image_benchmark=image.cohort;
+  const parsed=parseDataset(state.data);assert.equal(parsed.commonBenchmarks.length,2);
+  assert.equal(parsed.commonBenchmarks[1].technicalRecovery.planned,1);assert.equal(parsed.commonBenchmarks[1].technicalRecovery.resolved,0);
+  const readme=renderResults(state.data);assert.match(readme,/1\/8 technical continuations/);assert.match(readme,/pixels: 0\/1 technical continuations/);
+});

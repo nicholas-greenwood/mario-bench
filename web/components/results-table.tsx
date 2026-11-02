@@ -77,11 +77,12 @@ export default function ResultsTable() {
         </div>
         <p className="results-note">{view === 'benchmark' ? `${dataset.commonBenchmarks.length > 1 ? 'state and image use separate frozen protocols. ' : ''}mean progress over 3 prespecified runs with the same frozen protocol per input. pending means the 3 prescribed results are not fully confirmed. best clear is the fastest completed run.` : view === 'observations' ? 'development runs, not a ranking. aborted runs show observed progress; incomplete runs have no score.' : 'selected runs with different settings, not a ranking.'} cost is usd; ~ includes a byok list-price estimate. missing billing is unknown.</p>
         {view === 'benchmark' && dataset.commonBenchmark?.stateOnly && !dataset.commonBenchmarks.some(cohort => cohort.imageOnly) && <p className="results-note">common image track: calibration pending. image replays and history remain development runs.</p>}
-        {view === 'benchmark' && dataset.commonBenchmark?.technicalRecovery && <p className="results-note">{dataset.commonBenchmark.technicalRecovery.resolved}/8 technical continuations independently verified. original aborts and continuation proofs remain linked; incomplete billing stays unknown.</p>}
+
         {evidenceIds !== null && view === 'observations' && <p className="results-note">showing {results.length} cohort runs <button onClick={() => setEvidenceIds(null)}>show all runs</button></p>}
       </div>
       {view === 'benchmark' && dataset.commonBenchmark ? <>{dataset.commonBenchmarks.map(cohort => <div key={cohort.protocolSha256}>
         {dataset.commonBenchmarks.length > 1 && <h3 className="section-label">{cohort.imageOnly ? 'pixels only' : 'state'}</h3>}
+        {cohort.technicalRecovery && <p className="results-note">{cohort.technicalRecovery.resolved}/{cohort.technicalRecovery.planned} technical continuations independently verified. original interruptions and proofs remain linked; unresolved trials and incomplete billing stay unknown.</p>}
         {cohort.imageOnly && <p className="results-note">shared image progress baseline; a native clear is an outcome, not an entry requirement. earlier failed calibration gates remain failed. historical mechanics evidence is excluded from these fresh runs.</p>}
         <CommonBenchmarkTable cohort={cohort} showRuns={ids => { setEvidenceIds(ids); setView('observations'); }} />
       </div>)}</> : <div className="table-scroll">

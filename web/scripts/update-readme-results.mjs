@@ -53,8 +53,10 @@ export function renderResults(index) {
     'mean cost/run requires complete billing for all 3 runs; ~ includes a byok list-price estimate',
     `[protocol and trial evidence](results/${index.common_cohort_href ?? 'index.json'})`, ''];
   if (dataset.commonBenchmark.stateOnly && !dataset.commonBenchmarks.some(cohort => cohort.imageOnly)) benchmark.push('common image track: calibration pending. image replays and history remain development runs', '');
-  const recovery = dataset.commonBenchmark.technicalRecovery;
-  if (recovery) benchmark.push(`${recovery.resolved}/8 technical continuations independently verified under a separate registered authority; original aborts and proofs remain linked`, '');
+  for (const cohort of dataset.commonBenchmarks) {
+    const recovery = cohort.technicalRecovery;
+    if (recovery) benchmark.push(`${cohort.imageOnly ? 'pixels: ' : ''}${recovery.resolved}/${recovery.planned} technical continuations independently verified under a separate registered authority; original aborts and proofs remain linked`, '');
+  }
   for (const [track, title] of [['state', 'state'], ['image', 'pixels only']]) {
     const cohorts = dataset.commonBenchmarks.filter(cohort => cohort.rows.some(row => row.track === track));
     if (!cohorts.length) continue;

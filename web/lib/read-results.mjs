@@ -10,11 +10,27 @@ const digest = value => createHash('sha256').update(JSON.stringify(canonical(val
 
 /** Proof attestations are computed from actual bytes, never accepted from JSON. */
 export async function hydrateRecoveryProofs(index, readAsset) {
-  const overlay = index.common_benchmark?.technical_recovery;
-  if (!overlay) return index;
+  for (const cohort of [index.common_benchmark,index.common_image_benchmark]) {
+  const overlay = cohort?.technical_recovery;
+  if (!overlay) continue;
+  delete overlay.manifest?._verified_prefix_proof;
+  delete overlay.manifest?._verified_prefix_proof_sha256;
+  if (overlay.manifest?.prefix_proof_href && /^[a-f0-9]{64}$/.test(overlay.manifest.prefix_proof_sha256 ?? '')) {
+    const bytes = await readAsset(overlay.manifest.prefix_proof_href);
+    const hash = createHash('sha256').update(bytes).digest('hex');
+    if (hash !== overlay.manifest.prefix_proof_sha256) throw new Error('image recovery prefix proof checksum mismatch');
+    overlay.manifest._verified_prefix_proof = JSON.parse(Buffer.from(bytes).toString('utf8'));
+    overlay.manifest._verified_prefix_proof_sha256 = hash;
+  }
   for (const slot of overlay.manifest?.slots ?? []) {
     delete slot._computed_pin_sha256;
     if (slot.pin_payload && typeof slot.pin_payload === 'object') slot._computed_pin_sha256 = digest(slot.pin_payload);
+    if (slot.checkpoint) {
+      delete slot.checkpoint._computed_rng_state_sha256;
+      delete slot.checkpoint._computed_session_controls_sha256;
+      if (slot.checkpoint.rng_state) slot.checkpoint._computed_rng_state_sha256 = digest(slot.checkpoint.rng_state);
+      if (slot.checkpoint.session_controls) slot.checkpoint._computed_session_controls_sha256 = digest(slot.checkpoint.session_controls);
+    }
   }
   for (const resolution of [...(overlay.resolutions ?? []), ...(overlay.continuations ?? [])]) {
     delete resolution.proof;
@@ -25,6 +41,7 @@ export async function hydrateRecoveryProofs(index, readAsset) {
     if (hash !== resolution.proof_sha256) throw new Error(`${resolution.proof_href}: recovery proof checksum mismatch`);
     resolution.proof = JSON.parse(Buffer.from(bytes).toString('utf8'));
     resolution.proof_verified_sha256 = hash;
+  }
   }
   return index;
 }
