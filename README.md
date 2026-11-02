@@ -95,8 +95,8 @@ shared image progress baseline; native clears are outcomes. earlier failed calib
 | typesafe/jev-1.13 | 8.20% | - | - | 3/3 | [run 1](results/common-image/traces/image-h7-baseline-evaluation-typesafe__jev-1.13-repeat0-seed101.json) · [run 2](results/common-image/traces/image-h7-baseline-evaluation-typesafe__jev-1.13-repeat1-seed102.json) · [run 3](results/common-image/traces/image-h7-baseline-evaluation-typesafe__jev-1.13-repeat2-seed103.json) |
 | liquid/d1.1 | 8.14% | - | - | 3/3 | [run 1](results/common-image/traces/image-h7-baseline-evaluation-liquid__d1.1-repeat0-seed101.json) · [run 2](results/common-image/traces/image-h7-baseline-evaluation-liquid__d1.1-repeat1-seed102.json) · [run 3](results/common-image/traces/image-h7-baseline-evaluation-liquid__d1.1-repeat2-seed103.json) |
 | respan/span-02 | 8.14% | - | - | 3/3 | [run 1](results/common-image/traces/image-h7-baseline-evaluation-respan__span-02-repeat0-seed101.json) · [run 2](results/common-image/traces/image-h7-baseline-evaluation-respan__span-02-repeat1-seed102.json) · [run 3](results/common-image/traces/image-h7-baseline-evaluation-respan__span-02-repeat2-seed103.json) |
-| baseten/joey-1 | pending | - | - | 0/3 | - |
-| cloudflare/clef-omni | pending | - | - | 0/3 | - |
+| baseten/joey-1 | 0.00% | - | - | 3/3 | [run 1](results/common-image/traces/image-h7-baseline-evaluation-baseten__joey-1-repeat0-seed101.json) · [run 2](results/common-image/traces/image-h7-baseline-evaluation-baseten__joey-1-repeat1-seed102.json) · [run 3](results/common-image/traces/image-h7-baseline-evaluation-baseten__joey-1-repeat2-seed103.json) |
+| cloudflare/clef-omni | 0.00% | - | - | 3/3 | [run 1](results/common-image/traces/image-h7-baseline-evaluation-cloudflare__clef-omni-repeat0-seed101.json) · [run 2](results/common-image/traces/image-h7-baseline-evaluation-cloudflare__clef-omni-repeat1-seed102.json) · [run 3](results/common-image/traces/image-h7-baseline-evaluation-cloudflare__clef-omni-repeat2-seed103.json) |
 | typesafe/jev-1.14 | pending | - | - | 2/3 | [run 1](results/common-image/traces/image-h7-baseline-evaluation-typesafe__jev-1.14-repeat0-seed101.json) · [run 2](results/common-image/traces/image-h7-baseline-evaluation-typesafe__jev-1.14-repeat1-seed102.json) · [run 3](results/common-image/traces/image-h7-baseline-evaluation-typesafe__jev-1.14-repeat2-seed103.json) |
 
 <details>
@@ -115,8 +115,8 @@ shared image progress baseline; native clears are outcomes. earlier failed calib
 - typesafe/jev-1.13: 0/3 completed; mean completed time unavailable
 - liquid/d1.1: 0/3 completed; mean completed time unavailable
 - respan/span-02: 0/3 completed; mean completed time unavailable
-- baseten/joey-1: pending
-- cloudflare/clef-omni: pending
+- baseten/joey-1: 0/3 completed; mean completed time unavailable
+- cloudflare/clef-omni: 0/3 completed; mean completed time unavailable
 - typesafe/jev-1.14: pending
 
 </details>
@@ -125,7 +125,7 @@ shared image progress baseline; native clears are outcomes. earlier failed calib
 <summary>individual runs and development history</summary>
 
 
-154 published runs, matching the website's all runs view, on world 1-1
+160 published runs, matching the website's all runs view, on world 1-1
 individual development runs use different settings; these are not model averages or a ranking
 
 the json retest is a separate retrospective run; its overlapping prefix is evidence only
@@ -295,6 +295,12 @@ cost is usd; ~ includes a byok list-price estimate, and missing billing is shown
 | respan: span-02 | 8.14% | - | - | [replay](results/common-image/replays/image-h7-baseline-evaluation-respan__span-02-repeat0-seed101.mp4) · [trace](results/common-image/traces/image-h7-baseline-evaluation-respan__span-02-repeat0-seed101.json) · [profile](results/common-image/profiles/protocol.json) <!-- run:image-h7-baseline-evaluation-respan__span-02-repeat0-seed101 --> |
 | respan: span-02 | 8.14% | - | - | [replay](results/common-image/replays/image-h7-baseline-evaluation-respan__span-02-repeat1-seed102.mp4) · [trace](results/common-image/traces/image-h7-baseline-evaluation-respan__span-02-repeat1-seed102.json) · [profile](results/common-image/profiles/protocol.json) <!-- run:image-h7-baseline-evaluation-respan__span-02-repeat1-seed102 --> |
 | respan: span-02 | 8.14% | - | - | [replay](results/common-image/replays/image-h7-baseline-evaluation-respan__span-02-repeat2-seed103.mp4) · [trace](results/common-image/traces/image-h7-baseline-evaluation-respan__span-02-repeat2-seed103.json) · [profile](results/common-image/profiles/protocol.json) <!-- run:image-h7-baseline-evaluation-respan__span-02-repeat2-seed103 --> |
+| baseten: joey 1 | 0.00% | - | - | [replay](results/common-image/replays/image-h7-baseline-evaluation-baseten__joey-1-repeat0-seed101.mp4) · [trace](results/common-image/traces/image-h7-baseline-evaluation-baseten__joey-1-repeat0-seed101.json) · [profile](results/common-image/profiles/protocol.json) <!-- run:image-h7-baseline-evaluation-baseten__joey-1-repeat0-seed101 --> |
+| baseten: joey 1 | 0.00% | - | - | [replay](results/common-image/replays/image-h7-baseline-evaluation-baseten__joey-1-repeat1-seed102.mp4) · [trace](results/common-image/traces/image-h7-baseline-evaluation-baseten__joey-1-repeat1-seed102.json) · [profile](results/common-image/profiles/protocol.json) <!-- run:image-h7-baseline-evaluation-baseten__joey-1-repeat1-seed102 --> |
+| baseten: joey 1 | 0.00% | - | - | [replay](results/common-image/replays/image-h7-baseline-evaluation-baseten__joey-1-repeat2-seed103.mp4) · [trace](results/common-image/traces/image-h7-baseline-evaluation-baseten__joey-1-repeat2-seed103.json) · [profile](results/common-image/profiles/protocol.json) <!-- run:image-h7-baseline-evaluation-baseten__joey-1-repeat2-seed103 --> |
+| cloudflare: clef omni | 0.00% | - | - | [replay](results/common-image/replays/image-h7-baseline-evaluation-cloudflare__clef-omni-repeat0-seed101.mp4) · [trace](results/common-image/traces/image-h7-baseline-evaluation-cloudflare__clef-omni-repeat0-seed101.json) · [profile](results/common-image/profiles/protocol.json) <!-- run:image-h7-baseline-evaluation-cloudflare__clef-omni-repeat0-seed101 --> |
+| cloudflare: clef omni | 0.00% | - | - | [replay](results/common-image/replays/image-h7-baseline-evaluation-cloudflare__clef-omni-repeat1-seed102.mp4) · [trace](results/common-image/traces/image-h7-baseline-evaluation-cloudflare__clef-omni-repeat1-seed102.json) · [profile](results/common-image/profiles/protocol.json) <!-- run:image-h7-baseline-evaluation-cloudflare__clef-omni-repeat1-seed102 --> |
+| cloudflare: clef omni | 0.00% | - | - | [replay](results/common-image/replays/image-h7-baseline-evaluation-cloudflare__clef-omni-repeat2-seed103.mp4) · [trace](results/common-image/traces/image-h7-baseline-evaluation-cloudflare__clef-omni-repeat2-seed103.json) · [profile](results/common-image/profiles/protocol.json) <!-- run:image-h7-baseline-evaluation-cloudflare__clef-omni-repeat2-seed103 --> |
 | typesafe: jev 1.14 | incomplete | - | - | [replay](results/common-image/replays/image-h7-baseline-evaluation-typesafe__jev-1.14-repeat1-seed102.mp4) · [trace](results/common-image/traces/image-h7-baseline-evaluation-typesafe__jev-1.14-repeat1-seed102.json) · [profile](results/common-image/profiles/protocol.json) <!-- run:image-h7-baseline-evaluation-typesafe__jev-1.14-repeat1-seed102 --> |
 
 </details>

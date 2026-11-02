@@ -4661,7 +4661,7 @@
     "published_trials": 66,
     "prespecified_trials": 66,
     "captured_at_utc": "2026-11-01T22:52:23.268270+00:00",
-    "image_status": "published_progress_baseline_partial",
+    "image_status": "published_progress_baseline_original48_complete",
     "protocol_sha256": "e1c1086b8dc2d5613deaad37cbc75003dedaf7564cf82802a17b0e81fcdb8371",
     "valid_trials": 63,
     "technical_trials": 3,
@@ -4684,15 +4684,16 @@
   "common_image_benchmark_status": {
     "protocol_sha256": "2f11c42b8d47f8cd8959e828243acacb8abcf83c478a6206508ebd635004fdf1",
     "expected_models": 16,
-    "published_trials": 42,
+    "published_trials": 48,
     "prespecified_trials": 48,
-    "complete_model_means": 13,
-    "pending_model_means": 3,
-    "valid_trials": 41,
+    "complete_model_means": 15,
+    "pending_model_means": 1,
+    "valid_trials": 47,
     "technical_trials": 1,
-    "captured_at_utc": "2026-11-01T23:28:14.981981+00:00",
+    "captured_at_utc": "2026-11-01T23:54:26.601619+00:00",
     "acceptance": "explicit_progress_baseline_v1",
     "native_clears": 0,
-    "historical_mechanics_witness_not_scored": true
+    "historical_mechanics_witness_not_scored": true,
+    "original_all_trials_audited": true
   }
 }
